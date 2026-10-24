@@ -181,7 +181,14 @@
         '<p class="separateur">ou</p>' : "") +
       '<form id="form-prenom" class="bloc">' +
       '<label class="champ"><span>' + (noms.length ? "Nouveau prénom" : "Comment t'appelles-tu ?") + "</span>" +
-      '<input id="prenom" autocomplete="given-name" maxlength="20" placeholder="Ton prénom"></label>' +
+      '<input id="prenom" autocomplete="off" maxlength="20" placeholder="Ton prénom ou un surnom" aria-describedby="aide-prenom"></label>' +
+      '<p id="aide-prenom" class="aide aide-prenom">Pas ton nom de famille.</p>' +
+      // La classe dès le départ : sinon un élève de 5e ou de 3e commence sans le savoir en 4e
+      (Savoirs.catalogue.length > 1
+        ? '<div class="champ"><span id="titre-classe">Ta classe</span><div class="interrupteur choix-niveau" role="group" aria-labelledby="titre-classe">' +
+          Savoirs.catalogue.map((n) => '<button type="button" data-classe="' + n.id + '" aria-pressed="' + (n.id === niveau.id) + '">' + m.echapper(n.titre) + "</button>").join("") +
+          "</div></div>"
+        : "") +
       '<p id="erreur-prenom" class="erreur" role="alert"></p>' +
       '<button class="bouton-principal" type="submit">C\'est parti</button>' +
       '<p class="aide">Ton prénom reste sur cet appareil : rien n\'est envoyé sur internet.</p>' +
@@ -194,10 +201,16 @@
       profils.choisir(noms[+b.dataset.i]);
       changerJoueur();
     }));
+    let classe = niveau.id;
+    ecran.querySelectorAll("[data-classe]").forEach((b) => b.addEventListener("click", () => {
+      classe = b.dataset.classe;
+      ecran.querySelectorAll("[data-classe]").forEach((x) => x.setAttribute("aria-pressed", x === b));
+    }));
     ecran.querySelector("#form-prenom").addEventListener("submit", (e) => {
       e.preventDefault();
       const erreur = profils.ajouter(ecran.querySelector("#prenom").value);
       if (erreur) { ecran.querySelector("#erreur-prenom").textContent = erreur; return; }
+      profils.enregistrerReglages(profils.actif(), "general", { niveau: classe });
       changerJoueur();
     });
     if (!noms.length) ecran.querySelector("#prenom").focus();
@@ -254,6 +267,7 @@
       '<p id="avertissement" class="avertissement" hidden><span aria-hidden="true">!</span> Ce chapitre n\'a peut-être pas encore été vu en classe.</p>' +
       "</div>" +
       '<div class="modes" role="radiogroup" aria-label="Façon de jouer">' + modes + "</div>" +
+      '<p id="description-mode" class="description-mode" aria-live="polite">' + m.echapper(modeChoisi.description) + "</p>" +
       '<button id="jouer" class="bouton-principal grand">Jouer</button>' +
       '<button id="reviser" class="bouton-lien lien-reviser">Réviser un seul chapitre</button>' +
       '<button id="voir-bilan" class="apercu-jardin">' +
@@ -262,6 +276,8 @@
       (sus ? pluriel(sus, "savoir su", "savoirs sus") + " sur " + jouables.length : "Tes rosaces attendent leurs premières couleurs") +
       "</span></span><span class=\"fleche\" aria-hidden=\"true\">›</span></button>" +
       '<p class="serie">' + texteSerie() + "</p>" +
+      // Visible seulement quand le navigateur propose l'installation (Chrome ou Edge, sur Android ou ordinateur)
+      '<button id="installer" class="bouton-secondaire bouton-installer"' + (invitation ? "" : " hidden") + ">Installer MémoMaths sur cet appareil</button>" +
       "</section>", "ecran-accueil");
 
     majAvertissement();
@@ -278,10 +294,12 @@
     ecran.querySelectorAll(".puce-mode[data-mode]").forEach((b) => b.addEventListener("click", () => {
       changerReglages({ mode: b.dataset.mode });
       ecran.querySelectorAll(".puce-mode[data-mode]").forEach((x) => x.setAttribute("aria-checked", x === b));
+      ecran.querySelector("#description-mode").textContent = Savoirs.modes.find((md) => md.id === b.dataset.mode).description;
     }));
     surClic("#jouer", () => jouer());
     surClic("#voir-bilan", bilan);
     surClic("#reviser", ecranReviser);
+    surClic("#installer", installer);
   }
 
   function majAvertissement() {
@@ -712,6 +730,7 @@
       '<button class="menu-item" data-action="bilan">Mon bilan</button>' +
       '<button class="menu-item" data-action="prenom">Changer de prénom</button>' +
       '<button class="menu-item" data-action="sauvegarde">Changer d\'appareil <small>sauvegarde</small></button>' +
+      (dejaInstallee() ? "" : '<button class="menu-item" data-action="installer">Installer sur cet appareil</button>') +
       '<button class="menu-item" data-action="a-propos">À propos et confidentialité</button>' +
       '<fieldset class="menu-apparence"><legend>Apparence</legend><div class="interrupteur">' +
       [["auto", "Auto"], ["clair", "Clair"], ["sombre", "Sombre"]].map(([v, t]) =>
@@ -738,6 +757,7 @@
     if (action === "prenom") ecranPrenom();
     if (action === "sauvegarde") sauvegarde();
     if (action === "a-propos") aPropos();
+    if (action === "installer") installer();
   });
 
   document.getElementById("btn-menu").addEventListener("click", ouvrirMenu);
@@ -758,6 +778,42 @@
     const suite = lien.niveau && lien.niveau !== niveau.id ? chargerNiveau(lien.niveau) : Promise.resolve();
     suite.then(() => { appliquerLien(); apresLien(); });
   });
+
+  // ---------- Installer l'application ----------
+  // Chrome et Edge (Android, ordinateur) proposent l'installation : on garde leur invitation pour notre bouton.
+  // Safari (iPhone, iPad) ne le permet pas : on explique « Partager → Sur l'écran d'accueil ».
+  let invitation = null;
+  window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    invitation = e;
+    const bouton = ecran.querySelector("#installer");
+    if (bouton) bouton.hidden = false;
+  });
+  window.addEventListener("appinstalled", () => { invitation = null; });
+  function dejaInstallee() { return matchMedia("(display-mode: standalone)").matches || navigator.standalone === true; }
+  function surIPhone() { return /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1); }
+
+  function installer() {
+    if (invitation) {
+      invitation.prompt();
+      invitation.userChoice.then(() => { invitation = null; accueil(); });
+      return;
+    }
+    barreSeance.hidden = true;
+    afficher(
+      '<section class="a-propos"><h1>Installer MémoMaths</h1><div class="bloc">' +
+      (dejaInstallee()
+        ? "<p>MémoMaths est déjà installé sur cet appareil.</p>"
+        : surIPhone()
+          ? '<ol class="etapes"><li>Ouvre MémoMaths dans <strong>Safari</strong>.</li>' +
+            "<li>Touche le bouton <strong>Partager</strong> (le carré avec une flèche vers le haut).</li>" +
+            "<li>Choisis <strong>Sur l'écran d'accueil</strong>, puis <strong>Ajouter</strong>.</li></ol>"
+          : '<ol class="etapes"><li>Ouvre le menu du navigateur (les trois points <strong>⋮</strong>, en haut à droite).</li>' +
+            "<li>Choisis <strong>Installer l'application</strong> ou <strong>Ajouter à l'écran d'accueil</strong>.</li></ol>") +
+      "<p>MémoMaths s'ouvre alors comme une application, et marche même sans internet.</p></div>" +
+      '<div class="actions"><button class="bouton-lien" data-action="retour">Accueil</button></div></section>', "ecran-installer");
+    surClic('[data-action="retour"]', accueil);
+  }
 
   // ---------- Hors ligne ----------
   // Le service worker garde MémoMaths sur l'appareil (impossible quand la page est ouverte depuis un fichier).

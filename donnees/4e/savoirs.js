@@ -533,12 +533,13 @@ Savoirs.enregistrer({
    "type": "definition",
    "titre": "Hypoténuse",
    "question": "Dans un triangle rectangle, l'hypoténuse est ...",
-   "reponse": "le côté opposé à l'angle droit (et le plus long côté)",
+   "reponse": "le côté opposé à l'angle droit",
    "pieges": [
     "un côté de l'angle droit",
     "le plus petit côté",
     "la hauteur issue de l'angle droit"
-   ]
+   ],
+   "note": "C'est aussi le plus long côté du triangle rectangle."
   },
   {
    "id": "pythagore",
@@ -587,11 +588,11 @@ Savoirs.enregistrer({
    "type": "regle",
    "titre": "Calculer un côté de l'angle droit",
    "question": "Pour calculer un côté de l'angle droit avec Pythagore, on ...",
-   "reponse": "soustrait le carré de l'autre côté au carré de l'hypoténuse, puis on prend la racine carrée",
+   "reponse": "soustrait le carré de l'autre côté au carré de l'hypoténuse, puis prend la racine",
    "pieges": [
-    "additionne les carrés des deux autres côtés",
-    "soustrait les longueurs (sans carré)",
-    "additionne les longueurs, puis on prend la racine"
+    "additionne les carrés des deux autres côtés, puis prend la racine carrée",
+    "soustrait les longueurs des deux autres côtés, sans carré",
+    "additionne les longueurs des deux autres côtés, puis prend la racine"
    ]
   },
   {
@@ -602,9 +603,9 @@ Savoirs.enregistrer({
    "question": "Dans la rédaction, quel est l'ordre des trois temps ?",
    "reponse": "On sait que … / D'après le théorème de Pythagore … / Donc …",
    "pieges": [
-    "Donc … / On sait que … / D'après …",
-    "D'après … / Donc … / On sait que …",
-    "On calcule … / On mesure … / Donc …"
+    "Donc … / On sait que … / D'après le théorème de Pythagore …",
+    "D'après le théorème de Pythagore … / Donc … / On sait que …",
+    "On calcule … / On mesure … / Donc, d'après le théorème de Pythagore …"
    ]
   },
   {
@@ -706,9 +707,9 @@ Savoirs.enregistrer({
    "question": "Que peut-on dire de $a \\div 0$ ?",
    "reponse": "c'est impossible : on ne divise jamais par 0",
    "pieges": [
-    "c'est égal à 0",
-    "c'est égal à $a$",
-    "c'est égal à 1"
+    "c'est égal à 0 car on n'a rien à partager",
+    "c'est égal à $a$ car on ne divise pas",
+    "c'est égal à 1 comme $a \\div a$"
    ]
   },
   {
@@ -752,12 +753,13 @@ Savoirs.enregistrer({
    "type": "propriete",
    "titre": "Translation et parallélogramme",
    "question": "M' est l'image de M par la translation qui transforme A en B si ...",
-   "reponse": "ABM'M est un parallélogramme (éventuellement aplati)",
+   "reponse": "$ABM'M$ est un parallélogramme",
    "pieges": [
     "ABMM' est un parallélogramme",
     "M est le milieu de [AM']",
     "(AB) est perpendiculaire à (MM')"
-   ]
+   ],
+   "note": "Il peut être aplati (si $M$ est sur $(AB)$)."
   },
   {
    "id": "transl-cons",
@@ -767,9 +769,9 @@ Savoirs.enregistrer({
    "question": "Une translation conserve ...",
    "reponse": "les longueurs, les angles, les aires, l'alignement et le parallélisme",
    "pieges": [
-    "seulement les longueurs",
-    "seulement les angles",
-    "les longueurs mais pas les aires"
+    "seulement les longueurs, mais pas les angles ni les aires",
+    "les longueurs et les angles, mais pas les aires ni l'alignement",
+    "les longueurs et les aires, mais pas le parallélisme"
    ]
   },
   {
@@ -924,11 +926,11 @@ Savoirs.enregistrer({
    "type": "definition",
    "titre": "Situation de proportionnalité",
    "question": "Deux grandeurs sont proportionnelles si ...",
-   "reponse": "on passe des valeurs de l'une à celles de l'autre en multipliant toujours par un même nombre (le coefficient)",
+   "reponse": "on passe des valeurs de l'une à celles de l'autre en multipliant toujours par le même nombre (le coefficient)",
    "pieges": [
-    "les deux grandeurs augmentent en même temps",
+    "les deux grandeurs augmentent en même temps (quand l'une grandit, l'autre aussi)",
     "on passe de l'une à l'autre en ajoutant toujours le même nombre",
-    "la représentation graphique est une droite quelconque"
+    "la représentation graphique est une droite quelconque, même sans passer par l'origine"
    ]
   },
   {
@@ -1071,9 +1073,9 @@ Savoirs.enregistrer({
    "question": "Une rotation conserve ...",
    "reponse": "les longueurs, les angles, les aires, l'alignement et le parallélisme",
    "pieges": [
-    "seulement les longueurs",
-    "les longueurs mais pas les angles",
-    "la direction des segments"
+    "seulement les longueurs, mais pas les angles",
+    "les longueurs mais pas les angles ni les aires",
+    "la direction des segments et leur longueur"
    ]
   },
   {
@@ -1212,12 +1214,13 @@ Savoirs.enregistrer({
    "type": "definition",
    "titre": "Triangles semblables",
    "question": "Deux triangles sont semblables si ...",
-   "reponse": "leurs angles sont égaux deux à deux (leurs côtés homologues sont alors proportionnels)",
+   "reponse": "leurs angles sont égaux deux à deux",
    "pieges": [
-    "ils ont la même aire",
-    "ils ont un seul angle égal",
-    "ils ont le même périmètre"
-   ]
+    "ils ont la même aire et le même périmètre",
+    "ils ont un seul angle égal, les autres sont différents",
+    "ils ont le même périmètre, mais des angles différents"
+   ],
+   "note": "Leurs côtés homologues sont alors proportionnels."
   },
   {
    "id": "sembl-2ang",
@@ -1263,11 +1266,11 @@ Savoirs.enregistrer({
    "type": "definition",
    "titre": "Puissance d'un nombre",
    "question": "$a^{n}$ (avec $n$ entier positif) signifie ...",
-   "reponse": "$a$ multiplié par lui-même $n$ fois : $a \\times a \\times \\dots \\times a$",
+   "reponse": "le produit de $n$ facteurs égaux à $a$ : $a \\times a \\times \\dots \\times a$",
    "pieges": [
-    "$a \\times n$",
-    "$a + a + \\dots + a$ ($n$ termes)",
-    "$n^{a}$"
+    "$a$ multiplié par $n$ : $a \\times n$",
+    "$a$ ajouté $n$ fois à lui-même : $a + a + \\dots + a$",
+    "$n$ multiplié par lui-même $a$ fois : $n^{a}$"
    ]
   },
   {
@@ -1462,11 +1465,11 @@ Savoirs.enregistrer({
    "type": "definition",
    "titre": "Pyramide",
    "question": "Une pyramide est un solide formé ...",
-   "reponse": "d'une base polygonale et de faces latérales triangulaires qui ont un sommet commun",
+   "reponse": "d'une base polygonale et de faces triangulaires qui ont un sommet commun",
    "pieges": [
     "de deux bases parallèles et de faces rectangulaires",
-    "d'une base circulaire et d'un sommet",
-    "de six faces carrées"
+    "d'une base circulaire et d'un sommet commun à toutes les faces",
+    "de six faces carrées identiques, comme un cube"
    ]
   },
   {
@@ -1549,9 +1552,9 @@ Savoirs.enregistrer({
    "question": "On ne change pas une égalité si on ...",
    "reponse": "ajoute, retranche, multiplie ou divise (par un nombre non nul) les deux membres par un même nombre",
    "pieges": [
-    "ajoute un nombre au membre de gauche seulement",
-    "divise par $x$ les deux membres",
-    "multiplie par 0 les deux membres"
+    "ajoute un nombre au membre de gauche seulement, sans toucher à celui de droite",
+    "divise par $x$ les deux membres, même si $x$ peut valoir 0",
+    "multiplie par 0 les deux membres pour simplifier"
    ],
    "exemples": [
     {
@@ -1756,9 +1759,9 @@ Savoirs.enregistrer({
    "question": "Un nombre est en notation scientifique s'il s'écrit ...",
    "reponse": "$a \\times 10^{n}\\ \\text{avec}\\ 1 \\leq a < 10\\ \\text{et}\\ n\\ \\text{entier relatif}$",
    "pieges": [
-    "$a \\times 10^{n}\\ \\text{avec}\\ 0 < a < 1$",
-    "$a \\times 10^{n}\\ \\text{avec}\\ a\\ \\text{quelconque}$",
-    "$a \\times n^{10}\\ \\text{avec}\\ 1 \\leq a < 10$"
+    "$a \\times 10^{n}\\ \\text{avec}\\ 0 < a < 1\\ \\text{et}\\ n\\ \\text{entier relatif}$",
+    "$a \\times 10^{n}\\ \\text{avec}\\ a\\ \\text{quelconque et}\\ n\\ \\text{entier relatif}$",
+    "$a \\times n^{10}\\ \\text{avec}\\ 1 \\leq a < 10\\ \\text{et}\\ n\\ \\text{entier relatif}$"
    ]
   },
   {
@@ -1769,9 +1772,9 @@ Savoirs.enregistrer({
    "question": "Pour calculer $(a \\times 10^{m}) \\times (b \\times 10^{n})$, on ...",
    "reponse": "multiplie $a$ par $b$, additionne les exposants, puis remet en notation scientifique",
    "pieges": [
-    "additionne $a$ et $b$ et multiplie les exposants",
-    "multiplie $a$ par $b$ et multiplie les exposants",
-    "additionne tout"
+    "additionne $a$ et $b$, multiplie les exposants, puis remet en notation scientifique",
+    "multiplie $a$ par $b$, multiplie les exposants, puis remet en notation scientifique",
+    "additionne tout, puis remet en notation scientifique"
    ],
    "exemples": [
     {

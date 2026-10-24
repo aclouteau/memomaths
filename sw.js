@@ -4,7 +4,7 @@
 // Les appareils voient alors que ce fichier a changé, téléchargent la nouvelle version
 // et l'utilisent à la prochaine ouverture.
 // Tout nouveau fichier nécessaire doit être ajouté à la liste FICHIERS.
-const VERSION = "memomaths-v8";
+const VERSION = "memomaths-v10";
 
 const POLICES_KATEX = [
   "AMS-Regular", "Caligraphic-Bold", "Caligraphic-Regular", "Fraktur-Bold", "Fraktur-Regular",

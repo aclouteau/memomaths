@@ -355,11 +355,11 @@ Savoirs.enregistrer({
    "type": "regle",
    "titre": "Priorités opératoires",
    "question": "Dans un calcul, quel est l'ordre des priorités ?",
-   "reponse": "parenthèses, puis multiplications et divisions, puis additions et soustractions (de gauche à droite)",
+   "reponse": "parenthèses, puis multiplications et divisions, puis additions et soustractions",
    "pieges": [
-    "additions et soustractions, puis multiplications et divisions",
-    "toujours de gauche à droite",
-    "multiplications, puis parenthèses, puis divisions"
+    "additions et soustractions, puis multiplications et divisions, puis parenthèses",
+    "toujours de gauche à droite, sans aucune priorité",
+    "multiplications, puis parenthèses, puis divisions, puis additions"
    ],
    "exemples": [
     {
@@ -376,7 +376,8 @@ Savoirs.enregistrer({
      "unite": "",
      "correction": "À priorité égale, de gauche à droite : $6 \\times 3 = 18$"
     }
-   ]
+   ],
+   "note": "À priorité égale, on calcule de gauche à droite."
   },
   {
    "id": "distrib",
@@ -591,12 +592,13 @@ Savoirs.enregistrer({
    "type": "regle",
    "titre": "Puissance et priorités",
    "question": "$2 \\times 5^{2}$ vaut ...",
-   "reponse": "50 (on calcule la puissance avant le produit)",
+   "reponse": "50",
    "pieges": [
     "100",
     "20",
     "12"
-   ]
+   ],
+   "note": "On calcule la puissance avant le produit : $2 \\times 25 = 50$."
   },
   {
    "id": "unites-vol",
@@ -667,13 +669,13 @@ Savoirs.enregistrer({
    "type": "regle",
    "titre": "Écrire une expression",
    "question": "Le triple d'un nombre $n$ s'écrit ...",
-   "reponse": "$3n$ (soit $3 \\times n$)",
+   "reponse": "$3n$",
    "pieges": [
     "$3 + n$",
     "$n^{3}$",
     "$n \\div 3$"
    ],
-   "note": "Double : $2n$ ; moitié : $n \\div 2$ ; carré : $n \\times n$ ; successeur : $n + 1$."
+   "note": "$3n$ s'écrit aussi $3 \\times n$. Double : $2n$ ; moitié : $n \\div 2$ ; carré : $n \\times n$ ; successeur : $n + 1$."
   },
   {
    "id": "lit-distrib",
@@ -759,13 +761,13 @@ Savoirs.enregistrer({
    "type": "regle",
    "titre": "Prouver une égalité",
    "question": "Pour prouver qu'une égalité est toujours vraie, on ...",
-   "reponse": "utilise le calcul littéral (une lettre) : un seul test ne suffit pas",
+   "reponse": "utilise le calcul littéral (une lettre)",
    "pieges": [
-    "la teste avec une valeur",
+    "la teste avec une valeur et on conclut",
     "la teste avec deux valeurs et on conclut",
     "la mesure sur une figure"
    ],
-   "note": "$3n + 1 = 4n$ est vraie pour $n = 1$ seulement."
+   "note": "Un seul test ne suffit pas. $3n + 1 = 4n$ est vraie pour $n = 1$ seulement."
   },
   {
    "id": "aire-tri",
@@ -913,11 +915,11 @@ Savoirs.enregistrer({
    "type": "regle",
    "titre": "Convertir des aires",
    "question": "$1\\ \\text{m}^{2}$ est égal à ...",
-   "reponse": "$100\\ \\text{dm}^{2}$ soit $10\\,000\\ \\text{cm}^{2}$",
+   "reponse": "$100\\ \\text{dm}^{2}$, soit $10\\,000\\ \\text{cm}^{2}$",
    "pieges": [
-    "$10\\ \\text{dm}^{2}$",
-    "$1\\,000\\ \\text{cm}^{2}$",
-    "$100\\ \\text{cm}^{2}$"
+    "$10\\ \\text{dm}^{2}$, soit $100\\ \\text{cm}^{2}$",
+    "$100\\ \\text{dm}^{2}$, soit $1\\,000\\ \\text{cm}^{2}$",
+    "$1\\,000\\ \\text{dm}^{2}$, soit $100\\,000\\ \\text{cm}^{2}$"
    ],
    "note": "1 ha = 10 000 m² ; 1 a = 100 m²."
   },
@@ -956,9 +958,9 @@ Savoirs.enregistrer({
    "question": "$21 = 3 \\times 7$ : on dit que ...",
    "reponse": "21 est un multiple de 3 et 3 est un diviseur de 21",
    "pieges": [
-    "21 est un diviseur de 3",
-    "3 est un multiple de 21",
-    "21 est le quotient de 3"
+    "21 est un diviseur de 3 et 3 est un multiple de 21",
+    "21 est le quotient de 3 et 3 est le reste",
+    "21 est un multiple de 7 et 3 est le quotient"
    ]
   },
   {
@@ -1043,13 +1045,13 @@ Savoirs.enregistrer({
    "type": "regle",
    "titre": "Pourcentage et fraction",
    "question": "$25\\,\\%$ est égal à ...",
-   "reponse": "$\\dfrac{25}{100} = \\dfrac{1}{4} = 0{,}25$",
+   "reponse": "$\\dfrac{1}{4}$",
    "pieges": [
     "$\\dfrac{1}{25}$",
     "$\\dfrac{25}{10}$",
     "2,5"
    ],
-   "note": "10 % = 1/10 ; 50 % = 1/2 ; 1 % = 1/100.",
+   "note": "$25\\,\\% = \\dfrac{25}{100} = \\dfrac{1}{4} = 0{,}25$. 10 % = 1/10 ; 50 % = 1/2 ; 1 % = 1/100.",
    "morceaux": [
     "25\\,\\%",
     "=",
@@ -1137,7 +1139,7 @@ Savoirs.enregistrer({
    "type": "regle",
    "titre": "Addition de deux relatifs de même signe",
    "question": "$(-6) + (-9)$ vaut ...",
-   "reponse": "$-15$ : on additionne les distances à zéro et on garde le signe",
+   "reponse": "$-15$",
    "pieges": [
     "$-3$",
     "15",
@@ -1151,7 +1153,8 @@ Savoirs.enregistrer({
      "unite": "",
      "correction": "$(-6) + (-9) = -(6 + 9) = -15$"
     }
-   ]
+   ],
+   "note": "On additionne les distances à zéro et on garde le signe."
   },
   {
    "id": "rel-add2",
@@ -1159,7 +1162,7 @@ Savoirs.enregistrer({
    "type": "regle",
    "titre": "Addition de deux relatifs de signes contraires",
    "question": "$(-7) + (+3)$ vaut ...",
-   "reponse": "$-4$ : on soustrait les distances à zéro et on garde le signe du plus éloigné de 0",
+   "reponse": "$-4$",
    "pieges": [
     "$-10$",
     "10",
@@ -1173,7 +1176,8 @@ Savoirs.enregistrer({
      "unite": "",
      "correction": "$(-7) + 3 = -(7 - 3) = -4$"
     }
-   ]
+   ],
+   "note": "On soustrait les distances à zéro ($7 - 3$) et on garde le signe du plus éloigné de 0."
   },
   {
    "id": "rel-sous",
@@ -1181,7 +1185,7 @@ Savoirs.enregistrer({
    "type": "regle",
    "titre": "Soustraire un relatif",
    "question": "Soustraire un nombre, c'est ...",
-   "reponse": "ajouter son opposé : $a - b = a + (-b)$",
+   "reponse": "ajouter son opposé",
    "pieges": [
     "ajouter ce nombre",
     "multiplier par $-1$",
@@ -1196,7 +1200,7 @@ Savoirs.enregistrer({
      "correction": "$5 - (-2) = 5 + 2 = 7$"
     }
    ],
-   "note": "Soustraire ne fait pas toujours diminuer : $5 - (-2) = 7$.",
+   "note": "$a - b = a + (-b)$. Soustraire ne fait pas toujours diminuer : $5 - (-2) = 7$.",
    "morceaux": [
     "a",
     "-",
@@ -1220,13 +1224,13 @@ Savoirs.enregistrer({
    "type": "regle",
    "titre": "Les parenthèses et le signe moins",
    "question": "$7 - (2 + 3)$ vaut ...",
-   "reponse": "2 (on calcule d'abord la parenthèse)",
+   "reponse": "2",
    "pieges": [
     "8",
     "12",
     "6"
    ],
-   "note": "$7 - 2 + 3 = 8$ n'est pas la même chose."
+   "note": "On calcule d'abord la parenthèse : $7 - 5 = 2$. $7 - 2 + 3 = 8$ n'est pas la même chose."
   },
   {
    "id": "vol-pave",
@@ -1359,13 +1363,13 @@ Savoirs.enregistrer({
    "type": "regle",
    "titre": "Litres et volumes",
    "question": "1 L est égal à ...",
-   "reponse": "$1\\ \\text{dm}^{3}$ ; et $1\\ \\text{m}^{3} = 1\\,000$ L",
+   "reponse": "$1\\ \\text{dm}^{3}$",
    "pieges": [
     "$1\\ \\text{cm}^{3}$",
     "$10\\ \\text{dm}^{3}$",
     "$100\\ \\text{cm}^{3}$"
    ],
-   "note": "1 mL = 1 cm³."
+   "note": "Et $1\\ \\text{m}^{3} = 1\\,000$ L. 1 mL = 1 cm³."
   },
   {
    "id": "patron",
@@ -1420,13 +1424,13 @@ Savoirs.enregistrer({
    "type": "regle",
    "titre": "Écrire 1 en fraction",
    "question": "1 peut s'écrire ...",
-   "reponse": "$\\dfrac{n}{n}$ (avec $n \\neq 0$), par exemple $\\dfrac{5}{5}$",
+   "reponse": "$\\dfrac{n}{n}$ (avec $n \\neq 0$)",
    "pieges": [
     "$\\dfrac{n}{1}$ seulement",
     "$\\dfrac{0}{n}$",
     "$\\dfrac{1}{n}$"
    ],
-   "note": "$1 - \\dfrac{2}{3} = \\dfrac{3}{3} - \\dfrac{2}{3} = \\dfrac{1}{3}$."
+   "note": "Par exemple $1 = \\dfrac{5}{5}$. $1 - \\dfrac{2}{3} = \\dfrac{3}{3} - \\dfrac{2}{3} = \\dfrac{1}{3}$."
   },
   {
    "id": "frac-diff",
@@ -1434,11 +1438,11 @@ Savoirs.enregistrer({
    "type": "regle",
    "titre": "Additionner avec des dénominateurs différents",
    "question": "Pour calculer $\\dfrac{2}{5} + \\dfrac{1}{4}$ on ...",
-   "reponse": "écrit les deux fractions avec un dénominateur commun (20) : $\\dfrac{8}{20} + \\dfrac{5}{20} = \\dfrac{13}{20}$",
+   "reponse": "met les deux fractions au même dénominateur (20) : $\\dfrac{8}{20} + \\dfrac{5}{20} = \\dfrac{13}{20}$",
    "pieges": [
-    "additionne les numérateurs et les dénominateurs : $\\dfrac{3}{9}$",
-    "multiplie les deux fractions : $\\dfrac{2}{20}$",
-    "ne change que les dénominateurs"
+    "additionne les numérateurs et les dénominateurs : $\\dfrac{2 + 1}{5 + 4} = \\dfrac{3}{9}$",
+    "multiplie les deux fractions : $\\dfrac{2 \\times 1}{5 \\times 4} = \\dfrac{2}{20}$",
+    "garde le premier dénominateur : $\\dfrac{2 + 1}{5} = \\dfrac{3}{5}$"
    ]
   },
   {
@@ -1463,9 +1467,9 @@ Savoirs.enregistrer({
    "question": "Le coefficient de proportionnalité se calcule en ...",
    "reponse": "divisant une valeur de la seconde grandeur par la valeur correspondante de la première",
    "pieges": [
-    "soustrayant deux valeurs",
-    "additionnant deux valeurs",
-    "multipliant deux valeurs"
+    "soustrayant la valeur de la première grandeur à celle de la seconde",
+    "additionnant la valeur de la première grandeur à celle de la seconde",
+    "multipliant une valeur de la seconde grandeur par la valeur correspondante de la première"
    ],
    "exemples": [
     {
@@ -1526,12 +1530,13 @@ Savoirs.enregistrer({
    "type": "regle",
    "titre": "Ajouter ou multiplier ?",
    "question": "Si 2 kg coûtent 5 €, alors 5 kg coûtent ...",
-   "reponse": "12,50 € : on multiplie (coefficient 2,5), on n'ajoute pas",
+   "reponse": "12,50 €",
    "pieges": [
     "8 €",
     "10 €",
     "7,50 €"
-   ]
+   ],
+   "note": "On multiplie par le coefficient $2{,}5$ ; on n'ajoute pas."
   },
   {
    "id": "equ-def",
@@ -1618,13 +1623,13 @@ Savoirs.enregistrer({
    "type": "regle",
    "titre": "Vérifier et conclure",
    "question": "Après avoir trouvé une solution, on ...",
-   "reponse": "la vérifie dans l'équation de départ et on conclut par une phrase (avec l'unité)",
+   "reponse": "la vérifie dans l'équation de départ puis conclut par une phrase",
    "pieges": [
-    "passe directement à l'exercice suivant",
-    "ne conclut que si le résultat est entier",
-    "écrit seulement le résultat"
+    "passe directement à l'exercice suivant sans rien écrire",
+    "ne conclut que si le résultat est un nombre entier",
+    "écrit seulement le résultat sans phrase ni vérification"
    ],
-   "note": "$2x = 0$ et $x \\div 2 = 0$ ont pour solution 0."
+   "note": "On pense à l'unité dans la phrase. $2x = 0$ et $x \\div 2 = 0$ ont pour solution 0."
   },
   {
    "id": "para-def",
@@ -1634,9 +1639,9 @@ Savoirs.enregistrer({
    "question": "Un parallélogramme est un quadrilatère qui a ...",
    "reponse": "ses côtés opposés parallèles deux à deux",
    "pieges": [
-    "quatre côtés égaux",
-    "quatre angles droits",
-    "un seul angle droit"
+    "quatre côtés de même longueur",
+    "quatre angles droits, comme un rectangle",
+    "un seul angle droit et deux côtés égaux"
    ]
   },
   {
@@ -1685,12 +1690,13 @@ Savoirs.enregistrer({
    "type": "definition",
    "titre": "Losange",
    "question": "Un losange est un parallélogramme qui a ...",
-   "reponse": "deux côtés consécutifs égaux (ses diagonales sont alors perpendiculaires)",
+   "reponse": "deux côtés consécutifs égaux",
    "pieges": [
     "un angle droit",
     "des diagonales égales",
     "un seul axe de symétrie"
-   ]
+   ],
+   "note": "Ses diagonales sont alors perpendiculaires."
   },
   {
    "id": "carre",
@@ -1700,9 +1706,9 @@ Savoirs.enregistrer({
    "question": "Un carré est un quadrilatère qui est ...",
    "reponse": "à la fois un rectangle et un losange",
    "pieges": [
-    "seulement un rectangle",
-    "seulement un losange",
-    "un trapèze"
+    "un rectangle sans être un losange",
+    "un losange sans être un rectangle",
+    "un parallélogramme qui n'a que deux côtés égaux"
    ]
   },
   {
@@ -1899,12 +1905,13 @@ Savoirs.enregistrer({
    "type": "regle",
    "titre": "Une chance sur quatre",
    "question": "« Une chance sur quatre » s'écrit ...",
-   "reponse": "$\\dfrac{1}{4} = 0{,}25 = 25\\,\\%$",
+   "reponse": "$\\dfrac{1}{4}$",
    "pieges": [
     "$\\dfrac{1}{3}$",
     "0,4",
     "$4\\,\\%$"
-   ]
+   ],
+   "note": "$\\dfrac{1}{4} = 0{,}25 = 25\\,\\%$."
   },
   {
    "id": "proba-memoire",

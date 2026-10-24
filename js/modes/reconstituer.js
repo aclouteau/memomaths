@@ -4,12 +4,43 @@
 (function () {
   const m = Savoirs.maths;
 
+  // Forme « normalisée » d'une suite de morceaux, pour accepter les écritures équivalentes :
+  // facteurs séparés par × dans un autre ordre (r² × π), termes séparés par + dans un autre ordre,
+  // membres d'une égalité échangés (B × h = V), ou maillons d'une suite d'égalités (Thalès) dans un autre ordre.
+  // Prudence : pas de réordonnancement dans un membre qui contient un « − » ou un « ÷ » au premier niveau,
+  // ni dans une formule avec ⇒, ⇔ ou ≠ (seul l'ordre exact compte alors).
+  const RELATIONS = ["\\Longrightarrow", "\\Longleftrightarrow", "\\neq"];
+
+  function couper(morceaux, separateur) {
+    const parts = [[]];
+    let prof = 0;
+    for (const t of morceaux) {
+      prof += (t.match(/\(/g) || []).length - (t.match(/\)/g) || []).length;
+      if (t === separateur && prof === 0) parts.push([]);
+      else parts[parts.length - 1].push(t);
+    }
+    return parts;
+  }
+
+  function normaliserMembre(membre) {
+    if (membre.some((t) => t === "-" || t === "\\div")) return membre.join(" ");
+    return couper(membre, "+")
+      .map((terme) => couper(terme, "\\times").map((f) => f.join(" ")).sort().join(" \\times "))
+      .sort().join(" + ");
+  }
+
+  function forme(morceaux) {
+    if (morceaux.some((t) => RELATIONS.some((r) => t.includes(r)))) return morceaux.join(" ");
+    return couper(morceaux, "=").map(normaliserMembre).sort().join(" = ");
+  }
+
   Savoirs.modes.push({
     id: "reconstituer",
     titre: "Je reconstitue",
     description: "Remets les morceaux de la formule dans l'ordre.",
     competence: "reconstituer",
     messageFaux: "Pas tout à fait : voici la formule bien écrite.",
+    forme: forme, // pour les tests
 
     cartes: function (jouables) {
       return jouables.filter((s) => s.morceaux && s.morceaux.length);
@@ -56,14 +87,21 @@
         if (termine || !choisis.length) return;
         termine = true;
         document.removeEventListener("keydown", touche);
-        const juste = choisis.length === savoir.morceaux.length &&
-          choisis.every((i, k) => tuiles[i] === savoir.morceaux[k]);
+        const reponse = choisis.map((i) => tuiles[i]);
+        const exact = reponse.length === savoir.morceaux.length && reponse.every((t, k) => t === savoir.morceaux[k]);
+        const juste = exact || (reponse.length === savoir.morceaux.length && forme(reponse) === forme(savoir.morceaux));
         maj();
         cadre.classList.add(juste ? "juste" : "faux");
         cadre.insertAdjacentHTML("afterbegin", '<span class="marque" aria-hidden="true">' + (juste ? "✓" : "✗") + "</span>" +
           '<span class="sr">' + (juste ? "Juste : " : "Ta réponse, fausse : ") + "</span>");
         zone.querySelector(".tuiles").classList.add("eteintes");
         zone.querySelector(".actions-reco").hidden = true;
+        // Juste mais dans un autre ordre : on montre aussi l'écriture du cours
+        if (juste && !exact) {
+          const correction = zone.querySelector(".correction");
+          correction.innerHTML = '<span class="aide">Bien vu, c\'est équivalent. Dans le cours, on l\'écrit : </span>' + m.formule(savoir.morceaux.join(" "));
+          correction.hidden = false;
+        }
         if (!juste) {
           const correction = zone.querySelector(".correction");
           correction.innerHTML = '<span class="marque" aria-hidden="true">✓</span><span class="sr">Bonne réponse : </span>' +

@@ -5,11 +5,21 @@
 (function () {
   const m = Savoirs.maths;
 
-  // "28,3 cm²" -> 28.3 ; "60 000 000" -> 60000000 ; null si ce n'est pas un nombre
+  // Lit la réponse tapée comme le ferait un professeur, ou null si ce n'est pas un nombre :
+  //   "28,3 cm²" -> 28.3 ; "60 000 000" -> 60000000 ; "x = 7" ou "AC ≈ 28,3" -> la valeur après le signe ;
+  //   "3/8" -> 0.375 ; "6×10^7" -> 60000000 ; "1h30" -> 1.5 (heures)
   function lireNombre(saisie) {
-    const s = String(saisie).trim().replace(/[\s  ]/g, "").replace(/[−–]/g, "-").replace(",", ".");
+    let s = String(saisie).trim().replace(/[\s  ]/g, "").replace(/[−–]/g, "-").replace(/,/g, ".");
+    s = s.replace(/^.*[=≈~]/, ""); // ce qui est écrit avant « = » ou « ≈ » (x =, AC ≈…)
+    let t = s.match(/^(\d+)h(\d{1,2})(min)?$/i);
+    if (t) return +t[1] + t[2] / 60;
+    t = s.match(/^(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)/);
+    if (t && +t[2] !== 0 && !/[\d/^]/.test(s.slice(t[0].length))) return t[1] / t[2];
+    t = s.match(/^(-?\d+(?:\.\d+)?)[x×*]10\^\(?(-?\d+)\)?/i);
+    if (t && !/\d/.test(s.slice(t[0].length))) return +t[1] * Math.pow(10, +t[2]);
     const nb = s.match(/^[-+]?(\d+\.?\d*|\.\d+)/);
-    if (!nb || /\d/.test(s.slice(nb[0].length))) return null;
+    // Après le nombre : seulement une unité (pas d'autre chiffre ni d'opération, comme « 15- »)
+    if (!nb || /[\d+\-*/×^=]/.test(s.slice(nb[0].length))) return null;
     return parseFloat(nb[0]);
   }
 
@@ -54,17 +64,26 @@
         '<div class="question">' + m.texte(ex.donnees) + "</div>" +
         '<form class="reponse-num" novalidate>' +
         '<label class="champ"><span>' + m.texte(ex.question) + "</span>" +
-        '<span class="saisie"><input inputmode="decimal" autocomplete="off" enterkeyhint="done" aria-describedby="erreur-num">' +
+        // Le pavé numérique de l'iPhone n'a pas de touche « − » : le bouton ± change le signe
+        '<span class="saisie"><button type="button" class="signe" aria-label="Changer le signe (plus ou moins)">±</button>' +
+        '<input inputmode="decimal" autocomplete="off" enterkeyhint="done" aria-describedby="erreur-num">' +
         (ex.unite ? '<span class="unite">' + m.echapper(ex.unite) + "</span>" : "") + "</span></label>" +
         '<p id="erreur-num" class="erreur" role="alert"></p>' +
-        '<button class="bouton-principal" type="submit">Vérifier</button>' +
+        '<button class="bouton-principal verifier" type="submit">Vérifier</button>' +
         "</form>" +
         '<div class="correction" hidden></div>';
 
       const form = zone.querySelector("form");
       const champ = form.querySelector("input");
       const erreur = form.querySelector(".erreur");
+      const signe = form.querySelector(".signe");
       champ.addEventListener("input", () => { erreur.textContent = ""; });
+      signe.addEventListener("click", () => {
+        const v = champ.value.trim();
+        champ.value = /^[-−]/.test(v) ? v.replace(/^[-−]\s*/, "") : "-" + v;
+        erreur.textContent = "";
+        champ.focus();
+      });
 
       form.addEventListener("submit", (e) => {
         e.preventDefault();
@@ -77,9 +96,10 @@
         }
         const juste = Math.abs(x - ex.reponse) <= tolerance;
         champ.disabled = true;
+        signe.hidden = true;
         form.querySelector(".saisie").classList.add(juste ? "juste" : "faux");
         form.querySelector(".saisie").insertAdjacentHTML("afterbegin", '<span class="marque" aria-hidden="true">' + (juste ? "✓" : "✗") + "</span>");
-        form.querySelector("button").hidden = true;
+        form.querySelector(".verifier").hidden = true;
         const correction = zone.querySelector(".correction");
         correction.innerHTML = (masque ? '<span class="savoir-utilise">Savoir utilisé : ' + m.texte(savoir.titre) + "</span><br>" : "") +
           (juste ? "" : "<strong>Réponse attendue : " + versTexte(ex.reponse) + (ex.unite ? " " + m.echapper(ex.unite) : "") + "</strong><br>") +

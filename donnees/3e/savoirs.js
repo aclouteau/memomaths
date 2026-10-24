@@ -537,9 +537,9 @@ Savoirs.enregistrer({
    "question": "On ne change pas une égalité si on ...",
    "reponse": "ajoute, retranche, multiplie ou divise (par un nombre non nul) les deux membres par un même nombre",
    "pieges": [
-    "ajoute un nombre au membre de gauche seulement",
-    "divise par $x$ les deux membres",
-    "multiplie par 0 les deux membres"
+    "ajoute un nombre au membre de gauche seulement, sans toucher à celui de droite",
+    "divise par $x$ les deux membres, même si $x$ peut valoir 0",
+    "multiplie par 0 les deux membres pour simplifier"
    ],
    "exemples": [
     {
@@ -867,12 +867,13 @@ Savoirs.enregistrer({
    "type": "definition",
    "titre": "Hypoténuse",
    "question": "Dans un triangle rectangle, l'hypoténuse est ...",
-   "reponse": "le côté opposé à l'angle droit (et le plus long côté)",
+   "reponse": "le côté opposé à l'angle droit",
    "pieges": [
     "un côté de l'angle droit",
     "le plus petit côté",
     "la hauteur issue de l'angle droit"
-   ]
+   ],
+   "note": "C'est aussi le plus long côté du triangle rectangle."
   },
   {
    "id": "pythagore",
@@ -921,11 +922,11 @@ Savoirs.enregistrer({
    "type": "regle",
    "titre": "Calculer un côté de l'angle droit",
    "question": "Pour calculer un côté de l'angle droit avec Pythagore, on ...",
-   "reponse": "soustrait le carré de l'autre côté au carré de l'hypoténuse, puis on prend la racine carrée",
+   "reponse": "soustrait le carré de l'autre côté au carré de l'hypoténuse, puis prend la racine",
    "pieges": [
-    "additionne les carrés des deux autres côtés",
-    "soustrait les longueurs (sans carré)",
-    "additionne les longueurs, puis on prend la racine"
+    "additionne les carrés des deux autres côtés, puis prend la racine carrée",
+    "soustrait les longueurs des deux autres côtés, sans carré",
+    "additionne les longueurs des deux autres côtés, puis prend la racine"
    ]
   },
   {
@@ -1264,9 +1265,9 @@ Savoirs.enregistrer({
    "question": "Un nombre est en notation scientifique s'il s'écrit ...",
    "reponse": "$a \\times 10^{n}\\ \\text{avec}\\ 1 \\leq a < 10\\ \\text{et}\\ n\\ \\text{entier relatif}$",
    "pieges": [
-    "$a \\times 10^{n}\\ \\text{avec}\\ 0 < a < 1$",
-    "$a \\times 10^{n}\\ \\text{avec}\\ a\\ \\text{quelconque}$",
-    "$a \\times n^{10}\\ \\text{avec}\\ 1 \\leq a < 10$"
+    "$a \\times 10^{n}\\ \\text{avec}\\ 0 < a < 1\\ \\text{et}\\ n\\ \\text{entier relatif}$",
+    "$a \\times 10^{n}\\ \\text{avec}\\ a\\ \\text{quelconque et}\\ n\\ \\text{entier relatif}$",
+    "$a \\times n^{10}\\ \\text{avec}\\ 1 \\leq a < 10\\ \\text{et}\\ n\\ \\text{entier relatif}$"
    ]
   },
   {
@@ -1277,9 +1278,9 @@ Savoirs.enregistrer({
    "question": "Pour calculer $(a \\times 10^{m}) \\times (b \\times 10^{n})$, on ...",
    "reponse": "multiplie $a$ par $b$, additionne les exposants, puis remet en notation scientifique",
    "pieges": [
-    "additionne $a$ et $b$ et multiplie les exposants",
-    "multiplie $a$ par $b$ et multiplie les exposants",
-    "additionne tout"
+    "additionne $a$ et $b$, multiplie les exposants, puis remet en notation scientifique",
+    "multiplie $a$ par $b$, multiplie les exposants, puis remet en notation scientifique",
+    "additionne tout, puis remet en notation scientifique"
    ],
    "exemples": [
     {
@@ -1418,12 +1419,13 @@ Savoirs.enregistrer({
    "type": "definition",
    "titre": "Triangles semblables",
    "question": "Deux triangles sont semblables si ...",
-   "reponse": "leurs angles sont égaux deux à deux (leurs côtés homologues sont alors proportionnels)",
+   "reponse": "leurs angles sont égaux deux à deux",
    "pieges": [
-    "ils ont la même aire",
-    "ils ont un seul angle égal",
-    "ils ont le même périmètre"
-   ]
+    "ils ont la même aire et le même périmètre",
+    "ils ont un seul angle égal, les autres sont différents",
+    "ils ont le même périmètre, mais des angles différents"
+   ],
+   "note": "Leurs côtés homologues sont alors proportionnels."
   },
   {
    "id": "sembl-2ang",
@@ -1489,9 +1491,9 @@ Savoirs.enregistrer({
    "question": "Dans un arbre de probabilités, pour une issue à deux épreuves, on ...",
    "reponse": "multiplie les probabilités le long de la branche, puis on additionne les branches qui mènent au même événement",
    "pieges": [
-    "additionne les probabilités le long de la branche",
-    "multiplie toutes les branches de l'arbre",
-    "ne garde que la première branche"
+    "additionne les probabilités le long de la branche, puis multiplie les branches qui mènent au même événement",
+    "multiplie toutes les probabilités de toutes les branches de l'arbre",
+    "ne garde que la première branche, puis additionne les branches"
    ]
   },
   {
@@ -1565,9 +1567,9 @@ Savoirs.enregistrer({
    "question": "Un nombre premier est un nombre entier qui ...",
    "reponse": "a exactement deux diviseurs : 1 et lui-même",
    "pieges": [
-    "n'a aucun diviseur",
-    "est impair",
-    "a au moins deux diviseurs"
+    "n'a aucun diviseur, pas même 1",
+    "est impair et n'est pas divisible par 3",
+    "a plus de deux diviseurs : 1, lui-même et d'autres"
    ],
    "note": "1 n'est pas premier. 2 est le seul nombre premier pair. 9, 15, 21 sont impairs mais non premiers."
   },
@@ -1579,9 +1581,9 @@ Savoirs.enregistrer({
    "question": "Tout entier supérieur ou égal à 2 s'écrit ...",
    "reponse": "comme un produit de nombres premiers, de façon unique (à l'ordre près)",
    "pieges": [
-    "comme une somme de nombres premiers",
-    "de plusieurs manières différentes",
-    "comme un produit de nombres impairs"
+    "comme une somme de nombres premiers, de façon unique",
+    "comme un produit de nombres premiers, de plusieurs manières différentes",
+    "comme un produit de nombres impairs, de façon unique"
    ],
    "exemples": [
     {
@@ -1722,12 +1724,13 @@ Savoirs.enregistrer({
    "type": "definition",
    "titre": "Échelle",
    "question": "Une échelle de $\\dfrac{1}{N}$ correspond à ...",
-   "reponse": "une réduction de rapport $\\dfrac{1}{N}$ (quand $N > 1$)",
+   "reponse": "une réduction de rapport $\\dfrac{1}{N}$",
    "pieges": [
     "un agrandissement de rapport $N$",
     "une réduction de rapport $N$",
-    "une symétrie"
-   ]
+    "une symétrie de rapport $N$"
+   ],
+   "note": "Cela suppose $N > 1$."
   },
   {
    "id": "agr-sens",
@@ -1945,13 +1948,13 @@ Savoirs.enregistrer({
    "type": "regle",
    "titre": "Factoriser",
    "question": "Factoriser une expression, c'est ...",
-   "reponse": "l'écrire sous forme d'un produit (facteur commun ou identité remarquable à l'envers)",
+   "reponse": "l'écrire sous forme d'un produit",
    "pieges": [
     "l'écrire sous forme d'une somme",
     "la développer",
     "la réduire"
    ],
-   "note": "Développer : produit → somme. Factoriser : somme → produit. On vérifie en développant."
+   "note": "On utilise un facteur commun ou une identité remarquable à l'envers. Développer : produit → somme. Factoriser : somme → produit. On vérifie en développant."
   },
   {
    "id": "lit-prouver",
@@ -1961,9 +1964,9 @@ Savoirs.enregistrer({
    "question": "Pour prouver une égalité vraie pour tous les nombres, on ...",
    "reponse": "utilise une lettre, développe, réduit puis conclut",
    "pieges": [
-    "la teste avec plusieurs valeurs",
-    "la teste avec un seul nombre",
-    "la vérifie avec une mesure"
+    "la teste avec plusieurs valeurs et on conclut si ça marche",
+    "la teste avec un seul nombre bien choisi",
+    "la vérifie avec une mesure sur une figure"
    ]
   },
   {
@@ -1998,7 +2001,7 @@ Savoirs.enregistrer({
    "type": "propriete",
    "titre": "Effet d'une homothétie de rapport k",
    "question": "Une homothétie de rapport $k$ multiplie les longueurs par ...",
-   "reponse": "$|k|$ et les aires par $k^{2}$ ; les angles sont conservés",
+   "reponse": "$|k|$ et les aires par $k^{2}$",
    "pieges": [
     "$k$ et les aires par $k$",
     "$k^{2}$ et les aires par $k^{4}$",
@@ -2012,7 +2015,8 @@ Savoirs.enregistrer({
      "unite": "cm²",
      "correction": "$5 \\times (-3)^{2} = 45$ cm²"
     }
-   ]
+   ],
+   "note": "Les angles sont conservés."
   },
   {
    "id": "homo-sens",
@@ -2049,9 +2053,9 @@ Savoirs.enregistrer({
    "question": "Si $f(a) = b$ alors ...",
    "reponse": "$b$ est l'image de $a$ et $a$ est un antécédent de $b$",
    "pieges": [
-    "$a$ est l'image de $b$",
-    "$b$ est un antécédent de $a$",
-    "$a$ et $b$ sont égaux"
+    "$a$ est l'image de $b$ et $b$ est un antécédent de $a$",
+    "$b$ est l'image de $a$ et $a$ est l'image de $b$",
+    "$a$ et $b$ sont égaux et ont la même image"
    ]
   },
   {
@@ -2082,7 +2086,7 @@ Savoirs.enregistrer({
    "type": "regle",
    "titre": "Chercher un antécédent",
    "question": "Pour trouver l'antécédent de 7 par $f(x) = 2x - 3$, on ...",
-   "reponse": "résout l'équation $2x - 3 = 7$ (ou on lit l'abscisse sur la courbe)",
+   "reponse": "résout l'équation $2x - 3 = 7$",
    "pieges": [
     "calcule $f(7)$",
     "calcule $2 \\times 7 - 3 \\times 7$",
@@ -2096,7 +2100,8 @@ Savoirs.enregistrer({
      "unite": "",
      "correction": "$2x - 3 = 7$ donc $2x = 10$ et $x = 5$"
     }
-   ]
+   ],
+   "note": "On peut aussi lire l'abscisse sur la courbe."
   },
   {
    "id": "fg-point",
@@ -2231,9 +2236,9 @@ Savoirs.enregistrer({
    "question": "Pour calculer une longueur avec Thalès, on ...",
    "reponse": "écrit l'égalité des rapports puis on utilise le produit en croix",
    "pieges": [
-    "additionne les longueurs",
-    "utilise Pythagore",
-    "mesure la figure"
+    "additionne les longueurs connues puis on divise par 2",
+    "utilise Pythagore puis on prend la racine carrée",
+    "mesure la figure à la règle puis on arrondit"
    ]
   },
   {
@@ -2244,9 +2249,9 @@ Savoirs.enregistrer({
    "question": "Avant d'écrire les rapports, il faut citer ...",
    "reponse": "les droites sécantes et les droites parallèles",
    "pieges": [
-    "la mesure des angles",
-    "le périmètre du triangle",
-    "uniquement le résultat"
+    "la mesure des angles de la figure",
+    "le périmètre du grand triangle",
+    "uniquement le résultat final"
    ]
   },
   {
@@ -2255,11 +2260,11 @@ Savoirs.enregistrer({
    "type": "definition",
    "titre": "Configuration en papillon",
    "question": "La configuration en papillon est celle où ...",
-   "reponse": "les deux droites sécantes en $A$ coupent deux droites parallèles de part et d'autre de $A$",
+   "reponse": "les deux sécantes en $A$ coupent deux parallèles de part et d'autre de $A$",
    "pieges": [
     "les deux droites parallèles sont du même côté de $A$",
-    "les droites sécantes sont perpendiculaires",
-    "il n'y a pas de droites parallèles"
+    "les droites sécantes sont perpendiculaires en $A$ et coupent deux parallèles",
+    "il n'y a pas de droites parallèles, seulement deux sécantes"
    ]
   },
   {
@@ -2270,9 +2275,9 @@ Savoirs.enregistrer({
    "question": "Pour résoudre $ax + b = cx + d$, on ...",
    "reponse": "regroupe les $x$ d'un côté, les nombres de l'autre, réduit puis divise",
    "pieges": [
-    "regroupe tout d'un seul côté sans réduire",
-    "annule chaque facteur",
-    "remplace $x$ par 0"
+    "regroupe tout d'un seul côté, sans réduire ni diviser",
+    "divise chaque membre par $x$ puis réduit",
+    "remplace $x$ par 0 puis calcule"
    ],
    "exemples": [
     {
@@ -2324,9 +2329,9 @@ Savoirs.enregistrer({
    "question": "L'équation $x^{2} = a$ a ...",
    "reponse": "deux solutions si $a > 0$, une solution si $a = 0$, aucune si $a < 0$",
    "pieges": [
-    "une seule solution toujours",
-    "toujours deux solutions",
-    "aucune solution si $a$ est entier"
+    "une seule solution toujours : la racine carrée de $a$",
+    "toujours deux solutions, même si $a$ est négatif",
+    "aucune solution si $a$ n'est pas un carré parfait"
    ],
    "exemples": [
     {
@@ -2344,12 +2349,13 @@ Savoirs.enregistrer({
    "type": "regle",
    "titre": "Vérifier et conclure",
    "question": "Dans un problème, après la résolution, on ...",
-   "reponse": "vérifie que la solution convient à l'énoncé (par exemple une longueur ne peut pas être négative) et on conclut par une phrase",
+   "reponse": "vérifie que la solution convient à l'énoncé et conclut par une phrase",
    "pieges": [
-    "garde toujours les deux solutions",
-    "ne conclut pas",
+    "garde toujours les deux solutions sans vérifier",
+    "ne conclut pas : le calcul suffit",
     "écrit seulement la valeur de $x$"
-   ]
+   ],
+   "note": "Par exemple, une longueur ne peut pas être négative."
   },
   {
    "id": "st-etendue",
@@ -2359,9 +2365,9 @@ Savoirs.enregistrer({
    "question": "L'étendue d'une série est ...",
    "reponse": "la différence entre la plus grande et la plus petite valeur",
    "pieges": [
-    "la moyenne des valeurs extrêmes",
-    "la valeur du milieu",
-    "le nombre de valeurs"
+    "la moyenne entre la plus grande et la plus petite valeur",
+    "la valeur du milieu de la série rangée",
+    "le nombre de valeurs de la série"
    ],
    "exemples": [
     {
@@ -2379,13 +2385,13 @@ Savoirs.enregistrer({
    "type": "definition",
    "titre": "Quartiles",
    "question": "Le premier quartile $Q_{1}$ est ...",
-   "reponse": "la plus petite valeur telle qu'au moins $25\\,\\%$ des valeurs lui soient inférieures ou égales (rang $\\dfrac{N}{4}$ arrondi au supérieur)",
+   "reponse": "la plus petite valeur telle qu'au moins $25\\,\\%$ des valeurs lui soient inférieures ou égales",
    "pieges": [
-    "la valeur du milieu de la série",
-    "la moyenne des valeurs inférieures à la médiane",
-    "la plus petite valeur de la série"
+    "la valeur du milieu de la série rangée, qui la partage en deux groupes",
+    "la moyenne de toutes les valeurs inférieures à la médiane",
+    "la plus petite valeur telle qu'au moins $50\\,\\%$ des valeurs lui soient inférieures ou égales"
    ],
-   "note": "$Q_{3}$ : rang $\\dfrac{3N}{4}$ arrondi au supérieur."
+   "note": "Rang $\\dfrac{N}{4}$ arrondi au supérieur. $Q_{3}$ : rang $\\dfrac{3N}{4}$ arrondi au supérieur."
   },
   {
    "id": "st-pondere",
@@ -2528,7 +2534,7 @@ Savoirs.enregistrer({
    "type": "propriete",
    "titre": "Coefficient a",
    "question": "Pour la fonction linéaire $f(x) = ax$, le nombre $a$ est égal à ...",
-   "reponse": "$f(1)$, ou $\\dfrac{f(x)}{x}$ pour tout $x \\neq 0$",
+   "reponse": "$f(1)$",
    "pieges": [
     "$f(0)$",
     "$f(x) + x$",
@@ -2551,7 +2557,8 @@ Savoirs.enregistrer({
    "intrus": [
     "\\dfrac{x}{f(x)}",
     "f(x) + x"
-   ]
+   ],
+   "note": "On a aussi $a = \\dfrac{f(x)}{x}$ pour tout $x \\neq 0$."
   },
   {
    "id": "fl-origine",
@@ -2597,12 +2604,13 @@ Savoirs.enregistrer({
    "type": "propriete",
    "titre": "Rôle de a et b",
    "question": "Dans $f(x) = ax + b$ : $a$ est ... et $b$ est ...",
-   "reponse": "le coefficient directeur (pente) et l'ordonnée à l'origine ($f(0) = b$)",
+   "reponse": "le coefficient directeur (pente) et l'ordonnée à l'origine",
    "pieges": [
     "l'ordonnée à l'origine et le coefficient directeur",
     "l'image de 1 et l'image de 0",
     "l'abscisse et l'ordonnée"
-   ]
+   ],
+   "note": "On a $f(0) = b$."
   },
   {
    "id": "fa-graph",
@@ -2767,10 +2775,10 @@ Savoirs.enregistrer({
    "type": "regle",
    "titre": "Calculer un angle",
    "question": "Pour retrouver un angle dont on connaît le cosinus, on utilise ...",
-   "reponse": "la touche $\\cos^{-1}$ (ou arccos) de la calculatrice",
+   "reponse": "la touche $\\cos^{-1}$ de la calculatrice",
    "pieges": [
-    "la touche $\\cos$",
-    "la touche $\\sqrt{\\ }$",
+    "la touche $\\cos$ de la calculatrice",
+    "la touche $\\sqrt{\\ }$ de la calculatrice",
     "la division par 180"
    ],
    "exemples": [
@@ -2781,7 +2789,8 @@ Savoirs.enregistrer({
      "unite": "°",
      "correction": "$\\cos^{-1}(0{,}8) \\approx 36{,}9^{\\circ}$"
     }
-   ]
+   ],
+   "note": "On l'appelle aussi arccos."
   },
   {
    "id": "trig-mode",
@@ -2802,12 +2811,13 @@ Savoirs.enregistrer({
    "type": "regle",
    "titre": "Choisir la bonne formule",
    "question": "Pour choisir cosinus, sinus ou tangente, on repère ...",
-   "reponse": "l'angle connu (ou cherché) et les deux côtés concernés : adjacent, opposé, hypoténuse",
+   "reponse": "l'angle connu (ou cherché) et les deux côtés concernés",
    "pieges": [
-    "les trois angles",
-    "le plus grand côté seulement",
-    "l'aire du triangle"
-   ]
+    "les trois angles du triangle",
+    "le plus grand côté seulement, sans regarder l'angle",
+    "l'aire du triangle et son périmètre"
+   ],
+   "note": "Les côtés sont nommés adjacent, opposé et hypoténuse."
   },
   {
    "id": "sph-aire",
@@ -2887,8 +2897,8 @@ Savoirs.enregistrer({
    "question": "La section d'une sphère de rayon $R$ par un plan situé à la distance $d$ du centre est ...",
    "reponse": "un cercle de rayon $r$ tel que $R^{2} = d^{2} + r^{2}$",
    "pieges": [
-    "un disque de rayon $R$",
-    "un point",
+    "un disque de rayon $R$, quelle que soit la distance $d$",
+    "un point, sauf si $d = 0$",
     "un cercle de rayon $R + d$"
    ]
   },

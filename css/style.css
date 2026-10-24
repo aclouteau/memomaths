@@ -185,6 +185,7 @@ h1, h2 { line-height: 1.2; }
 }
 .separateur { text-align: center; color: var(--texte-doux); margin: 1rem 0; }
 #form-prenom .aide { margin-top: .8rem; text-align: center; }
+#form-prenom .aide-prenom { margin: -.4rem 0 .9rem; text-align: left; }
 
 /* ---------- Accueil ---------- */
 .bonjour { font-size: 2.1rem; font-weight: 800; margin: .6rem 0 .2rem; letter-spacing: -.02em; }
@@ -196,6 +197,7 @@ h1, h2 { line-height: 1.2; }
   min-height: 48px; padding: .3rem .6rem; border-radius: 16px;
   border: 2px solid var(--bord); background: var(--surface); font-weight: 700; font-size: .95rem; line-height: 1.15;
 }
+.description-mode { margin: .6rem 0 0; text-align: center; font-size: .9rem; color: var(--texte-doux); }
 .puce-mode[aria-checked="true"] { background: var(--texte); border-color: var(--texte); color: var(--fond); }
 .puce-mode:disabled { border-style: dashed; color: var(--texte-doux); background: transparent; }
 .puce-mode small { display: block; font-weight: 600; font-size: .72rem; }
@@ -227,6 +229,7 @@ h1, h2 { line-height: 1.2; }
 .fleche { font-size: 1.8rem; color: var(--texte-doux); }
 .serie { text-align: center; color: var(--texte-doux); font-size: .9rem; margin: 1rem 0 0; }
 .serie:empty { display: none; }
+.bouton-installer { margin-top: 1rem; font-size: .95rem; min-height: 48px; }
 
 /* ---------- Carte de question ---------- */
 .carte {
@@ -319,6 +322,10 @@ h1, h2 { line-height: 1.2; }
 .reponse-num .champ > span:first-child { font-weight: 600; }
 .saisie { display: flex; align-items: center; gap: .6rem; border-radius: 16px; }
 .saisie input { flex: 1; min-width: 0; font-size: 1.4rem; font-weight: 700; text-align: center; }
+.signe {
+  flex: none; min-width: 48px; min-height: 52px; border: 2px solid var(--bord); border-radius: 14px;
+  background: var(--surface); font-size: 1.3rem; font-weight: 800;
+}
 .unite { font-size: 1.15rem; font-weight: 700; color: var(--texte-doux); }
 .saisie.juste input { border-color: var(--juste); background: var(--juste-clair); opacity: 1; }
 .saisie.faux input { border-color: var(--faux); border-style: dashed; background: repeating-linear-gradient(135deg, var(--faux-clair) 0 7px, var(--surface-2) 7px 14px); opacity: 1; }
