@@ -1,0 +1,17 @@
+{
+  "name": "MémoMaths",
+  "short_name": "MémoMaths",
+  "description": "Apprendre et retenir les formules, propriétés, définitions et règles du cours de maths, au collège.",
+  "lang": "fr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f6f4fb",
+  "theme_color": "#4a3fb8",
+  "icons": [
+    { "src": "icones/icone-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icones/icone-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icones/icone-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

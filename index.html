@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+  <meta name="theme-color" content="#f7f5fb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1b1d2a" media="(prefers-color-scheme: dark)">
+  <title>MémoMaths – retenir ses savoirs de maths</title>
+  <meta name="description" content="Apprendre et retenir les formules, propriétés, définitions et règles du cours de maths, au collège.">
+  <!-- Installation sur l'écran d'accueil (Android, ordinateur, iPhone) -->
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" href="icones/icone-192.png">
+  <link rel="apple-touch-icon" href="icones/icone-180.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="MémoMaths">
+  <meta name="application-name" content="MémoMaths">
+  <!-- Sécurité : le navigateur ne charge rien qui vienne d'un autre site (scripts, styles, images, polices),
+       n'exécute aucun script écrit dans la page et n'envoie aucun formulaire.
+       (file: permet d'ouvrir index.html par double-clic ; data: sert à la petite flèche des menus.) -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' file:; script-src 'self' file:; style-src 'self' 'unsafe-inline' file:; img-src 'self' data: file:; font-src 'self' file:; connect-src 'self'; manifest-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <!-- Le choix clair / sombre est appliqué avant l'affichage, pour éviter un éclair blanc -->
+  <script src="js/theme.js"></script>
+  <link rel="stylesheet" href="js/lib/katex/katex.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="app">
+    <header class="barre">
+      <button id="btn-accueil" class="logo" aria-label="Retour à l'accueil">
+        <svg class="logo-forme" viewBox="0 0 32 32" aria-hidden="true">
+          <rect x="3" y="3" width="26" height="26" rx="8" style="fill: var(--primaire)"/>
+          <path d="M10 13h12M10 19h12" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="16" cy="9" r="1.9" fill="#fff"/><circle cx="16" cy="23" r="1.9" fill="#fff"/>
+        </svg>
+        <span>MémoMaths</span>
+      </button>
+      <div id="barre-seance" class="barre-seance" hidden></div>
+      <button id="btn-menu" class="bouton-icone" aria-label="Menu" aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      </button>
+    </header>
+
+    <main id="ecran" aria-live="polite">
+      <!-- Visible tant que l'application n'a pas démarré : utile quand la page est ouverte dans un aperçu de fichier sans JavaScript -->
+      <div class="message-chargement">
+        <p><strong>Chargement…</strong></p>
+        <p>Si ce message reste affiché, la page a été ouverte dans un simple aperçu de fichier
+          (c'est fréquent sur téléphone). Ouvre plutôt le lien internet de MémoMaths.</p>
+      </div>
+    </main>
+  </div>
+
+  <dialog id="menu" class="menu" aria-label="Menu"></dialog>
+
+  <!-- Motif hachuré des réponses fausses et des savoirs à revoir (utilisé par les dessins) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <pattern id="hachures-faux" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+        <rect width="6" height="6" style="fill: var(--faux)"/>
+        <rect width="2.6" height="6" style="fill: var(--faux-clair)"/>
+      </pattern>
+    </defs>
+  </svg>
+
+  <!-- Bibliothèque d'affichage des maths (copiée dans le projet, aucun chargement depuis internet) -->
+  <script src="js/lib/katex/katex.min.js"></script>
+  <!-- Moteur (indépendant des données) -->
+  <script src="js/moteur/espace.js"></script>
+  <script src="js/moteur/maths.js"></script>
+  <script src="js/moteur/progression.js"></script>
+  <script src="js/moteur/profils.js"></script>
+  <!-- Modes de jeu -->
+  <script src="js/modes/commun.js"></script>
+  <script src="js/modes/completer.js"></script>
+  <script src="js/modes/outil.js"></script>
+  <script src="js/modes/reconstituer.js"></script>
+  <script src="js/modes/calculs.js"></script>
+  <script src="js/modes/appliquer.js"></script>
+  <!-- Liste des niveaux (chacun est chargé quand on le choisit) -->
+  <script src="donnees/catalogue.js"></script>
+  <!-- Écrans -->
+  <script src="js/app.js"></script>
+</body>
+</html>
