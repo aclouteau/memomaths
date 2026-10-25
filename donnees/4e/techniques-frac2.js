@@ -233,7 +233,8 @@
       niveaux: {
         1: () => {
           for (;;) {
-            const forme = facile(1) ? "produit" : "a+bc", e = expression(forme, fraction(1, 5, 2, 6, true), fraction(1, 5, 2, 6, true), fraction(1, 5, 2, 6, true));
+            // Niveau 1 : un seul produit (3/5 + 1/6 × 2/3 était trop dur pour démarrer) ; « a + b × c » au niveau 2
+            const forme = "produit", e = expression(forme, fraction(1, 5, 2, 6, true), fraction(1, 5, 2, 6, true), fraction(1, 5, 2, 6, true));
             return { enonce: enonceCalcul(e.latex), reponse: chaine(e.r), correction: e.c };
           }
         },
@@ -241,7 +242,8 @@
           const forme = facile(2) ? "produit" : choix(["(a+b)c", "(a-b)c", "ab-c", "ab+c", "a+bc"]);
           for (;;) {
             const e = expression(forme, fraction(1, 8, 2, 9, true), fraction(1, 8, 2, 9, true), fraction(1, 8, 2, 9, true));
-            if (e.r[0] <= 0 || e.r[1] === 1) continue;
+            // Résultat de dénominateur 36 au plus (73/84 était trop lourd)
+            if (e.r[0] <= 0 || e.r[1] === 1 || e.r[1] > 36) continue;
             return { enonce: enonceCalcul(e.latex), reponse: chaine(e.r), correction: e.c };
           }
         },

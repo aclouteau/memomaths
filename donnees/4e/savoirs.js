@@ -448,13 +448,13 @@ Savoirs.enregistrer({
    "type": "definition",
    "titre": "Le nombre zéro",
    "question": "Le nombre 0 est ...",
-   "reponse": "ni positif ni négatif",
+   "reponse": "à la fois positif et négatif",
    "pieges": [
-    "positif",
-    "négatif",
-    "à la fois positif et négatif"
+    "positif seulement",
+    "négatif seulement",
+    "ni positif ni négatif"
    ],
-   "note": "Un nombre écrit sans signe est positif, mais 0 est le seul relatif qui n'est ni strictement positif ni strictement négatif."
+   "note": "0 est le seul nombre qui est à la fois positif et négatif. Un nombre écrit sans signe est positif."
   },
   {
    "id": "rel-oppose",
@@ -465,7 +465,7 @@ Savoirs.enregistrer({
    "reponse": "$-a$ : leur somme vaut 0",
    "pieges": [
     "$\\dfrac{1}{a}$ : leur produit vaut 1",
-    "$|a|$ : toujours positif",
+    "sa distance à zéro : toujours positive",
     "$a - 1$"
    ],
    "note": "L'opposé de $-7{,}5$ est $7{,}5$ ; l'opposé de 0 est 0.",
@@ -489,9 +489,9 @@ Savoirs.enregistrer({
    "type": "definition",
    "titre": "Distance à zéro",
    "question": "La distance à zéro d'un nombre relatif est ...",
-   "reponse": "toujours positive ou nulle",
+   "reponse": "toujours positive",
    "pieges": [
-    "toujours négative ou nulle",
+    "toujours négative",
     "du même signe que le nombre",
     "égale à son opposé"
    ],
@@ -537,7 +537,7 @@ Savoirs.enregistrer({
     "on soustrait les distances à zéro, signe du plus proche de 0 : $+4$",
     "on soustrait les distances à zéro, signe du second nombre : $+4$"
    ],
-   "note": "Même signe : on additionne les distances à zéro et on garde ce signe."
+   "note": "Les distances à zéro sont $7$ et $3$ : $7 - 3 = 4$. Le plus éloigné de 0 est $-7$, donc $(-7) + (+3) = -4$. (Avec deux nombres de même signe, on additionnerait les distances à zéro.)"
   },
   {
    "id": "rel-sous",
@@ -598,30 +598,6 @@ Savoirs.enregistrer({
     "$-a + b$"
    ],
    "note": "$5 - (-2) = 5 + 2 = 7$ (et non 3)."
-  },
-  {
-   "id": "rel-dist-axe",
-   "chap": "rel1",
-   "type": "propriete",
-   "titre": "Distance entre deux points d'une droite graduée",
-   "question": "Si $A$ et $B$ ont pour abscisses $x_A$ et $x_B$, la distance $AB$ est ...",
-   "reponse": "la plus grande abscisse moins la plus petite",
-   "pieges": [
-    "la somme des deux abscisses",
-    "la plus petite abscisse moins la plus grande",
-    "le produit des deux abscisses"
-   ],
-   "note": "$A(-4)$ et $B(3)$ : $AB = 3 - (-4) = 3 + 4 = 7$.",
-   "morceaux": [
-    "AB",
-    "=",
-    "\\text{plus grande abscisse}",
-    "-",
-    "\\text{plus petite abscisse}"
-   ],
-   "intrus": [
-    "+"
-   ]
   },
   {
    "id": "rel-ecr-simpl",
@@ -691,7 +667,7 @@ Savoirs.enregistrer({
     "$a + a$, noté $a^{2}$",
     "$a \\times a$, noté $2a$"
    ],
-   "note": "Le carré d'un nombre est toujours positif ou nul : $(-4)^{2} = 16$."
+   "note": "Le carré d'un nombre est toujours positif : $(-4)^{2} = 16$."
   },
   {
    "id": "racine-def",
@@ -1385,40 +1361,6 @@ Savoirs.enregistrer({
    "note": "Erreur fréquente : oublier de translater un des sommets."
   },
   {
-   "id": "transl-rep",
-   "chap": "transl",
-   "type": "regle",
-   "titre": "Translation dans un repère",
-   "question": "Dans un repère, la translation de $(+a ; +b)$ transforme le point $(x ; y)$ en ...",
-   "reponse": "$(x + a ; y + b)$",
-   "pieges": [
-    "$(x \\times a ; y \\times b)$",
-    "$(x + b ; y + a)$",
-    "$(x - a ; y - b)$"
-   ],
-   "note": "Exemple : la translation de $(+3 ; -2)$ envoie $(-4 ; 1)$ sur $(-4 + 3 ; 1 - 2) = (-1 ; -1)$.",
-   "morceaux": [
-    "(",
-    "x + a",
-    ";",
-    "y + b",
-    ")"
-   ],
-   "intrus": [
-    "x \\times a",
-    "y - b"
-   ],
-   "exemples": [
-    {
-     "donnees": "Translation $(+3 ; -2)$ appliquée à $A(1 ; 4)$",
-     "question": "Abscisse de l'image ?",
-     "reponse": 4,
-     "unite": "",
-     "correction": "$1 + 3 = 4$ (et l'ordonnée : $4 + (-2) = 2$)"
-    }
-   ]
-  },
-  {
    "id": "transl-depl",
    "chap": "transl",
    "type": "regle",
@@ -1485,7 +1427,7 @@ Savoirs.enregistrer({
    "reponse": "on ne peut plus la simplifier (aucun diviseur commun autre que 1)",
    "pieges": [
     "elle est plus petite que 1 : le numérateur est inférieur au dénominateur",
-    "son numérateur et son dénominateur sont des nombres premiers entre eux, donc pairs",
+    "son numérateur et son dénominateur sont tous les deux des nombres pairs",
     "on peut la simplifier une seule fois par un même nombre"
    ],
    "note": "Exemple : $\\dfrac{18}{24} = \\dfrac{3}{4}$ et $\\dfrac{3}{4}$ est irréductible. Une fraction comme $\\dfrac{9}{4}$ (plus grande que 1) peut être irréductible."
@@ -1939,20 +1881,14 @@ Savoirs.enregistrer({
    "chap": "prop",
    "type": "formule",
    "titre": "Taux d'évolution",
-   "question": "Le taux d'évolution d'une valeur $V_0$ à une valeur $V_1$ est ...",
-   "reponse": "$\\dfrac{V_1 - V_0}{V_0}$",
+   "question": "Un prix passe de 40 € à 46 €. Pour trouver son taux d'évolution, on calcule ...",
+   "reponse": "$\\dfrac{46 - 40}{40}$",
    "pieges": [
-    "$\\dfrac{V_1 - V_0}{V_1}$",
-    "$\\dfrac{V_0 - V_1}{V_0}$",
-    "$\\dfrac{V_1}{V_0 - V_1}$"
+    "$\\dfrac{46 - 40}{46}$",
+    "$\\dfrac{40 - 46}{40}$",
+    "$\\dfrac{46}{40 - 46}$"
    ],
-   "note": "Pour un prix de 40 € à 46 € : $\\dfrac{46 - 40}{40} = 0{,}15$ : hausse de 15 %. Un taux négatif correspond à une baisse.",
-   "morceaux": [
-    "\\dfrac{V_1 - V_0}{V_0}"
-   ],
-   "intrus": [
-    "\\dfrac{V_1 - V_0}{V_1}"
-   ]
+   "note": "Taux d'évolution $= \\dfrac{\\text{valeur d'arrivée} - \\text{valeur de départ}}{\\text{valeur de départ}}$. Ici $\\dfrac{6}{40} = 0{,}15$ : hausse de 15 %. Un taux négatif correspond à une baisse."
   },
   {
    "id": "pourc-succ",
@@ -1962,8 +1898,8 @@ Savoirs.enregistrer({
    "question": "Une hausse de 20 % suivie d'une baisse de 20 % ...",
    "reponse": "ne ramène pas au départ ($1{,}2 \\times 0{,}8 = 0{,}96$)",
    "pieges": [
-    "ramène à la valeur de départ, car $20 - 20 = 0$ ($+20 - 20$)",
-    "ramène à la valeur de départ, car $1{,}2 \\times 0{,}8 = 1$ en tout",
+    "ramène à la valeur de départ, car $20 - 20 = 0$",
+    "revient exactement au prix de départ, car $1{,}2 \\times 0{,}8 = 1$",
     "donne une valeur plus grande que la valeur de départ, toujours"
    ],
    "note": "Les pourcentages ne s'additionnent pas : on multiplie les coefficients multiplicateurs."
@@ -2152,46 +2088,6 @@ Savoirs.enregistrer({
     "une ellipse de même centre que le cercle de départ"
    ],
    "note": "La rotation conserve les longueurs, donc le rayon."
-  },
-  {
-   "id": "rot-quart",
-   "chap": "rot",
-   "type": "formule",
-   "titre": "Quart de tour direct autour de l'origine",
-   "question": "Dans un repère orthonormé, l'image de $M(x\\,;\\,y)$ par la rotation de centre $O$ et d'angle $90^{\\circ}$ dans le sens direct est ...",
-   "reponse": "$M'(-y\\,;\\,x)$",
-   "pieges": [
-    "$M'(y\\,;\\,-x)$",
-    "$M'(-x\\,;\\,-y)$",
-    "$M'(y\\,;\\,x)$"
-   ],
-   "note": "Exemple : $(2\\,;\\,1)$ devient $(-1\\,;\\,2)$.",
-   "morceaux": [
-    "M'",
-    "(",
-    "-y",
-    ";",
-    "x",
-    ")"
-   ],
-   "intrus": [
-    "y",
-    "-x"
-   ]
-  },
-  {
-   "id": "rot-quart-h",
-   "chap": "rot",
-   "type": "formule",
-   "titre": "Quart de tour horaire autour de l'origine",
-   "question": "Dans un repère orthonormé, l'image de $M(x\\,;\\,y)$ par la rotation de centre $O$ et d'angle $90^{\\circ}$ dans le sens des aiguilles d'une montre est ...",
-   "reponse": "$M'(y\\,;\\,-x)$",
-   "pieges": [
-    "$M'(-y\\,;\\,x)$",
-    "$M'(-x\\,;\\,-y)$",
-    "$M'(x\\,;\\,-y)$"
-   ],
-   "note": "Exemple : $(2\\,;\\,1)$ devient $(1\\,;\\,-2)$."
   },
   {
    "id": "rot-poly-k",
@@ -3582,18 +3478,6 @@ Savoirs.enregistrer({
    ]
   },
   {
-   "id": "o35",
-   "chap": "transl",
-   "enonce": "Le point $A(2 ; 3)$ est translaté de $(+4 ; -1)$. Quelles sont les coordonnées de son image ?",
-   "bon": "transl-rep",
-   "explication": "Dans un repère, on ajoute les coordonnées du déplacement.",
-   "autres": [
-    "rot-def",
-    "transl-para",
-    "rot-180"
-   ]
-  },
-  {
    "id": "o36",
    "chap": "rot",
    "enonce": "On fait tourner un carré autour de son centre pour le faire coïncider avec lui-même. Quels angles sont possibles ?",
@@ -3768,7 +3652,6 @@ Savoirs.enregistrer({
    "bon": "transl-para",
    "explication": "$ABM'M$ doit être un parallélogramme.",
    "autres": [
-    "transl-rep",
     "rot-def",
     "transl-cons"
    ]
@@ -3780,7 +3663,6 @@ Savoirs.enregistrer({
    "bon": "transl-cons",
    "explication": "Une translation conserve les longueurs : 5 cm.",
    "autres": [
-    "transl-rep",
     "transl-def",
     "agrand-k"
    ]

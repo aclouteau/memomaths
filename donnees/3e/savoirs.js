@@ -11,6 +11,12 @@ Savoirs.enregistrer({
    "annee": "4e"
   },
   {
+   "id": "pv",
+   "titre": "Périmètre, aire et volume",
+   "ordre": 0,
+   "annee": "3e"
+  },
+  {
    "id": "proba",
    "titre": "Probabilités",
    "ordre": 1,
@@ -116,7 +122,7 @@ Savoirs.enregistrer({
  "savoirs": [
   {
    "id": "aire-rect",
-   "chap": "pre",
+   "chap": "pv",
    "type": "formule",
    "titre": "Aire d'un rectangle",
    "question": "Aire d'un rectangle de longueur $L$ et de largeur $\\ell$ ?",
@@ -149,7 +155,7 @@ Savoirs.enregistrer({
   },
   {
    "id": "aire-tri",
-   "chap": "pre",
+   "chap": "pv",
    "type": "formule",
    "titre": "Aire d'un triangle",
    "question": "Aire d'un triangle de base $b$ et de hauteur $h$ ?",
@@ -181,7 +187,7 @@ Savoirs.enregistrer({
   },
   {
    "id": "aire-disque",
-   "chap": "pre",
+   "chap": "pv",
    "type": "formule",
    "titre": "Aire d'un disque",
    "question": "Aire d'un disque de rayon $r$ ?",
@@ -221,7 +227,7 @@ Savoirs.enregistrer({
   },
   {
    "id": "perim-cercle",
-   "chap": "pre",
+   "chap": "pv",
    "type": "formule",
    "titre": "Périmètre d'un cercle",
    "question": "Périmètre d'un cercle de rayon $r$ ?",
@@ -256,7 +262,7 @@ Savoirs.enregistrer({
   },
   {
    "id": "vol-pave",
-   "chap": "pre",
+   "chap": "pv",
    "type": "formule",
    "titre": "Volume d'un pavé droit",
    "question": "Volume d'un pavé droit de longueur $L$, largeur $\\ell$, hauteur $h$ ?",
@@ -291,7 +297,7 @@ Savoirs.enregistrer({
   },
   {
    "id": "vol-prisme",
-   "chap": "pre",
+   "chap": "pv",
    "type": "formule",
    "titre": "Volume d'un prisme droit ou d'un cylindre",
    "question": "Volume d'un prisme droit (ou d'un cylindre) de base d'aire $B$ et de hauteur $h$ ?",
@@ -669,49 +675,6 @@ Savoirs.enregistrer({
     "devient égale à 1"
    ],
    "note": "Une série de « pile » ne rend pas « face » plus probable au tirage suivant."
-  },
-  {
-   "id": "proba-incomp",
-   "chap": "proba",
-   "type": "propriete",
-   "titre": "Événements incompatibles",
-   "question": "Si $A$ et $B$ sont incompatibles (ils ne peuvent pas se réaliser en même temps), alors $P(A \\text{ ou } B)$ vaut ...",
-   "reponse": "$P(A) + P(B)$",
-   "pieges": [
-    "$P(A) \\times P(B)$",
-    "$P(A) - P(B)$",
-    "$1 - P(A) - P(B)$"
-   ],
-   "morceaux": [
-    "P",
-    "(",
-    "A",
-    "\\text{ ou }",
-    "B",
-    ")",
-    "=",
-    "P",
-    "(",
-    "A",
-    ")",
-    "+",
-    "P",
-    "(",
-    "B",
-    ")"
-   ],
-   "intrus": [
-    "\\times"
-   ],
-   "exemples": [
-    {
-     "donnees": "On lance un dé : $P(\\text{un } 1) = \\dfrac{1}{6}$ et $P(\\text{un } 2) = \\dfrac{1}{6}$",
-     "question": "$P(\\text{obtenir 1 ou 2})$ (fraction : numérateur sur 6) ?",
-     "reponse": 2,
-     "unite": "",
-     "correction": "$\\dfrac{1}{6} + \\dfrac{1}{6} = \\dfrac{2}{6}$"
-    }
-   ]
   },
   {
    "id": "proba-arbre",
@@ -1448,7 +1411,7 @@ Savoirs.enregistrer({
   },
   {
    "id": "agr-unit",
-   "chap": "agr",
+   "chap": "pv",
    "type": "formule",
    "titre": "Unités d'aire",
    "question": "Combien de cm² y a-t-il dans 1 m² ?",
@@ -1788,7 +1751,7 @@ Savoirs.enregistrer({
   },
   {
    "id": "pyr-vol",
-   "chap": "esp",
+   "chap": "pv",
    "type": "formule",
    "titre": "Volume d'une pyramide",
    "question": "Volume d'une pyramide d'aire de base $B$ et de hauteur $h$ ?",
@@ -1823,7 +1786,7 @@ Savoirs.enregistrer({
   },
   {
    "id": "cone-vol",
-   "chap": "esp",
+   "chap": "pv",
    "type": "formule",
    "titre": "Volume d'un cône de révolution",
    "question": "Volume d'un cône de rayon $r$ et de hauteur $h$ ?",
@@ -2512,20 +2475,6 @@ Savoirs.enregistrer({
    "note": "$(a + b)^{2} = a^{2} + b^{2}$ est fausse : avec $a = b = 1$, $4 \\neq 2$."
   },
   {
-   "id": "lit-id-calc",
-   "chap": "lit",
-   "type": "regle",
-   "titre": "Calcul astucieux",
-   "question": "Pour calculer $99^{2}$ de tête, on écrit ...",
-   "reponse": "$(100 - 1)^{2}$ et on utilise $(a - b)^{2}$",
-   "pieges": [
-    "$100^{2} - 1^{2}$ en oubliant le double produit",
-    "$99 \\times 2$, car le carré double le nombre",
-    "$(100 + 1)^{2}$, car 99 est proche de 100"
-   ],
-   "note": "$99^{2} = 100^{2} - 2 \\times 100 + 1 = 9\\,801$."
-  },
-  {
    "id": "lit-puiss-paren",
    "chap": "lit",
    "type": "regle",
@@ -2559,11 +2508,11 @@ Savoirs.enregistrer({
    "type": "propriete",
    "titre": "Effet d'une homothétie de rapport k",
    "question": "Une homothétie de rapport $k$ multiplie les longueurs par ...",
-   "reponse": "$|k|$ et les aires par $k^{2}$",
+   "reponse": "la distance à zéro de $k$, et les aires par $k^{2}$",
    "pieges": [
-    "$k$ et les aires par $k$",
-    "$k^{2}$ et les aires par $k^{4}$",
-    "$|k|$ et les aires par $|k|$"
+    "$k^{2}$, et les aires par $k^{4}$ (le carré du carré)",
+    "la distance à zéro de $k$, et les aires aussi",
+    "$2k$, et les aires par $4k$ (le double du double)"
    ],
    "note": "Les angles sont conservés.",
    "exemples": [
@@ -2614,7 +2563,7 @@ Savoirs.enregistrer({
     "toujours sur le centre $O$, quelle que soit la valeur de $k$",
     "sur la médiatrice du segment $[OM]$, quelle que soit la valeur de $k$"
    ],
-   "note": "$k > 0$ : même côté. $|k| > 1$ : agrandissement ; $|k| < 1$ : réduction."
+   "note": "$k > 0$ : même côté. Distance à zéro de $k$ supérieure à 1 : agrandissement ; inférieure à 1 : réduction."
   },
   {
    "id": "homo-par",
@@ -2625,8 +2574,8 @@ Savoirs.enregistrer({
    "reponse": "une droite parallèle à la première",
    "pieges": [
     "une droite perpendiculaire à la première, passant par le centre",
-    "un cercle de centre $O$ et de rayon égal à $|k|$",
-    "un segment dont la longueur est multipliée par $|k|$ seulement"
+    "un cercle de centre $O$ dont le rayon dépend de $k$",
+    "un segment dont la longueur est multipliée par $k$"
    ]
   },
   {
@@ -2641,7 +2590,7 @@ Savoirs.enregistrer({
     "les longueurs et les angles",
     "ni les longueurs ni les angles"
    ],
-   "note": "Un triangle rectangle reste rectangle, mais ses côtés sont multipliés par $|k|$."
+   "note": "Un triangle rectangle reste rectangle, mais ses côtés sont multipliés par la distance à zéro de $k$."
   },
   {
    "id": "homo-ag-red",
@@ -2649,11 +2598,11 @@ Savoirs.enregistrer({
    "type": "regle",
    "titre": "Agrandissement ou réduction",
    "question": "Une homothétie de rapport $k$ est un agrandissement quand ...",
-   "reponse": "$|k| > 1$ ; c'est une réduction quand $|k| < 1$",
+   "reponse": "la distance à zéro de $k$ est supérieure à 1 (réduction si elle est inférieure à 1)",
    "pieges": [
     "$k > 1$ seulement : un rapport négatif donne toujours une réduction",
-    "$k > 0$ ; c'est une réduction quand $k < 0$",
-    "$|k| = 1$ ; c'est une réduction sinon"
+    "$k$ est positif (réduction si $k$ est négatif, quelle que soit sa valeur)",
+    "la distance à zéro de $k$ vaut 1 (réduction dans tous les autres cas)"
    ],
    "note": "Exemple : $k = -3$ est un agrandissement (de rapport 3, avec retournement) ; $k = -0{,}5$ est une réduction."
   },
@@ -2662,7 +2611,7 @@ Savoirs.enregistrer({
    "chap": "homo",
    "type": "formule",
    "titre": "Calculer le rapport",
-   "question": "Si $M'$ est l'image de $M$ par l'homothétie de centre $O$, alors $|k|$ vaut ...",
+   "question": "Si $M'$ est l'image de $M$ par l'homothétie de centre $O$, alors la distance à zéro de $k$ vaut ...",
    "reponse": "$\\dfrac{OM'}{OM}$",
    "pieges": [
     "$\\dfrac{OM}{OM'}$",
@@ -2698,20 +2647,6 @@ Savoirs.enregistrer({
     "une rotation d'angle 90° autour du centre"
    ],
    "note": "Pour $k = 1$, c'est l'identité ; pour $k = -1$, c'est la symétrie centrale."
-  },
-  {
-   "id": "homo-coord",
-   "chap": "homo",
-   "type": "formule",
-   "titre": "Coordonnées de l'image",
-   "question": "Dans un repère d'origine $O$, l'image de $M(x ; y)$ par l'homothétie de centre $O$ et de rapport $k$ est ...",
-   "reponse": "$M'(kx ; ky)$",
-   "pieges": [
-    "$M'(x + k ; y + k)$",
-    "$M'(kx ; y)$",
-    "$M'(\\dfrac{x}{k} ; ky)$"
-   ],
-   "note": "Exemple : $k = -2$ et $M(3 ; 1)$ donnent $M'(-6 ; -2)$."
   },
   {
    "id": "homo-aligne",
@@ -2985,7 +2920,7 @@ Savoirs.enregistrer({
     "$-8$, car on multiplie $-4$ par 2",
     "8, car on multiplie 4 par 2 sans signe"
    ],
-   "note": "Le carré d'un nombre est toujours positif ou nul."
+   "note": "Le carré d'un nombre est toujours positif."
   },
   {
    "id": "fg-lin",
@@ -3272,20 +3207,6 @@ Savoirs.enregistrer({
    "note": "Exemple : 3 m et 40 cm deviennent 300 cm et 40 cm."
   },
   {
-   "id": "thales-hauteur",
-   "chap": "thal",
-   "type": "propriete",
-   "titre": "Ombres et Thalès",
-   "question": "À la même heure, un objet vertical et son ombre sont dans le même rapport pour ...",
-   "reponse": "tous les objets verticaux, car les rayons du soleil sont parallèles",
-   "pieges": [
-    "un seul objet vertical, le plus grand des objets de la figure donnée",
-    "tous les objets, même s'ils ne sont pas verticaux sur le sol plat",
-    "les objets dont les hauteurs sont égales deux à deux seulement, sinon non"
-   ],
-   "note": "Un piquet de 1 m a une ombre de 2 m : un arbre d'ombre 10 m mesure 5 m."
-  },
-  {
    "id": "thales-pas-egal",
    "chap": "thal",
    "type": "regle",
@@ -3373,11 +3294,11 @@ Savoirs.enregistrer({
    "type": "regle",
    "titre": "Équation x² = a",
    "question": "Pour $a > 0$, l'équation $x^{2} = a$ a ...",
-   "reponse": "deux solutions : $\\sqrt{a}$ et $-\\sqrt{a}$",
+   "reponse": "deux solutions, $\\sqrt{a}$ et $-\\sqrt{a}$",
    "pieges": [
-    "une seule solution : $\\sqrt{a}$, la racine carrée de $a$",
-    "deux solutions : $a$ et $-a$, opposées l'une de l'autre",
-    "aucune solution si $a$ n'est pas un carré parfait, par exemple si $a = 10$"
+    "une seule solution, $\\sqrt{a}$ (c'est la racine carrée de $a$)",
+    "deux solutions, $a$ et $-a$ (ce sont deux nombres opposés)",
+    "aucune solution si $a$ n'est pas un carré parfait (c'est le cas de $a = 10$)"
    ],
    "exemples": [
     {
@@ -3579,9 +3500,9 @@ Savoirs.enregistrer({
    "question": "L'équation $x^{2} = 36$ a pour solutions ...",
    "reponse": "$6$ et $-6$",
    "pieges": [
-    "$6$ seulement, la racine carrée de 36",
-    "$18$ et $-18$, la moitié de 36",
-    "$36$ et $-36$, le nombre lui-même"
+    "$6$ seulement (c'est la racine carrée de 36)",
+    "$18$ et $-18$ (c'est la moitié de 36)",
+    "$36$ et $-36$ (c'est le nombre lui-même)"
    ],
    "note": "Les deux nombres opposés ont le même carré."
   },
@@ -4105,7 +4026,7 @@ Savoirs.enregistrer({
   },
   {
    "id": "sph-aire",
-   "chap": "esp",
+   "chap": "pv",
    "type": "formule",
    "titre": "Aire d'une sphère",
    "question": "Aire d'une sphère de rayon $R$ ?",
@@ -4140,7 +4061,7 @@ Savoirs.enregistrer({
   },
   {
    "id": "boule-vol",
-   "chap": "esp",
+   "chap": "pv",
    "type": "formule",
    "titre": "Volume d'une boule",
    "question": "Volume d'une boule de rayon $R$ ?",
@@ -4188,7 +4109,7 @@ Savoirs.enregistrer({
   },
   {
    "id": "esp-unites",
-   "chap": "esp",
+   "chap": "pv",
    "type": "regle",
    "titre": "Unités de volume",
    "question": "$1\\ \\text{dm}^{3}$ est égal à ...",
@@ -4525,7 +4446,6 @@ Savoirs.enregistrer({
    "bon": "proba-arbre",
    "explication": "On multiplie les probabilités le long de la branche : $\\dfrac{1}{2} \\times \\dfrac{1}{2}$.",
    "autres": [
-    "proba-incomp",
     "proba-f",
     "proba-contraire"
    ]
@@ -4537,7 +4457,6 @@ Savoirs.enregistrer({
    "bon": "proba-contraire",
    "explication": "Événement contraire : $1 - 0{,}35$.",
    "autres": [
-    "proba-incomp",
     "proba-f",
     "proba-freq"
    ]
@@ -5041,7 +4960,6 @@ Savoirs.enregistrer({
    "bon": "proba-f",
    "explication": "$\\dfrac{3}{10}$ (équiprobabilité).",
    "autres": [
-    "proba-incomp",
     "proba-arbre",
     "proba-contraire"
    ]
@@ -5054,7 +4972,6 @@ Savoirs.enregistrer({
    "explication": "On multiplie le long de la branche : $\\dfrac{3}{5} \\times \\dfrac{3}{5} = \\dfrac{9}{25}$.",
    "autres": [
     "proba-contraire",
-    "proba-incomp",
     "proba-freq"
    ]
   },
@@ -5193,7 +5110,7 @@ Savoirs.enregistrer({
   {
    "id": "o80",
    "chap": "pre",
-   "enonce": "Une piste circulaire a 60 m de diamètre. Quelle est la longueur d'un tour ?",
+   "enonce": "Une piste circulaire a 60 m de diamètre. Quel est le périmètre de la piste ?",
    "bon": "perim-cercle",
    "explication": "$\\pi \\times d = \\pi \\times 60 \\approx 188{,}5$ m.",
    "autres": [

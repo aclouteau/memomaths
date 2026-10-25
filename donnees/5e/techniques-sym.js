@@ -97,24 +97,7 @@
         }
       }
     },
-    {
-      id: "sc-abscisse", chap: "sym", titre: "Abscisse du symétrique", format: "nombre",
-      niveaux: (function () {
-        function ex(o, m) {
-          const r = net(2 * o - m), d = net(Math.abs(m - o)), droite = m > o;
-          if (o === 0) return { enonce: "Sur une droite graduée, le point $M$ a pour abscisse " + T(m) + ". Le point $O$ est l'origine. Quelle est l'abscisse du symétrique de $M$ par rapport à $O$ ?", reponse: r, correction: "L'origine $O$ est le milieu de $[MM']$ : $M'$ est à la même distance de $O$ que $M$, de l'autre côté. Son abscisse est l'opposé de " + T(m) + ", soit " + T(r) + "." };
-          return {
-            enonce: "Sur une droite graduée, le point $O$ a pour abscisse " + T(o) + " et le point $M$ a pour abscisse " + T(m) + ". Quelle est l'abscisse du symétrique de $M$ par rapport à $O$ ?", reponse: r,
-            correction: "La distance $OM$ est " + T(d) + ". $M$ est à " + (droite ? "droite" : "gauche") + " de $O$, donc $M'$ est à " + T(d) + " unités à " + (droite ? "gauche" : "droite") + " de $O$ : son abscisse est $" + L(o) + (droite ? " - " : " + ") + L(d) + " = " + L(r) + "$."
-          };
-        }
-        return {
-          1: () => ex(0, facile(1) ? ent(1, 9) : (() => { let m; do { m = ent(-20, 20); } while (m === 0); return m; })()),
-          2: () => { const o = ent(1, 9), d = ent(1, 9), droite = facile(2) || Math.random() < 0.5; return ex(o, droite ? o + d : o - d); },
-          3: () => { const o = Math.random() < 0.6 ? dec(1.1, 9.9) * choix([1, -1]) : ent(-9, 9), d = dec(1.1, 9.9); return ex(o, net(o + d * choix([1, -1]))); }
-        };
-      })()
-    },
+    // (« Abscisse du symétrique » retiré : pas de coordonnées dans les transformations, décision de l'enseignant.)
     {
       id: "sc-centre-oui-non", chap: "sym", titre: "A-t-elle un centre de symétrie ?", format: "choix", options: ["oui", "non"],
       niveaux: {

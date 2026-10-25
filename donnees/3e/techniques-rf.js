@@ -170,7 +170,7 @@
             const x = signe([ent(1, 8), d1]), y = signe([ent(1, 8), d2]);
             if (!irreductible(...x) || !irreductible(...y) || (x[0] > 0 && y[0] > 0)) continue;
             const moins = Math.random() < 0.5, r = moins ? sub(x, y) : add(x, y);
-            if (r[0] === 0) continue;
+            if (r[0] === 0 || r[1] > 36) continue;
             return { enonce: enonceCalcul(F(x) + (moins ? " - " : " + ") + FP(y), true), reponse: chaine(r), correction: "On met les fractions au même dénominateur, puis on additionne ou soustrait les numérateurs, enfin on simplifie. " + correctionSomme(x, y, moins) + "." };
           }
         },
@@ -182,7 +182,8 @@
             if (!irreductible(...x) || !irreductible(...y)) continue;
             const moins = Math.random() < 0.5, r = moins ? sub(x, y) : add(x, y);
             if (!moins && x[0] > 0 && y[0] > 0) continue;
-            if (r[0] === 0 || Math.abs(r[0]) > 99 || r[1] > 99) continue;
+            // Dénominateur du résultat de 40 au plus (−47/42 était trop lourd)
+            if (r[0] === 0 || Math.abs(r[0]) > 99 || r[1] > 40) continue;
             return { enonce: enonceCalcul(F(x) + (moins ? " - " : " + ") + FP(y), true), reponse: chaine(r), correction: "On met les fractions au même dénominateur, puis on additionne ou soustrait les numérateurs, enfin on simplifie. " + correctionSomme(x, y, moins) + "." };
           }
         }
@@ -231,10 +232,11 @@
       id: "fractions-expression", chap: "rf", titre: "Calculs mêlant les quatre opérations", format: "fraction",
       niveaux: {
         1: () => {
-          const forme = facile(1) ? "produit" : choix(["a+bc", "ab+c", "ab-c"]);
+          // Niveau 1 : produit, ou somme avec un produit dont le résultat garde un petit dénominateur commun
+          const forme = facile(1) || Math.random() < 0.5 ? "produit" : choix(["a+bc", "ab+c", "ab-c"]);
           for (;;) {
             const f = () => fraction(1, 5, 2, 6, true), e = expression(forme, f(), f(), f());
-            if (e.r[0] <= 0 || e.r[1] === 1) continue;
+            if (e.r[0] <= 0 || e.r[1] === 1 || e.r[1] > 24) continue;
             return { enonce: enonceCalcul(e.latex), reponse: chaine(e.r), correction: e.c };
           }
         },
@@ -242,7 +244,8 @@
           const forme = facile(2) ? "produit" : choix(["(a+b)c", "(a-b)c", "a-b/c", "a+bc", "ab-c"]);
           for (;;) {
             const f = () => fraction(1, 8, 2, 9, true), e = expression(forme, f(), f(), f());
-            if (e.r[0] <= 0 || e.r[1] === 1) continue;
+            // Résultat de dénominateur 36 au plus (1/63 était trop lourd)
+            if (e.r[0] <= 0 || e.r[1] === 1 || e.r[1] > 36) continue;
             return { enonce: enonceCalcul(e.latex), reponse: chaine(e.r), correction: e.c };
           }
         },

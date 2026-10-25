@@ -369,11 +369,11 @@ Savoirs.enregistrer({
    "type": "propriete",
    "titre": "Le nombre 0",
    "question": "Le nombre $0$ est ...",
-   "reponse": "ni positif ni négatif, et son opposé est lui-même",
+   "reponse": "à la fois positif et négatif, et son opposé est lui-même",
    "pieges": [
-    "positif, et son opposé est le nombre négatif qui est juste à côté",
-    "négatif, et son opposé est le nombre positif qui est juste à côté",
-    "à la fois positif et négatif, et il n'a donc aucun opposé"
+    "positif seulement, et son opposé est le nombre négatif qui est juste à côté",
+    "négatif seulement, et son opposé est le nombre positif qui est juste à côté",
+    "ni positif ni négatif, et il n'a donc aucun opposé"
    ],
    "note": "On écrit simplement $0$, jamais $+0$ ni $-0$."
   },
@@ -492,54 +492,6 @@ Savoirs.enregistrer({
    ]
   },
   {
-   "id": "distrib",
-   "chap": "ench",
-   "type": "formule",
-   "titre": "Distributivité",
-   "question": "$k \\times (a + b)$ vaut ...",
-   "reponse": "$k \\times a + k \\times b$",
-   "pieges": [
-    "$k \\times a + b$ : le facteur $k$ ne multiplie que $a$",
-    "$k + a \\times b$ : le facteur $k$ s'ajoute à $a$",
-    "$(k + a) \\times (k + b)$ : le facteur $k$ est ajouté deux fois"
-   ],
-   "note": "Il faut multiplier chaque terme de la parenthèse.",
-   "morceaux": [
-    "k",
-    "\\times",
-    "(",
-    "a",
-    "+",
-    "b",
-    ")",
-    "=",
-    "k",
-    "\\times",
-    "a",
-    "+",
-    "k",
-    "\\times",
-    "b"
-   ],
-   "intrus": [
-    "+",
-    "(",
-    "k",
-    "+",
-    "a",
-    ")"
-   ],
-   "exemples": [
-    {
-     "donnees": "Calculer $4 \\times (5 + 3)$ en distribuant",
-     "question": "Résultat ?",
-     "reponse": 32,
-     "unite": "",
-     "correction": "$4 \\times 5 + 4 \\times 3 = 20 + 12 = 32$"
-    }
-   ]
-  },
-  {
    "id": "ecriture-egal",
    "chap": "ench",
    "type": "regle",
@@ -594,34 +546,6 @@ Savoirs.enregistrer({
     "$3 - (2 + 5)$ : le signe $-$ est sous-entendu devant la parenthèse"
    ],
    "note": "On ne peut pas supprimer le signe $\\times$ entre deux nombres, mais on peut le supprimer devant une parenthèse ou une lettre."
-  },
-  {
-   "id": "ench-moins",
-   "chap": "ench",
-   "type": "formule",
-   "titre": "Distributivité avec une soustraction",
-   "question": "$k \\times (a - b)$ vaut ...",
-   "reponse": "$k \\times a - k \\times b$",
-   "pieges": [
-    "$k \\times a - b$",
-    "$k - a \\times b$",
-    "$k \\times a + k \\times b$"
-   ],
-   "note": "Exemple : $7 \\times 98 = 7 \\times (100 - 2) = 700 - 14 = 686$."
-  },
-  {
-   "id": "ench-fact",
-   "chap": "ench",
-   "type": "formule",
-   "titre": "Factoriser pour calculer",
-   "question": "$k \\times a + k \\times b$ vaut aussi ...",
-   "reponse": "$k \\times (a + b)$",
-   "pieges": [
-    "$k + a \\times b$",
-    "$(k + k) \\times (a + b)$",
-    "$k \\times a \\times b$"
-   ],
-   "note": "Exemple : $13 \\times 47 + 13 \\times 53 = 13 \\times (47 + 53) = 13 \\times 100 = 1\\,300$."
   },
   {
    "id": "ench-barre",
@@ -935,28 +859,6 @@ Savoirs.enregistrer({
     "12"
    ],
    "note": "On calcule la puissance avant le produit : $2 \\times 25 = 50$."
-  },
-  {
-   "id": "unites-vol",
-   "chap": "puis",
-   "type": "regle",
-   "titre": "Unités d'aire et de volume",
-   "question": "$1\\ \\text{dm}^{3}$ est égal à ...",
-   "reponse": "1 L, soit $1\\,000\\ \\text{cm}^{3}$",
-   "pieges": [
-    "1 mL, soit $1\\ \\text{cm}^{3}$ exactement",
-    "$100\\ \\text{cm}^{3}$, soit 1 centilitre",
-    "10 L, soit $10\\,000\\ \\text{cm}^{3}$"
-   ],
-   "morceaux": [
-    "1\\ \\text{dm}^{3}",
-    "=",
-    "1\\ \\text{L}"
-   ],
-   "intrus": [
-    "1\\ \\text{mL}",
-    "10\\ \\text{L}"
-   ]
   },
   {
    "id": "puis-carres-liste",
@@ -1585,15 +1487,94 @@ Savoirs.enregistrer({
    "id": "aire-rect-carre",
    "chap": "aire",
    "type": "formule",
-   "titre": "Aire d'un rectangle et d'un carré",
+   "titre": "Aire d'un rectangle",
    "question": "Aire d'un rectangle de longueur $L$ et de largeur $\\ell$ ?",
-   "reponse": "$\\mathcal{A} = L \\times \\ell$ (pour un carré de côté $c$ : $c \\times c$)",
+   "reponse": "$\\mathcal{A} = L \\times \\ell$",
    "pieges": [
-    "$\\mathcal{A} = 2 \\times (L + \\ell)$ (pour un carré de côté $c$ : $4 \\times c$)",
-    "$\\mathcal{A} = L + \\ell$ (pour un carré de côté $c$ : $2 \\times c$)",
-    "$\\mathcal{A} = \\dfrac{L \\times \\ell}{2}$ (pour un carré de côté $c$ : $c \\div 2$)"
+    "$\\mathcal{A} = 2 \\times (L + \\ell)$ (c'est le périmètre)",
+    "$\\mathcal{A} = L + \\ell$ (on additionne au lieu de multiplier)",
+    "$\\mathcal{A} = \\dfrac{L \\times \\ell}{2}$ (c'est pour un triangle)"
    ],
-   "note": "Ne pas confondre avec le périmètre, qui additionne les côtés."
+   "note": "Pour $L = 6$ cm et $\\ell = 4$ cm : $6 \\times 4 = 24$ cm². Ne pas confondre avec le périmètre, qui additionne les côtés."
+  },
+  {
+   "id": "aire-carre-c",
+   "chap": "aire",
+   "type": "formule",
+   "titre": "Aire d'un carré",
+   "question": "Aire d'un carré de côté $c$ ?",
+   "reponse": "$\\mathcal{A} = c \\times c$",
+   "pieges": [
+    "$\\mathcal{A} = 4 \\times c$ (c'est le périmètre)",
+    "$\\mathcal{A} = 2 \\times c$ (on double au lieu de multiplier)",
+    "$\\mathcal{A} = c + c$ (on additionne au lieu de multiplier)"
+   ],
+   "note": "Pour $c = 5$ cm : $5 \\times 5 = 25$ cm². On écrit aussi $c^{2}$.",
+   "morceaux": [
+    "\\mathcal{A}",
+    "=",
+    "c",
+    "\\times",
+    "c"
+   ],
+   "intrus": [
+    "4",
+    "+"
+   ]
+  },
+  {
+   "id": "perim-carre",
+   "chap": "aire",
+   "type": "formule",
+   "titre": "Périmètre d'un carré",
+   "question": "Périmètre d'un carré de côté $c$ ?",
+   "reponse": "$P = 4 \\times c$",
+   "pieges": [
+    "$P = c \\times c$ (c'est l'aire)",
+    "$P = 2 \\times c$ (on oublie deux côtés)",
+    "$P = 3 \\times c$ (on oublie un côté)"
+   ],
+   "note": "Le carré a 4 côtés de même longueur. Pour $c = 5$ cm : $4 \\times 5 = 20$ cm.",
+   "morceaux": [
+    "P",
+    "=",
+    "4",
+    "\\times",
+    "c"
+   ],
+   "intrus": [
+    "2",
+    "c^{2}"
+   ]
+  },
+  {
+   "id": "perim-rect-c",
+   "chap": "aire",
+   "type": "formule",
+   "titre": "Périmètre d'un rectangle",
+   "question": "Périmètre d'un rectangle de longueur $L$ et de largeur $\\ell$ ?",
+   "reponse": "$P = 2 \\times (L + \\ell)$",
+   "pieges": [
+    "$P = L \\times \\ell$ (c'est l'aire)",
+    "$P = L + \\ell$ (on oublie de doubler)",
+    "$P = 2 \\times L + \\ell$ (on oublie de doubler la largeur)"
+   ],
+   "note": "On fait le tour : deux longueurs et deux largeurs. Pour $L = 6$ cm et $\\ell = 4$ cm : $2 \\times (6 + 4) = 20$ cm.",
+   "morceaux": [
+    "P",
+    "=",
+    "2",
+    "\\times",
+    "(",
+    "L",
+    "+",
+    "\\ell",
+    ")"
+   ],
+   "intrus": [
+    "4",
+    "L \\times \\ell"
+   ]
   },
   {
    "id": "aire-hauteur",
@@ -2006,6 +1987,11 @@ Savoirs.enregistrer({
   {
    "id": "ang-def",
    "chap": "ang",
+   "figure": {
+    "type": "plat",
+    "mesures": false,
+    "moment": "question"
+   },
    "type": "definition",
    "titre": "Angles particuliers",
    "question": "Un angle plat mesure ...",
@@ -2020,6 +2006,12 @@ Savoirs.enregistrer({
   {
    "id": "ang-opp",
    "chap": "ang",
+   "figure": {
+    "type": "secantes",
+    "marques": "opposes",
+    "mesures": false,
+    "moment": "question"
+   },
    "type": "propriete",
    "titre": "Angles opposés par le sommet",
    "question": "Deux angles opposés par le sommet sont ...",
@@ -2033,6 +2025,11 @@ Savoirs.enregistrer({
   {
    "id": "ang-supp",
    "chap": "ang",
+   "figure": {
+    "type": "adjacents",
+    "mesures": true,
+    "moment": "apres"
+   },
    "type": "definition",
    "titre": "Angles supplémentaires",
    "question": "Deux angles sont supplémentaires quand ...",
@@ -2046,6 +2043,12 @@ Savoirs.enregistrer({
   {
    "id": "ang-alt",
    "chap": "ang",
+   "figure": {
+    "type": "paralleles",
+    "marques": "alternes",
+    "mesures": false,
+    "moment": "question"
+   },
    "type": "propriete",
    "titre": "Alternes-internes et parallélisme",
    "question": "Si deux droites sont parallèles, alors les angles alternes-internes sont ...",
@@ -2060,6 +2063,11 @@ Savoirs.enregistrer({
   {
    "id": "ang-compl",
    "chap": "ang",
+   "figure": {
+    "type": "complementaires",
+    "mesures": true,
+    "moment": "apres"
+   },
    "type": "propriete",
    "titre": "Angles complémentaires",
    "question": "Deux angles sont complémentaires quand ...",
@@ -2074,6 +2082,12 @@ Savoirs.enregistrer({
   {
    "id": "ang-corr",
    "chap": "ang",
+   "figure": {
+    "type": "paralleles",
+    "marques": "correspondants",
+    "mesures": false,
+    "moment": "question"
+   },
    "type": "propriete",
    "titre": "Angles correspondants",
    "question": "Si deux droites sont parallèles, alors les angles correspondants sont ...",
@@ -2088,6 +2102,12 @@ Savoirs.enregistrer({
   {
    "id": "ang-recip",
    "chap": "ang",
+   "figure": {
+    "type": "paralleles",
+    "marques": "alternes",
+    "mesures": true,
+    "moment": "apres"
+   },
    "type": "propriete",
    "titre": "Réciproque pour le parallélisme",
    "question": "Si deux droites coupées par une sécante forment des angles alternes-internes égaux, alors ...",
@@ -2102,6 +2122,11 @@ Savoirs.enregistrer({
   {
    "id": "ang-adj",
    "chap": "ang",
+   "figure": {
+    "type": "adjacents",
+    "mesures": false,
+    "moment": "question"
+   },
    "type": "propriete",
    "titre": "Angles adjacents",
    "question": "Deux angles adjacents dont les côtés non communs sont alignés sont ...",
@@ -2116,6 +2141,11 @@ Savoirs.enregistrer({
   {
    "id": "ang-tour",
    "chap": "ang",
+   "figure": {
+    "type": "tour",
+    "mesures": false,
+    "moment": "question"
+   },
    "type": "propriete",
    "titre": "Angles autour d'un point",
    "question": "La somme des angles autour d'un point (un tour complet) vaut ...",
@@ -2130,6 +2160,11 @@ Savoirs.enregistrer({
   {
    "id": "ang-bissectrice",
    "chap": "ang",
+   "figure": {
+    "type": "bissectrice",
+    "mesures": true,
+    "moment": "apres"
+   },
    "type": "propriete",
    "titre": "Bissectrice",
    "question": "La bissectrice d'un angle est la demi-droite qui ...",
@@ -2144,6 +2179,11 @@ Savoirs.enregistrer({
   {
    "id": "ang-aigu-obtus",
    "chap": "ang",
+   "figure": {
+    "type": "aigu-droit-obtus",
+    "mesures": false,
+    "moment": "apres"
+   },
    "type": "propriete",
    "titre": "Aigu, droit, obtus",
    "question": "Un angle obtus mesure ...",
@@ -3186,7 +3226,6 @@ Savoirs.enregistrer({
    "explication": "On divise par 5 : $x = 35 \\div 5$.",
    "autres": [
     "equ-add",
-    "distrib",
     "prop-coef"
    ]
   },
@@ -3281,7 +3320,6 @@ Savoirs.enregistrer({
    "bon": "priorites",
    "explication": "La multiplication est prioritaire : $5 \\times 3 = 15$ puis $4 + 15$.",
    "autres": [
-    "distrib",
     "ecriture-egal",
     "carre-def"
    ]
@@ -3617,7 +3655,6 @@ Savoirs.enregistrer({
    "bon": "priorites",
    "explication": "La multiplication est prioritaire : $2 \\times 5 = 10$ puis $18 - 10 = 8$.",
    "autres": [
-    "distrib",
     "ecriture-egal",
     "x10"
    ]
@@ -3635,25 +3672,12 @@ Savoirs.enregistrer({
    ]
   },
   {
-   "id": "o58",
-   "chap": "sol",
-   "enonce": "Un aquarium contient 24 dm³ d'eau. Combien de litres cela fait-il ?",
-   "bon": "unites-vol",
-   "explication": "1 dm³ $= 1$ L, donc 24 L.",
-   "autres": [
-    "conv-aire",
-    "x10",
-    "vol-cube"
-   ]
-  },
-  {
    "id": "o59",
    "chap": "aire",
    "enonce": "Convertir 3 m² en cm².",
    "bon": "conv-aire",
    "explication": "1 m² $= 10\\,000$ cm², donc 30 000 cm².",
    "autres": [
-    "unites-vol",
     "x10",
     "litre"
    ]

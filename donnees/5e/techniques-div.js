@@ -73,16 +73,17 @@
       id: "div-euclidienne", chap: "div", titre: "Division euclidienne", format: "nombre",
       niveaux: {
         1: () => (facile(1) ? divEuclidienne(ent(25, 199), 10, false) : divEuclidienne(ent(25, 199), ent(2, 9), Math.random() < 0.5)),
+        // Diviseurs plus petits : 8036 ÷ 58 était trop long à la main
         2: () => {
-          const b = ent(11, 30);
-          if (facile(2)) return divEuclidienne(b * ent(Math.ceil(120 / b), Math.floor(999 / b)), b, Math.random() < 0.5);
-          let a; do { a = ent(120, 999); } while (a % b === 0);
+          const b = ent(11, 20);
+          if (facile(2)) return divEuclidienne(b * ent(Math.ceil(120 / b), Math.floor(500 / b)), b, Math.random() < 0.5);
+          let a; do { a = ent(120, 500); } while (a % b === 0);
           return divEuclidienne(a, b, Math.random() < 0.5);
         },
         3: () => {
-          const b = ent(12, 99), cas = ent(1, 3);
-          if (cas < 3) return divEuclidienne(ent(1000, 9999), b, cas === 1);
-          const q = ent(20, 150), r = ent(0, b - 1), a = b * q + r;
+          const b = ent(12, 30), cas = ent(1, 3);
+          if (cas < 3) return divEuclidienne(ent(500, 2000), b, cas === 1);
+          const q = ent(20, 60), r = ent(0, b - 1), a = b * q + r;
           return { enonce: "Dans une division euclidienne, le diviseur est $" + b + "$, le quotient est $" + q + "$ et le reste est $" + r + "$. Quel est le dividende ?", reponse: a, correction: "Dividende $=$ diviseur $\\times$ quotient $+$ reste : $" + b + " \\times " + q + " + " + r + " = " + L(b * q) + " + " + r + " = " + L(a) + "$." };
         }
       }
@@ -92,7 +93,7 @@
       niveaux: {
         1: () => multipleDiviseur(12, 90, facile(1) ? 10 : ent(2, 9), ["multiple", "diviseur", "divisible"]),
         2: () => multipleDiviseur(30, 400, facile(2) ? 10 : ent(11, 25), ["multiple", "diviseur", "divisible"]),
-        3: () => multipleDiviseur(100, 2400, ent(12, 60), ["multiple", "diviseur"])
+        3: () => multipleDiviseur(100, 600, ent(12, 30), ["multiple", "diviseur"])
       }
     },
     {
@@ -139,8 +140,8 @@
         1: () => {
           const k = ent(5, 12), f = facile(1);
           let n; do { n = f ? k * ent(Math.ceil(40 / k), Math.floor(200 / k)) : ent(40, 200); } while (!f && n % k === 0);
-          const [objets, paquets] = choix([["livres", "cartons"], ["œufs", "boîtes"], ["crayons", "trousses"], ["photos", "pages d'album"]]), q = Math.floor(n / k), r = n % k;
-          if (Math.random() < 0.5) return { enonce: "On range " + n + " " + objets + " dans des " + paquets + " de " + k + ". Combien de " + paquets + " complets obtient-on ?", reponse: q, correction: "$" + n + " = " + k + " \\times " + q + " + " + r + "$ : on obtient $" + q + "$ " + paquets + " complets." };
+          const [objets, paquets, complets] = choix([["livres", "cartons", "complets"], ["œufs", "boîtes", "complètes"], ["crayons", "trousses", "complètes"], ["photos", "pages d'album", "complètes"]]), q = Math.floor(n / k), r = n % k;
+          if (Math.random() < 0.5) return { enonce: "On range " + n + " " + objets + " dans des " + paquets + " de " + k + ". Combien de " + paquets + " " + complets + " obtient-on ?", reponse: q, correction: "$" + n + " = " + k + " \\times " + q + " + " + r + "$ : on obtient $" + q + "$ " + paquets + " " + complets + "." };
           return { enonce: "On range " + n + " " + objets + " dans des " + paquets + " de " + k + ". Combien de " + objets + " reste-t-il ?", reponse: r, correction: "$" + n + " = " + k + " \\times " + q + " + " + r + "$ : il reste $" + r + "$ " + objets + "." };
         },
         2: () => {

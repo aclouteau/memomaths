@@ -63,13 +63,13 @@
       { texte: "un produit égal à 6", ok: ([a, b]) => a * b === 6 },
       { texte: "au moins un 6", ok: ([a, b]) => a === 6 || b === 6 },
       { texte: "une somme égale à 7 ou à 11", ok: ([a, b]) => a + b === 7 || a + b === 11 },
-      { texte: "deux nombres dont la différence (en valeur absolue) est 1", ok: ([a, b]) => Math.abs(a - b) === 1 }
+      { texte: "deux nombres qui diffèrent de 1 (le plus grand moins le plus petit vaut 1)", ok: ([a, b]) => Math.abs(a - b) === 1 }
     ],
     3: [
       { texte: "une somme qui est un nombre premier", ok: ([a, b]) => premier(a + b) },
       { texte: "un produit pair", ok: ([a, b]) => (a * b) % 2 === 0 },
       { texte: "un produit multiple de 3", ok: ([a, b]) => (a * b) % 3 === 0 },
-      { texte: "deux nombres dont la différence (en valeur absolue) est 2", ok: ([a, b]) => Math.abs(a - b) === 2 },
+      { texte: "deux nombres qui diffèrent de 2 (le plus grand moins le plus petit vaut 2)", ok: ([a, b]) => Math.abs(a - b) === 2 },
       { texte: "un produit strictement supérieur à 20", ok: ([a, b]) => a * b > 20 },
       { texte: "deux nombres dont le plus grand est 4", ok: ([a, b]) => Math.max(a, b) === 4 },
       { texte: "aucun 6", ok: ([a, b]) => a !== 6 && b !== 6 },
@@ -171,50 +171,7 @@
         }
       }
     },
-    {
-      id: "proba-incomp", chap: "proba", titre: "Événements incompatibles", format: "fraction",
-      niveaux: {
-        1: () => {
-          const c = choix(INCOMPATIBLES), egales = facile(1);
-          for (;;) {
-            const p1 = ent(1, 8) / 10, p2 = egales ? p1 : ent(1, 8) / 10, s = net(p1 + p2);
-            if (s > 0.9 || (!egales && p1 === p2)) continue;
-            return {
-              format: "nombre", enonce: c.debut + " On donne $" + P(c.a) + " = " + L(p1) + "$ et $" + P(c.b) + " = " + L(p2) + "$. Quelle est la probabilité " + c.question(false) + " ? Les événements sont incompatibles.",
-              reponse: s, correction: "Les événements sont incompatibles : $P(A \\text{ ou } B) = P(A) + P(B) = " + L(p1) + " + " + L(p2) + " = " + L(s) + "$."
-            };
-          }
-        },
-        2: () => {
-          const c = choix(INCOMPATIBLES), un = facile(2);
-          for (;;) {
-            const d = choix([5, 6, 8, 9, 10, 12, 15, 20]), a = ent(1, d - 1), b = un ? d - a : ent(1, d - 1);
-            if (a + b > d) continue;
-            return {
-              enonce: c.debut + " On donne $" + P(c.a) + " = " + F(a, d) + "$ et $" + P(c.b) + " = " + F(b, d) + "$ (événements incompatibles). Quelle est la probabilité " + c.question(false) + " ?" + QF,
-              reponse: chaine(a + b, d), correction: "Les événements sont incompatibles : $P(A \\text{ ou } B) = P(A) + P(B) = " + F(a, d) + " + " + F(b, d) + " = " + FS(a + b, d) + "$."
-            };
-          }
-        },
-        3: () => {
-          const c = choix(INCOMPATIBLES);
-          for (;;) {
-            const [d1, d2] = melanger(choix([[2, 3], [3, 4], [4, 5], [2, 5], [3, 5], [4, 6], [6, 8], [4, 9], [5, 6], [3, 10], [4, 10], [6, 10]]));
-            const a = ent(1, d1 - 1), b = ent(1, d2 - 1);
-            if (pgcd(a, d1) !== 1 || pgcd(b, d2) !== 1) continue;
-            const m = d1 * d2 / pgcd(d1, d2), A = a * m / d1, B = b * m / d2;
-            if (A + B >= m) continue;
-            const [sn, sd] = red(A + B, m);
-            return {
-              enonce: c.debut + " On donne $" + P(c.a) + " = " + F(a, d1) + "$ et $" + P(c.b) + " = " + F(b, d2) + "$ (événements incompatibles). Quelle est la probabilité " + c.question(true) + " ?" + QF,
-              reponse: chaine(sd - sn, sd),
-              correction: "« Ni " + c.a + " ni " + c.b + " » est l'événement contraire de « " + c.a + " ou " + c.b + " ». $P(A \\text{ ou } B) = " + F(a, d1) + " + " + F(b, d2) + " = " + F(A, m) + " + " + F(B, m) + " = " + FS(A + B, m) +
-                "$. Donc $P = 1 - " + F(sn, sd) + " = " + F(sd - sn, sd) + "$."
-            };
-          }
-        }
-      }
-    },
+    // (« Événements incompatibles », P(A ou B) = P(A) + P(B), retiré : pas au programme, décision de l'enseignant.)
     {
       id: "proba-deux-epreuves", chap: "proba", titre: "Deux épreuves successives (avec ou sans remise)", format: "fraction",
       niveaux: (function () {

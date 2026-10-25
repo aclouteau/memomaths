@@ -6,8 +6,8 @@
   const melanger = (l) => Savoirs.melanger(l);
   const carre = (x) => net(x * x);
 
-  const ENTIERS = [[3, 4, 5], [6, 8, 10], [5, 12, 13], [9, 12, 15], [8, 15, 17], [12, 16, 20], [7, 24, 25], [15, 20, 25], [20, 21, 29], [9, 40, 41],
-    [12, 35, 37], [10, 24, 26], [15, 36, 39], [18, 24, 30], [16, 30, 34], [21, 28, 35], [24, 32, 40]];
+  // Triplets de 25 au plus : les carrés restent faciles à calculer (décision de l'enseignant)
+  const ENTIERS = [[3, 4, 5], [6, 8, 10], [5, 12, 13], [9, 12, 15], [8, 15, 17], [12, 16, 20], [15, 20, 25], [7, 24, 25]];
   const tripletEntier = (niveau) => (facile(niveau) ? [3, 4, 5] : choix(ENTIERS.slice(1)));
   // Triplets décimaux : triplets primitifs × k/10, au moins un côté non entier, sans 0,3-0,4-0,5 (cas facile à part)
   const DECIMAUX = [];
@@ -32,10 +32,13 @@
     return { nom: lettres.join(""), droit: droit, c1: seg(droit, u), c2: seg(droit, v), hyp: seg(u, v) };
   }
   const fin = (r, d, unite) => (d ? "\\approx " + (Number.isInteger(r) ? String(r) : L(r)) + "$ " + unite + " (arrondi au dixième)." : "= " + L(r) + "$ " + unite + ".");
+  // Les longueurs connues sont écrites sur la figure (js/moteur/schemas.js), plus dans l'énoncé
+  const lg = (x, unite) => T(x) + " " + unite;
   function exHypotenuse(a, b, unite, arrondir) {
     const t = triangle(), s = net(carre(a) + carre(b)), r = arrondir ? arrondi(Math.sqrt(s)) : net(Math.sqrt(s));
     return {
-      enonce: "Le triangle $" + t.nom + "$ est rectangle en $" + t.droit + "$ avec $" + t.c1 + " = " + L(a) + "$ " + unite + " et $" + t.c2 + " = " + L(b) + "$ " + unite + ". Calculer $" + t.hyp + "$" + (arrondir ? " (arrondir au dixième)." : "."),
+      enonce: "Le triangle $" + t.nom + "$ est rectangle en $" + t.droit + "$. Calculer $" + t.hyp + "$" + (arrondir ? " (arrondir au dixième)." : "."),
+      schema: Savoirs.schemas.pythagore(t, { c1: [a, lg(a, unite)], c2: [b, lg(b, unite)], hyp: [0, "?"] }),
       reponse: r, unite: unite,
       correction: "Le triangle est rectangle en $" + t.droit + "$ : d'après le théorème de Pythagore, $" + t.hyp + "^{2} = " + t.c1 + "^{2} + " + t.c2 + "^{2} = " + L(a) + "^{2} + " + L(b) + "^{2} = " + L(carre(a)) + " + " + L(carre(b)) + " = " + L(s) +
         "$. Donc $" + t.hyp + " = \\sqrt{" + L(s) + "} " + fin(r, arrondir, unite)
@@ -44,7 +47,8 @@
   function exCote(h, a, unite, arrondir) {
     const t = triangle(), s = net(carre(h) - carre(a)), r = arrondir ? arrondi(Math.sqrt(s)) : net(Math.sqrt(s));
     return {
-      enonce: "Le triangle $" + t.nom + "$ est rectangle en $" + t.droit + "$ avec $" + t.hyp + " = " + L(h) + "$ " + unite + " et $" + t.c1 + " = " + L(a) + "$ " + unite + ". Calculer $" + t.c2 + "$" + (arrondir ? " (arrondir au dixième)." : "."),
+      enonce: "Le triangle $" + t.nom + "$ est rectangle en $" + t.droit + "$. Calculer $" + t.c2 + "$" + (arrondir ? " (arrondir au dixième)." : "."),
+      schema: Savoirs.schemas.pythagore(t, { c1: [a, lg(a, unite)], c2: [Math.sqrt(s), "?"], hyp: [h, lg(h, unite)] }),
       reponse: r, unite: unite,
       correction: "Le triangle est rectangle en $" + t.droit + "$ : d'après le théorème de Pythagore, $" + t.hyp + "^{2} = " + t.c1 + "^{2} + " + t.c2 + "^{2}$, donc $" + t.c2 + "^{2} = " + t.hyp + "^{2} - " + t.c1 + "^{2} = " +
         L(carre(h)) + " - " + L(carre(a)) + " = " + L(s) + "$. Donc $" + t.c2 + " = \\sqrt{" + L(s) + "} " + fin(r, arrondir, unite)
@@ -124,7 +128,8 @@
   function exPave(a, b, c, arrondir) {
     const d2 = net(carre(a) + carre(b)), D2 = net(d2 + carre(c)), r = arrondir ? arrondi(Math.sqrt(D2)) : net(Math.sqrt(D2));
     return {
-      enonce: "Un pavé droit a pour dimensions " + T(a) + " cm, " + T(b) + " cm et " + T(c) + " cm. Calculer la longueur de sa grande diagonale" + (arrondir ? " (arrondir au dixième)." : "."),
+      enonce: "Calculer la longueur de la grande diagonale de ce pavé droit (en orange)" + (arrondir ? " (arrondir au dixième)." : "."),
+      schema: Savoirs.schemas.pave({ lo: a, la: b, h: c, elo: lg(a, "cm"), ela: lg(b, "cm"), eh: lg(c, "cm"), diag: true, ediag: "?" }),
       reponse: r, unite: "cm",
       correction: "Diagonale de la base : $d^{2} = " + L(a) + "^{2} + " + L(b) + "^{2} = " + L(d2) + "$. Grande diagonale $D$ : $D^{2} = d^{2} + " + L(c) + "^{2} = " + L(d2) + " + " + L(carre(c)) + " = " + L(D2) +
         "$. Donc $D = \\sqrt{" + L(D2) + "} " + fin(r, arrondir, "cm")
@@ -164,7 +169,7 @@
     {
       id: "pyth-situation", chap: "pyth", titre: "Problèmes avec le théorème de Pythagore", format: "nombre",
       niveaux: {
-        1: () => situationTriplet(facile(1) ? [3, 4, 5] : choix([[5, 12, 13], [8, 15, 17], [9, 12, 15], [7, 24, 25], [6, 8, 10], [12, 16, 20], [20, 21, 29]])),
+        1: () => situationTriplet(facile(1) ? [3, 4, 5] : choix([[5, 12, 13], [8, 15, 17], [9, 12, 15], [6, 8, 10], [12, 16, 20]])),
         2: () => situationTriplet(tripletDecimal(2)),
         3: () => {
           for (;;) {

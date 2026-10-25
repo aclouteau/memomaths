@@ -121,7 +121,8 @@
         }
         const pm = (a, b) => ent(a, b) * choix([1, -1]);
         return {
-          1: () => (facile(1) ? ex(ent(2, 9), 100, 1) : ex(ent(2, 9), 100, pm(1, 5))),
+          // Niveau 1 : 98 à 102 seulement (9 × 97 était déjà difficile pour démarrer)
+          1: () => (facile(1) ? ex(ent(2, 9), 100, 1) : ex(ent(2, 9), 100, pm(1, 2))),
           2: () => {
             if (facile(2)) return ex(ent(11, 30), 100, 1);
             const [base, c] = choix([[100, pm(1, 5)], [200, pm(1, 4)], [10, pm(1, 1)], [20, pm(1, 1)], [50, pm(1, 1)]]);
@@ -209,12 +210,10 @@
         }
         const quotientN = () => (Math.random() < 0.5 ? ent(2, 40) : dec(1.1, 9.9));
         return {
-          1: () => ex(facile(1) ? 0.5 : choix([0.1, 0.2, 0.25, 0.5, 0.05]), ent(2, 60)),
-          2: () => ex(facile(2) ? 0.1 : ent(2, 9) / 10, quotientN()),
-          3: () => {
-            const d = choix([() => ent(11, 99) / 100, () => dec(1.1, 9.9), () => ent(101, 199) / 100, () => ent(2, 19) / 100])();
-            return ex(d, quotientN());
-          }
+          // Diviseurs simples et quotient entier aux niveaux 1 et 2 (5,239 ÷ 1,69 était trop long à la main)
+          1: () => ex(facile(1) ? 0.5 : choix([0.1, 0.2, 0.5]), ent(2, 30)),
+          2: () => ex(facile(2) ? 0.1 : ent(2, 9) / 10, ent(2, 30)),
+          3: () => ex(choix([0.25, 0.4, 1.2, 1.5, 2.5, 0.12, 0.15, 0.05]), quotientN())
         };
       })()
     },
@@ -222,7 +221,8 @@
       id: "ench-situation", chap: "ench", titre: "Problème à plusieurs étapes", format: "nombre",
       niveaux: {
         1: () => {
-          const qui = choix(PRENOMS), q1 = ent(2, 9), q2 = ent(2, 9), p1 = prix(), p2 = prix(), [a1, a2] = deuxArticles(p1, p2);
+          // Niveau 1 : prix entiers (34,8 € × 4 + 16,9 € × 9 était trop lourd pour démarrer)
+          const qui = choix(PRENOMS), q1 = ent(2, 9), q2 = ent(2, 9), p1 = ent(1, 20), p2 = ent(1, 20), [a1, a2] = deuxArticles(p1, p2);
           if (facile(1)) { const r = net(q1 * p1); return { enonce: qui + " achète " + article(q1, a1, p1) + ". Quel est le prix total, en euros ?", reponse: r, unite: "€", correction: "Prix total : $" + q1 + " \\times " + L(p1) + " = " + L(r) + "$ €." }; }
           const t1 = net(q1 * p1), t2 = net(q2 * p2), r = net(t1 + t2);
           return { enonce: qui + " achète " + article(q1, a1, p1) + " et " + article(q2, a2, p2) + ". Quel est le prix total, en euros ?", reponse: r, unite: "€", correction: "Prix total : $" + q1 + " \\times " + L(p1) + " + " + q2 + " \\times " + L(p2) + " = " + L(t1) + " + " + L(t2) + " = " + L(r) + "$ €." };

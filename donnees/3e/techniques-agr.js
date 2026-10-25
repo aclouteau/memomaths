@@ -60,12 +60,14 @@
           return { enonce: "On agrandit un côté de " + a + " cm avec le rapport $k = " + k + "$. Quelle est sa nouvelle longueur ?", reponse: a * k, unite: "cm", correction: "Les longueurs sont multipliées par $k$ : $" + a + " \\times " + k + " = " + a * k + "$ cm." };
         },
         2: () => {
-          const k = facile(2) ? 0.5 : choix([0.1, 0.2, 0.25, 0.4, 0.6, 0.75, 1.2, 1.5, 2.5, 3.5]), a = Math.random() < 0.5 ? ent(3, 60) : dec(1.1, 9.9), r = net(a * k);
+          // Rapport simple et longueur entière (pas de 3,5 × 7,3)
+          const k = facile(2) ? 0.5 : choix([0.1, 0.2, 0.5, 1.5, 2.5, 3]), a = ent(3, 60), r = net(a * k);
           return { enonce: "On " + (k < 1 ? "réduit" : "agrandit") + " un côté de " + T(a) + " cm avec le rapport $k = " + L(k) + "$. Quelle est sa nouvelle longueur ?", reponse: r, unite: "cm", correction: "Les longueurs sont multipliées par $k$ : $" + L(a) + " \\times " + L(k) + " = " + L(r) + "$ cm." };
         },
         3: () => {
           for (;;) {
-            const k = choix([0.1, 0.2, 0.25, 0.3, 0.4, 0.6, 0.75, 1.2, 1.4, 1.5, 2.5, 3.5]), depart = Math.random() < 0.5 ? ent(4, 80) : dec(1.1, 30), b = net(depart * k);
+            // Retrouver la longueur de départ : rapport simple et longueur entière (54,75 ÷ 0,75 était trop long)
+            const k = choix([0.1, 0.2, 0.5, 1.5, 2, 2.5, 3, 4]), depart = ent(4, 80), b = net(depart * k);
             if (decimales(b) > 2) continue;
             return {
               enonce: "Après " + (k < 1 ? "une réduction" : "un agrandissement") + " de rapport $k = " + L(k) + "$, un côté d'un " + choix(["rectangle", "triangle", "carré"]) + " mesure " + T(b) + " cm. Quelle était sa longueur avant la transformation ?",
@@ -83,7 +85,8 @@
         return {
           1: () => { const k = facile(1) ? 2 : choix([3, 4, 5]), A = ent(2, 20), r = k * k * A; return { enonce: "Une figure d'aire " + A + " cm² est agrandie avec le rapport $k = " + k + "$. Quelle est l'aire de la figure obtenue ?", reponse: r, unite: "cm²", correction: corr(k, A, r) }; },
           2: () => {
-            const k = facile(2) ? 0.5 : choix([0.1, 0.25, 0.3, 0.4, 0.75, 1.2, 1.5, 2.5]), A = Math.random() < 0.5 ? ent(3, 80) : dec(1.1, 9.9), r = net(k * k * A);
+            // Calcul faisable à la main : k simple, aire entière, au plus deux décimales au résultat
+            let k, A, r; do { k = facile(2) ? 0.5 : choix([0.1, 0.2, 0.3, 0.5, 1.5, 2.5]); A = ent(3, 80); r = net(k * k * A); } while (decimales(r) > 2);
             return { enonce: "Une figure d'aire " + T(A) + " cm² est " + verbe(k, true) + " avec le rapport $k = " + L(k) + "$. Quelle est l'aire de la figure obtenue ?", reponse: r, unite: "cm²", correction: corr(k, A, r) };
           },
           3: () => {
@@ -104,11 +107,12 @@
       niveaux: (function () {
         const corr = (k, V, r) => "Les volumes sont multipliés par $k^{3}$ : $V' = k^{3} \\times V = " + L(k) + "^{3} \\times " + L(V) + " = " + L(net(k * k * k)) + " \\times " + L(V) + " = " + L(r) + "$ cm³.";
         return {
-          1: () => { const k = facile(1) ? 2 : choix([3, 4, 5]), V = ent(2, 12), r = k * k * k * V; return { enonce: "Le volume d'une boîte est de " + V + " cm³. On l'agrandit avec le rapport $k = " + k + "$. Quel est son nouveau volume ?", reponse: r, unite: "cm³", correction: corr(k, V, r) }; },
+          1: () => { const k = facile(1) ? 2 : choix([2, 3]), V = ent(2, 10), r = k * k * k * V; return { enonce: "Le volume d'une boîte est de " + V + " cm³. On l'agrandit avec le rapport $k = " + k + "$. Quel est son nouveau volume ?", reponse: r, unite: "cm³", correction: corr(k, V, r) }; },
           2: () => {
             for (;;) {
-              const k = facile(2) ? 0.5 : choix([0.1, 0.25, 0.3, 0.4, 0.75, 1.2, 1.5, 2.5]), V = Math.random() < 0.5 ? ent(3, 80) : dec(1.1, 9.9), r = net(k * k * k * V);
-              if (r > 20000) continue;
+              // Calcul faisable à la main : k simple, volume entier, au plus deux décimales au résultat
+              const k = facile(2) ? 0.5 : choix([0.1, 0.2, 0.5, 1.5, 2, 3]), V = ent(3, 80), r = net(k * k * k * V);
+              if (r > 20000 || decimales(r) > 2) continue;
               return { enonce: "Le volume d'une boîte est de " + T(V) + " cm³. On " + (k < 1 ? "la réduit" : "l'agrandit") + " avec le rapport $k = " + L(k) + "$. Quel est son nouveau volume ?", reponse: r, unite: "cm³", correction: corr(k, V, r) };
             }
           },
@@ -133,10 +137,10 @@
           return { enonce: "Dans un agrandissement, les aires sont multipliées par " + k * k + ". Quel est le rapport $k$ ?", reponse: k, correction: "Les aires sont multipliées par $k^{2}$, donc $k^{2} = " + k * k + "$ et $k = \\sqrt{" + k * k + "} = " + k + "$." };
         },
         2: () => {
-          const k = facile(2) ? 0.5 : choix([0.1, 0.2, 0.25, 0.3, 0.4, 0.7, 0.75, 0.9, 1.2, 1.5, 2.5]);
+          const k = facile(2) ? 0.5 : choix([0.1, 0.2, 0.3, 0.4, 0.5, 1.5, 2.5]);
           for (;;) {
-            const A = Math.random() < 0.5 ? ent(2, 80) : dec(1.1, 9.9), B = net(k * k * A);
-            if (decimales(B) > 4) continue;
+            const A = ent(2, 80), B = net(k * k * A);
+            if (decimales(B) > 2) continue;
             return {
               enonce: "Une figure d'aire " + T(A) + " cm² est " + verbe(k, true) + " ; la figure obtenue a pour aire " + T(B) + " cm². Quel est le rapport $k$ ?", reponse: k,
               correction: "Les aires sont multipliées par $k^{2}$ : $k^{2} = \\dfrac{" + L(B) + "}{" + L(A) + "} = " + L(net(k * k)) + "$, donc $k = \\sqrt{" + L(net(k * k)) + "} = " + L(k) + "$."

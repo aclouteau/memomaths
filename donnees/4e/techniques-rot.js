@@ -2,7 +2,7 @@
 // D'après propositions/referentiels/4e/rot.json (lot 2) : les descriptions de niveau sont la spécification.
 // Les coordonnées par un quart de tour autour de l'origine sont gardées en 4e (décision de l'enseignant).
 (function () {
-  const { L, T, ent, choix, net, nonNul, decimal, facile, signeAuHasard } = Savoirs.calculsOutils;
+  const { L, T, ent, choix, net, decimal, facile } = Savoirs.calculsOutils;
 
   // ---------- Polygones réguliers ----------
   const NOMS = { 3: "triangle équilatéral", 4: "carré", 5: "pentagone régulier", 6: "hexagone régulier", 8: "octogone régulier", 10: "décagone régulier" };
@@ -45,30 +45,6 @@
   function cotesTriangle(tirer) { for (;;) { const c = [tirer(), tirer(), tirer()], [a, b, d] = c.slice().sort((x, y) => x - y); if (a + b > d) return c; } }
 
   // ---------- Coordonnées ----------
-  const M = (x, y) => "(" + L(x) + "\\,;\\," + L(y) + ")";
-  const ROTATIONS = {
-    demi: { angle: "d'angle 180°", regle: "La rotation d'angle 180° est la symétrie centrale de centre $O$ : $(x\\,;\\,y)$ devient $(-x\\,;\\,-y)$.", f: (x, y) => [-x, -y] },
-    direct: { angle: "d'angle 90° dans le sens contraire des aiguilles d'une montre", regle: "Pour un quart de tour direct (sens contraire des aiguilles d'une montre) : $(x\\,;\\,y)$ devient $(-y\\,;\\,x)$.", f: (x, y) => [-y, x] },
-    horaire: { angle: "d'angle 90° dans le sens des aiguilles d'une montre", regle: "Pour un quart de tour dans le sens des aiguilles d'une montre : $(x\\,;\\,y)$ devient $(y\\,;\\,-x)$.", f: (x, y) => [y, -x] }
-  };
-  function exCoordonnees(rot, x, y, inverse) {
-    const R = ROTATIONS[rot], abscisse = Math.random() < 0.5, mot = abscisse ? "l'abscisse" : "l'ordonnée";
-    const [x2, y2] = R.f(x, y).map((v) => net(v) + 0);
-    if (inverse) {
-      const r = abscisse ? x : y;
-      return {
-        enonce: "Dans un repère orthonormé d'origine $O$, le point $M'" + M(x2, y2) + "$ est l'image du point $M$ par la rotation de centre $O$ et " + R.angle + ". Quelle est " + mot + " de $M$ ?",
-        reponse: r,
-        correction: R.regle + " On cherche $(x\\,;\\,y)$ tel que l'image soit $" + M(x2, y2) + "$. Ici $M" + M(x, y) + "$ : " + mot + " de $M$ est " + T(r) + "."
-      };
-    }
-    const r = abscisse ? x2 : y2;
-    return {
-      enonce: "Dans un repère orthonormé d'origine $O$, on place le point $M" + M(x, y) + "$. Le point $M'$ est l'image de $M$ par la rotation de centre $O$ et " + R.angle + ". Quelle est " + mot + " de $M'$ ?",
-      reponse: r, correction: R.regle + " Ici $M'" + M(x2, y2) + "$ : " + mot + " de $M'$ est " + T(r) + "."
-    };
-  }
-
   const rot = [
     {
       id: "angle-poly", chap: "rot", titre: "Angle d'une rotation d'un polygone régulier", format: "nombre",
@@ -156,8 +132,8 @@
           }
           if (cas === 2) {
             // Triangle rectangle : un côté de l'image, avec Pythagore
-            const base = choix([[5, 12, 13], [9, 12, 15], [8, 15, 17], [12, 16, 20], [7, 24, 25], [15, 20, 25], [20, 21, 29], [9, 40, 41], [12, 35, 37], [10, 24, 26], [15, 36, 39],
-              [18, 24, 30], [16, 30, 34], [21, 28, 35], [24, 32, 40], [3, 4, 5], [6, 8, 10]]);
+            // Petits triangles seulement, comme dans le chapitre Pythagore (règle de difficulté de l'enseignant)
+            const base = choix([[3, 4, 5], [6, 8, 10], [5, 12, 13], [9, 12, 15], [8, 15, 17], [12, 16, 20]]);
             const t = Math.random() < 0.3 ? base.map((x) => x / 2) : base;
             const nom = choix(TRIANGLES), [A, B, C] = nom.split(""), hyp = Math.random() < 0.5;
             const enonce = "Le triangle $" + nom + "$ est rectangle en $" + A + "$ avec " + (hyp ? "$" + A + B + " = " + L(t[0]) + "$ cm et $" + A + C + " = " + L(t[1]) + "$ cm."
@@ -178,25 +154,8 @@
           };
         }
       }
-    },
-    {
-      id: "rot-coord", chap: "rot", titre: "Coordonnées de l'image par une rotation de centre O", format: "nombre",
-      niveaux: {
-        1: () => {
-          let x = nonNul(-9, 9), y = nonNul(-9, 9);
-          // Cas facile : le point est sur un axe
-          if (facile(1)) { if (Math.random() < 0.5) x = 0; else y = 0; }
-          return exCoordonnees("demi", x, y);
-        },
-        2: () => exCoordonnees(facile(2) ? "demi" : choix(["direct", "horaire"]), nonNul(-9, 9), nonNul(-9, 9)),
-        3: () => {
-          let x, y;
-          do { x = decimal(9.9, 1) * signeAuHasard(); y = (Math.random() < 0.5 ? decimal(9.9, 1) : ent(1, 9)) * signeAuHasard(); } while (Number.isInteger(x) && Number.isInteger(y));
-          if (Math.random() < 0.5) [x, y] = [y, x];
-          return exCoordonnees(choix(["direct", "horaire"]), x, y, Math.random() < 0.3);
-        }
-      }
     }
+    // (« Coordonnées de l'image par une rotation » retiré : pas de coordonnées dans les transformations, décision de l'enseignant.)
   ];
 
   Savoirs.enregistrerTechniques("4e", rot);

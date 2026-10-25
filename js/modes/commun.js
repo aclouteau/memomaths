@@ -43,6 +43,8 @@
       boutons.forEach((autre, i) => {
         autre.disabled = true;
         autre.querySelector(".marque").textContent = "";
+        // Après la réponse, chaque proposition montre son explication (« …, car on oublie… »)
+        if (propositions[i].complet) autre.querySelector(".contenu").innerHTML = m.texte(propositions[i].complet);
         if (propositions[i].bonne) {
           autre.classList.add("juste");
           autre.querySelector(".marque").textContent = "✓";

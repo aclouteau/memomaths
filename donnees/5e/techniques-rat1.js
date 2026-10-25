@@ -50,8 +50,9 @@
       id: "rat-simplifier", chap: "rat1", titre: "Simplifier une fraction", format: "fraction",
       niveaux: {
         1: () => { const k = facile(1) ? 10 : ent(2, 5); for (;;) { const [p, q] = irreductible(1, 9, 2, 9); if (p * k <= 120 && q * k <= 120) return simplifier(p, q, k); } },
-        2: () => { const k = ent(6, 12); if (facile(2)) return simplifier(ent(2, 15), 1, k); const [p, q] = irreductible(1, 15, 2, 12); return simplifier(p, q, k); },
-        3: () => { const k = choix([12, 14, 15, 16, 18, 20, 21, 22, 24, 25, 28, 30, 33, 35, 36, 45]), [p, q] = irreductible(2, 20, 3, 16); return simplifier(p, q, k); }
+        // Plus simple (385/525 simplifié par 35 était trop dur) : facteurs et fractions plus petits
+        2: () => { const k = ent(3, 10); if (facile(2)) return simplifier(ent(2, 12), 1, k); const [p, q] = irreductible(1, 12, 2, 10); return simplifier(p, q, k); },
+        3: () => { const k = choix([11, 12, 15, 20, 25]), [p, q] = irreductible(2, 12, 3, 12); return simplifier(p, q, k); }
       }
     },
     {
@@ -114,8 +115,9 @@
       id: "rat-decimal", chap: "rat1", titre: "Fraction et écriture décimale", format: "nombre",
       niveaux: {
         1: () => (facile(1) ? versDecimal([10], () => 99) : versDecimal([2, 4, 5], (b) => 2 * b + 5)),
-        2: () => (facile(2) ? versDecimal([100], () => 199) : versDecimal([8, 20, 25, 50], (b) => 2 * b)),
-        3: () => versDecimal([16, 40, 80, 125, 200, 250], (b) => 2 * b)
+        // Sans 16, 80 ni 125 (3/16 = 0,1875 était trop long à la main) ; les huitièmes seulement au niveau 3
+        2: () => (facile(2) ? versDecimal([100], () => 199) : versDecimal([20, 25, 50], (b) => 2 * b)),
+        3: () => versDecimal([8, 40, 200], (b) => 2 * b)
       }
     },
     {

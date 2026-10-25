@@ -221,30 +221,7 @@
         };
       }]))
     },
-    {
-      id: "identite-calcul", chap: "lit", titre: "Calcul astucieux avec les identités remarquables", format: "nombre",
-      niveaux: (function () {
-        const carre = (a, b) => {
-          const n = net(a + b), r = net(n * n), s = b < 0 ? "-" : "+", B = Math.abs(b);
-          return {
-            enonce: choix(["Calculer $" + L(n) + "^{2}$ sans calculatrice, en utilisant une identité remarquable.", "Sans calculatrice et à l'aide d'une identité remarquable, calculer $" + L(n) + "^{2}$."]), reponse: r,
-            correction: "$" + L(n) + "^{2} = (" + L(a) + " " + s + " " + L(B) + ")^{2} = " + L(a) + "^{2} " + s + " 2 \\times " + L(a) + " \\times " + L(B) + " + " + L(B) + "^{2} = " + L(net(a * a)) + " " + s + " " + L(net(2 * a * B)) + " + " + L(net(B * B)) + " = " + L(r) + "$."
-          };
-        };
-        return {
-          1: () => (facile(1) ? carre(10, choix([-1, 1])) : carre(10 * ent(2, 9), pm(1, 3))),
-          2: () => (facile(2) ? carre(100, choix([-1, 1])) : (() => { for (;;) { const base = choix([50, 60, 100, 200, 500, 1000]), d = pm(1, 3); if (base === 100 && Math.abs(d) === 1) continue; return carre(base, d); } })()),
-          // Niveau 3 : seulement des produits (c − b)(c + b) ; pas de carrés de décimaux (décision de l'enseignant)
-          3: () => {
-            const c = choix([20, 30, 40, 50, 60, 70, 80, 90, 100, 200, 1000]), b = ent(1, 5), r = c * c - b * b;
-            return {
-              enonce: "Calculer $" + (c - b) + " \\times " + (c + b) + "$ sans calculatrice, en utilisant une identité remarquable.", reponse: r,
-              correction: "$" + (c - b) + " \\times " + (c + b) + " = (" + c + " - " + b + ")(" + c + " + " + b + ") = " + c + "^{2} - " + b + "^{2} = " + L(c * c) + " - " + b * b + " = " + L(r) + "$."
-            };
-          }
-        };
-      })()
-    },
+    // (« Calcul astucieux avec les identités remarquables » retiré à la demande de l'enseignant, avec le savoir lit-id-calc.)
     {
       id: "facteur-commun", chap: "lit", titre: "Factoriser", format: "nombre",
       niveaux: {

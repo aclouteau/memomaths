@@ -161,5 +161,60 @@
     }
   ];
 
+  // ---------- Exercices « toucher » : l'élève touche l'angle demandé sur la figure (js/moteur/figures.js) ----------
+  // Niveau 1 : figure classique et peu d'angles proposés ; niveau 2 : figure qui varie, tous les angles ;
+  // niveau 3 : figure tournée au hasard (ou trois droites pour les angles opposés).
+  const memeDir = (a, b) => Math.abs(((a - b) % 360 + 540) % 360 - 180) < 1e-6;
+  function exToucher(figure, marque, cherche, enonce, correction, libelle) {
+    const tous = Savoirs.figures.angles(figure), m = tous.find((a) => a.id === marque), bon = cherche(m, tous);
+    figure.marque = marque;
+    if (!figure.candidats) figure.candidats = tous.filter((a) => a.id !== marque).map((a) => a.id);
+    return { format: "toucher", enonce: enonce, figure: figure, reponse: bon.id, libelle: libelle, correction: correction };
+  }
+  // Angle opposé par le sommet : même sommet, côtés dans le prolongement (direction + 180°)
+  const oppose = (m, tous) => tous.find((a) => a.id !== m.id && a.id[0] === m.id[0] && memeDir(a.d1, m.d1 + 180));
+  // Correspondant : à l'autre point d'intersection, même position (mêmes directions)
+  const correspondant = (m, tous) => tous.find((a) => a.id[0] !== m.id[0] && memeDir(a.d1, m.d1));
+  // Alterne-interne : à l'autre point, entre les deux droites, de l'autre côté de la sécante (directions + 180°)
+  const alterne = (m, tous) => tous.find((a) => a.id[0] !== m.id[0] && memeDir(a.d1, m.d1 + 180));
+  const sensSecante = (n) => (n === 1 ? ent(55, 70) : choix([ent(40, 75), ent(105, 140)]));
+  function paralleles(n, interieurSeulement) {
+    const figure = { type: "paralleles", rot: n === 3 ? ent(0, 359) : n === 2 ? choix([0, 180]) : 0, s: sensSecante(n) };
+    const tous = Savoirs.figures.angles(figure).filter((a) => !interieurSeulement || a.interieur);
+    // Niveau 1 : l'angle donné est sur (d) ; on ne propose que les quatre angles de l'autre droite
+    const choisis = n === 1 ? tous.filter((a) => a.id[0] === "1") : tous;
+    const marque = choix(choisis).id;
+    if (n === 1) figure.candidats = Savoirs.figures.angles(figure).filter((a) => a.id[0] === "2").map((a) => a.id);
+    return { figure: figure, marque: marque };
+  }
+  const CORR_ALTERNES = "Deux angles alternes-internes sont de part et d'autre de la sécante, et entre les deux droites (d) et (d'). Comme (d) et (d') sont parallèles, ils sont égaux.";
+  const CORR_CORRESP = "Deux angles correspondants sont du même côté de la sécante et « à la même place » à chaque point d'intersection. Comme (d) et (d') sont parallèles, ils sont égaux.";
+  const CORR_OPPOSES = "Deux angles opposés par le sommet ont le même sommet $O$ et leurs côtés sont dans le prolongement l'un de l'autre. Ils sont égaux.";
+
+  angles.push(
+    {
+      id: "ang-toucher-oppose", chap: "ang", titre: "Toucher l'angle opposé par le sommet", format: "toucher",
+      niveaux: Object.fromEntries([1, 2, 3].map((n) => [n, () => {
+        const a = n === 1 ? 0 : ent(0, 179), dirs = n === 3 ? [a, a + ent(50, 70), a + ent(110, 130)] : [a, a + (n === 1 ? ent(50, 70) : ent(40, 140))];
+        const figure = { type: "secantes", dirs: dirs }, marque = choix(Savoirs.figures.angles(figure)).id;
+        return exToucher(figure, marque, oppose, "Touche l'angle opposé par le sommet à l'angle orange.", CORR_OPPOSES, "l'angle opposé par le sommet");
+      }]))
+    },
+    {
+      id: "ang-toucher-alternes", chap: "ang", titre: "Toucher l'angle alterne-interne", format: "toucher",
+      niveaux: Object.fromEntries([1, 2, 3].map((n) => [n, () => {
+        const { figure, marque } = paralleles(n, true);
+        return exToucher(figure, marque, alterne, "Les droites (d) et (d') sont parallèles. Touche l'angle alterne-interne à l'angle orange.", CORR_ALTERNES, "l'angle alterne-interne");
+      }]))
+    },
+    {
+      id: "ang-toucher-correspondants", chap: "ang", titre: "Toucher l'angle correspondant", format: "toucher",
+      niveaux: Object.fromEntries([1, 2, 3].map((n) => [n, () => {
+        const { figure, marque } = paralleles(n, false);
+        return exToucher(figure, marque, correspondant, "Les droites (d) et (d') sont parallèles. Touche l'angle correspondant à l'angle orange.", CORR_CORRESP, "l'angle correspondant");
+      }]))
+    }
+  );
+
   Savoirs.enregistrerTechniques("5e", angles);
 })();

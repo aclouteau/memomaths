@@ -1,6 +1,6 @@
 // Techniques d'entraînement de 3e : « Théorème de Thalès » (thal).
 // D'après propositions/referentiels/3e/thal.json (lot 4) : les descriptions de niveau sont la spécification.
-// La configuration est décrite par un texte (pas de figure).
+// La configuration est montrée sur une figure (js/moteur/schemas.js) ; l'énoncé ne garde que le parallélisme et les longueurs.
 (function () {
   const { L, T, ent, choix, net, decimales, facile, pgcd } = Savoirs.calculsOutils;
   const melanger = (l) => Savoirs.melanger(l);
@@ -12,8 +12,9 @@
     if (facile(niveau)) return [1, 2];
     for (;;) { const q = ent(2, qMax), p = ent(1, Math.min(5, q - 1)); if (pgcd(p, q) === 1 && !(p === 1 && q === 2)) return [p, q]; }
   }
-  const phrase = (t) => "Dans le triangle $" + t.A + t.B + t.C + "$, $" + t.M + "$ est un point du segment $[" + t.A + t.B + "]$, $" + t.N + "$ est un point du segment $[" + t.A + t.C + "]$ et les droites $(" + t.M + t.N + ")$ et $(" + t.B + t.C + ")$ sont parallèles.";
-  const thales = (t) => "d'après le théorème de Thalès, $" + D(t.A + t.M, t.A + t.B) + " = " + D(t.A + t.N, t.A + t.C) + " = " + D(t.M + t.N, t.B + t.C) + "$";
+  const phrase = (t) => "Sur la figure, les droites $(" + t.M + t.N + ")$ et $(" + t.B + t.C + ")$ sont parallèles.";
+  const figure = (t, k, papillon) => Savoirs.schemas.thales({ noms: t, k: k, papillon: papillon });
+  const thales =(t) => "d'après le théorème de Thalès, $" + D(t.A + t.M, t.A + t.B) + " = " + D(t.A + t.N, t.A + t.C) + " = " + D(t.M + t.N, t.B + t.C) + "$";
 
   // Longueurs d'une configuration : grand triangle (AB, AC, BC) et petit (AM, AN, MN), rapport p/q.
   // unite : 1 (entiers) ou 0,1 (décimaux)
@@ -45,7 +46,7 @@
           const donnees = quatre.filter((_, i) => i !== inconnue);
           let enonce, avant = "";
           const config = forme === "papillon"
-            ? "Les droites $(" + t.M + t.B + ")$ et $(" + t.N + t.C + ")$ se coupent en $" + t.A + "$, les points $" + t.M + "$, $" + t.A + "$, $" + t.B + "$ sont alignés dans cet ordre, ainsi que $" + t.N + "$, $" + t.A + "$, $" + t.C + "$, et les droites $(" + t.M + t.N + ")$ et $(" + t.B + t.C + ")$ sont parallèles."
+            ? "Sur la figure, les droites $(" + t.M + t.B + ")$ et $(" + t.N + t.C + ")$ se coupent en $" + t.A + "$ et les droites $(" + t.M + t.N + ")$ et $(" + t.B + t.C + ")$ sont parallèles."
             : phrase(t);
           let listeDonnees = donnees.map((c) => "$" + nom(c) + " = " + L(l[c]) + "$ cm");
           if (forme === "somme" || forme === "difference") {
@@ -71,7 +72,7 @@
           const produit = net(l[croix[0]] * l[croix[1]]);
           if (Math.abs(net(produit / l[croix[2]]) - r) > 1e-9) continue;
           return {
-            enonce: enonce, reponse: r, unite: "cm",
+            enonce: enonce, schema: figure(t, p / q, forme === "papillon"), reponse: r, unite: "cm",
             correction: (forme === "papillon" ? "Les droites $(" + t.M + t.B + ")$ et $(" + t.N + t.C + ")$ se coupent en $" + t.A + "$ et $(" + t.M + t.N + ") \\parallel (" + t.B + t.C + ")$ : "
               : "Les points $" + t.M + "$ et $" + t.N + "$ sont sur $[" + t.A + t.B + "]$ et $[" + t.A + t.C + "]$ et $(" + t.M + t.N + ") \\parallel (" + t.B + t.C + ")$ : ") + thales(t) + ". " + avant +
               "On remplace par les valeurs : " + egalite + ". Donc $" + nom(cible) + " = " + D(L(l[croix[0]]) + " \\times " + L(l[croix[1]]), L(l[croix[2]])) + " = " + D(L(produit), L(l[croix[2]])) + " = " + L(r) + "$ cm."
@@ -111,7 +112,8 @@
               (egaux ? "Les produits en croix sont égaux, donc les rapports aussi" : "Les produits en croix sont différents, donc $" + D(n("A", "M"), n("A", "B")) + " \\neq " + D(n("A", "N"), n("A", "C")) + "$");
           }
           return {
-            enonce: "Dans le triangle $" + t.A + t.B + t.C + "$, $" + t.M + "$ est un point du segment $[" + t.A + t.B + "]$ et $" + t.N + "$ est un point du segment $[" + t.A + t.C + "]$. On donne " + donnees + ". Les droites $" + MN + "$ et $" + BC + "$ sont-elles parallèles ?",
+            enonce: "Sur la figure, $" + t.M + "$ est un point du segment $[" + t.A + t.B + "]$ et $" + t.N + "$ est un point du segment $[" + t.A + t.C + "]$. On donne " + donnees + ". Les droites $" + MN + "$ et $" + BC + "$ sont-elles parallèles ?",
+            schema: Savoirs.schemas.thales({ noms: t, k: AM / AB, kN: AN / ACv, neutre: true }),
             reponse: egaux ? "parallèles" : "non parallèles",
             correction: debut + comparaison + (egaux ? " ; de plus les points sont dans le même ordre : d'après la réciproque du théorème de Thalès, $" + MN + "$ et $" + BC + "$ sont parallèles." : " : d'après la contraposée du théorème de Thalès, $" + MN + "$ et $" + BC + "$ ne sont pas parallèles.")
           };
@@ -158,7 +160,8 @@
           const donnees = niveau === 3 ? "$" + n("A", "M") + " = " + L(AM) + "$ m, $" + n("M", "B") + " = " + L(MB) + "$ m et $" + n("M", "N") + " = " + L(MN) + "$ m"
             : "$" + n("A", "M") + " = " + L(AM) + "$ m, $" + n("A", "B") + " = " + L(AB) + "$ m et $" + n("M", "N") + " = " + L(MN) + "$ m";
           return {
-            enonce: "Pour mesurer la largeur $" + n("B", "C") + "$ d'un étang, on place un point $" + t.A + "$, puis un point $" + t.M + "$ sur $[" + n("A", "B") + "]$ et un point $" + t.N + "$ sur $[" + n("A", "C") + "]$ tels que $(" + n("M", "N") + ")$ soit parallèle à $(" + n("B", "C") + ")$. On donne " + donnees + ". Quelle est la largeur $" + n("B", "C") + "$ de l'étang ?",
+            enonce: "Pour mesurer la largeur $" + n("B", "C") + "$ d'un étang, on place des piquets aux points de la figure, avec $(" + n("M", "N") + ")$ parallèle à $(" + n("B", "C") + ")$. On donne " + donnees + ". Quelle est la largeur $" + n("B", "C") + "$ de l'étang ?",
+            schema: figure(t, p / q),
             reponse: BC, unite: "m",
             correction: (niveau === 3 ? "On a $" + n("A", "B") + " = " + n("A", "M") + " + " + n("M", "B") + " = " + L(AM) + " + " + L(MB) + " = " + L(AB) + "$ m. " : "") +
               "Les points $" + t.M + "$ et $" + t.N + "$ sont sur $[" + n("A", "B") + "]$ et $[" + n("A", "C") + "]$ et $(" + n("M", "N") + ") \\parallel (" + n("B", "C") + ")$ : d'après le théorème de Thalès, $" + D(n("A", "M"), n("A", "B")) + " = " + D(n("M", "N"), n("B", "C")) + "$. On remplace par les valeurs : $" + D(L(AM), L(AB)) + " = " + D(L(MN), n("B", "C")) + "$. Donc $" + n("B", "C") + " = " + D(L(AB) + " \\times " + L(MN), L(AM)) + " = " + D(L(net(AB * MN)), L(AM)) + " = " + L(BC) + "$ m."
@@ -181,6 +184,7 @@
           const demande = inverse ? D(den, num) : D(num, den), rep = inverse ? (p === 1 ? String(q) : q + "/" + p) : p + "/" + q, frac = inverse ? (p === 1 ? String(q) : D(q, p)) : D(p, q);
           return {
             enonce: phrase(t) + " On donne " + donnees + ". Quelle est la valeur du rapport $" + demande + "$ ? Donner la réponse sous la forme d'une fraction irréductible.",
+            schema: figure(t, p / q),
             reponse: rep,
             correction: "Les points $" + t.M + "$ et $" + t.N + "$ sont sur $[" + t.A + t.B + "]$ et $[" + t.A + t.C + "]$ et $(" + t.M + t.N + ") \\parallel (" + t.B + t.C + ")$ : " + thales(t) + ". " +
               (complement ? "On a $" + nG + " = " + nP + " + " + t[P] + t[G] + " = " + L(petit) + " + " + L(reste) + " = " + L(grand) + "$ cm. " : "") +
@@ -200,13 +204,15 @@
           if (niveau === 3) {
             const parCote = Math.random() < 0.5, [a, b] = parCote ? [l.AM, l.AB] : [l.MN, l.BC], [na, nb] = parCote ? [n("A", "M"), n("A", "B")] : [n("M", "N"), n("B", "C")];
             return {
-              enonce: "Dans le triangle $" + t.A + t.B + t.C + "$, le point $" + t.M + "$ est sur $[" + n("A", "B") + "]$, le point $" + t.N + "$ est sur $[" + n("A", "C") + "]$ et $(" + n("M", "N") + ")$ est parallèle à $(" + n("B", "C") + ")$. On donne $" + na + " = " + L(a) + "$ cm, $" + nb + " = " + L(b) + "$ cm et le périmètre du triangle $" + t.A + t.M + t.N + "$ est " + T(Pp) + " cm. Calculer le périmètre du triangle $" + t.A + t.B + t.C + "$.",
+              schema: figure(t, p / q),
+              enonce: phrase(t) + " On donne $" + na + " = " + L(a) + "$ cm, $" + nb + " = " + L(b) + "$ cm et le périmètre du triangle $" + t.A + t.M + t.N + "$ est " + T(Pp) + " cm. Calculer le périmètre du triangle $" + t.A + t.B + t.C + "$.",
               reponse: Pg, unite: "cm",
               correction: "D'après le théorème de Thalès, " + thales(t).replace("d'après le théorème de Thalès, ", "") + ". Le rapport est $k = " + D(na, nb) + " = " + D(L(a), L(b)) + " = " + D(p, q) + "$. Le périmètre de $" + t.A + t.M + t.N + "$ est égal à $k$ fois celui de $" + t.A + t.B + t.C + "$. Donc le périmètre de $" + t.A + t.B + t.C + "$ est $" + L(Pp) + " \\div " + D(p, q) + " = " + L(Pp) + " \\times " + D(q, p) + " = " + L(Pg) + "$ cm."
             };
           }
           return {
-            enonce: "Dans le triangle $" + t.A + t.B + t.C + "$, on a $" + n("A", "B") + " = " + L(l.AB) + "$ cm, $" + n("A", "C") + " = " + L(l.AC) + "$ cm et $" + n("B", "C") + " = " + L(l.BC) + "$ cm. Le point $" + t.M + "$ est sur $[" + n("A", "B") + "]$, le point $" + t.N + "$ est sur $[" + n("A", "C") + "]$, $(" + n("M", "N") + ")$ est parallèle à $(" + n("B", "C") + ")$ et $" + n("A", "M") + " = " + L(l.AM) + "$ cm. Calculer le périmètre du triangle $" + t.A + t.M + t.N + "$.",
+            enonce: phrase(t) + " On donne $" + n("A", "B") + " = " + L(l.AB) + "$ cm, $" + n("A", "C") + " = " + L(l.AC) + "$ cm, $" + n("B", "C") + " = " + L(l.BC) + "$ cm et $" + n("A", "M") + " = " + L(l.AM) + "$ cm. Calculer le périmètre du triangle $" + t.A + t.M + t.N + "$.",
+            schema: figure(t, p / q),
             reponse: Pp, unite: "cm",
             correction: "Les points $" + t.M + "$ et $" + t.N + "$ sont sur $[" + n("A", "B") + "]$ et $[" + n("A", "C") + "]$ et $(" + n("M", "N") + ") \\parallel (" + n("B", "C") + ")$ : " + thales(t) + ". Le rapport est $k = " + D(n("A", "M"), n("A", "B")) + " = " + D(L(l.AM), L(l.AB)) + " = " + D(p, q) + "$. Le périmètre de $" + t.A + t.B + t.C + "$ est $" + L(l.AB) + " + " + L(l.AC) + " + " + L(l.BC) + " = " + L(Pg) + "$ cm. Le périmètre de $" + t.A + t.M + t.N + "$ est égal à $k$ fois celui du grand triangle : $" + D(p, q) + " \\times " + L(Pg) + " = " + L(Pp) + "$ cm."
           };

@@ -107,7 +107,8 @@
         },
         3: () => {
           let f;
-          do { const s = deuxSignes(3); f = [d1() * s[0], d1() * s[1]]; } while (Math.abs(produitDe(f)) > 100);
+          // Un décimal et un entier, ou deux décimaux simples (0,5 × 1,2) : 6,2 × 7,8 était trop long à la main
+          do { const s = deuxSignes(3); f = melanger([d1() * s[0], (Math.random() < 0.5 ? ent(2, 12) : choix([0.2, 0.5, 1.5, 2.5])) * s[1]]); } while (Math.abs(produitDe(f)) > 100);
           return { enonce: "Calculer $" + ecrireProduit(f) + "$", reponse: produitDe(f), correction: correctionProduit(f) };
         }
       },
@@ -133,7 +134,8 @@
           let a, b, q;
           do {
             const s = deuxSignes(3);
-            b = d1() * s[0];
+            // Diviseur simple (entier ou 0,2 ; 0,5 ; 2,5…) : 88,11 ÷ 8,9 était trop long à la main
+            b = (Math.random() < 0.5 ? ent(2, 9) : choix([0.2, 0.4, 0.5, 1.5, 2.5])) * s[0];
             q = (Math.random() < 0.6 ? ent(2, 12) : d1()) * s[1];
             a = net(b * q);
           } while (Math.abs(a) > 100 || decimales(a) > 2);
@@ -333,7 +335,8 @@
         3: () => {
           if (Math.random() < 0.5) {
             let a, m, c;
-            do { const s = deuxSignes(3); a = d1() * s[0]; m = (Math.random() < 0.5 ? d1() : ent(2, 9)) * s[1]; c = net(a * m); } while (Math.abs(c) > 100);
+            // Facteur connu simple et nombre cherché entier : 2,3 × … = −18,4 était trop dur
+            do { const s = deuxSignes(3); a = choix([0.2, 0.4, 0.5, 1.5, 2.5]) * s[0]; m = ent(2, 12) * s[1]; c = net(a * m); } while (Math.abs(c) > 100);
             return { enonce: "Trouver le nombre : $" + P(a) + " \\times \\ldots = " + L(c) + "$", reponse: net(m),
               correction: "$" + P(c) + " \\div " + P(a) + " = " + L(m) + "$. Vérification : $" + P(a) + " \\times " + P(m) + " = " + L(c) + "$." };
           }
@@ -354,7 +357,7 @@
           return { enonce: "Calculer $\\dfrac{" + L(a) + "}{" + L(b) + "}$", reponse: q, correction: correctionQuotient(a, b, "quotient") };
         },
         2: () => {
-          const s = deuxSignes(2), b = choix([2, 4, 5, 8, 10]) * s[0];
+          const s = deuxSignes(2), b = choix([2, 4, 5, 10]) * s[0]; // pas de 8 : 27 ÷ 8 = 3,375 est trop long à la main
           let a; do { a = ent(1, 40) * s[1]; } while (a % b === 0);
           return { enonce: "Calculer $\\dfrac{" + L(a) + "}{" + L(b) + "}$", reponse: net(a / b), correction: correctionQuotient(a, b, "quotient") };
         },

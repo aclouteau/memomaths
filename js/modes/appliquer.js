@@ -30,21 +30,49 @@
   }
 
   function versTexte(x) { return String(x).replace(".", ",").replace("-", "−"); }
+  // Énoncé, suivi du schéma coté quand l'exercice en a un (js/moteur/schemas.js)
+  const question = (ex) => '<div class="question">' + m.texte(ex.donnees) + "</div>" + (ex.schema ? '<div class="figure">' + ex.schema + "</div>" : "");
 
   // Niveau d'une technique (1 à 3). On monte avec la boîte de répétition espacée (2 réussites : niveau 2,
   // 4 : niveau 3) ; après une erreur on ne redescend que d'un niveau (décision de l'enseignant). Une erreur
   // remet la boîte à 0 (« à revoir » dans le bilan) : le niveau atteint est donc gardé à part, dans la fiche (n).
+  // Pour que les élèves à l'aise ne restent pas au niveau 1 : une réussite fait monter d'un niveau dès la
+  // fois suivante, et une technique jamais vue commence au niveau 2 si l'élève réussit déjà bien les autres.
   const niveauDeBoite = (b) => (b >= 4 ? 3 : b >= 2 ? 2 : 1);
+  // Techniques et niveaux où une calculatrice est proposée (js/modes/calculatrice.js) : seulement là où on
+  // l'utiliserait aussi en classe. Ailleurs, les nombres sont choisis pour se calculer de tête ou à la main.
+  const CALCULATRICE = {
+    "t-5e-puis-cube": [3],"t-5e-puis-aire-volume": [3],
+    "t-5e-aire-cercle": [1, 2, 3], "t-5e-aire-figure-composee": [3], "t-5e-aire-cout": [3],
+    "t-4e-pyth-carre": [2, 3], "t-4e-hyp-calcul": [2, 3], "t-4e-cote-droit": [2, 3], "t-4e-situation-pyth": [2, 3],
+    "t-4e-moyenne-classes": [3], "t-4e-quatrieme": [3], "t-4e-coef-prop": [3],
+    "t-4e-carre-grand": [2, 3], "t-4e-somme-petits": [2, 3], "t-4e-ecart-pyth": [2, 3], "t-4e-rectangle-oui-non": [2, 3],
+    "t-4e-hausse-baisse": [3], "t-4e-fraction-de": [3],
+    "t-3e-hypotenuse-calcul": [2, 3], "t-3e-cote-calcul": [2, 3], "t-3e-pyth-situation": [2, 3], "t-3e-diagonale-pave": [2, 3],
+    "t-3e-rectangle-oui-non": [2, 3], "t-3e-aire-image": [3], "t-3e-volume-image": [3], "t-3e-homo-aire": [3], "t-3e-rapport-depuis-aire": [3],
+    "t-3e-thales-longueur": [3], "t-3e-thales-situation": [2, 3], "t-3e-thales-perimetre": [3], "t-3e-thales-parallele-oui-non": [3],
+    "t-3e-pv-vol-cylindre": [1, 2, 3], "t-3e-pv-vol-pyramide-cone": [2, 3], "t-3e-pv-sphere-boule": [1, 2, 3], "t-3e-pv-contenance": [3]
+  };
+  const avecCalculatrice = (savoir, niveau) => (CALCULATRICE[savoir.id] || []).includes(niveau);
   function niveauTechnique(carte, contexte) {
-    const f = contexte && contexte.progression && contexte.progression.fiche("appliquer", carte.id);
-    if (!f) return 1;
+    const progression = contexte && contexte.progression;
+    const f = progression && progression.fiche("appliquer", carte.id);
+    if (!f) return progression ? niveauDeDepart(carte, progression) : 1;
     return f.n || niveauDeBoite(f.b);
+  }
+  // Niveau 2 si au moins 4 autres techniques du même niveau de classe sont déjà au niveau 2 ou 3, et que
+  // les trois quarts au moins des techniques déjà vues y sont ; sinon niveau 1 (le plus facile, pour se lancer)
+  function niveauDeDepart(carte, progression) {
+    const prefixe = carte.id.split("-").slice(0, 2).join("-") + "-", fiches = progression.fiches("appliquer");
+    const vues = Object.keys(fiches).filter((id) => id.startsWith(prefixe) && fiches[id].n);
+    const avancees = vues.filter((id) => fiches[id].n >= 2).length;
+    return avancees >= 4 && avancees >= 0.75 * vues.length ? 2 : 1;
   }
   function noterNiveau(carte, contexte, niveau, juste) {
     const progression = contexte && contexte.progression;
     const f = progression && progression.fiche("appliquer", carte.id);
     if (!f) return;
-    f.n = juste ? Math.max(niveau, niveauDeBoite(f.b)) : Math.max(1, niveau - 1);
+    f.n = juste ? Math.min(3, Math.max(niveau + 1, niveauDeBoite(f.b))) : Math.max(1, niveau - 1);
     progression.enregistrer();
   }
 
@@ -64,7 +92,7 @@
   // technique.options (format "choix", par exemple « rectangle » / « non rectangle » ; réponse : l'une des deux)
   function afficherSigne(carte, zone, fini, ex, entete) {
     const options = carte.technique.format === "choix" ? carte.technique.options.map((o) => [o, o.charAt(0).toUpperCase() + o.slice(1)]) : [[1, "Positif"], [-1, "Négatif"]];
-    zone.innerHTML = entete + '<div class="question">' + m.texte(ex.donnees) + "</div>" +
+    zone.innerHTML = entete + question(ex) +
       '<div class="propositions choix-signe" role="group" aria-label="' + (carte.technique.format === "choix" ? "Réponse" : "Signe") + '">' +
       options.map(([v, t]) =>
         '<button class="proposition" data-signe="' + m.echapper(String(v)) + '"><span class="marque" aria-hidden="true"></span><span class="contenu">' + m.echapper(t) + "</span></button>").join("") +
@@ -87,6 +115,37 @@
     }));
   }
 
+  // Format « toucher » : l'élève touche un angle sur la figure (js/moteur/figures.js). Chaque angle est aussi
+  // un bouton pour le clavier et le lecteur d'écran (Entrée ou Espace).
+  function afficherToucher(carte, zone, fini, ex, entete, figure) {
+    zone.innerHTML = entete + question(ex) +
+      '<div class="figure">' + Savoirs.figures.toucher(figure) + "</div>" +
+      '<p class="aide-toucher">Touche l\'angle sur la figure.</p>' + '<div class="correction" hidden></div>';
+    const svg = zone.querySelector(".figure-toucher"), zones = Array.from(zone.querySelectorAll(".zone-angle"));
+    let fait = false;
+    function choisir(z) {
+      if (fait) return;
+      fait = true;
+      const juste = z.dataset.zone === String(ex.reponse);
+      zones.forEach((autre) => {
+        autre.removeAttribute("tabindex");
+        autre.setAttribute("aria-disabled", "true");
+        if (autre.dataset.zone === String(ex.reponse)) autre.classList.add("juste");
+        else if (autre === z) autre.classList.add("faux");
+      });
+      svg.classList.add("fini");
+      zone.querySelector(".aide-toucher").textContent = juste ? "✓ C'est le bon angle." : "✗ Ce n'est pas cet angle : le bon angle est en bleu.";
+      const correction = zone.querySelector(".correction");
+      correction.innerHTML = m.texte(ex.correction);
+      correction.hidden = false;
+      fini(juste);
+    }
+    zones.forEach((z) => {
+      z.addEventListener("click", () => choisir(z));
+      z.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); choisir(z); } });
+    });
+  }
+
   // Une fraction tapée : "3/4", "-3/4", "3/-4", ou un entier (n/1) ; null si ce n'est pas une fraction
   function lireFraction(numerateur, denominateur) {
     const propre = (s) => String(s).trim().replace(/[\s  ]/g, "").replace(/[−–]/g, "-");
@@ -106,7 +165,7 @@
   // Seule la fraction irréductible est acceptée : une fraction égale mais simplifiable reçoit « Simplifie encore » (sans erreur comptée).
   function afficherFraction(carte, zone, fini, ex, entete) {
     const [rn, rd] = fractionAttendue(ex.reponse);
-    zone.innerHTML = entete + '<div class="question">' + m.texte(ex.donnees) + "</div>" +
+    zone.innerHTML = entete + question(ex) +
       '<form class="reponse-num reponse-fraction" novalidate>' +
       '<div class="champ"><span id="libelle-fraction">Ta réponse (une fraction)</span>' +
       '<span class="saisie saisie-fraction" role="group" aria-labelledby="libelle-fraction">' +
@@ -159,7 +218,7 @@
   function afficherExpression(carte, zone, fini, ex, entete, forme) {
     const X = Savoirs.expressions;
     const touches = ["x", "²", "(", ")", "+", "−"];
-    zone.innerHTML = entete + '<div class="question">' + m.texte(ex.donnees) + "</div>" +
+    zone.innerHTML = entete + question(ex) +
       '<form class="reponse-num reponse-expression" novalidate>' +
       '<label class="champ"><span>Ta réponse</span>' +
       '<span class="saisie"><input class="expression" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="done" aria-describedby="erreur-num apercu-expression"></span></label>' +
@@ -208,7 +267,7 @@
   Savoirs.modes.push({
     id: "appliquer",
     titre: "Je m'entraîne",
-    description: "Calcule avec des nombres toujours nouveaux, du plus facile au plus difficile.",
+    description: "Des exercices d'entraînement qui s'adaptent à ton niveau.",
     competence: "appliquer",
     messageFaux: "Pas tout à fait : regarde la correction.",
     lireNombre: lireNombre, // pour les tests
@@ -234,23 +293,26 @@
 
     afficher: function (savoir, zone, fini, contexte) {
       const masque = !!(contexte && contexte.masque);
-      let ex, entete;
+      let ex, entete, calculatrice = false;
       if (savoir.type === "technique") {
         // Technique : un exercice tiré au hasard, au niveau de l'élève ; après la réponse, le niveau est mis à jour
         const n = niveauTechnique(savoir, contexte);
         const finiTechnique = fini;
         fini = (juste) => { finiTechnique(juste); noterNiveau(savoir, contexte, n, juste); };
         const g = savoir.technique.niveaux[n]();
-        ex = { donnees: g.enonce, question: "Ta réponse", reponse: g.reponse, unite: g.unite || "", correction: g.correction };
+        ex = { donnees: g.enonce, question: "Ta réponse", reponse: g.reponse, unite: g.unite || "", correction: g.correction, schema: g.schema };
         // Le format peut changer selon le niveau (décimal, puis fraction…) : l'exercice tiré le précise alors
         const format = g.format || savoir.technique.format;
-        savoir.reponse = format === "signe" ? (g.reponse > 0 ? "positif" : "négatif") : format === "choix" ? g.reponse
+        savoir.reponse = format === "toucher" ? (g.libelle || "l'angle montré sur la figure")
+          : format === "signe" ? (g.reponse > 0 ? "positif" : "négatif") : format === "choix" ? g.reponse
           : format === "fraction" ? "$" + fractionLatex(...fractionAttendue(g.reponse)) + "$"
             : format === "expression" ? "$" + (Savoirs.expressions.latex(String(g.reponse)) || g.reponse) + "$"
             : "$" + versTexte(g.reponse).replace("−", "-").replace(",", "{,}") + "$";
         entete = '<p class="consigne">Je m\'entraîne</p>' +
           '<p class="titre-savoir">' + m.texte(savoir.titre) + ' <span class="niveau-technique">niveau ' + n + " sur 3</span></p>";
-        if (format === "signe" || format === "choix") { afficherSigne(savoir, zone, fini, ex, entete); return; }
+        calculatrice = avecCalculatrice(savoir, n);
+        if (format === "toucher") { afficherToucher(savoir, zone, fini, ex, entete, g.figure); return; }
+        if (format === "signe" || format === "choix") { afficherSigne(savoir, zone, fini, ex, entete); if (calculatrice) Savoirs.calculatrice(zone); return; }
         if (format === "fraction") { afficherFraction(savoir, zone, fini, ex, entete); return; }
         if (format === "expression") { afficherExpression(savoir, zone, fini, ex, entete, g.forme || savoir.technique.forme || "quelconque"); return; }
       } else {
@@ -267,7 +329,7 @@
       const tolerance = arrondi ? Math.pow(10, -decimales(ex.reponse)) / 2 + 1e-9 : 1e-9;
 
       zone.innerHTML = entete +
-        '<div class="question">' + m.texte(ex.donnees) + "</div>" +
+        question(ex) +
         '<form class="reponse-num" novalidate>' +
         '<label class="champ"><span>' + m.texte(ex.question) + "</span>" +
         // Le pavé numérique de l'iPhone n'a pas de touche « − » : le bouton ± change le signe
@@ -280,6 +342,7 @@
         '<div class="correction" hidden></div>';
 
       couperSiTropLong(zone);
+      if (calculatrice) Savoirs.calculatrice(zone);
       const form = zone.querySelector("form");
       const champ = form.querySelector("input");
       const erreur = form.querySelector(".erreur");

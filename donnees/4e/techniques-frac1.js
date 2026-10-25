@@ -209,7 +209,8 @@
           const premiers = Math.random() < 0.25, moins = Math.random() < 0.5;
           for (;;) {
             const d1 = ent(2, 12), d2 = ent(2, 12);
-            if (d1 === d2 || multiples(d1, d2) || (pgcd(d1, d2) === 1) !== premiers) continue;
+            // Dénominateur commun de 24 au plus : 19/12 + 10/9 (dénominateur 36) était trop lourd
+            if (d1 === d2 || multiples(d1, d2) || (pgcd(d1, d2) === 1) !== premiers || (d1 * d2) / pgcd(d1, d2) > 24) continue;
             const n1 = premierAvec(d1, 2 * d1 - 1), n2 = premierAvec(d2, 2 * d2 - 1), k = calcul(n1, d1, n2, d2, moins);
             if (k.r <= 0 || k.r % k.m === 0 || k.r > 3 * k.m) continue;
             return { enonce: enonceCalcul(n1, d1, n2, d2, moins), reponse: k.reponse, correction: k.correction };

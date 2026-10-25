@@ -79,8 +79,10 @@
     return (c && origine && (origine.themes || {})[c.idTheme]) || "nombres";
   }
   function anterieur(chap) { return ANNEES.indexOf(chap.annee) < ANNEES.indexOf(niveau.niveau); }
+  // Chapitres de l'année dans l'ordre de la progression (sans un chapitre 0 de l'année, comme « Périmètre, aire
+  // et volume » en 3e : toujours jouable, il n'est pas une étape de « Jusqu'à quel chapitre ? »)
   function chapitresAnnee() {
-    return niveau.chapitres.filter((c) => !anterieur(c)).sort((a, b) => a.ordre - b.ordre);
+    return niveau.chapitres.filter((c) => !anterieur(c) && c.ordre > 0).sort((a, b) => a.ordre - b.ordre);
   }
   // Années révisées en plus de celle-ci (« 5e et 4e » en 3e), d'après les chapitres de révision
   function anneesRevisees() {
@@ -90,10 +92,21 @@
   // Chapitre atteint choisi par l'élève (sinon celui du lien, sinon le premier)
   function chapitreChoisi() {
     const r = reglages();
-    return chapitre(r.jusqua) || chapitre(r.lien) || chapitresAnnee()[0];
+    let c = chapitre(r.jusqua) || chapitre(r.lien) || chapitresAnnee()[0];
+    if (c && !c.ordre) c = chapitresAnnee()[0];
+    if (!c || prepare(c)) return c;
+    // Chapitre pas encore préparé (ancien réglage, lien) : on s'arrête au dernier chapitre prêt avant lui
+    return chapitresAnnee().filter((x) => prepare(x) && x.ordre <= c.ordre).pop() || chapitresAnnee()[0];
   }
 
-  function debloque(chap) { return anterieur(chap) || chap.ordre <= chapitreChoisi().ordre; }
+  // Un chapitre est prêt quand ses savoirs et ses exercices ont été préparés (il a des techniques) ;
+  // les autres sont grisés dans le menu des chapitres, en attendant
+  function prepare(c) {
+    return !c.ordre || (niveau.techniques || []).some((t) => t.chap === c.id);
+  }
+
+  // Les chapitres pas encore préparés (de l'année ou des révisions) ne sont jamais tirés
+  function debloque(chap) { return prepare(chap) && (anterieur(chap) || chap.ordre <= chapitreChoisi().ordre); }
   function savoirsJouables() { return niveau.savoirs.filter((s) => debloque(chapitre(s.chap))); }
 
   // Mélange des années : en 3e, on joue aussi les savoirs de 4e et de 5e (en 4e, ceux de 5e), comme des
@@ -107,9 +120,15 @@
       .sort((a, b) => ANNEES.indexOf(b.id) - ANNEES.indexOf(a.id)); // la plus récente d'abord
     const ids = new Set(base.savoirs.map((s) => s.id));
     const enonces = new Set(base.outils.map((o) => o.enonce));
+    // Regroupement (catalogue.js) : savoirs et techniques des années précédentes rattachés à un chapitre de l'année
+    const r = (Savoirs.catalogue.find((e) => e.id === id) || {}).regroupe;
+    const regroupe = (idNiveau, sid) => r && (r.savoirs[idNiveau] || []).indexOf(sid) >= 0;
+    const doublon = (idNiveau, sid) => r && (r.doublons[idNiveau] || []).indexOf(sid) >= 0;
     // Techniques d'entraînement : la clé « t-4e-prod-deux » sert à la progression (même clé dans tous les niveaux)
-    const techniquesDe = (idNiveau, pre) => (Savoirs.techniques[idNiveau] || []).map((t) =>
-      Object.assign({}, t, { chap: pre + t.chap, cle: "t-" + idNiveau + "-" + t.id }));
+    const techniquesDe = (idNiveau, pre) => (Savoirs.techniques[idNiveau] || []).map((t) => {
+      const cle = "t-" + idNiveau + "-" + t.id;
+      return Object.assign({}, t, { chap: r && r.techniques.indexOf(cle) >= 0 ? r.chap : pre + t.chap, cle: cle });
+    });
     const n = {
       id: base.id, titre: base.titre, niveau: base.niveau,
       chapitres: base.chapitres.map((c) => Object.assign({}, c, { origine: base.id, idTheme: c.id })),
@@ -118,10 +137,17 @@
     for (const e of avant) {
       const d = Savoirs.niveaux[e.id], pre = e.id + ":";
       for (const c of d.chapitres) n.chapitres.push({ id: pre + c.id, titre: c.titre, ordre: c.ordre, annee: e.id, origine: e.id, idTheme: c.id, revision: true });
-      for (const s of d.savoirs) if (!ids.has(s.id)) { ids.add(s.id); n.savoirs.push(Object.assign({}, s, { chap: pre + s.chap })); }
+      for (const s of d.savoirs) if (!ids.has(s.id) && !doublon(e.id, s.id)) {
+        ids.add(s.id); n.savoirs.push(Object.assign({}, s, { chap: regroupe(e.id, s.id) ? r.chap : pre + s.chap }));
+      }
       for (const o of d.outils) if (!enonces.has(o.enonce)) { enonces.add(o.enonce); n.outils.push(Object.assign({}, o, { id: pre + o.id, chap: pre + o.chap })); }
       n.techniques = n.techniques.concat(techniquesDe(e.id, pre));
     }
+    // Chapitre de révision vidé par le regroupement : on ne le montre plus
+    if (r) n.chapitres = n.chapitres.filter((c) => !c.revision ||
+      n.savoirs.some((s) => s.chap === c.id) || n.techniques.some((t) => t.chap === c.id));
+    // « Quel outil ? » : un outil dont la bonne réponse a été écartée (doublon) ne peut plus être joué
+    if (r) n.outils = n.outils.filter((o) => ids.has(o.bon));
     return n;
   }
 
@@ -238,6 +264,9 @@
     barreSeance.hidden = true;
     const r = reglages();
     const choisi = chapitreChoisi();
+    // « Ce chapitre seulement » garde son propre chapitre : réviser le chapitre 2 ne fait pas oublier
+    // que l'élève est arrivé au chapitre 6 pour « Ce chapitre et les précédents »
+    const seul = r.portee === "seul", chapSeul = chapitreSeul(), affiche = seul ? chapSeul : choisi;
     const modeChoisi = modeActuel();
     const jouables = savoirsJouables();
     const revisees = anneesRevisees();
@@ -262,18 +291,29 @@
           Savoirs.catalogue.map((n) => '<button data-niveau="' + n.id + '" aria-pressed="' + (n.id === niveau.id) + '">' + m.echapper(n.titre) + "</button>").join("") +
           "</div></div>"
         : "") +
-      '<label class="champ"><span>Où en es-tu dans le programme ?</span><select id="choix-chap">' + chapitresAnnee().map((c) =>
-        '<option value="' + c.id + '"' + (c === choisi ? " selected" : "") + ">" + c.ordre + ". " + m.echapper(c.titre) + "</option>").join("") +
+      '<label class="champ"><span>' + (seul ? "Quel chapitre veux-tu travailler ?" : "Jusqu'à quel chapitre as-tu travaillé en classe ?") + '</span><select id="choix-chap">' +
+      // Pour un chapitre seul, on peut aussi choisir les acquis des années précédentes
+      (seul ? niveau.chapitres.filter((c) => !c.revision).sort((a, b) => a.ordre - b.ordre) : chapitresAnnee()).map((c) =>
+        '<option value="' + c.id + '"' + (c === affiche ? " selected" : "") + (prepare(c) ? "" : " disabled") + ">" +
+        (c.ordre ? c.ordre + ". " : "") + m.echapper(c.titre) + (prepare(c) ? "" : " (bientôt)") + "</option>").join("") +
       "</select></label>" +
-      '<p class="aide">' + (revisees.length ? "Avec des révisions de " + revisees.join(" et ") + " · " : "") +
-      pluriel(jouables.length, "savoir") + "</p>" +
+      '<div class="champ"><span id="titre-portee">Sur quoi veux-tu travailler ?</span><div class="interrupteur choix-portee" role="group" aria-labelledby="titre-portee">' +
+      '<button data-portee="tous" aria-pressed="' + !seul + '">Ce chapitre et les précédents</button>' +
+      '<button data-portee="seul" aria-pressed="' + seul + '">Ce chapitre seulement</button></div></div>' +
+      // Dire clairement sur quoi portent les questions
+      '<p class="aide">' + (seul
+        ? "Les questions portent seulement sur ce chapitre (" + pluriel(niveau.savoirs.filter((s) => s.chap === chapSeul.id).length, "savoir") + ")."
+        : "Les questions mélangent " + (choisi.ordre > 1 ? "les chapitres 1 à " + choisi.ordre : "le chapitre 1") +
+          niveau.chapitres.filter((c) => !c.ordre && !anterieur(c)).map((c) => ", « " + m.echapper(c.titre) + " »").join("") +
+          (revisees.length ? " et des révisions de " + revisees.join(" et ")
+            : niveau.chapitres.some((c) => c.ordre === 0) ? " et les acquis des années précédentes" : "") +
+          " (" + pluriel(jouables.length, "savoir") + ").") + "</p>" +
       '<p id="avertissement" class="avertissement" hidden><span aria-hidden="true">!</span> Ce chapitre n\'a peut-être pas encore été vu en classe.</p>' +
       "</div>" +
       '<h2 id="titre-modes" class="titre-modes">Que souhaites-tu faire ?</h2>' +
       '<div class="modes" role="radiogroup" aria-labelledby="titre-modes">' + modes + "</div>" +
       '<p id="description-mode" class="description-mode" aria-live="polite">' + m.echapper(modeChoisi.description) + "</p>" +
       '<button id="jouer" class="bouton-principal grand">Jouer</button>' +
-      '<button id="reviser" class="bouton-lien lien-reviser">' + texteReviser(modeChoisi) + "</button>" +
       '<button id="voir-bilan" class="apercu-jardin">' +
       '<span class="mini-jardin" aria-hidden="true">' + rosaces + "</span>" +
       '<span class="apercu-texte"><strong>Mon bilan</strong><span>' +
@@ -294,28 +334,35 @@
         if (meme) meme.focus();
       });
     }));
-    ecran.querySelector("#choix-chap").addEventListener("change", (e) => { changerReglages({ jusqua: e.target.value }); accueil(); ecran.querySelector("#choix-chap").focus(); });
+    ecran.querySelector("#choix-chap").addEventListener("change", (e) => { changerReglages(seul ? { seul: e.target.value } : { jusqua: e.target.value }); accueil(); ecran.querySelector("#choix-chap").focus(); });
+    ecran.querySelectorAll("[data-portee]").forEach((b) => b.addEventListener("click", () => {
+      if ((b.dataset.portee === "seul") === seul) return;
+      changerReglages({ portee: b.dataset.portee });
+      accueil();
+      const meme = ecran.querySelector('[data-portee="' + b.dataset.portee + '"]');
+      if (meme) meme.focus();
+    }));
     ecran.querySelectorAll(".puce-mode[data-mode]").forEach((b) => b.addEventListener("click", () => {
       changerReglages({ mode: b.dataset.mode });
       ecran.querySelectorAll(".puce-mode[data-mode]").forEach((x) => x.setAttribute("aria-checked", x === b));
       const choisi = Savoirs.modes.find((md) => md.id === b.dataset.mode);
       ecran.querySelector("#description-mode").textContent = choisi.description;
-      ecran.querySelector("#reviser").textContent = texteReviser(choisi);
     }));
-    surClic("#jouer", () => jouer());
+    surClic("#jouer", () => (seul ? reviser(chapSeul.id) : jouer()));
     surClic("#voir-bilan", bilan);
-    surClic("#reviser", ecranReviser);
     surClic("#installer", installer);
   }
 
-  // Le lien « un seul chapitre » suit le mode choisi (la séance n'est pas la même)
-  function texteReviser(mode) {
-    return mode.id === "appliquer" ? "M'entraîner sur un seul chapitre" : "Apprendre un seul chapitre";
+  // « Ce chapitre seulement » : le chapitre choisi pour cela, sinon celui où en est l'élève
+  function chapitreSeul() {
+    const c = chapitre(reglages().seul);
+    return c && !c.revision && prepare(c) ? c : chapitreChoisi();
   }
 
+  // Chapitre peut-être pas encore vu : au-delà du lien de l'enseignant, ou (chapitre seul) au-delà d'où en est l'élève
   function majAvertissement() {
-    const lienChap = chapitre(reglages().lien);
-    ecran.querySelector("#avertissement").hidden = !(lienChap && chapitreChoisi().ordre > lienChap.ordre);
+    const lienChap = chapitre(reglages().lien), seul = reglages().portee === "seul", c = seul ? chapitreSeul() : chapitreChoisi();
+    ecran.querySelector("#avertissement").hidden = !((lienChap && c.ordre > lienChap.ordre) || (seul && c.ordre > chapitreChoisi().ordre));
   }
 
   // Encouragement discret : jamais de reproche quand la série s'arrête
@@ -387,27 +434,6 @@
     afficherCarte();
   }
 
-  // Choisir le chapitre à réviser : ceux de l'année (et leurs acquis), dans l'ordre du cours
-  function ecranReviser() {
-    barreSeance.hidden = true;
-    const lienChap = chapitre(reglages().lien);
-    const chapitres = niveau.chapitres.filter((c) => !c.revision).sort((a, b) => a.ordre - b.ordre);
-    afficher(
-      '<section class="reviser"><h1>' + (reglages().mode === "appliquer" ? "M'entraîner sur un chapitre" : "Apprendre un chapitre") + "</h1>" +
-      '<p class="sous-titre">' + (reglages().mode === "appliquer"
-        ? "10 exercices sur ce chapitre seulement, avec des nombres toujours nouveaux."
-        : "Les savoirs de ce chapitre seulement, puis quelques exercices s'il en reste de la place.") + "</p>" +
-      '<div class="liste-chapitres">' + chapitres.map((c) => {
-        const plusLoin = !debloque(c) && (!lienChap || c.ordre > lienChap.ordre);
-        return '<button class="ligne-chapitre theme-' + theme(c.id) + '" data-chap="' + c.id + '">' + rosace(etatsChapitre(c), theme(c.id)) +
-          '<span><strong>' + (c.ordre ? c.ordre + ". " : "") + m.echapper(c.titre) + "</strong>" +
-          (plusLoin ? "<small>Peut-être pas encore vu en classe</small>" : "") + "</span></button>";
-      }).join("") + "</div>" +
-      '<div class="actions"><button class="bouton-lien" data-action="retour">Accueil</button></div></section>', "ecran-reviser");
-    ecran.querySelectorAll("[data-chap]").forEach((b) => b.addEventListener("click", () => reviser(b.dataset.chap)));
-    surClic('[data-action="retour"]', accueil);
-  }
-
   // cartes (et modes) : pour refaire une liste précise (cartes ratées), sinon tirage par répétition espacée
   function jouer(cartes, modes) {
     const mode = modeActuel();
@@ -473,6 +499,8 @@
         '<p class="verdict ' + (juste ? "juste" : "faux") + '"><span class="icone" aria-hidden="true">' + (juste ? "✓" : "✗") + "</span>" +
         (juste ? hasard(BRAVO) : (mode.competenceDe && savoir._messageFaux) || mode.messageFaux || "Pas tout à fait : la bonne réponse est en bleu.") + "</p>" +
         (savoir.note ? '<p class="note"><strong>' + (savoir.etiquetteNote || "À retenir") + " :</strong> " + m.texte(savoir.note) + "</p>" : "") +
+        // Schéma montré seulement après la réponse (il la donnerait), voir js/moteur/figures.js
+        (savoir.figure && savoir.figure.moment === "apres" ? Savoirs.figures.bloc(savoir.figure) : "") +
         '<button id="suivant" class="bouton-principal">' + (derniere ? "Voir le bilan" : "Suivant") + "</button>";
       pied.hidden = false;
       const suivant = pied.querySelector("#suivant");
@@ -499,6 +527,8 @@
     if (!ratees.length && seance.rattrapage) message = (justes.length > 1 ? "Les " + justes.length + " cartes ratées sont rattrapées. Elles reviendront" : "La carte ratée est rattrapée. Elle reviendra") + " bientôt pour vérifier.";
     else if (!ratees.length) message = reussis + " aujourd'hui. Superbe séance !";
     else if (!justes.length) message = (exercices ? "Ces exercices" : "Ces savoirs") + " reviendront demain : c'est en se trompant qu'on apprend.";
+    // Séance difficile : on met en avant ce qui est réussi, sans compter ce qui est raté
+    else if (justes.length < ratees.length) message = reussis + " aujourd'hui. Les autres reviendront bientôt : c'est en se trompant qu'on apprend.";
     else message = reussis + " aujourd'hui, " + ratees.length + " à revoir demain.";
 
     afficher(
@@ -772,7 +802,7 @@
       '<div class="menu-tete"><h2>Menu</h2><button class="bouton-icone" data-action="fermer" aria-label="Fermer">✕</button></div>' +
       (joueur ? '<p class="menu-joueur">Profil : <strong>' + m.echapper(joueur) + "</strong></p>" : "") +
       '<button class="menu-item" data-action="bilan">Mon bilan</button>' +
-      '<button class="menu-item" data-action="prenom">Changer de prénom</button>' +
+      '<button class="menu-item" data-action="prenom">Changer de profil</button>' +
       '<button class="menu-item" data-action="sauvegarde">Changer d\'appareil <small>sauvegarde</small></button>' +
       (dejaInstallee() ? "" : '<button class="menu-item" data-action="installer">Installer sur cet appareil</button>') +
       '<button class="menu-item" data-action="a-propos">À propos et confidentialité</button>' +

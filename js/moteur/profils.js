@@ -189,7 +189,7 @@
           const r = d.reglages[n];
           if (!CLE_SURE.test(n) || !r || typeof r !== "object") continue;
           const propre = {};
-          for (const k of ["niveau", "jusqua", "lien", "mode"]) if (typeof r[k] === "string" && CLE_SURE.test(r[k])) propre[k] = r[k];
+          for (const k of ["niveau", "jusqua", "lien", "mode", "portee", "seul"]) if (typeof r[k] === "string" && CLE_SURE.test(r[k])) propre[k] = r[k];
           reglages[n] = propre;
         }
       }

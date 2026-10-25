@@ -4,7 +4,7 @@
 // Les appareils voient alors que ce fichier a changé, téléchargent la nouvelle version
 // et l'utilisent à la prochaine ouverture.
 // Tout nouveau fichier nécessaire doit être ajouté à la liste FICHIERS.
-const VERSION = "memomaths-v25";
+const VERSION = "memomaths-v49";
 
 const POLICES_KATEX = [
   "AMS-Regular", "Caligraphic-Bold", "Caligraphic-Regular", "Fraktur-Bold", "Fraktur-Regular",
@@ -26,12 +26,15 @@ const FICHIERS = [
   "js/moteur/progression.js",
   "js/moteur/profils.js",
   "js/moteur/expressions.js",
+  "js/moteur/figures.js",
+  "js/moteur/schemas.js",
   "js/modes/commun.js",
   "js/modes/completer.js",
   "js/modes/outil.js",
   "js/modes/reconstituer.js",
   "js/modes/apprendre.js",
   "js/modes/calculs.js",
+  "js/modes/calculatrice.js",
   "js/modes/appliquer.js",
   "donnees/catalogue.js",
   "donnees/5e/savoirs.js",
@@ -57,6 +60,7 @@ const FICHIERS = [
   "donnees/3e/techniques-fgen.js",
   "donnees/3e/techniques-thal.js",
   "donnees/3e/techniques-equ.js",
+  "donnees/3e/techniques-pv.js",
   "donnees/5e/techniques-rel1.js",
   "donnees/5e/techniques-ench.js",
   "donnees/5e/techniques-tri.js",

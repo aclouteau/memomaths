@@ -365,6 +365,70 @@ h1, h2 { line-height: 1.2; }
   min-width: 48px; min-height: 48px; border: 2px solid var(--bord); border-radius: 12px;
   background: var(--surface); font-size: 1.2rem; font-weight: 700;
 }
+/* Schémas de géométrie (js/moteur/figures.js) : deux couleurs Okabe-Ito, bleu et orange */
+:root { --fig-b: #e69f00; }
+.figure { margin: .6rem auto 0; max-width: 20rem; }
+.carte-pied .figure { margin-bottom: .8rem; }
+.figure-svg { display: block; width: 100%; height: auto; overflow: visible; }
+.fig-trait { stroke: var(--texte); stroke-width: 2; stroke-linecap: round; fill: none; }
+.fig-fin { stroke-width: 1.5; }
+.fig-pointille { stroke-dasharray: 6 5; }
+.fig-point { fill: var(--texte); }
+.fig-a { stroke: var(--juste); fill: var(--juste); }
+.fig-b { stroke: var(--fig-b); fill: var(--fig-b); }
+.fig-secteur { fill-opacity: .22; stroke: none; }
+.fig-arc { fill: none; stroke-width: 2.5; }
+.fig-texte { fill: var(--texte-doux); stroke: none; font-size: 14px; font-weight: 700; }
+.fig-mesure { stroke: none; font-size: 13px; font-weight: 800; text-anchor: middle; dominant-baseline: middle; }
+
+/* Schémas cotés des exercices (js/moteur/schemas.js) : surface teintée, longueurs écrites sur un halo de la couleur du fond */
+.question + .figure { margin: .2rem auto .6rem; max-width: 19rem; }
+.fig-surface, .fig-surface-seule { fill: var(--juste); fill-opacity: .1; }
+.fig-surface-seule { stroke: none; }
+.fig-dessus { fill-opacity: .18; }
+.fig-cote-solide { fill-opacity: .05; }
+.fig-pair { fill-rule: evenodd; }
+.fig-base { fill: var(--fig-b); fill-opacity: .3; stroke: none; }
+.schema text { paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round; text-anchor: middle; dominant-baseline: middle; }
+.fig-cote { fill: var(--texte); font-size: 14px; font-weight: 700; }
+.fig-cote.petit { font-size: 12.5px; }
+.fig-inconnue { fill: var(--primaire); font-size: 17px; font-weight: 800; }
+.fig-nom { fill: var(--texte); font-size: 15px; font-weight: 700; font-style: italic; }
+
+/* Figures à toucher : chaque angle possible est une zone (pointillés), la bonne en bleu, l'erreur hachurée */
+.figure-toucher { overflow: hidden; touch-action: manipulation; }
+.zone-angle { cursor: pointer; outline: none; }
+.zone-cible { fill: transparent; }
+.zone-plein { fill: var(--texte-doux); fill-opacity: .08; }
+.zone-arc { fill: none; stroke: var(--texte-doux); stroke-width: 2.5; stroke-dasharray: 5 4; }
+.zone-angle:hover .zone-plein, .zone-angle:focus-visible .zone-plein { fill: var(--juste); fill-opacity: .15; }
+.zone-angle:focus-visible .zone-arc { stroke: var(--juste); stroke-width: 3; stroke-dasharray: none; }
+.zone-angle.juste .zone-plein { fill: var(--juste); fill-opacity: .5; }
+.zone-angle.juste .zone-arc { stroke: var(--juste); stroke-width: 3; stroke-dasharray: none; }
+.zone-angle.faux .zone-plein { fill: url(#hachures-figure); }
+.zone-angle.faux .zone-arc { stroke: var(--faux); stroke-width: 3; stroke-dasharray: none; }
+.hachure { stroke: var(--faux); stroke-width: 2.5; }
+.figure-toucher.fini .zone-angle { cursor: default; }
+.aide-toucher { margin: .4rem 0 0; text-align: center; font-weight: 700; color: var(--texte-doux); }
+
+/* Calculatrice (seulement sur certains exercices) */
+.calculatrice { margin-top: .9rem; text-align: center; }
+.ouvrir-calculatrice { min-height: 44px; }
+.pave-calculatrice { max-width: 20rem; margin: .7rem auto 0; padding: .7rem; border: 2px solid var(--bord); border-radius: 16px; background: var(--surface); }
+.ecran-calculatrice {
+  display: flex; flex-direction: column; align-items: flex-end; justify-content: center; min-height: 3.6rem; padding: .3rem .7rem;
+  border-radius: 10px; background: var(--fond); font-variant-numeric: tabular-nums; overflow-wrap: anywhere;
+}
+.calcul-saisi { font-size: 1.1rem; color: var(--texte-doux); min-height: 1.4rem; }
+.calcul-resultat { font-size: 1.4rem; font-weight: 800; }
+.touches-calculatrice { display: grid; grid-template-columns: repeat(5, 1fr); gap: .35rem; margin-top: .6rem; }
+.touches-calculatrice button {
+  min-height: 44px; border: 2px solid var(--bord); border-radius: 10px; background: var(--fond);
+  color: var(--texte); font-size: 1.15rem; font-weight: 700;
+}
+.touches-calculatrice .operation { background: var(--surface); }
+.rappel-pi { margin: .4rem 0 0; font-size: .85rem; color: var(--texte-doux); }
+.touches-calculatrice .egal { grid-column: span 3; background: var(--texte); border-color: var(--texte); color: var(--fond); }
 .apercu-expression { min-height: 2.4rem; margin: .6rem 0 0; text-align: center; font-size: 1.3rem; overflow-x: auto; }
 
 .carte-pied { margin-top: 1.1rem; animation: monte .3s ease-out; }
@@ -494,7 +558,7 @@ h1, h2 { line-height: 1.2; }
 .menu-apparence legend { font-weight: 700; margin-bottom: .4rem; padding: 0; }
 .interrupteur { display: flex; background: var(--surface-2); border-radius: 14px; padding: 4px; }
 .interrupteur button { flex: 1; min-height: 44px; border: none; border-radius: 11px; background: transparent; font-weight: 700; }
-.interrupteur button[aria-pressed="true"] { background: var(--surface); box-shadow: var(--ombre); }
+.interrupteur button[aria-pressed="true"] { background: var(--texte); color: var(--fond); box-shadow: var(--ombre); }
 .menu-info { font-size: .85rem; color: var(--texte-doux); margin: 1rem 0 0; }
 
 /* ---------- Animations (courtes et douces) ---------- */

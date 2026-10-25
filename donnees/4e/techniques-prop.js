@@ -76,7 +76,8 @@
     {
       id: "coef-prop", chap: "prop", titre: "Coefficient de proportionnalité", format: "nombre",
       niveaux: Object.fromEntries([1, 2, 3].map((n) => [n, () => {
-        const a = choix(ARTICLES), pu = prixUnitaire(a, n), q = n === 1 ? ent(2, 12) : n === 2 ? ent(2, 20) : ent(4, 40), p = net(q * pu);
+        // Quantités faciles à diviser à la main (pas de division par 17, 19 ou 34)
+        const a = choix(ARTICLES), pu = prixUnitaire(a, n), q = n === 1 ? ent(2, 12) : n === 2 ? choix([2, 3, 4, 5, 6, 8, 10]) : choix([4, 5, 6, 8, 10, 12, 15, 20, 25]), p = net(q * pu);
         return {
           enonce: a.q(q) + " coûtent " + euros(p) + ". Quel est le coefficient de proportionnalité, c'est-à-dire " + a.un + " (en " + a.unite + ") ?",
           reponse: pu, unite: a.unite,
@@ -120,7 +121,8 @@
         for (;;) {
           let t, V, unite;
           if (n === 1) { t = facile(1) ? choix([10, 50]) : choix([20, 25, 30, 40, 60, 75]); V = 20 * ent(2, 30); unite = choix(["€", "kg", "L"]); }
-          else if (n === 2) { t = ent(3, 97); V = 10 * ent(4, 80); unite = choix(["€", "kg", "L", "m"]); if (t % 10 === 0 || t === 25 || t === 75) continue; }
+          // Niveau 2 : pourcentages « ronds » et quantités multiples de 20, pour un calcul faisable à la main
+          else if (n === 2) { t = choix([5, 15, 30, 35, 45, 70, 80, 90]); V = 20 * ent(2, 40); unite = choix(["€", "kg", "L", "m"]); }
           else { t = choix([0.5, 1.5, 2.5, 7.5, 12.5, 17.5, 32.5, 3.5, 105, 120, 125, 150]); V = 8 * ent(2, 60); unite = choix(["€", "kg", "L", "m"]); }
           const k = net(t / 100), r = net(k * V);
           if (decimales(r) > 2) continue;
@@ -148,7 +150,8 @@
         }
         return {
           1: () => { for (;;) { const ex = uneEvolution(20 * ent(2, 40), choix([10, 20, 25, 50])); if (ex) return ex; } },
-          2: () => { for (;;) { const t = ent(3, 45); if (t % 10 === 0) continue; const ex = uneEvolution(10 * ent(5, 80), t); if (ex) return ex; } },
+          // Niveau 2 : pourcentages « ronds » et prix multiples de 20 (calcul faisable à la main)
+          2: () => { for (;;) { const ex = uneEvolution(20 * ent(2, 30), choix([5, 15, 30, 40, 75])); if (ex) return ex; } },
           3: () => {
             const une = Math.random() < 0.5; // tiré avant les rejets : une fois sur deux, deux évolutions
             for (;;) {
@@ -174,8 +177,8 @@
       id: "taux-evol", chap: "prop", titre: "Taux d'évolution", format: "nombre",
       niveaux: Object.fromEntries([1, 2, 3].map((n) => [n, () => {
         for (;;) {
-          const V0 = n === 1 ? choix([10, 20, 40, 50, 80, 100, 200]) : n === 2 ? choix([20, 25, 40, 50, 80, 120, 150, 200, 250]) : choix([40, 80, 120, 160, 200, 240, 400, 800]);
-          let t = n === 1 ? choix([5, 10, 15, 20, 25, 30, 50]) : n === 2 ? ent(3, 60) : ent(5, 190) / 10;
+          const V0 = n === 1 ? choix([10, 20, 40, 50, 80, 100, 200]) : n === 2 ? choix([20, 40, 50, 100, 200]) : choix([40, 80, 120, 160, 200, 240, 400, 800]);
+          let t = n === 1 ? choix([5, 10, 15, 20, 25, 30, 50]) : n === 2 ? 5 * ent(1, 12) : ent(5, 190) / 10;
           if (n === 3 && Number.isInteger(t)) continue;
           if (n > 1 && Math.random() < 0.5) t = -t;
           const V1 = net(V0 * (1 + t / 100)), diff = net(V1 - V0), taux = net(diff / V0);
@@ -183,7 +186,7 @@
           return {
             enonce: "Un prix passe de " + euros(V0) + " à " + euros(V1) + ". Quel est le taux d'évolution, en pourcentage (négatif s'il s'agit d'une baisse) ?",
             reponse: t, unite: "%",
-            correction: "Taux d'évolution $= \\dfrac{V_1 - V_0}{V_0} = \\dfrac{" + E(V1) + " - " + E(V0) + "}{" + E(V0) + "} = \\dfrac{" + L(diff) + "}{" + L(V0) + "} = " + L(taux) +
+            correction: "Taux d'évolution $= \\dfrac{\\text{arrivée} - \\text{départ}}{\\text{départ}} = \\dfrac{" + E(V1) + " - " + E(V0) + "}{" + E(V0) + "} = \\dfrac{" + L(diff) + "}{" + L(V0) + "} = " + L(taux) +
               "$, soit une " + (t > 0 ? "hausse de " + T(t) + " %." : "baisse de " + T(-t) + " % : le taux d'évolution est $" + L(t) + "\\,\\%$.")
           };
         }

@@ -158,8 +158,9 @@
               correction: "On calcule l'image de $" + x + "$ : $f(" + x + ") = " + a + " \\times " + x + " + " + b + " = " + a * x + " + " + b + " = " + y + "$ €."
             };
           },
-          2: () => inverse(ent(5, 85) / 10, ent(1, 30), facile(2) ? 0 : ent(2, 40)),
-          3: () => { for (;;) { const a = ent(35, 175) / 100; if (Math.round(a * 100) % 10 === 0) continue; return inverse(a, ent(5, 60), ent(10, 90)); } }
+          // Prix unitaires simples : diviser par 7,9 ou par 0,67 était trop long à la main
+          2: () => inverse(choix([2, 3, 4, 5, 1.5, 2.5]), ent(1, 30), facile(2) ? 0 : ent(2, 40)),
+          3: () => inverse(choix([0.25, 0.4, 0.5, 0.75, 1.25, 0.2]), ent(5, 60), ent(10, 90))
         };
       })()
     },

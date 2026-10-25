@@ -18,14 +18,17 @@
 
   const puis = [
     {
-      id: "puis-carre", chap: "puis", titre: "Carré d'un nombre entier", format: "nombre",
+      // Carrés entiers et décimaux réunis (décision de l'enseignant) : 6², puis 20² ou 200², puis 0,4²
+      id: "puis-carre", chap: "puis", titre: "Carré d'un nombre", format: "nombre",
       niveaux: {
-        1: () => { const a = facile(1) ? choix([0, 1, 10]) : ent(2, 12); return { enonce: formulation(L(a)), reponse: a * a, correction: carreTexte(a) }; },
-        2: () => { const a = facile(2) ? 10 * ent(2, 9) : ent(13, 25); return { enonce: formulation(L(a)), reponse: a * a, correction: carreTexte(a) }; },
+        1: () => { const a = facile(1) ? choix([0, 1, 10]) : ent(2, 10); return { enonce: formulation(L(a)), reponse: a * a, correction: carreTexte(a) }; },
+        2: () => {
+          const c = ent(1, 9), z = Math.random() < 0.75 ? 1 : 2, a = c * Math.pow(10, z);
+          return { enonce: formulation(L(a)), reponse: a * a, correction: carreTexte(a) + " On calcule $" + c + " \\times " + c + " = " + c * c + "$, puis on écrit " + 2 * z + " zéros." };
+        },
         3: () => {
-          const a = Math.random() < 0.7 ? ent(26, 60) : choix([100, 101, 105, 110, 120, 150, 200]), d = Math.floor(a / 10) * 10, u = a - d;
-          const decomp = u && d ? " On peut décomposer : $" + a + " \\times " + a + " = " + a + " \\times " + d + " + " + a + " \\times " + u + " = " + L(a * d) + " + " + L(a * u) + " = " + L(a * a) + "$." : "";
-          return { enonce: formulation(L(a)), reponse: a * a, correction: carreTexte(a) + decomp };
+          const c = facile(3) ? 5 : ent(1, 9), a = c / 10, r = net(a * a);
+          return { enonce: formulation(L(a)), reponse: r, correction: "$" + L(a) + "^{2} = " + L(a) + " \\times " + L(a) + "$. On calcule $" + c + " \\times " + c + " = " + c * c + "$, puis on place 2 chiffres après la virgule : $" + L(r) + "$." };
         }
       }
     },
@@ -36,20 +39,6 @@
         2: () => { const a = facile(2) ? choix([10, 20, 30]) : choix([6, 7, 8, 9]); return { enonce: "Donner la valeur de $" + a + "^{3}$.", reponse: a * a * a, correction: cubeTexte(a) }; },
         3: () => { const a = Math.random() < 0.6 ? choix([11, 12, 13, 14, 15, 20, 25]) : ent(1, 5) / 10; return { enonce: "Calculer $" + L(a) + "^{3}$.", reponse: net(a * a * a), correction: cubeTexte(a) }; }
       }
-    },
-    {
-      id: "puis-carre-decimal", chap: "puis", titre: "Carré d'un nombre décimal", format: "nombre",
-      niveaux: (function () {
-        function ex(a) {
-          const k = decimales(a), entier = Math.round(a * Math.pow(10, k)), r = net(a * a);
-          return { enonce: "Calculer $" + L(a) + "^{2}$.", reponse: r, correction: "$" + L(a) + "^{2} = " + L(a) + " \\times " + L(a) + "$. On calcule $" + entier + " \\times " + entier + " = " + L(entier * entier) + "$, puis on place " + 2 * k + " chiffres après la virgule : $" + L(r) + "$." };
-        }
-        return {
-          1: () => ex(facile(1) ? 0.5 : ent(1, 9) / 10),
-          2: () => ex(facile(2) ? ent(1, 9) + 0.5 : dec(1.1, 9.9)),
-          3: () => ex(choix([() => ent(11, 99) / 100, () => ent(101, 199) / 100, () => net(ent(1, 5) + ent(1, 9) / 100), () => dec(10.1, 29.9)])())
-        };
-      })()
     },
     {
       id: "puis-priorites", chap: "puis", titre: "Priorités avec des puissances", format: "nombre",
@@ -129,31 +118,15 @@
           return { enonce: choix(["Quel nombre positif a pour carré " + T(c) + " ?", "Quel est le nombre positif dont le carré est " + T(c) + " ?"]), reponse: a, correction: "On cherche $a$ tel que $a \\times a = " + L(c) + "$. Comme $" + L(a) + " \\times " + L(a) + " = " + L(c) + "$, le nombre cherché est $" + L(a) + "$." };
         };
         return {
-          1: () => ex(facile(1) ? choix([1, 2, 10]) : ent(3, 12)),
-          2: () => ex(facile(2) ? choix([20, 30, 40]) : ent(13, 25)),
-          3: () => ex(Math.random() < 0.5 ? ent(2, 9) / 10 : ent(11, 29) / 10)
-        };
-      })()
-    },
-    {
-      id: "puis-litres", chap: "puis", titre: "Volume d'un cube en litres", format: "nombre",
-      niveaux: (function () {
-        const enCm = (a) => {
-          const v = net(a * a * a), l = net(v / 1000);
-          return { enonce: "Un cube a pour arête " + T(a) + " cm. Quel est son volume en litres ?", reponse: l, unite: "L", correction: "Volume : $" + L(a) + "^{3} = " + L(v) + "$ cm³. Comme 1 L = 1 000 cm³, on divise par 1 000 : $" + L(v) + " \\div 1\\,000 = " + L(l) + "$ L." };
-        };
-        return {
-          1: () => { const a = facile(1) ? choix([1, 10]) : ent(2, 9); return { enonce: "Un réservoir cubique a pour arête " + a + " dm. Quelle est sa contenance, en litres ?", reponse: a * a * a, unite: "L", correction: "Volume : $" + a + "^{3} = " + L(a * a * a) + "$ dm³. Comme 1 dm³ = 1 L, la contenance est de " + T(a * a * a) + " L." }; },
-          2: () => enCm(facile(2) ? 10 : 10 * ent(2, 9)),
-          // Arête décimale : donnée en dm (1 dm³ = 1 L), pour que le volume en litres ait au plus 3 chiffres après la virgule
-          3: () => {
-            if (Math.random() < 0.5) return enCm(ent(11, 49));
-            const a = dec(1.1, 4.9), v = net(a * a * a);
-            return { enonce: "Un réservoir cubique a pour arête " + T(a) + " dm. Quelle est sa contenance, en litres ?", reponse: v, unite: "L", correction: "Volume : $" + L(a) + "^{3} = " + L(a) + " \\times " + L(a) + " \\times " + L(a) + " = " + L(v) + "$ dm³. Comme 1 dm³ = 1 L, la contenance est de " + T(v) + " L." };
-          }
+          // Simple (décision de l'enseignant) : carrés parfaits jusqu'à 100, puis jusqu'à 144 (et parfois 400),
+          // puis quelques décimaux très simples (0,04 ; 0,25 ; 0,81)
+          1: () => ex(facile(1) ? choix([1, 2, 10]) : ent(2, 10)),
+          2: () => ex(facile(2) ? 20 : choix([7, 8, 9, 10, 11, 11, 12, 12, 20])),
+          3: () => ex(ent(1, 9) / 10)
         };
       })()
     }
+    // (« Volume d'un cube en litres » retiré à la demande de l'enseignant, avec le savoir sur 1 dm³ = 1 L.)
   ];
 
   Savoirs.enregistrerTechniques("5e", puis);

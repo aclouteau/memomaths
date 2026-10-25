@@ -1,128 +1,15 @@
 // Techniques d'entraînement de 4e : « Translations » (transl).
-// D'après propositions/referentiels/4e/transl.json (lot 1) : les descriptions de niveau sont la spécification.
-// Notation de la classe : « translation de (+3 ; −2) », sans le mot vecteur.
+// D'après propositions/referentiels/4e/transl.json (lot 1). Sans coordonnées (décision de l'enseignant) :
+// les exercices « image d'un point dans un repère » et « quatrième sommet d'un parallélogramme » ont été retirés.
 (function () {
-  const { L, P, ent, choix, net, nonNul, decimal, signeAuHasard, facile } = Savoirs.calculsOutils;
-  const LETTRES = ["M", "P", "Q", "R", "S", "T", "N", "U"];
-  const sg = (v) => (v < 0 ? L(v) : "+" + L(v)); // composante écrite avec son signe
-  const translation = (a, b) => "$(" + sg(a) + " ; " + sg(b) + ")$";
-  const point = (nom, x, y) => "$" + nom + "(" + L(x) + " ; " + L(y) + ")$";
-  const plus = (v) => (v < 0 ? " - " + L(-v) : " + " + L(v));
-
-  // Coordonnées tirées selon le niveau : niveau 1, entiers de −6 à 8 ; niveau 2, de −9 à 9 ; niveau 3, de −12 à 12
-  const coord = (niveau) => (niveau === 1 ? ent(-6, 8) : niveau === 2 ? ent(-9, 9) : ent(-12, 12));
-  // Niveau 3 : exactement un des nombres tirés devient un décimal à un chiffre (jamais entier)
-  function unDecimal(nombres) {
-    const i = ent(0, nombres.length - 1);
-    nombres[i] = decimal(11.9, 1) * (nombres[i] < 0 ? -1 : nombres[i] > 0 ? 1 : signeAuHasard());
-    return nombres;
-  }
-  // Contrôle des nombres négatifs : niveaux 1 et 2, aucun négatif dans le cas facile, au moins un sinon ;
-  // niveau 3, au moins deux négatifs et un résultat de valeur absolue au plus 25
-  function accepte(niveau, sansNegatif, nombres, r) {
-    const neg = nombres.filter((x) => x < 0).length;
-    if (niveau === 3) return neg >= 2 && Math.abs(r) <= 25;
-    return sansNegatif ? neg === 0 : neg >= 1;
-  }
-  const quelle = (abscisse) => (abscisse ? "l'abscisse" : "l'ordonnée");
-
-  function exImage(niveau) {
-    const sansNegatif = facile(niveau);
-    for (;;) {
-      let n = niveau === 1 ? [ent(1, 8), ent(1, 8), coord(1), coord(1)] : niveau === 2 ? [nonNul(-9, 9), nonNul(-9, 9), coord(2), coord(2)] : [nonNul(-12, 12), nonNul(-12, 12), coord(3), coord(3)];
-      if (niveau === 3) n = unDecimal(n);
-      const [a, b, x, y] = n, abscisse = Math.random() < 0.5, r = net(abscisse ? x + a : y + b);
-      if (!accepte(niveau, sansNegatif, n.concat([r]), r)) continue;
-      const M = choix(LETTRES);
-      return {
-        enonce: "La translation de " + translation(a, b) + " transforme le point " + point(M, x, y) + " en $" + M + "'$. Quelle est " + quelle(abscisse) + " de $" + M + "'$ ?",
-        reponse: r,
-        correction: "Dans un repère, la translation de " + translation(a, b) + " ajoute $" + L(a) + "$ à l'abscisse et $" + L(b) + "$ à l'ordonnée : $(x ; y)$ devient $(x" + plus(a) + " ; y" + plus(b) + ")$. " +
-          (abscisse ? "Abscisse" : "Ordonnée") + " de $" + M + "'$ : $" + L(abscisse ? x : y) + " + " + P(abscisse ? a : b) + " = " + L(r) + "$."
-      };
-    }
-  }
-
-  function exAntecedent(niveau) {
-    const sansNegatif = facile(niveau);
-    for (;;) {
-      let n = niveau === 1 ? [ent(1, 8), ent(1, 8), coord(1), coord(1)] : niveau === 2 ? [nonNul(-9, 9), nonNul(-9, 9), coord(2), coord(2)] : [nonNul(-12, 12), nonNul(-12, 12), coord(3), coord(3)];
-      if (niveau === 3) n = unDecimal(n);
-      const [a, b, x, y] = n, x2 = net(x + a), y2 = net(y + b), abscisse = Math.random() < 0.5, r = abscisse ? x : y;
-      if (!accepte(niveau, sansNegatif, [a, b, x2, y2, r], r)) continue;
-      const M = choix(LETTRES), k = abscisse ? a : b;
-      return {
-        enonce: "Le point $" + M + "'$ de coordonnées $(" + L(x2) + " ; " + L(y2) + ")$ est l'image d'un point $" + M + "$ par la translation de " + translation(a, b) + ". Quelle est " + quelle(abscisse) + " de $" + M + "$ ?",
-        reponse: r,
-        correction: "La translation ajoute $" + L(a) + "$ à l'abscisse et $" + L(b) + "$ à l'ordonnée de $" + M + "$ ; pour revenir de $" + M + "'$ à $" + M + "$, on les retranche. " +
-          (abscisse ? "Abscisse" : "Ordonnée") + " de $" + M + "$ : $" + L(abscisse ? x2 : y2) + " - " + P(k) + " = " + L(r) + "$."
-      };
-    }
-  }
-
-  function exDeplacement(niveau) {
-    const sansNegatif = facile(niveau);
-    for (;;) {
-      let n = [coord(niveau), coord(niveau), coord(niveau), coord(niveau)];
-      if (niveau === 3) n = unDecimal(n);
-      const [xA, yA, xB, yB] = n;
-      if (niveau === 1 && (xB <= xA || yB <= yA)) continue;
-      const horizontal = Math.random() < 0.5, r = net(horizontal ? xB - xA : yB - yA);
-      if (r === 0 || !accepte(niveau, sansNegatif, n, r)) continue;
-      const mot = horizontal ? "abscisse" : "ordonnée";
-      return {
-        enonce: "Une translation transforme le point " + point("A", xA, yA) + " en " + point("B", xB, yB) + ". Quel est son déplacement " + (horizontal ? "horizontal" : "vertical") +
-          " (de combien l'" + mot + " augmente ou diminue) ?",
-        reponse: r,
-        correction: "Déplacement " + (horizontal ? "horizontal" : "vertical") + " = " + mot + " d'arrivée − " + mot + " de départ : $" + L(horizontal ? xB : yB) + " - " + P(horizontal ? xA : yA) + " = " + L(r) + "$." +
-          (r < 0 ? " Le résultat est négatif : l'" + mot + " diminue." : "")
-      };
-    }
-  }
-
-  function exImageAB(niveau) {
-    const sansNegatif = facile(niveau);
-    for (;;) {
-      let n = Array.from({ length: 6 }, () => coord(niveau));
-      if (niveau === 3) n = unDecimal(n);
-      const [xA, yA, xB, yB, x, y] = n;
-      if (niveau === 1 && (xB < xA || yB < yA)) continue;
-      const abscisse = Math.random() < 0.5, d = net(abscisse ? xB - xA : yB - yA), r = net((abscisse ? x : y) + d);
-      if (d === 0 || !accepte(niveau, sansNegatif, n.concat([r]), r)) continue;
-      const M = choix(LETTRES);
-      return {
-        enonce: "La translation qui transforme " + point("A", xA, yA) + " en " + point("B", xB, yB) + " transforme " + point(M, x, y) + " en $" + M + "'$. Quelle est " + quelle(abscisse) + " de $" + M + "'$ ?",
-        reponse: r,
-        correction: "Déplacement " + (abscisse ? "horizontal" : "vertical") + " : $" + L(abscisse ? xB : yB) + " - " + P(abscisse ? xA : yA) + " = " + L(d) + "$. On l'ajoute à " + quelle(abscisse) +
-          " de $" + M + "$ : $" + L(abscisse ? x : y) + " + " + P(d) + " = " + L(r) + "$."
-      };
-    }
-  }
-
-  function exParallelogramme(niveau) {
-    const sansNegatif = facile(niveau);
-    for (;;) {
-      let n = Array.from({ length: 6 }, () => coord(niveau));
-      if (niveau === 3) n = unDecimal(n);
-      const [xA, yA, xB, yB, xC, yC] = n;
-      // Trois points non alignés
-      if (Math.abs((xB - xA) * (yC - yA) - (yB - yA) * (xC - xA)) < 1e-9) continue;
-      const abscisse = Math.random() < 0.5, d = net(abscisse ? xC - xB : yC - yB), r = net((abscisse ? xA : yA) + d);
-      if (d === 0 || !accepte(niveau, sansNegatif, n.concat([r]), r)) continue;
-      return {
-        enonce: "$ABCD$ est un parallélogramme avec " + point("A", xA, yA) + ", " + point("B", xB, yB) + " et " + point("C", xC, yC) + ". Quelle est " + quelle(abscisse) + " du point $D$ ?",
-        reponse: r,
-        correction: "$ABCD$ est un parallélogramme : la translation qui transforme $B$ en $C$ transforme $A$ en $D$. Déplacement " + (abscisse ? "horizontal" : "vertical") + " : $" +
-          L(abscisse ? xC : yC) + " - " + P(abscisse ? xB : yB) + " = " + L(d) + "$ ; $" + (abscisse ? "x_D" : "y_D") + " = " + L(abscisse ? xA : yA) + " + " + P(d) + " = " + L(r) + "$."
-      };
-    }
-  }
+  const { L, T, ent, choix, net, decimal } = Savoirs.calculsOutils;
+  const dec = (min, max) => { let x; do { x = decimal(max, 1); } while (x < min); return x; };
+  const LETTRES = [["A", "B", "M"], ["E", "F", "P"], ["R", "S", "T"], ["K", "L", "N"]];
 
   // ---------- Périmètre ou aire d'une figure translatée ----------
   const LONGUEURS = "Une translation conserve les longueurs, donc l'image a le même périmètre : ";
   const AIRES = "Une translation conserve les aires, donc l'image a la même aire : ";
   const demandePerimetre = "Quel est le périmètre de son image (en cm) ?", demandeAire = "Quelle est l'aire de son image (en cm²) ?";
-  const T = Savoirs.calculsOutils.T;
   function rectangle(a, b, aire) {
     return aire
       ? { enonce: "Un rectangle de " + T(a) + " cm sur " + T(b) + " cm est translaté. " + demandeAire, reponse: net(a * b), unite: "cm²", correction: AIRES + "$" + L(a) + " \\times " + L(b) + " = " + L(net(a * b)) + "$ cm²." }
@@ -136,14 +23,44 @@
       correction: AIRES + "$\\dfrac{" + L(a) + " \\times " + L(b) + "}{2} = " + (Number.isInteger(a) && Number.isInteger(b) ? "" : "\\dfrac{" + L(net(a * b)) + "}{2} = ") + L(r) + "$ cm²."
     };
   }
-  const dec = (min, max) => { let x; do { x = decimal(max, 1); } while (x < min); return x; };
+
+  // ---------- Ce que conserve une translation (sans coordonnées) ----------
+  // La translation qui transforme A en B transforme M en M' : MM' = AB (ABM'M est un parallélogramme)
+  function deplacement(longueur) {
+    const [A, B, M] = choix(LETTRES);
+    return {
+      enonce: "La translation qui transforme $" + A + "$ en $" + B + "$ transforme le point $" + M + "$ en $" + M + "'$. On sait que $" + A + B + " = " + L(longueur) + "$ cm. Calculer $" + M + M + "'$.",
+      reponse: longueur, unite: "cm",
+      correction: "Une translation fait glisser tous les points de la même longueur, dans la même direction et le même sens : $" + M + M + "' = " + A + B + " = " + L(longueur) + "$ cm ($" + A + B + M + "'" + M + "$ est un parallélogramme)."
+    };
+  }
+  function segment(longueur) {
+    const [A, B] = choix(LETTRES);
+    return {
+      enonce: "Une translation transforme le segment $[" + A + B + "]$ en $[" + A + "'" + B + "']$. On sait que $" + A + B + " = " + L(longueur) + "$ cm. Calculer $" + A + "'" + B + "'$.",
+      reponse: longueur, unite: "cm",
+      correction: "Une translation conserve les longueurs : $" + A + "'" + B + "' = " + A + B + " = " + L(longueur) + "$ cm."
+    };
+  }
+  function angle(mesure) {
+    const [A, B, M] = choix(LETTRES), sommet = choix([A, B, M]);
+    return {
+      enonce: "Dans le triangle $" + A + B + M + "$, l'angle en $" + sommet + "$ mesure $" + L(mesure) + "^{\\circ}$. Son image par une translation est le triangle $" + A + "'" + B + "'" + M + "'$. Combien mesure l'angle en $" + sommet + "'$ ?",
+      reponse: mesure, unite: "°",
+      correction: "Une translation conserve les angles : l'angle en $" + sommet + "'$ mesure aussi $" + L(mesure) + "^{\\circ}$."
+    };
+  }
+  // La translation qui transforme A en B transforme C en D : ABDC est un parallélogramme de côtés AB et AC
+  function parallelogramme(ab, ac) {
+    const [A, B, C] = choix(LETTRES), D = { A: "D", E: "G", R: "U", K: "O" }[A], p = net(2 * (ab + ac));
+    return {
+      enonce: "La translation qui transforme $" + A + "$ en $" + B + "$ transforme $" + C + "$ en $" + D + "$. On sait que $" + A + B + " = " + L(ab) + "$ cm et $" + A + C + " = " + L(ac) + "$ cm. Calculer le périmètre du quadrilatère $" + A + B + D + C + "$.",
+      reponse: p, unite: "cm",
+      correction: "$" + A + B + D + C + "$ est un parallélogramme : $" + C + D + " = " + A + B + " = " + L(ab) + "$ cm et $" + B + D + " = " + A + C + " = " + L(ac) + "$ cm. Périmètre : $2 \\times (" + L(ab) + " + " + L(ac) + ") = " + L(p) + "$ cm."
+    };
+  }
 
   const transl = [
-    { id: "image-point", chap: "transl", titre: "Coordonnées de l'image d'un point", format: "nombre", niveaux: { 1: () => exImage(1), 2: () => exImage(2), 3: () => exImage(3) } },
-    { id: "antecedent", chap: "transl", titre: "Retrouver le point de départ", format: "nombre", niveaux: { 1: () => exAntecedent(1), 2: () => exAntecedent(2), 3: () => exAntecedent(3) } },
-    { id: "deplacement", chap: "transl", titre: "Déplacement d'une translation", format: "nombre", niveaux: { 1: () => exDeplacement(1), 2: () => exDeplacement(2), 3: () => exDeplacement(3) } },
-    { id: "image-ab", chap: "transl", titre: "Image d'un point, déplacement donné par deux points", format: "nombre", niveaux: { 1: () => exImageAB(1), 2: () => exImageAB(2), 3: () => exImageAB(3) } },
-    { id: "parallelogramme", chap: "transl", titre: "Quatrième sommet d'un parallélogramme", format: "nombre", niveaux: { 1: () => exParallelogramme(1), 2: () => exParallelogramme(2), 3: () => exParallelogramme(3) } },
     {
       id: "conservation", chap: "transl", titre: "Périmètre ou aire d'une figure translatée", format: "nombre",
       niveaux: {
@@ -168,7 +85,7 @@
         },
         3: () => {
           const cas = ent(1, 3);
-          if (cas === 1) return triangleRectangle(dec(1.5, 12), dec(1.5, 12));
+          if (cas === 1) return triangleRectangle(dec(1.5, 12), ent(2, 10));
           if (cas === 2) {
             let a, b;
             do { a = dec(1.5, 12); b = dec(1.5, 12); } while (a === b);
@@ -177,8 +94,16 @@
               correction: LONGUEURS + "$2 \\times (" + L(a) + " + " + L(b) + ") = 2 \\times " + L(net(a + b)) + " = " + L(net(2 * (a + b))) + "$ cm."
             };
           }
-          return rectangle(dec(1.5, 9.9), dec(1.5, 9.9), true);
+          return rectangle(dec(1.5, 9.9), ent(2, 9), true);
         }
+      }
+    },
+    {
+      id: "transl-conserve", chap: "transl", titre: "Ce que conserve une translation", format: "nombre",
+      niveaux: {
+        1: () => (Math.random() < 0.5 ? deplacement(ent(2, 15)) : segment(ent(2, 15))),
+        2: () => choix([() => deplacement(dec(1.1, 12)), () => segment(dec(1.1, 12)), () => angle(ent(15, 150))])(),
+        3: () => (Math.random() < 0.6 ? parallelogramme(dec(1.1, 9.9), ent(2, 9)) : angle(dec(10.1, 150)))
       }
     }
   ];

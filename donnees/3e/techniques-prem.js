@@ -133,8 +133,9 @@
         };
         return {
           1: () => { if (facile(1)) return ex(choix([16, 32, 64, 128])); for (;;) { const n = ent(20, 100); if (estPremier(n) || (n & (n - 1)) === 0) continue; return ex(n); } },
-          2: () => { if (facile(2)) return ex(choix([128, 256])); for (;;) { const n = ent(101, 500); if (estPremier(n) || (n & (n - 1)) === 0 || decomposer(n).slice(-1)[0][0] < 5) continue; return ex(n); } },
-          3: () => { for (;;) { const n = ent(501, 2000); if (nbFacteurs(n) < 3 || decomposer(n).slice(-1)[0][0] < 17) continue; return ex(n); } }
+          // Nombres plus petits (1034 = 2 × 11 × 47 était trop long à décomposer)
+          2: () => { if (facile(2)) return ex(choix([128, 256])); for (;;) { const n = ent(101, 300); if (estPremier(n) || (n & (n - 1)) === 0 || decomposer(n).slice(-1)[0][0] < 5) continue; return ex(n); } },
+          3: () => { for (;;) { const n = ent(301, 1000); if (nbFacteurs(n) < 3 || decomposer(n).slice(-1)[0][0] < 11 || decomposer(n).slice(-1)[0][0] > 31) continue; return ex(n); } }
         };
       })()
     },
@@ -158,7 +159,7 @@
         return {
           1: () => (facile(1) ? tirer([2, 3, 5], 1, 7, 24, 200) : (() => { const paire = choix([[2, 3], [2, 5], [3, 5]]); return tirer(paire, 2, 4, 24, 200); })()),
           2: () => (facile(2) ? tirer([2, 3, 5, 7], 1, 10, 12, 3000) : tirer([2, 3, 5, 7], ent(2, 3), 4, 12, 3000)),
-          3: () => tirer([2, 3, 5, 7, 11, 13], 3, 6, 1000, 20000)
+          3: () => tirer([2, 3, 5, 7, 11], 3, 4, 300, 3000)
         };
       })()
     },
@@ -178,8 +179,8 @@
         2: () => {
           const multiple = facile(2);
           for (;;) {
-            const a = ent(40, 400), b = multiple ? a * ent(2, 4) : ent(40, 400);
-            if (b > 400 || a === b || nbFacteurs(a) < 3 || nbFacteurs(b) < 3 || pgcd(a, b) < 2) continue;
+            const a = ent(40, 200), b = multiple ? a * ent(2, 4) : ent(40, 200);
+            if (b > 200 || a === b || nbFacteurs(a) < 3 || nbFacteurs(b) < 3 || pgcd(a, b) < 2) continue;
             if (!multiple && (a % b === 0 || b % a === 0)) continue;
             const g = pgcd(a, b);
             return { enonce: choix(["Calculer", "Déterminer"]) + " le PGCD de $" + a + "$ et $" + b + "$.", reponse: g, correction: parDecompositions(a, b) + "Le PGCD de $" + a + "$ et $" + b + "$ est $" + g + "$." };
@@ -188,7 +189,8 @@
         3: () => {
           const premiersEntreEux = Math.random() < 0.1;
           for (;;) {
-            const a = ent(300, 3000), b = ent(300, 3000), g = pgcd(a, b);
+            // Nombres jusqu'à 600 (2504 et 824 étaient trop grands)
+            const a = ent(100, 600), b = ent(100, 600), g = pgcd(a, b);
             if (a === b || nbFacteurs(a) < 4 || nbFacteurs(b) < 4 || (premiersEntreEux ? g !== 1 : g < 6)) continue;
             return { enonce: "Calculer le PGCD de $" + a + "$ et $" + b + "$.", reponse: g, correction: parDecompositions(a, b) + "Le PGCD de $" + a + "$ et $" + b + "$ est $" + g + "$." };
           }
@@ -215,8 +217,9 @@
         }
         return {
           1: () => { const deux = facile(1); for (;;) { const ex1 = tirer(() => (deux ? 2 : ent(3, 9)), 60, parDiviseurs); const [a, b] = ex1.enonce.match(/\{(\d+)\}\{(\d+)\}/).slice(1).map(Number); if (a >= 6 && b >= 6) return ex1; } },
-          2: () => tirer(() => (facile(2) ? 10 : (() => { let g; do { g = ent(7, 30); } while (g % 10 === 0); return g; })()), 400, parDecompositions),
-          3: () => tirer(() => ent(12, 60), 3000, parDecompositions)
+          // Fractions plus petites (1950/1833 était trop dur)
+          2: () => tirer(() => (facile(2) ? 10 : (() => { let g; do { g = ent(6, 20); } while (g % 10 === 0); return g; })()), 200, parDecompositions),
+          3: () => tirer(() => ent(12, 30), 600, parDecompositions)
         };
       })()
     },

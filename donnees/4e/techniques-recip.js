@@ -6,8 +6,8 @@
   const melanger = (l) => Savoirs.melanger(l);
   const carre = (x) => net(x * x);
 
-  const ENTIERS = [[3, 4, 5], [6, 8, 10], [5, 12, 13], [9, 12, 15], [8, 15, 17], [12, 16, 20], [7, 24, 25], [15, 20, 25], [20, 21, 29], [9, 40, 41],
-    [12, 35, 37], [10, 24, 26], [15, 36, 39], [18, 24, 30], [16, 30, 34], [21, 28, 35], [24, 32, 40]];
+  // Niveau 1 : petits côtés (15 cm au plus), pour calculer les carrés de tête (décision de l'enseignant)
+  const ENTIERS = [[3, 4, 5], [6, 8, 10], [5, 12, 13], [9, 12, 15]];
   // Triplets décimaux (niveau 2) : triplets primitifs × k/10, au moins un côté non entier
   const DECIMAUX = [];
   [[3, 4, 5], [5, 12, 13], [8, 15, 17], [7, 24, 25]].forEach((t) => {

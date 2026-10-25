@@ -8,15 +8,16 @@
 
   // Triplets pythagoriciens entiers (niveau 1) ; 3-4-5 et 6-8-10 sont les cas faciles (1 fois sur 8)
   const FACILES = [[3, 4, 5], [6, 8, 10]];
-  const TRIPLETS = [[5, 12, 13], [9, 12, 15], [8, 15, 17], [12, 16, 20], [7, 24, 25], [15, 20, 25], [20, 21, 29], [9, 40, 41],
-    [12, 35, 37], [10, 24, 26], [15, 36, 39], [18, 24, 30], [16, 30, 34], [21, 28, 35], [24, 32, 40]];
+  // Petits triplets seulement (20 au plus) : les carrés se calculent de tête ou presque (décision de l'enseignant)
+  const TRIPLETS = [[3, 4, 5], [6, 8, 10], [5, 12, 13], [9, 12, 15], [8, 15, 17], [12, 16, 20]];
   const tripletEntier = (niveau) => choix(facile(niveau) ? FACILES : TRIPLETS);
   // Triplets décimaux exacts (niveau 2) : triplets primitifs multipliés par k/10, au moins un côté non entier
   const DECIMAUX = [];
-  [[3, 4, 5], [5, 12, 13], [8, 15, 17], [7, 24, 25]].forEach((t) => {
+  // Hypoténuse de 10 au plus : les carrés restent faisables à la main
+  [[3, 4, 5], [5, 12, 13]].forEach((t) => {
     for (let k = 1; k <= 30; k++) {
       const u = t.map((x) => net((x * k) / 10));
-      if (u[2] <= 15 && u.some((x) => !Number.isInteger(x))) DECIMAUX.push(u);
+      if (u[2] <= 10 && u.some((x) => !Number.isInteger(x))) DECIMAUX.push(u);
     }
   });
 
@@ -38,13 +39,17 @@
     return { nom: lettres.join(""), droit: droit, c1: seg(droit, autres[0]), c2: seg(droit, autres[1]), hyp: seg(autres[0], autres[1]) };
   }
   const debut = (t) => "Le triangle $" + t.nom + "$ est rectangle en $" + t.droit + "$";
+  // Les longueurs connues sont écrites sur la figure (js/moteur/schemas.js), plus dans l'énoncé
+  const figure = (t, c1, c2, hyp) => Savoirs.schemas.pythagore(t, { c1: c1, c2: c2, hyp: hyp });
+  const cm = (x) => [x, T(x) + " cm"];
   const estHyp = (t) => "$" + t.hyp + "$ est l'hypoténuse (côté opposé à l'angle droit en $" + t.droit + "$). D'après le théorème de Pythagore : ";
 
   // Hypoténuse connaissant les deux côtés de l'angle droit (d : arrondi demandé, ou rien si exact)
   function exHypotenuse(niveau, a, b, d) {
     const t = triangle(niveau), s = net(carre(a) + carre(b)), r = d ? arrondi(Math.sqrt(s), d) : net(Math.sqrt(s));
     return {
-      enonce: debut(t) + " avec $" + t.c1 + " = " + L(a) + "$ cm et $" + t.c2 + " = " + L(b) + "$ cm. Calculer $" + t.hyp + "$ (en cm)." + (d ? " Arrondir au dixième." : ""),
+      enonce: debut(t) + ". Calculer $" + t.hyp + "$ (en cm)." + (d ? " Arrondir au dixième." : ""),
+      schema: figure(t, cm(a), cm(b), [0, "?"]),
       reponse: r, unite: "cm",
       correction: estHyp(t) + "$" + t.hyp + "^{2} = " + t.c1 + "^{2} + " + t.c2 + "^{2} = " + L(a) + "^{2} + " + L(b) + "^{2} = " + L(carre(a)) + " + " + L(carre(b)) + " = " + L(s) +
         "$, donc $" + t.hyp + " = \\sqrt{" + L(s) + "} " + (d ? "\\approx " + fixe(r, d) + "$ cm (valeur arrondie au dixième)." : "= " + L(r) + "$ cm.")
@@ -54,7 +59,8 @@
   function exCote(niveau, h, a, d) {
     const t = triangle(niveau), s = net(carre(h) - carre(a)), r = d ? arrondi(Math.sqrt(s), d) : net(Math.sqrt(s));
     return {
-      enonce: debut(t) + " avec $" + t.hyp + " = " + L(h) + "$ cm et $" + t.c1 + " = " + L(a) + "$ cm. Calculer $" + t.c2 + "$ (en cm)." + (d ? " Arrondir au dixième." : ""),
+      enonce: debut(t) + ". Calculer $" + t.c2 + "$ (en cm)." + (d ? " Arrondir au dixième." : ""),
+      schema: figure(t, cm(a), [Math.sqrt(s), "?"], cm(h)),
       reponse: r, unite: "cm",
       correction: estHyp(t) + "$" + t.hyp + "^{2} = " + t.c1 + "^{2} + " + t.c2 + "^{2}$, donc $" + t.c2 + "^{2} = " + t.hyp + "^{2} - " + t.c1 + "^{2} = " + L(h) + "^{2} - " + L(a) + "^{2} = " +
         L(carre(h)) + " - " + L(carre(a)) + " = " + L(s) + "$, donc $" + t.c2 + " = \\sqrt{" + L(s) + "} " + (d ? "\\approx " + fixe(r, d) + "$ cm (valeur arrondie au dixième)." : "= " + L(r) + "$ cm.")
@@ -66,7 +72,8 @@
     if (Math.random() < 0.5) {
       const a = longueur(), b = longueur(), r = net(carre(a) + carre(b));
       return {
-        enonce: debut(t) + ", avec $" + t.c1 + " = " + L(a) + "$ cm et $" + t.c2 + " = " + L(b) + "$ cm. Calculer $" + t.hyp + "^{2}$.",
+        enonce: debut(t) + ". Calculer $" + t.hyp + "^{2}$.",
+        schema: figure(t, cm(a), cm(b), [0, "?"]),
         reponse: r, unite: "cm²",
         correction: estHyp(t) + "$" + t.hyp + "^{2} = " + t.c1 + "^{2} + " + t.c2 + "^{2} = " + L(a) + "^{2} + " + L(b) + "^{2} = " + L(carre(a)) + " + " + L(carre(b)) + " = " + L(r) + "$."
       };
@@ -75,7 +82,8 @@
     do { h = longueur(); a = longueur(); } while (h <= a);
     const r = net(carre(h) - carre(a));
     return {
-      enonce: debut(t) + ", avec $" + t.hyp + " = " + L(h) + "$ cm et $" + t.c1 + " = " + L(a) + "$ cm. Calculer $" + t.c2 + "^{2}$.",
+      enonce: debut(t) + ". Calculer $" + t.c2 + "^{2}$.",
+      schema: figure(t, cm(a), [Math.sqrt(r), "?"], cm(h)),
       reponse: r, unite: "cm²",
       correction: estHyp(t) + "$" + t.hyp + "^{2} = " + t.c1 + "^{2} + " + t.c2 + "^{2}$, donc $" + t.c2 + "^{2} = " + t.hyp + "^{2} - " + t.c1 + "^{2} = " + L(h) + "^{2} - " + L(a) + "^{2} = " +
         L(carre(h)) + " - " + L(carre(a)) + " = " + L(r) + "$."
@@ -169,55 +177,18 @@
   const pyth = [
     {
       id: "carre-racine", chap: "pyth", titre: "Carré et racine carrée", format: "nombre",
-      niveaux: {
-        1: () => {
-          const cas = choix(Array.from({ length: 14 }, (_, i) => ["carre", i + 2]).concat(Array.from({ length: 11 }, (_, i) => ["racine", i + 2])));
-          const a = cas[1];
-          return cas[0] === "carre"
-            ? { enonce: "Calculer $" + a + "^{2}$", reponse: a * a, correction: "$" + a + "^{2} = " + a + " \\times " + a + " = " + a * a + "$." }
-            : { enonce: "Calculer $\\sqrt{" + a * a + "}$", reponse: a, correction: "$" + a + "^{2} = " + a * a + "$, donc $\\sqrt{" + a * a + "} = " + a + "$." };
-        },
-        2: () => {
-          const cas = ent(1, 3);
-          if (cas === 1) {
-            let n;
-            do { n = ent(2, 60); } while (Number.isInteger(Math.sqrt(n)));
-            return { enonce: "Calculer $(\\sqrt{" + n + "})^{2}$", reponse: n, correction: "Le carré de la racine carrée de $" + n + "$ est $" + n + "$ (par définition de la racine carrée)." };
-          }
-          const a = cas === 2 ? ent(13, 30) : ent(13, 25);
-          return cas === 2
-            ? { enonce: "Calculer $\\sqrt{" + a + "^{2}}$", reponse: a, correction: "La racine carrée du carré d'un nombre positif est ce nombre : $\\sqrt{" + a + "^{2}} = " + a + "$." }
-            : { enonce: "Calculer $\\sqrt{" + a * a + "}$", reponse: a, correction: "$" + a + "^{2} = " + a * a + "$, donc $\\sqrt{" + a * a + "} = " + a + "$." };
-        },
-        3: () => {
-          // Sous le radical, des carrés déjà calculés : √(a² + b²) ou √(c² − a²)
-          let t;
-          if (Math.random() < 0.5) {
-            const base = choix([[3, 4, 5], [5, 12, 13], [8, 15, 17], [7, 24, 25], [20, 21, 29], [9, 40, 41], [12, 35, 37]]);
-            const kMax = Math.floor(41 / base[2]);
-            const k = ent(1, kMax);
-            t = base.map((x) => x * k);
-          } else {
-            const base = choix([[3, 4, 5], [5, 12, 13], [8, 15, 17]]);
-            let m;
-            do { m = choix([0.1, 0.2, 0.3, 0.5]); } while (base[2] * m > 10);
-            t = base.map((x) => net(x * m));
-          }
-          const [a, b, c] = t;
-          if (Math.random() < 0.5) {
-            const s = net(carre(a) + carre(b));
-            return {
-              enonce: "Calculer $\\sqrt{" + L(carre(a)) + " + " + L(carre(b)) + "}$", reponse: c,
-              correction: "On calcule d'abord sous la racine : $" + L(carre(a)) + " + " + L(carre(b)) + " = " + L(s) + "$. Puis $" + L(c) + "^{2} = " + L(s) + "$, donc $\\sqrt{" + L(s) + "} = " + L(c) + "$."
-            };
-          }
-          const connu = choix([a, b]), r = connu === a ? b : a, s = net(carre(c) - carre(connu));
-          return {
-            enonce: "Calculer $\\sqrt{" + L(carre(c)) + " - " + L(carre(connu)) + "}$", reponse: r,
-            correction: "On calcule d'abord sous la racine : $" + L(carre(c)) + " - " + L(carre(connu)) + " = " + L(s) + "$. Puis $" + L(r) + "^{2} = " + L(s) + "$, donc $\\sqrt{" + L(s) + "} = " + L(r) + "$."
-          };
-        }
-      }
+      // Simple (décision de l'enseignant) : niveau 1, carrés jusqu'à 10² et racines des carrés jusqu'à 100 ;
+      // niveau 2, jusqu'à 144 (et parfois 400) ; niveau 3, des décimaux très simples
+      niveaux: (function () {
+        const carreDe = (a) => ({ enonce: "Calculer $" + L(a) + "^{2}$", reponse: net(a * a), correction: "$" + L(a) + "^{2} = " + L(a) + " \\times " + L(a) + " = " + L(net(a * a)) + "$." });
+        const racineDe = (a) => ({ enonce: "Calculer $\\sqrt{" + L(net(a * a)) + "}$", reponse: a, correction: "$" + L(a) + "^{2} = " + L(net(a * a)) + "$, donc $\\sqrt{" + L(net(a * a)) + "} = " + L(a) + "$." });
+        const unDes = (a) => (Math.random() < 0.5 ? carreDe(a) : racineDe(a));
+        return {
+          1: () => unDes(ent(1, 10)),
+          2: () => unDes(choix([7, 8, 9, 10, 11, 11, 12, 12, 20])),
+          3: () => unDes(ent(1, 9) / 10)
+        };
+      })()
     },
     {
       id: "pyth-carre", chap: "pyth", titre: "Carré d'un côté avec Pythagore", format: "nombre",
