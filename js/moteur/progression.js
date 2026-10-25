@@ -91,9 +91,11 @@
 
     // Tire nb éléments différents, chacun avec une chance proportionnelle à son poids,
     // multiplié par bonus(élément) s'il est donné (chapitres récents)
+    // competence peut être une fonction (élément → compétence), pour « J'apprends » où elle dépend du savoir
     choisir(competence, elements, nb, bonus) {
+      const comp = (el) => (typeof competence === "function" ? competence(el) : competence);
       return elements
-        .map((el) => ({ el: el, cle: Math.pow(Math.random(), 1 / (this.poids(competence, el.id) * (bonus ? bonus(el) : 1))) }))
+        .map((el) => ({ el: el, cle: Math.pow(Math.random(), 1 / (this.poids(comp(el), el.id) * (bonus ? bonus(el) : 1))) }))
         .sort((a, b) => b.cle - a.cle)
         .slice(0, nb)
         .map((x) => x.el);

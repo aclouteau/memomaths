@@ -10,8 +10,8 @@
   const MIN_CARTES = 6;        // en dessous, un mode est grisé à l'accueil
   const POIDS_REVISION = 0.3;  // chance d'être tiré d'un savoir des années précédentes, par rapport à un savoir de l'année
   const ANNEES = ["6e", "5e", "4e", "3e"];
-  const COMPETENCES = ["completer", "reconstituer", "appliquer", "outil"];
-  const TYPES = { formule: "Formule", propriete: "Propriété", definition: "Définition", regle: "Règle" };
+  const COMPETENCES = ["completer", "reconstituer", "appliquer", "outil", "rappel"];
+  const TYPES = { formule: "Formule", propriete: "Propriété", definition: "Définition", regle: "Règle", technique: "Entraînement" };
   const BRAVO = ["Bravo !", "Exact !", "C'est ça !", "Bien vu !", "Parfait !"];
   const CLE_NIVEAU = "savoirs.niveau";
   const CLE_APPARENCE = "savoirs.apparence";
@@ -107,16 +107,20 @@
       .sort((a, b) => ANNEES.indexOf(b.id) - ANNEES.indexOf(a.id)); // la plus récente d'abord
     const ids = new Set(base.savoirs.map((s) => s.id));
     const enonces = new Set(base.outils.map((o) => o.enonce));
+    // Techniques d'entraînement : la clé « t-4e-prod-deux » sert à la progression (même clé dans tous les niveaux)
+    const techniquesDe = (idNiveau, pre) => (Savoirs.techniques[idNiveau] || []).map((t) =>
+      Object.assign({}, t, { chap: pre + t.chap, cle: "t-" + idNiveau + "-" + t.id }));
     const n = {
       id: base.id, titre: base.titre, niveau: base.niveau,
       chapitres: base.chapitres.map((c) => Object.assign({}, c, { origine: base.id, idTheme: c.id })),
-      savoirs: base.savoirs.slice(), outils: base.outils.slice()
+      savoirs: base.savoirs.slice(), outils: base.outils.slice(), techniques: techniquesDe(base.id, "")
     };
     for (const e of avant) {
       const d = Savoirs.niveaux[e.id], pre = e.id + ":";
       for (const c of d.chapitres) n.chapitres.push({ id: pre + c.id, titre: c.titre, ordre: c.ordre, annee: e.id, origine: e.id, idTheme: c.id, revision: true });
       for (const s of d.savoirs) if (!ids.has(s.id)) { ids.add(s.id); n.savoirs.push(Object.assign({}, s, { chap: pre + s.chap })); }
       for (const o of d.outils) if (!enonces.has(o.enonce)) { enonces.add(o.enonce); n.outils.push(Object.assign({}, o, { id: pre + o.id, chap: pre + o.chap })); }
+      n.techniques = n.techniques.concat(techniquesDe(e.id, pre));
     }
     return n;
   }
@@ -181,8 +185,8 @@
         '<p class="separateur">ou</p>' : "") +
       '<form id="form-prenom" class="bloc">' +
       '<label class="champ"><span>' + (noms.length ? "Nouveau prénom" : "Comment t'appelles-tu ?") + "</span>" +
-      '<input id="prenom" autocomplete="off" maxlength="20" placeholder="Ton prénom ou un surnom" aria-describedby="aide-prenom"></label>' +
-      '<p id="aide-prenom" class="aide aide-prenom">Pas ton nom de famille.</p>' +
+      '<input id="prenom" autocomplete="off" maxlength="20" placeholder="Ton prénom ou un pseudo" aria-describedby="aide-prenom"></label>' +
+      '<p id="aide-prenom" class="aide aide-prenom">Ton prénom ou un pseudo, comme tu préfères.</p>' +
       // La classe dès le départ : sinon un élève de 5e ou de 3e commence sans le savoir en 4e
       (Savoirs.catalogue.length > 1
         ? '<div class="champ"><span id="titre-classe">Ta classe</span><div class="interrupteur choix-niveau" role="group" aria-labelledby="titre-classe">' +
@@ -191,7 +195,6 @@
         : "") +
       '<p id="erreur-prenom" class="erreur" role="alert"></p>' +
       '<button class="bouton-principal" type="submit">C\'est parti</button>' +
-      '<p class="aide">Ton prénom reste sur cet appareil : rien n\'est envoyé sur internet.</p>' +
       "</form>" +
       '<div class="actions"><button class="bouton-lien" data-action="recuperer">J\'ai déjà une progression sur un autre appareil</button></div>' +
       "</section>", "ecran-prenom");
@@ -240,8 +243,8 @@
     const revisees = anneesRevisees();
     const sus = jouables.filter((s) => progression.etatSavoir(COMPETENCES, s.id) === "su").length;
 
-    // Un mode qui a moins de 6 cartes dans les chapitres choisis est grisé ; « Je complète » reste toujours jouable
-    const modes = Savoirs.modes.map((md) => md === Savoirs.modes[0] || nbCartes(md) >= MIN_CARTES
+    // Deux boutons : « J'apprends » (toujours jouable) et « Je m'entraîne » (grisé s'il a moins de 6 cartes)
+    const modes = modesVisibles().map((md) => md === modesVisibles()[0] || nbCartes(md) >= MIN_CARTES
       ? '<button class="puce-mode" role="radio" aria-checked="' + (md === modeChoisi) + '" data-mode="' + md.id + '">' + md.titre + "</button>"
       : '<button class="puce-mode" disabled>' + md.titre + " <small>pas encore assez de cartes</small></button>").join("");
 
@@ -259,17 +262,18 @@
           Savoirs.catalogue.map((n) => '<button data-niveau="' + n.id + '" aria-pressed="' + (n.id === niveau.id) + '">' + m.echapper(n.titre) + "</button>").join("") +
           "</div></div>"
         : "") +
-      '<label class="champ"><span>Jusqu\'à quel chapitre ?</span><select id="choix-chap">' + chapitresAnnee().map((c) =>
+      '<label class="champ"><span>Où en es-tu dans le programme ?</span><select id="choix-chap">' + chapitresAnnee().map((c) =>
         '<option value="' + c.id + '"' + (c === choisi ? " selected" : "") + ">" + c.ordre + ". " + m.echapper(c.titre) + "</option>").join("") +
       "</select></label>" +
       '<p class="aide">' + (revisees.length ? "Avec des révisions de " + revisees.join(" et ") + " · " : "") +
       pluriel(jouables.length, "savoir") + "</p>" +
       '<p id="avertissement" class="avertissement" hidden><span aria-hidden="true">!</span> Ce chapitre n\'a peut-être pas encore été vu en classe.</p>' +
       "</div>" +
-      '<div class="modes" role="radiogroup" aria-label="Façon de jouer">' + modes + "</div>" +
+      '<h2 id="titre-modes" class="titre-modes">Que souhaites-tu faire ?</h2>' +
+      '<div class="modes" role="radiogroup" aria-labelledby="titre-modes">' + modes + "</div>" +
       '<p id="description-mode" class="description-mode" aria-live="polite">' + m.echapper(modeChoisi.description) + "</p>" +
       '<button id="jouer" class="bouton-principal grand">Jouer</button>' +
-      '<button id="reviser" class="bouton-lien lien-reviser">Réviser un seul chapitre</button>' +
+      '<button id="reviser" class="bouton-lien lien-reviser">' + texteReviser(modeChoisi) + "</button>" +
       '<button id="voir-bilan" class="apercu-jardin">' +
       '<span class="mini-jardin" aria-hidden="true">' + rosaces + "</span>" +
       '<span class="apercu-texte"><strong>Mon bilan</strong><span>' +
@@ -294,12 +298,19 @@
     ecran.querySelectorAll(".puce-mode[data-mode]").forEach((b) => b.addEventListener("click", () => {
       changerReglages({ mode: b.dataset.mode });
       ecran.querySelectorAll(".puce-mode[data-mode]").forEach((x) => x.setAttribute("aria-checked", x === b));
-      ecran.querySelector("#description-mode").textContent = Savoirs.modes.find((md) => md.id === b.dataset.mode).description;
+      const choisi = Savoirs.modes.find((md) => md.id === b.dataset.mode);
+      ecran.querySelector("#description-mode").textContent = choisi.description;
+      ecran.querySelector("#reviser").textContent = texteReviser(choisi);
     }));
     surClic("#jouer", () => jouer());
     surClic("#voir-bilan", bilan);
     surClic("#reviser", ecranReviser);
     surClic("#installer", installer);
+  }
+
+  // Le lien « un seul chapitre » suit le mode choisi (la séance n'est pas la même)
+  function texteReviser(mode) {
+    return mode.id === "appliquer" ? "M'entraîner sur un seul chapitre" : "Apprendre un seul chapitre";
   }
 
   function majAvertissement() {
@@ -323,13 +334,17 @@
   }
   function nbCartes(mode) { return cartesDuMode(mode).length; }
 
-  // Le mode choisi, sauf s'il a trop peu de cartes dans les chapitres choisis : alors « Je complète »
+  // Les modes proposés à l'accueil (les autres sont des formes de carte utilisées par « J'apprends »)
+  function modesVisibles() { return Savoirs.modes.filter((md) => !md.interne); }
+
+  // Le mode choisi, sauf s'il a trop peu de cartes dans les chapitres choisis : alors « J'apprends ».
+  // Un ancien choix (« Je complète », « Je reconstitue », « Quel outil ? ») devient « J'apprends ».
   function modeActuel() {
-    const choisi = Savoirs.modes.find((md) => md.id === reglages().mode);
-    return choisi && nbCartes(choisi) >= MIN_CARTES ? choisi : Savoirs.modes[0];
+    const choisi = modesVisibles().find((md) => md.id === reglages().mode);
+    return choisi && nbCartes(choisi) >= MIN_CARTES ? choisi : modesVisibles()[0];
   }
 
-  // Réviser un seul chapitre (avant un contrôle) : les quatre modes mélangés, sur ce chapitre seulement.
+  // Un seul chapitre (avant un contrôle) : selon le mode choisi, ses exercices ou ses savoirs.
   // Les cartes sont tirées par répétition espacée, en évitant de demander deux fois le même savoir.
   function reviser(idChap) {
     const chap = chapitre(idChap);
@@ -337,16 +352,36 @@
     const duChapitre = niveau.savoirs.filter((s) => s.chap === idChap);
     const reserve = savoirsJouables().concat(duChapitre.filter((s) => !debloque(chap)));
     const ouvert = (id) => id === idChap || (chapitre(id) && debloque(chapitre(id)));
-    const tirage = [];
-    for (const mode of Savoirs.modes) {
-      for (const carte of mode.cartes(reserve, niveau, ouvert).filter((c) => c.chap === idChap)) {
-        tirage.push({ carte: carte, mode: mode, cle: Math.pow(Math.random(), 1 / progression.poids(mode.competence, carte.id)) });
+
+    // « Je m'entraîne » choisi et chapitre avec des techniques : seulement ses techniques, à des valeurs
+    // toujours nouvelles (une technique peut revenir dans la séance), les moins sues d'abord
+    const entrainement = Savoirs.modes.find((md) => md.id === "appliquer");
+    if (reglages().mode === "appliquer") {
+      const techniques = entrainement.cartes(reserve, niveau, ouvert).filter((c) => c.chap === idChap && c.type === "technique");
+      if (techniques.length) {
+        const ordre = () => techniques.map((c) => ({ c: c, cle: Math.pow(Math.random(), 1 / progression.poids("appliquer", c.id)) }))
+          .sort((a, b) => b.cle - a.cle).map((x) => x.c);
+        let cartes = [];
+        while (cartes.length < NB_CARTES) cartes = cartes.concat(ordre());
+        cartes = cartes.slice(0, NB_CARTES).map((c) => Object.assign({}, c)); // une copie par carte (chacune a sa réponse)
+        seance = { cartes: cartes, modes: cartes.map(() => entrainement), i: 0, resultats: [], chapitre: idChap };
+        afficherCarte();
+        return;
       }
     }
-    tirage.sort((a, b) => b.cle - a.cle);
-    const choisis = [], vus = new Set();
-    for (const t of tirage) if (choisis.length < NB_CARTES && !vus.has(t.carte.id)) { vus.add(t.carte.id); choisis.push(t); }
-    for (const t of tirage) if (choisis.length < NB_CARTES && !choisis.includes(t)) choisis.push(t);
+
+    // « J'apprends » : les savoirs du chapitre (chacun sous la forme qui lui convient), puis, s'il en reste
+    // moins de 10, des exercices d'entraînement du même chapitre pour compléter la séance
+    const apprendre = Savoirs.modes.find((md) => md.id === "apprendre");
+    const cle = (mode, carte) => Math.pow(Math.random(), 1 / progression.poids(mode.competenceDe ? mode.competenceDe(carte, progression) : mode.competence, carte.id));
+    const tri = (mode, cartes) => cartes.map((c) => ({ carte: c, mode: mode, cle: cle(mode, c) })).sort((a, b) => b.cle - a.cle);
+    const choisis = tri(apprendre, apprendre.cartes(reserve, niveau, ouvert).filter((c) => c.chap === idChap)).slice(0, NB_CARTES);
+    const exercices = tri(entrainement, entrainement.cartes(reserve, niveau, ouvert).filter((c) => c.chap === idChap));
+    for (let k = 0; exercices.length && choisis.length < NB_CARTES; k++) {
+      const t = exercices[k % exercices.length];
+      if (k >= exercices.length && t.carte.type !== "technique") break; // un exemple fixe ne revient pas
+      choisis.push({ carte: Object.assign({}, t.carte), mode: t.mode });
+    }
     if (!choisis.length) { accueil(); return; }
     seance = { cartes: choisis.map((t) => t.carte), modes: choisis.map((t) => t.mode), i: 0, resultats: [], chapitre: idChap };
     afficherCarte();
@@ -358,8 +393,10 @@
     const lienChap = chapitre(reglages().lien);
     const chapitres = niveau.chapitres.filter((c) => !c.revision).sort((a, b) => a.ordre - b.ordre);
     afficher(
-      '<section class="reviser"><h1>Réviser un chapitre</h1>' +
-      '<p class="sous-titre">Pour préparer un contrôle : 10 cartes sur ce chapitre seulement, dans les quatre façons de jouer.</p>' +
+      '<section class="reviser"><h1>' + (reglages().mode === "appliquer" ? "M'entraîner sur un chapitre" : "Apprendre un chapitre") + "</h1>" +
+      '<p class="sous-titre">' + (reglages().mode === "appliquer"
+        ? "10 exercices sur ce chapitre seulement, avec des nombres toujours nouveaux."
+        : "Les savoirs de ce chapitre seulement, puis quelques exercices s'il en reste de la place.") + "</p>" +
       '<div class="liste-chapitres">' + chapitres.map((c) => {
         const plusLoin = !debloque(c) && (!lienChap || c.ordre > lienChap.ordre);
         return '<button class="ligne-chapitre theme-' + theme(c.id) + '" data-chap="' + c.id + '">' + rosace(etatsChapitre(c), theme(c.id)) +
@@ -380,10 +417,14 @@
       const recent = chapitreChoisi().ordre;
       // Petit bonus pour le chapitre choisi et celui d'avant ; les révisions des années précédentes
       // comptent moins, pour que l'année en cours reste la plus présente
-      cartes = progression.choisir(mode.competence, possibles, NB_CARTES, (s) => {
+      // « J'apprends » : la répétition espacée suit la forme de carte de chaque savoir
+      const competence = mode.competenceDe ? (s) => mode.competenceDe(s, progression) : mode.competence;
+      cartes = progression.choisir(competence, possibles, NB_CARTES, (s) => {
         const c = chapitre(s.chap);
-        if (c.revision) return POIDS_REVISION;
-        return !anterieur(c) && c.ordre >= recent - 1 ? 1.5 : 1;
+        // Les techniques (exercices générés) comptent double par rapport aux exemples fixes des savoirs
+        const technique = s.type === "technique" ? 2 : 1;
+        if (c.revision) return POIDS_REVISION * technique;
+        return (!anterieur(c) && c.ordre >= recent - 1 ? 1.5 : 1) * technique;
       });
     }
     if (!cartes.length) { accueil(); return; }
@@ -424,13 +465,13 @@
 
     const pied = ecran.querySelector(".carte-pied");
     mode.afficher(savoir, ecran.querySelector(".carte-corps"), (juste) => {
-      progression.noter(mode.competence, savoir.id, juste);
+      progression.noter(mode.competenceDe ? savoir._competence : mode.competence, savoir.id, juste);
       seance.resultats[seance.i] = juste;
       majBarreSeance();
       const derniere = seance.i === seance.cartes.length - 1;
       pied.innerHTML =
         '<p class="verdict ' + (juste ? "juste" : "faux") + '"><span class="icone" aria-hidden="true">' + (juste ? "✓" : "✗") + "</span>" +
-        (juste ? hasard(BRAVO) : mode.messageFaux || "Pas tout à fait : la bonne réponse est en bleu.") + "</p>" +
+        (juste ? hasard(BRAVO) : (mode.competenceDe && savoir._messageFaux) || mode.messageFaux || "Pas tout à fait : la bonne réponse est en bleu.") + "</p>" +
         (savoir.note ? '<p class="note"><strong>' + (savoir.etiquetteNote || "À retenir") + " :</strong> " + m.texte(savoir.note) + "</p>" : "") +
         '<button id="suivant" class="bouton-principal">' + (derniere ? "Voir le bilan" : "Suivant") + "</button>";
       pied.hidden = false;
@@ -451,11 +492,14 @@
     barreSeance.hidden = true;
     const justes = seance.cartes.filter((c, i) => seance.resultats[i]);
     const ratees = seance.cartes.filter((c, i) => !seance.resultats[i]);
+    // Séance « Je m'entraîne » : on parle d'exercices réussis ; sinon de savoirs retenus
+    const exercices = seance.cartes.every((c, i) => modeCarte(i).id === "appliquer");
+    const reussis = exercices ? pluriel(justes.length, "exercice réussi", "exercices réussis") : pluriel(justes.length, "savoir retenu", "savoirs retenus");
     let message;
     if (!ratees.length && seance.rattrapage) message = (justes.length > 1 ? "Les " + justes.length + " cartes ratées sont rattrapées. Elles reviendront" : "La carte ratée est rattrapée. Elle reviendra") + " bientôt pour vérifier.";
-    else if (!ratees.length) message = pluriel(justes.length, "savoir retenu", "savoirs retenus") + " aujourd'hui. Superbe séance !";
-    else if (!justes.length) message = "Ces savoirs reviendront demain : c'est en se trompant qu'on apprend.";
-    else message = pluriel(justes.length, "savoir retenu", "savoirs retenus") + " aujourd'hui, " + ratees.length + " à revoir demain.";
+    else if (!ratees.length) message = reussis + " aujourd'hui. Superbe séance !";
+    else if (!justes.length) message = (exercices ? "Ces exercices" : "Ces savoirs") + " reviendront demain : c'est en se trompant qu'on apprend.";
+    else message = reussis + " aujourd'hui, " + ratees.length + " à revoir demain.";
 
     afficher(
       '<section class="fin">' +
@@ -679,7 +723,7 @@
       "<li>Ton prénom et ta progression restent <strong>sur cet appareil</strong>, dans ton navigateur. " +
       "Rien n'est envoyé à ton professeur ni à personne.</li>" +
       "<li>Pas de publicité, pas de mesure d'audience, aucun contenu chargé depuis un autre site.</li>" +
-      "<li>Écris ton prénom ou un surnom, <strong>jamais ton nom de famille</strong>.</li>" +
+      "<li>Ton prénom ou un pseudo suffit : pas besoin de ton nom.</li>" +
       "<li>Le site est hébergé par GitHub Pages (GitHub, Inc.). Comme pour tout site internet, l'hébergeur enregistre " +
       "automatiquement quelques informations techniques sur les visites (par exemple l'adresse internet de l'appareil), " +
       "pour faire fonctionner et protéger le service. Ton prénom et tes réponses n'en font jamais partie.</li>" +

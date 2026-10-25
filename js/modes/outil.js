@@ -9,6 +9,7 @@
 
   Savoirs.modes.push({
     id: "outil",
+    interne: true, // mis de côté : ses meilleurs énoncés serviront au futur mode « Problèmes »
     titre: "Quel outil ?",
     description: "Lis l'énoncé et choisis le savoir qui permet de le résoudre.",
     competence: "outil",

@@ -26,7 +26,10 @@ propose « Ajouter à l'écran d'accueil » : MémoMaths s'ouvre alors comme une
 En 3e, MémoMaths propose aussi les savoirs de 4e et de 5e (en 4e, ceux de 5e), toujours débloqués,
 mais tirés moins souvent que ceux de l'année (réglage `POIDS_REVISION` dans `js/app.js`).
 Un savoir présent dans plusieurs années (même `id`) n'apparaît qu'une fois et garde une seule progression.
-Dans « J'applique », les savoirs chiffrés ont des valeurs tirées au hasard à chaque fois (`js/modes/calculs.js`).
+Dans « Je m'entraîne », les exercices ont des valeurs tirées au hasard à chaque fois. Les chapitres qui ont un
+référentiel validé par l'enseignant ont leurs propres techniques, en trois niveaux qui s'adaptent à l'élève
+(`donnees/<niveau>/techniques.js` ; pour l'instant : 4e, « Nombres relatifs : multiplication et division ») ;
+les autres chapitres utilisent les exemples chiffrés des savoirs (`js/modes/calculs.js`).
 
 ## Choisir son niveau et son chapitre
 
@@ -39,8 +42,9 @@ https://<adresse du site>/#niveau=4e&jusqua=pyth
 
 Les identifiants des chapitres sont dans `donnees/<niveau>/savoirs.js` (champ `id` de chaque chapitre).
 
-Avant un contrôle, « Réviser un seul chapitre » (sous le bouton Jouer, ou dans « Mon bilan ») propose
-10 cartes sur ce chapitre, dans les quatre façons de jouer. Lien direct : `…/#niveau=3e&reviser=thal`.
+Avant un contrôle, le lien sous le bouton Jouer (ou « Réviser ce chapitre » dans « Mon bilan ») propose
+10 cartes sur un seul chapitre, selon le mode choisi : « Apprendre un seul chapitre » (ses savoirs)
+ou « M'entraîner sur un seul chapitre » (ses exercices). Lien direct : `…/#niveau=3e&reviser=thal`.
 
 ## Organisation des fichiers
 

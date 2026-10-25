@@ -197,6 +197,18 @@ h1, h2 { line-height: 1.2; }
   min-height: 48px; padding: .3rem .6rem; border-radius: 16px;
   border: 2px solid var(--bord); background: var(--surface); font-weight: 700; font-size: .95rem; line-height: 1.15;
 }
+.titre-modes { margin: 1.3rem 0 .6rem; font-size: 1.1rem; }
+.modes .puce-mode { min-height: 60px; font-size: 1.05rem; }
+.titre-modes + .modes { margin-top: 0; }
+
+/* « J'apprends », carte « Sans aide » : la réponse cachée, puis l'élève dit s'il savait */
+.rappel-aide { text-align: center; margin: -.4rem 0 1rem; }
+.reponse-rappel {
+  margin: 0 0 1rem; padding: .9rem 1rem; border-radius: 16px; text-align: center;
+  border: 2px solid var(--juste); background: var(--juste-clair); font-size: 1.15rem; font-weight: 600;
+}
+.question-auto { margin: 0 0 .5rem; text-align: center; font-weight: 700; }
+.actions-auto { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; }
 .description-mode { margin: .6rem 0 0; text-align: center; font-size: .9rem; color: var(--texte-doux); }
 .puce-mode[aria-checked="true"] { background: var(--texte); border-color: var(--texte); color: var(--fond); }
 .puce-mode:disabled { border-style: dashed; color: var(--texte-doux); background: transparent; }
@@ -250,7 +262,16 @@ h1, h2 { line-height: 1.2; }
 .question .katex, .proposition .katex { font-size: 1.15em; }
 /* Une courte formule de l'énoncé (« h = 10 ») n'est jamais coupée en fin de ligne */
 .question .katex-html { white-space: nowrap; }
+/* Exercices d'entraînement : un long produit peut passer à la ligne après un signe × */
+.question.calcul .katex-html { white-space: normal; }
 .titre-savoir { margin: -.1rem 0 .5rem; text-align: center; font-weight: 700; color: var(--accent); }
+.niveau-technique {
+  display: inline-block; margin-left: .3rem; padding: .05rem .5rem; border-radius: 999px;
+  background: var(--surface-2); color: var(--texte-doux); font-size: .75rem; font-weight: 700; vertical-align: middle;
+}
+.choix-signe { grid-template-columns: 1fr 1fr; }
+.choix-signe .proposition { justify-content: center; font-weight: 700; font-size: 1.1rem; min-height: 64px; }
+.reponse-num + .correction, .choix-signe + .correction { display: block; text-align: left; font-size: 1rem; line-height: 1.8; }
 .titre-savoir.masque { color: var(--texte-doux); font-weight: 600; font-style: italic; }
 .savoir-utilise { font-weight: 700; color: var(--primaire); }
 .question.longue { font-size: 1.12rem; text-align: left; font-weight: 500; }
@@ -331,6 +352,20 @@ h1, h2 { line-height: 1.2; }
 .saisie.faux input { border-color: var(--faux); border-style: dashed; background: repeating-linear-gradient(135deg, var(--faux-clair) 0 7px, var(--surface-2) 7px 14px); opacity: 1; }
 .saisie input:disabled { color: var(--texte); -webkit-text-fill-color: var(--texte); }
 .reponse-num + .correction { display: block; text-align: left; font-size: 1rem; line-height: 1.8; }
+/* Saisie d'une fraction : numérateur au-dessus du dénominateur, le signe − devant */
+.saisie-fraction { justify-content: center; }
+.fraction-saisie { display: flex; flex-direction: column; align-items: stretch; gap: .35rem; width: 7.5rem; }
+.fraction-saisie input { flex: none; width: 100%; }
+.barre-fraction { display: block; height: 3px; border-radius: 2px; background: var(--texte); }
+.moins-fraction { font-size: 2rem; font-weight: 800; line-height: 1; }
+.signe[aria-pressed="true"] { border-color: var(--accent, var(--texte)); }
+/* Saisie d'une expression : touches utiles et aperçu en écriture mathématique */
+.touches-expression { display: grid; grid-template-columns: repeat(3, minmax(48px, 1fr)); gap: .4rem; max-width: 16rem; margin: .6rem auto 0; }
+.touches-expression button {
+  min-width: 48px; min-height: 48px; border: 2px solid var(--bord); border-radius: 12px;
+  background: var(--surface); font-size: 1.2rem; font-weight: 700;
+}
+.apercu-expression { min-height: 2.4rem; margin: .6rem 0 0; text-align: center; font-size: 1.3rem; overflow-x: auto; }
 
 .carte-pied { margin-top: 1.1rem; animation: monte .3s ease-out; }
 .verdict { display: flex; align-items: center; gap: .6rem; margin: 0 0 .7rem; font-weight: 800; font-size: 1.1rem; }

@@ -628,15 +628,6 @@ Savoirs.enregistrer({
     "$\\dfrac{1}{P(A)}$",
     "$-P(A)$"
    ],
-   "exemples": [
-    {
-     "donnees": "$P(A) = 0{,}3$",
-     "question": "$P(\\text{non } A)$ ?",
-     "reponse": 0.7,
-     "unite": "",
-     "correction": "$1 - 0{,}3 = 0{,}7$"
-    }
-   ],
    "morceaux": [
     "P",
     "(",
@@ -654,6 +645,15 @@ Savoirs.enregistrer({
    "intrus": [
     "+",
     "\\dfrac{1}{P ( A )}"
+   ],
+   "exemples": [
+    {
+     "donnees": "$P(A) = 0{,}3$",
+     "question": "$P(\\text{non } A)$ ?",
+     "reponse": 0.7,
+     "unite": "",
+     "correction": "$1 - 0{,}3 = 0{,}7$"
+    }
    ]
   },
   {
@@ -671,49 +671,144 @@ Savoirs.enregistrer({
    "note": "Une série de « pile » ne rend pas « face » plus probable au tirage suivant."
   },
   {
-   "id": "rel-sous",
-   "chap": "rf",
-   "type": "regle",
-   "titre": "Soustraction de relatifs",
-   "question": "Soustraire un nombre, c'est ...",
-   "reponse": "ajouter son opposé : $a - b = a + (-b)$",
+   "id": "proba-incomp",
+   "chap": "proba",
+   "type": "propriete",
+   "titre": "Événements incompatibles",
+   "question": "Si $A$ et $B$ sont incompatibles (ils ne peuvent pas se réaliser en même temps), alors $P(A \\text{ ou } B)$ vaut ...",
+   "reponse": "$P(A) + P(B)$",
    "pieges": [
-    "ajouter ce nombre : $a - b = a + b$",
-    "multiplier par $-1$",
-    "diviser par son opposé"
-   ],
-   "exemples": [
-    {
-     "donnees": "Calculer $5 - (-2)$",
-     "question": "Résultat ?",
-     "reponse": 7,
-     "unite": "",
-     "correction": "$5 - (-2) = 5 + 2 = 7$"
-    },
-    {
-     "donnees": "Calculer $-3 - 5$",
-     "question": "Résultat ?",
-     "reponse": -8,
-     "unite": "",
-     "correction": "$-3 - 5 = (-3) + (-5) = -8$"
-    }
+    "$P(A) \\times P(B)$",
+    "$P(A) - P(B)$",
+    "$1 - P(A) - P(B)$"
    ],
    "morceaux": [
-    "a",
-    "-",
-    "b",
-    "=",
-    "a",
-    "+",
+    "P",
     "(",
-    "-b",
+    "A",
+    "\\text{ ou }",
+    "B",
+    ")",
+    "=",
+    "P",
+    "(",
+    "A",
+    ")",
+    "+",
+    "P",
+    "(",
+    "B",
     ")"
    ],
    "intrus": [
-    "a",
-    "+",
-    "b"
+    "\\times"
+   ],
+   "exemples": [
+    {
+     "donnees": "On lance un dé : $P(\\text{un } 1) = \\dfrac{1}{6}$ et $P(\\text{un } 2) = \\dfrac{1}{6}$",
+     "question": "$P(\\text{obtenir 1 ou 2})$ (fraction : numérateur sur 6) ?",
+     "reponse": 2,
+     "unite": "",
+     "correction": "$\\dfrac{1}{6} + \\dfrac{1}{6} = \\dfrac{2}{6}$"
+    }
    ]
+  },
+  {
+   "id": "proba-arbre",
+   "chap": "proba",
+   "type": "regle",
+   "titre": "Arbre de probabilités",
+   "question": "Dans un arbre de probabilités, pour une issue à deux épreuves, on ...",
+   "reponse": "multiplie les probabilités le long de la branche, puis on additionne les branches qui mènent au même événement",
+   "pieges": [
+    "additionne les probabilités le long de la branche, puis multiplie les branches qui mènent au même événement",
+    "multiplie toutes les probabilités de toutes les branches de l'arbre, sans distinguer les événements, puis ne garde que le résultat",
+    "ne garde que la première branche de l'arbre pour chaque événement, puis additionne les probabilités de tous les événements"
+   ]
+  },
+  {
+   "id": "proba-equi",
+   "chap": "proba",
+   "type": "regle",
+   "titre": "Vérifier l'équiprobabilité",
+   "question": "On peut utiliser « cas favorables ÷ cas possibles » seulement si ...",
+   "reponse": "toutes les issues ont la même probabilité",
+   "pieges": [
+    "il y a au moins deux issues possibles dans l'expérience",
+    "l'expérience est répétée un grand nombre de fois",
+    "les issues sont toujours rangées dans l'ordre croissant"
+   ],
+   "note": "Deux issues ne sont pas forcément équiprobables (la météo de demain)."
+  },
+  {
+   "id": "proba-certain",
+   "chap": "proba",
+   "type": "propriete",
+   "titre": "Événement certain, événement impossible",
+   "question": "La probabilité d'un événement certain vaut ...",
+   "reponse": "1 ; celle d'un événement impossible vaut 0",
+   "pieges": [
+    "0 ; celle d'un événement impossible vaut 1",
+    "100 ; celle d'un événement impossible vaut 0",
+    "0,5 ; celle d'un événement impossible vaut −1"
+   ],
+   "note": "Exemple : obtenir un nombre inférieur à 7 avec un dé à 6 faces est certain."
+  },
+  {
+   "id": "proba-somme",
+   "chap": "proba",
+   "type": "propriete",
+   "titre": "Somme des probabilités des issues",
+   "question": "La somme des probabilités de toutes les issues d'une expérience aléatoire vaut ...",
+   "reponse": "1",
+   "pieges": [
+    "0",
+    "le nombre d'issues",
+    "100"
+   ],
+   "note": "Avec 8 issues équiprobables, chacune a la probabilité $\\dfrac{1}{8}$."
+  },
+  {
+   "id": "proba-incomp-def",
+   "chap": "proba",
+   "type": "definition",
+   "titre": "Événements incompatibles",
+   "question": "Deux événements sont incompatibles lorsque ...",
+   "reponse": "ils ne peuvent pas se réaliser en même temps",
+   "pieges": [
+    "ils ont exactement la même probabilité de se réaliser",
+    "ils se réalisent toujours en même temps, jamais séparément",
+    "l'un des deux a une probabilité nulle ou égale à 1"
+   ],
+   "note": "Exemple : « obtenir un nombre pair » et « obtenir 5 » avec un dé sont incompatibles."
+  },
+  {
+   "id": "proba-remise",
+   "chap": "proba",
+   "type": "regle",
+   "titre": "Avec ou sans remise",
+   "question": "Pour la deuxième épreuve d'un tirage de deux billes, le contenu du sac est ...",
+   "reponse": "le même si on remet la première bille, et réduit d'une bille sinon",
+   "pieges": [
+    "toujours le même, qu'on remette la première bille ou non",
+    "toujours réduit d'une bille, qu'on remette la première bille ou non",
+    "le même si on ne remet pas la première bille, réduit d'une bille sinon"
+   ],
+   "note": "Sans remise, avec 5 billes dont 2 rouges : $P(\\text{rouge puis rouge}) = \\dfrac{2}{5} \\times \\dfrac{1}{4} = \\dfrac{1}{10}$ ; avec remise, $\\dfrac{2}{5} \\times \\dfrac{2}{5} = \\dfrac{4}{25}$."
+  },
+  {
+   "id": "proba-tableau",
+   "chap": "proba",
+   "type": "regle",
+   "titre": "Dénombrer deux épreuves",
+   "question": "Pour dénombrer les issues de deux épreuves successives (deux dés, par exemple), on utilise ...",
+   "reponse": "un tableau à double entrée ou un arbre",
+   "pieges": [
+    "une seule liste sans tenir compte de l'ordre des épreuves",
+    "une addition du nombre d'issues de chaque épreuve",
+    "un histogramme"
+   ],
+   "note": "Deux dés équilibrés : $6 \\times 6 = 36$ issues équiprobables."
   },
   {
    "id": "rel-signe-prod",
@@ -730,16 +825,25 @@ Savoirs.enregistrer({
    "note": "Même signe : positif. Produit de plusieurs facteurs : nombre pair de facteurs négatifs → positif ; impair → négatif."
   },
   {
-   "id": "frac-simpl",
+   "id": "rel-div-signe",
    "chap": "rf",
    "type": "regle",
-   "titre": "Simplifier une fraction",
-   "question": "Pour simplifier $\\dfrac{a}{b}$ on ...",
-   "reponse": "divise le numérateur et le dénominateur par un même nombre",
+   "titre": "Signe d'un quotient",
+   "question": "Le quotient de deux nombres de signes contraires est ...",
+   "reponse": "négatif",
    "pieges": [
-    "ajoute le même nombre en haut et en bas",
-    "soustrait le même nombre en haut et en bas",
-    "divise seulement le numérateur"
+    "positif",
+    "nul",
+    "du signe du plus grand"
+   ],
+   "exemples": [
+    {
+     "donnees": "Calculer $\\dfrac{-12}{3}$",
+     "question": "Résultat ?",
+     "reponse": -4,
+     "unite": "",
+     "correction": "$-12 \\div 3 = -4$"
+    }
    ]
   },
   {
@@ -754,15 +858,6 @@ Savoirs.enregistrer({
     "$\\dfrac{a + b}{c^{2}}$",
     "$\\dfrac{a \\times b}{c}$"
    ],
-   "exemples": [
-    {
-     "donnees": "Calculer $\\dfrac{3}{7} + \\dfrac{2}{7}$ (numérateur de la réponse)",
-     "question": "Numérateur ?",
-     "reponse": 5,
-     "unite": "",
-     "correction": "$\\dfrac{3 + 2}{7} = \\dfrac{5}{7}$"
-    }
-   ],
    "morceaux": [
     "\\dfrac{a}{c}",
     "+",
@@ -773,19 +868,15 @@ Savoirs.enregistrer({
    "intrus": [
     "\\dfrac{a + b}{c + c}",
     "\\times"
-   ]
-  },
-  {
-   "id": "frac-add-diff",
-   "chap": "rf",
-   "type": "regle",
-   "titre": "Additionner des fractions de dénominateurs différents",
-   "question": "Pour additionner $\\dfrac{1}{2}$ et $\\dfrac{1}{3}$ on ...",
-   "reponse": "les réduit d'abord au même dénominateur : $\\dfrac{3}{6} + \\dfrac{2}{6} = \\dfrac{5}{6}$",
-   "pieges": [
-    "additionne les numérateurs et les dénominateurs : $\\dfrac{2}{5}$",
-    "additionne seulement les dénominateurs",
-    "multiplie les deux fractions"
+   ],
+   "exemples": [
+    {
+     "donnees": "Calculer $\\dfrac{3}{7} + \\dfrac{2}{7}$ (numérateur de la réponse)",
+     "question": "Numérateur ?",
+     "reponse": 5,
+     "unite": "",
+     "correction": "$\\dfrac{3 + 2}{7} = \\dfrac{5}{7}$"
+    }
    ]
   },
   {
@@ -800,6 +891,7 @@ Savoirs.enregistrer({
     "$\\dfrac{a \\times c}{b + d}$",
     "$\\dfrac{a \\times d}{b \\times c}$"
    ],
+   "note": "Pas besoin de dénominateur commun pour multiplier.",
    "morceaux": [
     "\\dfrac{a}{b}",
     "\\times",
@@ -810,8 +902,7 @@ Savoirs.enregistrer({
    "intrus": [
     "\\dfrac{a \\times d}{b \\times c}",
     "+"
-   ],
-   "note": "Pas besoin de dénominateur commun pour multiplier."
+   ]
   },
   {
    "id": "inverse",
@@ -862,6 +953,118 @@ Savoirs.enregistrer({
    ]
   },
   {
+   "id": "frac-ordre",
+   "chap": "rf",
+   "type": "regle",
+   "titre": "Écrire une fraction avec un signe négatif",
+   "question": "$-\\dfrac{3}{4}$, $\\dfrac{-3}{4}$ et $\\dfrac{3}{-4}$ sont ...",
+   "reponse": "trois écritures du même nombre",
+   "pieges": [
+    "trois nombres différents",
+    "deux nombres positifs et un négatif",
+    "des nombres inverses"
+   ]
+  },
+  {
+   "id": "rel-sous",
+   "chap": "rf",
+   "type": "regle",
+   "titre": "Soustraction de relatifs",
+   "question": "Soustraire un nombre, c'est ...",
+   "reponse": "ajouter son opposé : $a - b = a + (-b)$",
+   "pieges": [
+    "ajouter ce nombre lui-même : $a - b = a + b$",
+    "multiplier par $-1$ le résultat : $a - b = -a \\times b$",
+    "diviser le premier nombre par l'opposé du second"
+   ],
+   "morceaux": [
+    "a",
+    "-",
+    "b",
+    "=",
+    "a",
+    "+",
+    "(",
+    "-b",
+    ")"
+   ],
+   "intrus": [
+    "a",
+    "+",
+    "b"
+   ],
+   "exemples": [
+    {
+     "donnees": "Calculer $5 - (-2)$",
+     "question": "Résultat ?",
+     "reponse": 7,
+     "unite": "",
+     "correction": "$5 - (-2) = 5 + 2 = 7$"
+    },
+    {
+     "donnees": "Calculer $-3 - 5$",
+     "question": "Résultat ?",
+     "reponse": -8,
+     "unite": "",
+     "correction": "$-3 - 5 = (-3) + (-5) = -8$"
+    }
+   ]
+  },
+  {
+   "id": "frac-simpl",
+   "chap": "rf",
+   "type": "regle",
+   "titre": "Simplifier une fraction",
+   "question": "Pour simplifier $\\dfrac{a}{b}$ on ...",
+   "reponse": "divise le numérateur et le dénominateur par un même nombre",
+   "pieges": [
+    "ajoute le même nombre en haut et en bas de la fraction",
+    "soustrait le même nombre en haut et en bas de la fraction",
+    "divise seulement le numérateur, en laissant le dénominateur"
+   ]
+  },
+  {
+   "id": "frac-add-diff",
+   "chap": "rf",
+   "type": "regle",
+   "titre": "Additionner des fractions de dénominateurs différents",
+   "question": "Pour additionner $\\dfrac{1}{2}$ et $\\dfrac{1}{3}$ on ...",
+   "reponse": "les réduit d'abord au même dénominateur : $\\dfrac{3}{6} + \\dfrac{2}{6} = \\dfrac{5}{6}$",
+   "pieges": [
+    "additionne les numérateurs et les dénominateurs : $\\dfrac{1}{2} + \\dfrac{1}{3} = \\dfrac{2}{5}$",
+    "additionne seulement les dénominateurs et garde le numérateur",
+    "multiplie les deux fractions entre elles, puis simplifie"
+   ]
+  },
+  {
+   "id": "rel-signe-nb",
+   "chap": "rf",
+   "type": "regle",
+   "titre": "Signe d'un produit de plusieurs facteurs",
+   "question": "Un produit de plusieurs facteurs non nuls est négatif quand ...",
+   "reponse": "le nombre de facteurs négatifs est impair",
+   "pieges": [
+    "le nombre de facteurs positifs est impair",
+    "il y a au moins un facteur négatif",
+    "le nombre de facteurs est impair"
+   ],
+   "note": "Exemple : $(-2) \\times 3 \\times (-5) = 30$ : deux facteurs négatifs, le produit est positif."
+  },
+  {
+   "id": "frac-prior",
+   "chap": "rf",
+   "type": "regle",
+   "titre": "Barre de fraction et priorités",
+   "question": "Dans $\\dfrac{a + b}{c}$, la barre de fraction joue le rôle de ...",
+   "reponse": "parenthèses : on calcule d'abord le numérateur, puis on divise",
+   "pieges": [
+    "parenthèses : on divise d'abord $b$ par $c$, puis on ajoute $a$",
+    "multiplication : on multiplie le numérateur par le dénominateur",
+    "signe égal : on obtient deux calculs séparés à comparer"
+   ],
+   "note": "Les parenthèses, puis les puissances, puis les multiplications et divisions, enfin les additions et soustractions."
+  },
+  {
    "id": "hypotenuse",
    "chap": "pyth",
    "type": "definition",
@@ -887,6 +1090,7 @@ Savoirs.enregistrer({
     "$AB^{2} = BC^{2} + AC^{2}$",
     "$BC^{2} = AB^{2} - AC^{2}$"
    ],
+   "note": "Hypoténuse : on additionne les carrés. Côté de l'angle droit : on soustrait.",
    "morceaux": [
     "BC^{2}",
     "=",
@@ -913,20 +1117,6 @@ Savoirs.enregistrer({
      "unite": "cm",
      "correction": "$AC^{2} = 13^{2} - 5^{2} = 144$ donc $AC = 12$ cm"
     }
-   ],
-   "note": "Hypoténuse : on additionne les carrés. Côté de l'angle droit : on soustrait."
-  },
-  {
-   "id": "pyth-cote",
-   "chap": "pyth",
-   "type": "regle",
-   "titre": "Calculer un côté de l'angle droit",
-   "question": "Pour calculer un côté de l'angle droit avec Pythagore, on ...",
-   "reponse": "soustrait le carré de l'autre côté au carré de l'hypoténuse, puis prend la racine",
-   "pieges": [
-    "additionne les carrés des deux autres côtés, puis prend la racine carrée",
-    "soustrait les longueurs des deux autres côtés, sans carré",
-    "additionne les longueurs des deux autres côtés, puis prend la racine"
    ]
   },
   {
@@ -937,9 +1127,9 @@ Savoirs.enregistrer({
    "question": "Si, dans un triangle ABC, on a $BC^{2} = AB^{2} + AC^{2}$, alors ...",
    "reponse": "le triangle ABC est rectangle en A",
    "pieges": [
-    "le triangle ABC est isocèle en A",
+    "le triangle ABC est équilatéral, puisque les trois côtés sont égaux",
     "$BC = AB + AC$",
-    "le triangle ABC est équilatéral"
+    "le triangle ABC est isocèle en A"
    ],
    "note": "La réciproque sert à prouver qu'un triangle est rectangle."
   },
@@ -952,8 +1142,21 @@ Savoirs.enregistrer({
    "reponse": "le triangle ABC n'est pas rectangle en A",
    "pieges": [
     "le triangle ABC est rectangle en B",
-    "le triangle ABC est équilatéral",
+    "le triangle ABC est équilatéral, puisque les trois côtés sont égaux",
     "on ne peut rien conclure"
+   ]
+  },
+  {
+   "id": "pyth-cote",
+   "chap": "pyth",
+   "type": "regle",
+   "titre": "Calculer un côté de l'angle droit",
+   "question": "Pour calculer un côté de l'angle droit avec Pythagore, on ...",
+   "reponse": "soustrait le carré de l'autre côté au carré de l'hypoténuse, puis prend la racine",
+   "pieges": [
+    "additionne les carrés des deux autres côtés, puis prend la racine carrée du résultat",
+    "soustrait les longueurs des deux autres côtés, sans les élever au carré",
+    "additionne les longueurs des deux autres côtés, puis prend la racine du total"
    ]
   },
   {
@@ -964,10 +1167,103 @@ Savoirs.enregistrer({
    "question": "Avec la réciproque, on compare ...",
    "reponse": "le carré du plus grand côté et la somme des carrés des deux autres",
    "pieges": [
-    "la somme des deux plus petits côtés et le plus grand",
-    "les carrés des deux plus petits côtés entre eux",
-    "le périmètre et le plus grand côté"
+    "la somme des deux plus petits côtés et le plus grand côté, sans carré",
+    "les carrés des deux plus petits côtés entre eux, puis au plus grand côté",
+    "le périmètre du triangle et le carré du plus grand côté"
    ]
+  },
+  {
+   "id": "pyth-arrondi",
+   "chap": "pyth",
+   "type": "regle",
+   "titre": "Arrondir à la fin",
+   "question": "Quand une longueur n'est pas un nombre décimal exact, on arrondit ...",
+   "reponse": "seulement le résultat final, jamais les calculs intermédiaires",
+   "pieges": [
+    "chaque carré et chaque racine, dès qu'ils ne sont plus des nombres décimaux exacts",
+    "la racine carrée, puis on recommence le calcul",
+    "les longueurs de l'énoncé, avant de commencer"
+   ],
+   "note": "Exemple : $BC = \\sqrt{170} \\approx 13{,}0$ cm au dixième."
+  },
+  {
+   "id": "pyth-triplet",
+   "chap": "pyth",
+   "type": "propriete",
+   "titre": "Triplets pythagoriciens",
+   "question": "Si $(a\\,;\\,b\\,;\\,c)$ est un triplet pythagoricien, alors pour tout entier $k$ non nul ...",
+   "reponse": "$(ka\\,;\\,kb\\,;\\,kc)$ est aussi un triplet pythagoricien",
+   "pieges": [
+    "$(a + k\\,;\\,b + k\\,;\\,c + k)$ est aussi un triplet pythagoricien",
+    "$(ka\\,;\\,b\\,;\\,c)$ est aussi un triplet pythagoricien",
+    "seul le triplet $(a\\,;\\,b\\,;\\,c)$ de départ convient"
+   ],
+   "note": "Exemples : (3 ; 4 ; 5), (5 ; 12 ; 13), (8 ; 15 ; 17), (6 ; 8 ; 10) ; avec $k = 2$, (3 ; 4 ; 5) donne (6 ; 8 ; 10)."
+  },
+  {
+   "id": "pyth-redac",
+   "chap": "pyth",
+   "type": "regle",
+   "titre": "Rédiger avec le théorème",
+   "question": "La rédaction d'un calcul de longueur commence par ...",
+   "reponse": "« D'après le théorème de Pythagore dans le triangle ABC rectangle en A : … »",
+   "pieges": [
+    "« Je mesure le triangle avec la règle graduée, donc la longueur vaut environ … cm »",
+    "« On mesure la longueur avec la règle graduée : … »",
+    "« Comme les deux côtés connus valent …, le troisième vaut … »"
+   ],
+   "note": "On cite le triangle, l'angle droit, puis l'égalité $BC^{2} = AB^{2} + AC^{2}$ avant de remplacer par les valeurs.",
+   "morceaux": [
+    "\\text{D'après le théorème de Pythagore}",
+    "\\text{dans le triangle ABC rectangle en A}",
+    "BC^{2} = AB^{2} + AC^{2}"
+   ],
+   "intrus": [
+    "\\text{On mesure}",
+    "BC = AB + AC"
+   ]
+  },
+  {
+   "id": "pyth-choix",
+   "chap": "pyth",
+   "type": "regle",
+   "titre": "Quel théorème utiliser ?",
+   "question": "Pour calculer une longueur dans un triangle dont on sait qu'il est rectangle, on utilise ...",
+   "reponse": "le théorème de Pythagore (direct)",
+   "pieges": [
+    "la réciproque du théorème de Pythagore",
+    "la contraposée du théorème de Pythagore",
+    "le théorème de Thalès"
+   ],
+   "note": "Réciproque : on démontre qu'un triangle est rectangle ; contraposée : on démontre qu'il ne l'est pas."
+  },
+  {
+   "id": "pyth-diag-rect",
+   "chap": "pyth",
+   "type": "formule",
+   "titre": "Diagonale d'un rectangle",
+   "question": "La diagonale d'un rectangle de longueur $L$ et de largeur $\\ell$ vaut ...",
+   "reponse": "$\\sqrt{L^{2} + \\ell^{2}}$",
+   "pieges": [
+    "$L + \\ell$",
+    "$\\sqrt{L^{2} - \\ell^{2}}$",
+    "$\\sqrt{L + \\ell}$"
+   ],
+   "note": "La diagonale partage le rectangle en deux triangles rectangles dont elle est l'hypoténuse."
+  },
+  {
+   "id": "pyth-espace",
+   "chap": "pyth",
+   "type": "formule",
+   "titre": "Diagonale d'un pavé droit",
+   "question": "La grande diagonale d'un pavé droit de dimensions $a$, $b$ et $c$ vaut ...",
+   "reponse": "$\\sqrt{a^{2} + b^{2} + c^{2}}$",
+   "pieges": [
+    "$a + b + c$",
+    "$\\sqrt{a^{2} + b^{2}} + c$",
+    "$\\sqrt{a^{2} + b^{2} - c^{2}}$"
+   ],
+   "note": "On applique deux fois le théorème de Pythagore : d'abord dans la base, puis dans un triangle vertical."
   },
   {
    "id": "agrand-k",
@@ -993,6 +1289,204 @@ Savoirs.enregistrer({
     "k",
     "2k"
    ]
+  },
+  {
+   "id": "agr-k",
+   "chap": "agr",
+   "type": "formule",
+   "titre": "Rapport d'agrandissement ou de réduction",
+   "question": "Rapport $k$ d'un agrandissement ou d'une réduction ?",
+   "reponse": "$k = \\dfrac{\\text{longueur obtenue}}{\\text{longueur de départ}}$",
+   "pieges": [
+    "$k = \\dfrac{\\text{longueur de départ}}{\\text{longueur obtenue}}$",
+    "$k = \\text{longueur obtenue} - \\text{longueur de départ}$",
+    "$k = \\text{longueur obtenue} \\times \\text{longueur de départ}$"
+   ],
+   "morceaux": [
+    "k",
+    "=",
+    "\\dfrac{\\text{longueur obtenue}}{\\text{longueur de départ}}"
+   ],
+   "intrus": [
+    "\\dfrac{\\text{longueur de départ}}{\\text{longueur obtenue}}",
+    "-"
+   ],
+   "exemples": [
+    {
+     "donnees": "Un côté passe de 4 cm à 10 cm",
+     "question": "Rapport $k$ ?",
+     "reponse": 2.5,
+     "unite": "",
+     "correction": "$k = \\dfrac{10}{4} = 2{,}5$"
+    }
+   ]
+  },
+  {
+   "id": "agr-aire",
+   "chap": "agr",
+   "type": "regle",
+   "titre": "Retrouver k à partir de l'aire",
+   "question": "Si les aires sont multipliées par $A$, le rapport $k$ vaut ...",
+   "reponse": "$\\sqrt{A}$",
+   "pieges": [
+    "$A^{2}$",
+    "$\\dfrac{A}{2}$",
+    "$A$"
+   ],
+   "exemples": [
+    {
+     "donnees": "Les aires sont multipliées par 49",
+     "question": "Rapport $k$ ?",
+     "reponse": 7,
+     "unite": "",
+     "correction": "$k = \\sqrt{49} = 7$"
+    }
+   ]
+  },
+  {
+   "id": "agr-sens",
+   "chap": "agr",
+   "type": "regle",
+   "titre": "Agrandissement ou réduction ?",
+   "question": "Un rapport $k$ correspond à un agrandissement quand ...",
+   "reponse": "$k > 1$",
+   "pieges": [
+    "$k < 1$",
+    "$k < 0$",
+    "$k = 1$"
+   ],
+   "note": "$k < 1$ : réduction ; $k = 1$ : figure identique."
+  },
+  {
+   "id": "agr-vol",
+   "chap": "agr",
+   "type": "propriete",
+   "titre": "Volumes dans un agrandissement",
+   "question": "Dans un agrandissement de rapport $k$, les volumes sont multipliés par ...",
+   "reponse": "$k^{3}$",
+   "pieges": [
+    "$k$",
+    "$k^{2}$",
+    "$3k$"
+   ],
+   "morceaux": [
+    "V'",
+    "=",
+    "k^{3}",
+    "\\times",
+    "V"
+   ],
+   "intrus": [
+    "k",
+    "3k"
+   ],
+   "exemples": [
+    {
+     "donnees": "Rapport $k = 3$ ; volume initial 2 cm³",
+     "question": "Nouveau volume ?",
+     "reponse": 54,
+     "unite": "cm³",
+     "correction": "$2 \\times 3^{3} = 54$ cm³"
+    }
+   ]
+  },
+  {
+   "id": "agr-ech",
+   "chap": "agr",
+   "type": "definition",
+   "titre": "Échelle",
+   "question": "Une échelle de $\\dfrac{1}{N}$ correspond à ...",
+   "reponse": "une réduction de rapport $\\dfrac{1}{N}$",
+   "pieges": [
+    "un agrandissement de rapport $N$, car l'échelle donne toujours le rapport",
+    "une réduction de rapport $N$, car le dénominateur indique le rapport",
+    "une symétrie de rapport $N$, car l'échelle conserve les distances"
+   ],
+   "note": "Cela suppose $N > 1$."
+  },
+  {
+   "id": "agr-angles",
+   "chap": "agr",
+   "type": "propriete",
+   "titre": "Les angles sont conservés",
+   "question": "Dans un agrandissement ou une réduction, les mesures des angles ...",
+   "reponse": "ne changent pas",
+   "pieges": [
+    "sont multipliées par $k$, comme les longueurs",
+    "sont multipliées par $k^{2}$, comme les aires",
+    "sont divisées par $k$ dans une réduction"
+   ],
+   "note": "Exemple : un angle droit reste un angle droit, un triangle équilatéral reste équilatéral."
+  },
+  {
+   "id": "agr-long",
+   "chap": "agr",
+   "type": "propriete",
+   "titre": "Les longueurs sont multipliées par k",
+   "question": "Dans un agrandissement ou une réduction de rapport $k$, les longueurs sont multipliées par ...",
+   "reponse": "$k$",
+   "pieges": [
+    "$k^{2}$",
+    "$k^{3}$",
+    "$2k$"
+   ],
+   "note": "Si $k = 3$, un segment de 4 cm devient un segment de 12 cm."
+  },
+  {
+   "id": "agr-double",
+   "chap": "agr",
+   "type": "propriete",
+   "titre": "Longueurs doublées : volume ×8",
+   "question": "Quand on double toutes les longueurs d'un solide, son volume est multiplié par ...",
+   "reponse": "8",
+   "pieges": [
+    "2",
+    "4",
+    "6"
+   ],
+   "note": "Car $k = 2$ et $k^{3} = 2^{3} = 8$ ; les aires, elles, sont multipliées par $2^{2} = 4$."
+  },
+  {
+   "id": "agr-unit",
+   "chap": "agr",
+   "type": "formule",
+   "titre": "Unités d'aire",
+   "question": "Combien de cm² y a-t-il dans 1 m² ?",
+   "reponse": "10 000 cm²",
+   "pieges": [
+    "100 cm²",
+    "1 000 cm²",
+    "100 000 cm²"
+   ],
+   "note": "$1\\ \\text{m} = 100\\ \\text{cm}$ donc $1\\ \\text{m}^{2} = 100 \\times 100 = 10\\,000\\ \\text{cm}^{2}$."
+  },
+  {
+   "id": "agr-forme",
+   "chap": "agr",
+   "type": "propriete",
+   "titre": "Même forme, taille différente",
+   "question": "Une figure agrandie ou réduite a ...",
+   "reponse": "la même forme que la figure de départ, mais pas la même taille",
+   "pieges": [
+    "la même taille que la figure de départ, mais pas la même forme",
+    "la même forme et la même taille que la figure de départ",
+    "une forme et une taille toutes deux différentes de celles de départ"
+   ],
+   "note": "Un agrandissement ou une réduction d'un carré donne toujours un carré."
+  },
+  {
+   "id": "agr-inverse",
+   "chap": "agr",
+   "type": "regle",
+   "titre": "Passer de la figure obtenue à la figure de départ",
+   "question": "Si une figure $F'$ est un agrandissement de rapport $k$ de la figure $F$, alors $F$ est ...",
+   "reponse": "une réduction de rapport $\\dfrac{1}{k}$ de $F'$",
+   "pieges": [
+    "un agrandissement de rapport $k$ de $F'$, la transformation étant la même",
+    "une réduction de rapport $-k$ de $F'$",
+    "une réduction de rapport $k$ de $F'$"
+   ],
+   "note": "Exemple : agrandissement de rapport 4, donc retour par une réduction de rapport $\\dfrac{1}{4} = 0{,}25$."
   },
   {
    "id": "frequence",
@@ -1441,125 +1935,6 @@ Savoirs.enregistrer({
    ]
   },
   {
-   "id": "proba-incomp",
-   "chap": "proba",
-   "type": "propriete",
-   "titre": "Événements incompatibles",
-   "question": "Si $A$ et $B$ sont incompatibles (ils ne peuvent pas se réaliser en même temps), alors $P(A \\text{ ou } B)$ vaut ...",
-   "reponse": "$P(A) + P(B)$",
-   "pieges": [
-    "$P(A) \\times P(B)$",
-    "$P(A) - P(B)$",
-    "$1 - P(A) - P(B)$"
-   ],
-   "exemples": [
-    {
-     "donnees": "On lance un dé : $P(\\text{un } 1) = \\dfrac{1}{6}$ et $P(\\text{un } 2) = \\dfrac{1}{6}$",
-     "question": "$P(\\text{obtenir 1 ou 2})$ (fraction : numérateur sur 6) ?",
-     "reponse": 2,
-     "unite": "",
-     "correction": "$\\dfrac{1}{6} + \\dfrac{1}{6} = \\dfrac{2}{6}$"
-    }
-   ],
-   "morceaux": [
-    "P",
-    "(",
-    "A",
-    "\\text{ ou }",
-    "B",
-    ")",
-    "=",
-    "P",
-    "(",
-    "A",
-    ")",
-    "+",
-    "P",
-    "(",
-    "B",
-    ")"
-   ],
-   "intrus": [
-    "\\times"
-   ]
-  },
-  {
-   "id": "proba-arbre",
-   "chap": "proba",
-   "type": "regle",
-   "titre": "Arbre de probabilités",
-   "question": "Dans un arbre de probabilités, pour une issue à deux épreuves, on ...",
-   "reponse": "multiplie les probabilités le long de la branche, puis on additionne les branches qui mènent au même événement",
-   "pieges": [
-    "additionne les probabilités le long de la branche, puis multiplie les branches qui mènent au même événement",
-    "multiplie toutes les probabilités de toutes les branches de l'arbre",
-    "ne garde que la première branche, puis additionne les branches"
-   ]
-  },
-  {
-   "id": "proba-equi",
-   "chap": "proba",
-   "type": "regle",
-   "titre": "Vérifier l'équiprobabilité",
-   "question": "On peut utiliser « cas favorables ÷ cas possibles » seulement si ...",
-   "reponse": "toutes les issues ont la même probabilité",
-   "pieges": [
-    "il y a au moins deux issues",
-    "l'expérience est répétée",
-    "les issues sont ordonnées"
-   ],
-   "note": "Deux issues ne sont pas forcément équiprobables (la météo de demain)."
-  },
-  {
-   "id": "rel-div-signe",
-   "chap": "rf",
-   "type": "regle",
-   "titre": "Signe d'un quotient",
-   "question": "Le quotient de deux nombres de signes contraires est ...",
-   "reponse": "négatif",
-   "pieges": [
-    "positif",
-    "nul",
-    "du signe du plus grand"
-   ],
-   "exemples": [
-    {
-     "donnees": "Calculer $\\dfrac{-12}{3}$",
-     "question": "Résultat ?",
-     "reponse": -4,
-     "unite": "",
-     "correction": "$-12 \\div 3 = -4$"
-    }
-   ]
-  },
-  {
-   "id": "frac-ordre",
-   "chap": "rf",
-   "type": "regle",
-   "titre": "Écrire une fraction avec un signe négatif",
-   "question": "$-\\dfrac{3}{4}$, $\\dfrac{-3}{4}$ et $\\dfrac{3}{-4}$ sont ...",
-   "reponse": "trois écritures du même nombre",
-   "pieges": [
-    "trois nombres différents",
-    "deux nombres positifs et un négatif",
-    "des nombres inverses"
-   ]
-  },
-  {
-   "id": "prem-crit",
-   "chap": "prem",
-   "type": "regle",
-   "titre": "Critères de divisibilité",
-   "question": "Un nombre est divisible par 9 quand ...",
-   "reponse": "la somme de ses chiffres est divisible par 9",
-   "pieges": [
-    "son dernier chiffre est 9",
-    "la somme de ses chiffres est 9 seulement",
-    "il est divisible par 3"
-   ],
-   "note": "Par 2 : dernier chiffre pair. Par 3 : somme des chiffres divisible par 3. Par 5 : se termine par 0 ou 5. Par 10 : se termine par 0."
-  },
-  {
    "id": "prem-def",
    "chap": "prem",
    "type": "definition",
@@ -1618,41 +1993,6 @@ Savoirs.enregistrer({
    ]
   },
   {
-   "id": "prem-eucl",
-   "chap": "prem",
-   "type": "regle",
-   "titre": "Algorithme d'Euclide",
-   "question": "Dans l'algorithme d'Euclide, le PGCD est ...",
-   "reponse": "le dernier reste non nul",
-   "pieges": [
-    "le premier reste",
-    "le dernier quotient",
-    "le plus grand reste"
-   ]
-  },
-  {
-   "id": "prem-irred",
-   "chap": "prem",
-   "type": "regle",
-   "titre": "Fraction irréductible",
-   "question": "Pour rendre une fraction irréductible, on ...",
-   "reponse": "divise le numérateur et le dénominateur par leur PGCD",
-   "pieges": [
-    "divise seulement le numérateur par le PGCD",
-    "multiplie les deux par le PGCD",
-    "soustrait le PGCD aux deux"
-   ],
-   "exemples": [
-    {
-     "donnees": "Simplifier $\\dfrac{48}{36}$ : donner le numérateur de la fraction irréductible",
-     "question": "Numérateur ?",
-     "reponse": 4,
-     "unite": "",
-     "correction": "$\\dfrac{48 \\div 12}{36 \\div 12} = \\dfrac{4}{3}$"
-    }
-   ]
-  },
-  {
    "id": "prem-pgcd-fp",
    "chap": "prem",
    "type": "regle",
@@ -1666,118 +2006,124 @@ Savoirs.enregistrer({
    ]
   },
   {
-   "id": "agr-k",
-   "chap": "agr",
-   "type": "formule",
-   "titre": "Rapport d'agrandissement ou de réduction",
-   "question": "Rapport $k$ d'un agrandissement ou d'une réduction ?",
-   "reponse": "$k = \\dfrac{\\text{longueur obtenue}}{\\text{longueur de départ}}$",
-   "pieges": [
-    "$k = \\dfrac{\\text{longueur de départ}}{\\text{longueur obtenue}}$",
-    "$k = \\text{longueur obtenue} - \\text{longueur de départ}$",
-    "$k = \\text{longueur obtenue} \\times \\text{longueur de départ}$"
-   ],
-   "exemples": [
-    {
-     "donnees": "Un côté passe de 4 cm à 10 cm",
-     "question": "Rapport $k$ ?",
-     "reponse": 2.5,
-     "unite": "",
-     "correction": "$k = \\dfrac{10}{4} = 2{,}5$"
-    }
-   ],
-   "morceaux": [
-    "k",
-    "=",
-    "\\dfrac{\\text{longueur obtenue}}{\\text{longueur de départ}}"
-   ],
-   "intrus": [
-    "\\dfrac{\\text{longueur de départ}}{\\text{longueur obtenue}}",
-    "-"
-   ]
-  },
-  {
-   "id": "agr-aire",
-   "chap": "agr",
+   "id": "prem-irred",
+   "chap": "prem",
    "type": "regle",
-   "titre": "Retrouver k à partir de l'aire",
-   "question": "Si les aires sont multipliées par $A$, le rapport $k$ vaut ...",
-   "reponse": "$\\sqrt{A}$",
+   "titre": "Fraction irréductible",
+   "question": "Pour rendre une fraction irréductible, on ...",
+   "reponse": "divise le numérateur et le dénominateur par leur PGCD",
    "pieges": [
-    "$A^{2}$",
-    "$\\dfrac{A}{2}$",
-    "$A$"
+    "divise seulement le numérateur par le PGCD, sans toucher au dénominateur",
+    "multiplie le numérateur et le dénominateur par leur PGCD",
+    "soustrait le PGCD au numérateur et au dénominateur"
    ],
    "exemples": [
     {
-     "donnees": "Les aires sont multipliées par 49",
-     "question": "Rapport $k$ ?",
-     "reponse": 7,
+     "donnees": "Simplifier $\\dfrac{48}{36}$ : donner le numérateur de la fraction irréductible",
+     "question": "Numérateur ?",
+     "reponse": 4,
      "unite": "",
-     "correction": "$k = \\sqrt{49} = 7$"
+     "correction": "$\\dfrac{48 \\div 12}{36 \\div 12} = \\dfrac{4}{3}$"
     }
    ]
   },
   {
-   "id": "agr-ech",
-   "chap": "agr",
-   "type": "definition",
-   "titre": "Échelle",
-   "question": "Une échelle de $\\dfrac{1}{N}$ correspond à ...",
-   "reponse": "une réduction de rapport $\\dfrac{1}{N}$",
-   "pieges": [
-    "un agrandissement de rapport $N$",
-    "une réduction de rapport $N$",
-    "une symétrie de rapport $N$"
-   ],
-   "note": "Cela suppose $N > 1$."
-  },
-  {
-   "id": "agr-sens",
-   "chap": "agr",
+   "id": "prem-crit",
+   "chap": "prem",
    "type": "regle",
-   "titre": "Agrandissement ou réduction ?",
-   "question": "Un rapport $k$ correspond à un agrandissement quand ...",
-   "reponse": "$k > 1$",
+   "titre": "Critères de divisibilité",
+   "question": "Un nombre est divisible par 9 quand ...",
+   "reponse": "la somme de ses chiffres est divisible par 9",
    "pieges": [
-    "$k < 1$",
-    "$k < 0$",
-    "$k = 1$"
+    "son dernier chiffre est 9 ou 0, comme pour les multiples de 9",
+    "la somme de ses chiffres est 9 seulement, pas 18 ni 27",
+    "il est divisible par 3, ce qui suffit pour qu'il le soit par 9"
    ],
-   "note": "$k < 1$ : réduction ; $k = 1$ : figure identique."
+   "note": "Par 2 : dernier chiffre pair. Par 3 : somme des chiffres divisible par 3. Par 5 : se termine par 0 ou 5. Par 10 : se termine par 0."
   },
   {
-   "id": "agr-vol",
-   "chap": "agr",
+   "id": "prem-un",
+   "chap": "prem",
+   "type": "regle",
+   "titre": "Le nombre 1",
+   "question": "Le nombre 1 est-il premier ?",
+   "reponse": "non, car il n'a qu'un seul diviseur : lui-même",
+   "pieges": [
+    "oui, car il est divisible par 1 et par lui-même",
+    "oui, car il est impair et ne se décompose pas",
+    "non, car il est divisible par tous les nombres entiers"
+   ],
+   "note": "Un nombre premier a exactement deux diviseurs : 1 n'en a qu'un."
+  },
+  {
+   "id": "prem-pair",
+   "chap": "prem",
    "type": "propriete",
-   "titre": "Volumes dans un agrandissement",
-   "question": "Dans un agrandissement de rapport $k$, les volumes sont multipliés par ...",
-   "reponse": "$k^{3}$",
+   "titre": "Le seul premier pair",
+   "question": "Combien y a-t-il de nombres premiers pairs ?",
+   "reponse": "un seul : 2",
    "pieges": [
-    "$k$",
-    "$k^{2}$",
-    "$3k$"
+    "aucun, car un nombre pair est divisible par 2",
+    "une infinité, car il y a une infinité de nombres pairs",
+    "deux : 2 et 4"
    ],
-   "exemples": [
-    {
-     "donnees": "Rapport $k = 3$ ; volume initial 2 cm³",
-     "question": "Nouveau volume ?",
-     "reponse": 54,
-     "unite": "cm³",
-     "correction": "$2 \\times 3^{3} = 54$ cm³"
-    }
+   "note": "Tout nombre pair supérieur à 2 est divisible par 2 : il a au moins trois diviseurs (1, 2 et lui-même)."
+  },
+  {
+   "id": "prem-test",
+   "chap": "prem",
+   "type": "regle",
+   "titre": "Tester si un nombre est premier",
+   "question": "Pour savoir si $N$ est premier, il suffit de tester la divisibilité par les nombres premiers ...",
+   "reponse": "dont le carré est inférieur ou égal à $N$",
+   "pieges": [
+    "inférieurs ou égaux à la moitié de $N$",
+    "impairs et strictement inférieurs à $N$",
+    "dont le carré est strictement supérieur à $N$"
    ],
-   "morceaux": [
-    "V'",
-    "=",
-    "k^{3}",
-    "\\times",
-    "V"
+   "note": "Exemple : pour $N = 97$, on teste 2, 3, 5 et 7 (car $11^{2} = 121 > 97$) : aucun ne divise 97, donc 97 est premier."
+  },
+  {
+   "id": "prem-entre",
+   "chap": "prem",
+   "type": "definition",
+   "titre": "Premiers entre eux",
+   "question": "Deux entiers sont premiers entre eux quand ...",
+   "reponse": "leur PGCD est égal à 1",
+   "pieges": [
+    "ils sont tous les deux des nombres premiers",
+    "leur PGCD est un nombre premier",
+    "ils n'ont aucun diviseur en commun, pas même 1"
    ],
-   "intrus": [
-    "k",
-    "3k"
-   ]
+   "note": "Exemple : 8 et 15 sont premiers entre eux, alors qu'aucun des deux n'est premier."
+  },
+  {
+   "id": "prem-decomp-methode",
+   "chap": "prem",
+   "type": "regle",
+   "titre": "Décomposer en facteurs premiers",
+   "question": "Pour décomposer un entier en produit de facteurs premiers, on le divise successivement par ...",
+   "reponse": "les nombres premiers 2, 3, 5, 7… dans l'ordre, tant que c'est possible",
+   "pieges": [
+    "tous les entiers de 2 à $N$, dans l'ordre, qu'ils soient premiers ou non",
+    "les nombres impairs seulement, en commençant par 3, puisque 2 est pair",
+    "le plus grand diviseur de $N$, puis le plus grand diviseur du quotient"
+   ],
+   "note": "Exemple : $60 = 2 \\times 30 = 2 \\times 2 \\times 15 = 2 \\times 2 \\times 3 \\times 5 = 2^{2} \\times 3 \\times 5$."
+  },
+  {
+   "id": "prem-exposant",
+   "chap": "prem",
+   "type": "definition",
+   "titre": "Exposant d'un facteur premier",
+   "question": "Dans $2^{3} \\times 5$, l'exposant 3 indique ...",
+   "reponse": "que le facteur 2 est utilisé 3 fois",
+   "pieges": [
+    "que le facteur 2 est multiplié par 3",
+    "que le nombre est divisible par 3",
+    "que le facteur 5 est utilisé 3 fois"
+   ],
+   "note": "$2^{3} \\times 5 = 2 \\times 2 \\times 2 \\times 5 = 40$."
   },
   {
    "id": "lit-dist",
@@ -1790,15 +2136,6 @@ Savoirs.enregistrer({
     "$ka + b$",
     "$k + ab$",
     "$ka \\times kb$"
-   ],
-   "exemples": [
-    {
-     "donnees": "Pour $x = 4$ : calculer $3(x + 5)$",
-     "question": "Résultat ?",
-     "reponse": 27,
-     "unite": "",
-     "correction": "$3 \\times 9 = 27$ (et $3x + 15 = 27$)"
-    }
    ],
    "morceaux": [
     "k",
@@ -1816,34 +2153,15 @@ Savoirs.enregistrer({
     "k",
     "+",
     "b"
-   ]
-  },
-  {
-   "id": "lit-dbl",
-   "chap": "lit",
-   "type": "formule",
-   "titre": "Double distributivité",
-   "question": "$(a + b)(c + d)$ vaut ...",
-   "reponse": "$ac + ad + bc + bd$",
-   "pieges": [
-    "$ac + bd$",
-    "$ac + ad + bc$",
-    "$a + b + c + d$"
    ],
-   "morceaux": [
-    "(a+b)(c+d)",
-    "=",
-    "ac",
-    "+",
-    "ad",
-    "+",
-    "bc",
-    "+",
-    "bd"
-   ],
-   "intrus": [
-    "ab",
-    "cd"
+   "exemples": [
+    {
+     "donnees": "Pour $x = 4$ : calculer $3(x + 5)$",
+     "question": "Résultat ?",
+     "reponse": 27,
+     "unite": "",
+     "correction": "$3 \\times 9 = 27$ (et $3x + 15 = 27$)"
+    }
    ]
   },
   {
@@ -1858,6 +2176,7 @@ Savoirs.enregistrer({
     "$a^{2} + ab + b^{2}$",
     "$a^{2} - 2ab + b^{2}$"
    ],
+   "note": "Il manque le double produit dans $a^{2} + b^{2}$.",
    "morceaux": [
     "(a+b)^{2}",
     "=",
@@ -1879,8 +2198,7 @@ Savoirs.enregistrer({
      "unite": "",
      "correction": "$9 + 12 + 4 = 25$"
     }
-   ],
-   "note": "Il manque le double produit dans $a^{2} + b^{2}$."
+   ]
   },
   {
    "id": "lit-id2",
@@ -1894,6 +2212,7 @@ Savoirs.enregistrer({
     "$a^{2} - 2ab - b^{2}$",
     "$a^{2} + 2ab + b^{2}$"
    ],
+   "note": "Le dernier terme est $+b^{2}$, jamais $-b^{2}$.",
    "morceaux": [
     "(a-b)^{2}",
     "=",
@@ -1906,8 +2225,7 @@ Savoirs.enregistrer({
    "intrus": [
     "+",
     "2a^{2}b"
-   ],
-   "note": "Le dernier terme est $+b^{2}$, jamais $-b^{2}$."
+   ]
   },
   {
    "id": "lit-id3",
@@ -1943,20 +2261,6 @@ Savoirs.enregistrer({
    ]
   },
   {
-   "id": "lit-fact",
-   "chap": "lit",
-   "type": "regle",
-   "titre": "Factoriser",
-   "question": "Factoriser une expression, c'est ...",
-   "reponse": "l'écrire sous forme d'un produit",
-   "pieges": [
-    "l'écrire sous forme d'une somme",
-    "la développer",
-    "la réduire"
-   ],
-   "note": "On utilise un facteur commun ou une identité remarquable à l'envers. Développer : produit → somme. Factoriser : somme → produit. On vérifie en développant."
-  },
-  {
    "id": "lit-prouver",
    "chap": "lit",
    "type": "regle",
@@ -1970,30 +2274,284 @@ Savoirs.enregistrer({
    ]
   },
   {
-   "id": "homo-cons",
-   "chap": "homo",
-   "type": "propriete",
-   "titre": "Transformations qui conservent les longueurs",
-   "question": "La symétrie axiale, la symétrie centrale, la translation et la rotation conservent ...",
-   "reponse": "les longueurs, les angles et les aires",
+   "id": "lit-dbl",
+   "chap": "lit",
+   "type": "formule",
+   "titre": "Double distributivité",
+   "question": "$(a + b)(c + d)$ vaut ...",
+   "reponse": "$ac + ad + bc + bd$",
    "pieges": [
-    "seulement les angles",
-    "les longueurs mais pas les aires",
-    "les directions uniquement"
+    "$ac + bd$ (on multiplie seulement les termes de même rang)",
+    "$ac + ad + bc$ (le dernier produit est oublié)",
+    "$a + b + c + d$ (les quatre termes sont additionnés)"
+   ],
+   "morceaux": [
+    "(a+b)(c+d)",
+    "=",
+    "ac",
+    "+",
+    "ad",
+    "+",
+    "bc",
+    "+",
+    "bd"
+   ],
+   "intrus": [
+    "ab",
+    "cd"
    ]
   },
   {
-   "id": "homo-def",
-   "chap": "homo",
-   "type": "definition",
-   "titre": "Homothétie",
-   "question": "Une homothétie est définie par ...",
-   "reponse": "un centre $O$ et un rapport $k$ (non nul)",
+   "id": "lit-fact",
+   "chap": "lit",
+   "type": "regle",
+   "titre": "Factoriser",
+   "question": "Factoriser une expression, c'est ...",
+   "reponse": "l'écrire sous forme d'un produit",
    "pieges": [
-    "un centre et un angle",
-    "une direction et une longueur",
-    "un axe et un rapport"
-   ]
+    "l'écrire sous forme d'une somme de termes de même nature",
+    "la développer en supprimant toutes les parenthèses",
+    "la réduire en regroupant les termes semblables"
+   ],
+   "note": "On utilise un facteur commun ou une identité remarquable à l'envers. Développer : produit → somme. Factoriser : somme → produit. On vérifie en développant."
+  },
+  {
+   "id": "lit-reduire",
+   "chap": "lit",
+   "type": "definition",
+   "titre": "Réduire une expression",
+   "question": "Réduire une expression littérale, c'est ...",
+   "reponse": "regrouper les termes de même nature (en $x^{2}$, en $x$, constantes)",
+   "pieges": [
+    "multiplier entre eux tous les termes de l'expression, quelle que soit leur nature",
+    "écrire l'expression sous la forme d'un produit de deux facteurs",
+    "remplacer $x$ par un nombre choisi pour calculer une valeur"
+   ],
+   "note": "Exemple : $3x + 5 + 2x - 1 = 5x + 4$."
+  },
+  {
+   "id": "lit-moins",
+   "chap": "lit",
+   "type": "regle",
+   "titre": "Un signe moins devant une parenthèse",
+   "question": "Un signe $-$ devant une parenthèse : $-(a - b)$ vaut ...",
+   "reponse": "$-a + b$",
+   "pieges": [
+    "$-a - b$, car on ne change que le premier signe",
+    "$a + b$, car deux signes moins donnent un plus",
+    "$-ab$, car le signe moins multiplie le contenu"
+   ],
+   "note": "Le signe $-$ change le signe de chaque terme de la parenthèse : $-(3x - 2) = -3x + 2$."
+  },
+  {
+   "id": "lit-fact-comm",
+   "chap": "lit",
+   "type": "formule",
+   "titre": "Mettre en facteur",
+   "question": "Pour factoriser $ka + kb$, on met en facteur ...",
+   "reponse": "le facteur commun $k$ : $k(a + b)$",
+   "pieges": [
+    "le terme $a$ seulement : $a(k + kb)$ en laissant le reste",
+    "le produit $kab$ : $kab(a + b)$ pour tout regrouper",
+    "rien du tout : une somme ne peut pas se factoriser"
+   ],
+   "note": "Exemple : $6x + 9 = 3(2x + 3)$."
+  },
+  {
+   "id": "lit-fact-id",
+   "chap": "lit",
+   "type": "formule",
+   "titre": "Factoriser une différence de carrés",
+   "question": "$a^{2} - b^{2}$ se factorise en ...",
+   "reponse": "$(a + b)(a - b)$",
+   "pieges": [
+    "$(a - b)^{2}$, car on retire $b$ deux fois",
+    "$(a + b)^{2}$, car on additionne les deux termes",
+    "$a(a - b)$, en mettant $a$ en facteur"
+   ],
+   "note": "Exemple : $x^{2} - 25 = (x + 5)(x - 5)$."
+  },
+  {
+   "id": "lit-fact-carre",
+   "chap": "lit",
+   "type": "formule",
+   "titre": "Factoriser un carré",
+   "question": "$a^{2} + 2ab + b^{2}$ se factorise en ...",
+   "reponse": "$(a + b)^{2}$",
+   "pieges": [
+    "$(a - b)^{2}$, car il y a un double produit",
+    "$(a + b)(a - b)$, car il y a deux termes carrés",
+    "$a(a + 2b) + b^{2}$, en mettant $a$ en facteur"
+   ],
+   "note": "Exemple : $x^{2} + 6x + 9 = (x + 3)^{2}$."
+  },
+  {
+   "id": "lit-terme",
+   "chap": "lit",
+   "type": "definition",
+   "titre": "Les termes d'une somme",
+   "question": "Dans $3x + 5$, les nombres $3x$ et $5$ s'appellent ...",
+   "reponse": "des termes",
+   "pieges": [
+    "des facteurs",
+    "des coefficients",
+    "des variables"
+   ],
+   "note": "Une somme est faite de termes ; un produit est fait de facteurs."
+  },
+  {
+   "id": "lit-coef",
+   "chap": "lit",
+   "type": "definition",
+   "titre": "Coefficient",
+   "question": "Dans le terme $7x$, le nombre 7 s'appelle ...",
+   "reponse": "le coefficient de $x$",
+   "pieges": [
+    "l'exposant de $x$, qui indique la puissance",
+    "la variable de ce terme, c'est-à-dire la lettre",
+    "le terme constant de l'expression"
+   ],
+   "note": "Dans $-4x^{2}$, le coefficient de $x^{2}$ est $-4$."
+  },
+  {
+   "id": "lit-fois",
+   "chap": "lit",
+   "type": "regle",
+   "titre": "Le signe × sous-entendu",
+   "question": "L'écriture $5x$ signifie ...",
+   "reponse": "$5 \\times x$",
+   "pieges": [
+    "$5 + x$ (5 ajouté à $x$)",
+    "$x^{5}$ ($x$ multiplié 5 fois par lui-même)",
+    "$50 + x$ (5 et $x$ accolés comme des chiffres)"
+   ],
+   "note": "On n'écrit pas le signe $\\times$ entre un nombre et une lettre : $5x$, $ab$, $3(x + 1)$."
+  },
+  {
+   "id": "lit-x2",
+   "chap": "lit",
+   "type": "definition",
+   "titre": "Le carré de x",
+   "question": "L'écriture $x^{2}$ signifie ...",
+   "reponse": "$x \\times x$",
+   "pieges": [
+    "$2 \\times x$, comme $2x$",
+    "$x + x$, comme $2x$",
+    "$x \\times 2$, car l'exposant multiplie"
+   ],
+   "note": "Exemple : si $x = 5$, alors $x^{2} = 25$ et non 10."
+  },
+  {
+   "id": "lit-xx",
+   "chap": "lit",
+   "type": "regle",
+   "titre": "Somme de deux x",
+   "question": "La somme $x + x$ vaut ...",
+   "reponse": "$2x$",
+   "pieges": [
+    "$x^{2}$, car il y a deux fois $x$",
+    "$2 + x$, car on compte deux objets",
+    "$x$, car on ajoute une lettre à elle-même sans changer sa valeur"
+   ],
+   "note": "Exemple : si $x = 5$, $x + x = 10 = 2x$, alors que $x^{2} = 25$."
+  },
+  {
+   "id": "lit-prod-x",
+   "chap": "lit",
+   "type": "regle",
+   "titre": "Produit de termes en x",
+   "question": "Le produit $3x \\times 2x$ vaut ...",
+   "reponse": "$6x^{2}$",
+   "pieges": [
+    "$6x$, car on multiplie les nombres seulement",
+    "$5x^{2}$, car on additionne les nombres",
+    "$5x$, car on additionne tout ce qui est écrit"
+   ],
+   "note": "On multiplie les nombres entre eux ($3 \\times 2 = 6$) et les lettres entre elles ($x \\times x = x^{2}$)."
+  },
+  {
+   "id": "lit-dev-def",
+   "chap": "lit",
+   "type": "definition",
+   "titre": "Développer",
+   "question": "Développer un produit, c'est ...",
+   "reponse": "le transformer en une somme (ou une différence) de termes",
+   "pieges": [
+    "le transformer en un produit de facteurs plus simples, sans somme restante",
+    "calculer sa valeur numérique pour une valeur donnée de la lettre $x$",
+    "le diviser par un facteur commun à tous ses termes pour le simplifier"
+   ],
+   "note": "Exemple : $3(x + 2) = 3x + 6$."
+  },
+  {
+   "id": "lit-fact-x",
+   "chap": "lit",
+   "type": "regle",
+   "titre": "Mettre x en facteur",
+   "question": "Pour mettre $x$ en facteur dans $x^{2} - 5x$, on écrit ...",
+   "reponse": "$x(x - 5)$",
+   "pieges": [
+    "$x(x + 5)$, en oubliant le signe moins",
+    "$x(x - 5x)$, en ne divisant que le premier terme par $x$",
+    "$(x - 5)^{2}$, en confondant avec un carré"
+   ],
+   "note": "On vérifie en redéveloppant : $x(x - 5) = x^{2} - 5x$."
+  },
+  {
+   "id": "lit-contre-ex",
+   "chap": "lit",
+   "type": "regle",
+   "titre": "Contre-exemple",
+   "question": "Pour prouver qu'une égalité est fausse, il suffit ...",
+   "reponse": "d'un seul contre-exemple : un nombre pour lequel elle est fausse",
+   "pieges": [
+    "de la tester avec un nombre pour lequel elle est vraie",
+    "de montrer qu'elle est fausse pour tous les nombres sans exception",
+    "de la vérifier avec une mesure sur une figure"
+   ],
+   "note": "$(a + b)^{2} = a^{2} + b^{2}$ est fausse : avec $a = b = 1$, $4 \\neq 2$."
+  },
+  {
+   "id": "lit-id-calc",
+   "chap": "lit",
+   "type": "regle",
+   "titre": "Calcul astucieux",
+   "question": "Pour calculer $99^{2}$ de tête, on écrit ...",
+   "reponse": "$(100 - 1)^{2}$ et on utilise $(a - b)^{2}$",
+   "pieges": [
+    "$100^{2} - 1^{2}$ en oubliant le double produit",
+    "$99 \\times 2$, car le carré double le nombre",
+    "$(100 + 1)^{2}$, car 99 est proche de 100"
+   ],
+   "note": "$99^{2} = 100^{2} - 2 \\times 100 + 1 = 9\\,801$."
+  },
+  {
+   "id": "lit-puiss-paren",
+   "chap": "lit",
+   "type": "regle",
+   "titre": "Puissance et parenthèses",
+   "question": "Les écritures $2x^{2}$ et $(2x)^{2}$ sont-elles égales ?",
+   "reponse": "non : $(2x)^{2} = 4x^{2}$, alors que $2x^{2}$ ne contient qu'un facteur 2",
+   "pieges": [
+    "oui, car on peut toujours enlever les parenthèses d'une puissance sans rien changer au résultat",
+    "oui, car l'exposant s'applique toujours uniquement à la lettre $x$, jamais au nombre 2",
+    "non : $(2x)^{2} = 2x^{2}$ et $2x^{2} = 4x^{2}$, c'est donc l'inverse de ce qu'on croit"
+   ],
+   "note": "Pour $x = 3$ : $2x^{2} = 18$ mais $(2x)^{2} = 36$."
+  },
+  {
+   "id": "lit-reduc-ex",
+   "chap": "lit",
+   "type": "regle",
+   "titre": "Termes de natures différentes",
+   "question": "L'expression $3x + 2x^{2}$ peut-elle être réduite en un seul terme ?",
+   "reponse": "non : $x$ et $x^{2}$ ne sont pas des termes de même nature",
+   "pieges": [
+    "oui, en additionnant coefficients et exposants : $3x + 2x^{2} = 5x^{3}$",
+    "oui, en additionnant les coefficients seulement : $3x + 2x^{2} = 5x^{2}$",
+    "oui, en multipliant les coefficients : $3x + 2x^{2} = 6x^{3}$"
+   ],
+   "note": "On ne peut regrouper que les termes en $x^{2}$ entre eux, ceux en $x$ entre eux, les constantes entre elles."
   },
   {
    "id": "homo-k",
@@ -2007,6 +2565,7 @@ Savoirs.enregistrer({
     "$k^{2}$ et les aires par $k^{4}$",
     "$|k|$ et les aires par $|k|$"
    ],
+   "note": "Les angles sont conservés.",
    "exemples": [
     {
      "donnees": "Homothétie de rapport $-3$ ; aire de départ 5 cm²",
@@ -2015,8 +2574,33 @@ Savoirs.enregistrer({
      "unite": "cm²",
      "correction": "$5 \\times (-3)^{2} = 45$ cm²"
     }
-   ],
-   "note": "Les angles sont conservés."
+   ]
+  },
+  {
+   "id": "homo-cons",
+   "chap": "homo",
+   "type": "propriete",
+   "titre": "Transformations qui conservent les longueurs",
+   "question": "La symétrie axiale, la symétrie centrale, la translation et la rotation conservent ...",
+   "reponse": "les longueurs, les angles et les aires",
+   "pieges": [
+    "seulement les angles, mais ni les longueurs ni les aires",
+    "les longueurs mais pas les aires, qui sont modifiées",
+    "les directions uniquement, mais ni les angles ni les longueurs"
+   ]
+  },
+  {
+   "id": "homo-def",
+   "chap": "homo",
+   "type": "definition",
+   "titre": "Homothétie",
+   "question": "Une homothétie est définie par ...",
+   "reponse": "un centre $O$ et un rapport $k$ (non nul)",
+   "pieges": [
+    "un centre et un angle de rotation, comme pour une rotation",
+    "une direction et une longueur, comme pour une translation",
+    "un axe et un rapport, comme pour une symétrie axiale"
+   ]
   },
   {
    "id": "homo-sens",
@@ -2026,9 +2610,9 @@ Savoirs.enregistrer({
    "question": "Si $k < 0$, l'image $M'$ de $M$ est ...",
    "reponse": "de l'autre côté du centre $O$ par rapport à $M$",
    "pieges": [
-    "du même côté de $O$ que $M$",
-    "toujours sur le centre",
-    "sur la médiatrice de $[OM]$"
+    "du même côté de $O$ que $M$, quelle que soit la valeur de $k$",
+    "toujours sur le centre $O$, quelle que soit la valeur de $k$",
+    "sur la médiatrice du segment $[OM]$, quelle que soit la valeur de $k$"
    ],
    "note": "$k > 0$ : même côté. $|k| > 1$ : agrandissement ; $|k| < 1$ : réduction."
   },
@@ -2040,10 +2624,108 @@ Savoirs.enregistrer({
    "question": "L'image d'une droite par une homothétie est ...",
    "reponse": "une droite parallèle à la première",
    "pieges": [
-    "une droite perpendiculaire",
-    "un cercle",
-    "un segment"
+    "une droite perpendiculaire à la première, passant par le centre",
+    "un cercle de centre $O$ et de rayon égal à $|k|$",
+    "un segment dont la longueur est multipliée par $|k|$ seulement"
    ]
+  },
+  {
+   "id": "homo-angles",
+   "chap": "homo",
+   "type": "propriete",
+   "titre": "Les angles sont conservés",
+   "question": "Une homothétie conserve ...",
+   "reponse": "les angles (mais pas les longueurs)",
+   "pieges": [
+    "les longueurs (mais pas les angles)",
+    "les longueurs et les angles",
+    "ni les longueurs ni les angles"
+   ],
+   "note": "Un triangle rectangle reste rectangle, mais ses côtés sont multipliés par $|k|$."
+  },
+  {
+   "id": "homo-ag-red",
+   "chap": "homo",
+   "type": "regle",
+   "titre": "Agrandissement ou réduction",
+   "question": "Une homothétie de rapport $k$ est un agrandissement quand ...",
+   "reponse": "$|k| > 1$ ; c'est une réduction quand $|k| < 1$",
+   "pieges": [
+    "$k > 1$ seulement : un rapport négatif donne toujours une réduction",
+    "$k > 0$ ; c'est une réduction quand $k < 0$",
+    "$|k| = 1$ ; c'est une réduction sinon"
+   ],
+   "note": "Exemple : $k = -3$ est un agrandissement (de rapport 3, avec retournement) ; $k = -0{,}5$ est une réduction."
+  },
+  {
+   "id": "homo-k-calc",
+   "chap": "homo",
+   "type": "formule",
+   "titre": "Calculer le rapport",
+   "question": "Si $M'$ est l'image de $M$ par l'homothétie de centre $O$, alors $|k|$ vaut ...",
+   "reponse": "$\\dfrac{OM'}{OM}$",
+   "pieges": [
+    "$\\dfrac{OM}{OM'}$",
+    "$OM' - OM$",
+    "$OM \\times OM'$"
+   ],
+   "note": "Le signe de $k$ est positif si $M$ et $M'$ sont du même côté de $O$, négatif sinon."
+  },
+  {
+   "id": "homo-centre",
+   "chap": "homo",
+   "type": "propriete",
+   "titre": "Le centre est invariant",
+   "question": "Le centre $O$ d'une homothétie est ...",
+   "reponse": "un point qui ne change pas : son image est lui-même",
+   "pieges": [
+    "un point qui se déplace de $k$ fois sa distance au centre",
+    "un point dont l'image est son symétrique par rapport à une droite",
+    "le milieu du segment qui joint un point à son image"
+   ],
+   "note": "Les points $O$, $M$ et $M'$ sont alignés pour tout point $M$."
+  },
+  {
+   "id": "homo-moins1",
+   "chap": "homo",
+   "type": "propriete",
+   "titre": "Rapport −1",
+   "question": "L'homothétie de centre $O$ et de rapport $-1$ est ...",
+   "reponse": "la symétrie centrale de centre $O$",
+   "pieges": [
+    "la symétrie axiale d'un axe passant par le centre",
+    "l'identité : tout point reste à sa place",
+    "une rotation d'angle 90° autour du centre"
+   ],
+   "note": "Pour $k = 1$, c'est l'identité ; pour $k = -1$, c'est la symétrie centrale."
+  },
+  {
+   "id": "homo-coord",
+   "chap": "homo",
+   "type": "formule",
+   "titre": "Coordonnées de l'image",
+   "question": "Dans un repère d'origine $O$, l'image de $M(x ; y)$ par l'homothétie de centre $O$ et de rapport $k$ est ...",
+   "reponse": "$M'(kx ; ky)$",
+   "pieges": [
+    "$M'(x + k ; y + k)$",
+    "$M'(kx ; y)$",
+    "$M'(\\dfrac{x}{k} ; ky)$"
+   ],
+   "note": "Exemple : $k = -2$ et $M(3 ; 1)$ donnent $M'(-6 ; -2)$."
+  },
+  {
+   "id": "homo-aligne",
+   "chap": "homo",
+   "type": "propriete",
+   "titre": "Points alignés",
+   "question": "Un point $M$, son image $M'$ et le centre $O$ de l'homothétie sont ...",
+   "reponse": "toujours alignés",
+   "pieges": [
+    "jamais alignés, sauf si $k = 1$",
+    "alignés seulement si $k > 0$",
+    "alignés seulement si $OM = OM'$"
+   ],
+   "note": "La droite $(OM)$ passe par $M'$ : une homothétie « agrandit » le long des droites issues du centre."
   },
   {
    "id": "fg-image",
@@ -2059,28 +2741,6 @@ Savoirs.enregistrer({
    ]
   },
   {
-   "id": "fg-calc",
-   "chap": "fgen",
-   "type": "regle",
-   "titre": "Calculer une image",
-   "question": "Pour calculer l'image de 4 par $f(x) = 2x - 3$, on ...",
-   "reponse": "remplace $x$ par 4 dans toute l'expression : $2 \\times 4 - 3 = 5$",
-   "pieges": [
-    "résout $2x - 3 = 4$",
-    "remplace $x$ seulement dans $2x$ : $8 - 3x$",
-    "lit l'abscisse sur le graphique"
-   ],
-   "exemples": [
-    {
-     "donnees": "$f(x) = 2x - 3$ ; calculer $f(4)$",
-     "question": "Image ?",
-     "reponse": 5,
-     "unite": "",
-     "correction": "$f(4) = 2 \\times 4 - 3 = 5$"
-    }
-   ]
-  },
-  {
    "id": "fg-antec",
    "chap": "fgen",
    "type": "regle",
@@ -2092,6 +2752,7 @@ Savoirs.enregistrer({
     "calcule $2 \\times 7 - 3 \\times 7$",
     "résout $2x - 3 = 0$"
    ],
+   "note": "On peut aussi lire l'abscisse sur la courbe.",
    "exemples": [
     {
      "donnees": "$f(x) = 2x - 3$ ; antécédent de 7",
@@ -2100,8 +2761,7 @@ Savoirs.enregistrer({
      "unite": "",
      "correction": "$2x - 3 = 7$ donc $2x = 10$ et $x = 5$"
     }
-   ],
-   "note": "On peut aussi lire l'abscisse sur la courbe."
+   ]
   },
   {
    "id": "fg-point",
@@ -2126,6 +2786,28 @@ Savoirs.enregistrer({
    ]
   },
   {
+   "id": "fg-calc",
+   "chap": "fgen",
+   "type": "regle",
+   "titre": "Calculer une image",
+   "question": "Pour calculer l'image de 4 par $f(x) = 2x - 3$, on ...",
+   "reponse": "remplace $x$ par 4 dans toute l'expression : $2 \\times 4 - 3 = 5$",
+   "pieges": [
+    "résout l'équation $2x - 3 = 4$ au lieu de remplacer $x$ par 4",
+    "remplace $x$ seulement dans $2x$ et oublie le reste : $8 - 3x$",
+    "lit l'abscisse du point d'ordonnée 4 sur le graphique de la fonction"
+   ],
+   "exemples": [
+    {
+     "donnees": "$f(x) = 2x - 3$ ; calculer $f(4)$",
+     "question": "Image ?",
+     "reponse": 5,
+     "unite": "",
+     "correction": "$f(4) = 2 \\times 4 - 3 = 5$"
+    }
+   ]
+  },
+  {
    "id": "fg-unique",
    "chap": "fgen",
    "type": "propriete",
@@ -2133,9 +2815,9 @@ Savoirs.enregistrer({
    "question": "Un nombre a ... image(s) et ... antécédent(s) :",
    "reponse": "une seule image, mais éventuellement plusieurs antécédents",
    "pieges": [
-    "plusieurs images, un seul antécédent",
-    "une seule image et un seul antécédent",
-    "toujours deux antécédents"
+    "plusieurs images possibles mais un seul antécédent pour chaque nombre",
+    "toujours une seule image et un seul antécédent pour un nombre",
+    "toujours exactement deux antécédents pour chaque image"
    ]
   },
   {
@@ -2146,10 +2828,192 @@ Savoirs.enregistrer({
    "question": "Pour lire l'image de $a$ sur la courbe, on ...",
    "reponse": "part de $a$ sur l'axe des abscisses et on lit l'ordonnée du point de la courbe",
    "pieges": [
-    "part de $a$ sur l'axe des ordonnées et on lit l'abscisse",
-    "lit l'abscisse du point",
-    "additionne abscisse et ordonnée"
+    "part de $a$ sur l'axe des ordonnées et on lit l'abscisse du point de la courbe",
+    "part de $a$ sur l'axe des abscisses et on lit l'abscisse du point de la courbe",
+    "additionne l'abscisse et l'ordonnée du point de la courbe"
    ]
+  },
+  {
+   "id": "fg-notation",
+   "chap": "fgen",
+   "type": "definition",
+   "titre": "Notation fonctionnelle",
+   "question": "L'écriture $f : x \\mapsto 3x + 2$ se lit ...",
+   "reponse": "« la fonction $f$ qui, à $x$, associe $3x + 2$ »",
+   "pieges": [
+    "« $f$ multiplié par $x$, plus 2, fois 3 »",
+    "« la fonction $f$ qui, à $3x + 2$, associe $x$ »",
+    "« $f$ est le nombre $3x + 2$ pour $x$ égal à zéro »"
+   ],
+   "note": "$f(x)$ se lit « $f$ de $x$ » : c'est l'image de $x$ par $f$, et non un produit."
+  },
+  {
+   "id": "fg-tableau",
+   "chap": "fgen",
+   "type": "regle",
+   "titre": "Tableau de valeurs",
+   "question": "Dans un tableau de valeurs de $f$, la première ligne contient ... et la deuxième ...",
+   "reponse": "les valeurs de $x$ ; leurs images $f(x)$",
+   "pieges": [
+    "les valeurs de $f(x)$ ; les valeurs de $x$ correspondantes",
+    "les valeurs de $x$ ; les valeurs de $x$ augmentées de 1",
+    "les images ; les valeurs de $f(x)$ divisées par $x$"
+   ],
+   "note": "Chaque colonne donne un nombre $x$ et son image $f(x)$."
+  },
+  {
+   "id": "fg-neg",
+   "chap": "fgen",
+   "type": "regle",
+   "titre": "Image d'un nombre négatif",
+   "question": "Pour calculer $f(-3)$ avec $f(x) = x^{2} + 2x$, on écrit ...",
+   "reponse": "$(-3)^{2} + 2 \\times (-3)$, avec des parenthèses",
+   "pieges": [
+    "$-3^{2} + 2 \\times 3$, sans parenthèses",
+    "$(-3)^{2} + 2 \\times 3$, en changeant un signe",
+    "$f \\times (-3)$, en multipliant la fonction par $-3$"
+   ],
+   "note": "$f(-3) = 9 - 6 = 3$."
+  },
+  {
+   "id": "fg-courbe",
+   "chap": "fgen",
+   "type": "definition",
+   "titre": "Courbe représentative",
+   "question": "La courbe représentative de $f$ est ...",
+   "reponse": "l'ensemble des points de coordonnées $(x ; f(x))$",
+   "pieges": [
+    "l'ensemble des points de coordonnées $(f(x) ; x)$, abscisse et ordonnée échangées",
+    "la droite qui passe par l'origine et par le point d'abscisse 1, quelle que soit $f$",
+    "l'ensemble des points de coordonnées $(x ; x)$ situés sur la première bissectrice"
+   ],
+   "note": "Le point $A(2 ; 7)$ est sur la courbe de $f$ si $f(2) = 7$."
+  },
+  {
+   "id": "fg-zero",
+   "chap": "faff",
+   "type": "propriete",
+   "titre": "Image de 0",
+   "question": "Pour $f(x) = ax + b$, l'image de 0 est ...",
+   "reponse": "$b$, l'ordonnée du point d'intersection avec l'axe des ordonnées",
+   "pieges": [
+    "$a$, l'ordonnée du point d'intersection avec l'axe des ordonnées",
+    "0, car le produit $a \\times 0$ est nul même s'il y a $b$ ensuite",
+    "$a + b$, qui est l'ordonnée du point d'abscisse 1"
+   ],
+   "note": "Pour $f(x) = 3x + 2$, $f(0) = 2$."
+  },
+  {
+   "id": "fg-plusieurs",
+   "chap": "fgen",
+   "type": "propriete",
+   "titre": "Plusieurs antécédents",
+   "question": "Pour $f(x) = x^{2}$, le nombre 9 a ...",
+   "reponse": "deux antécédents : 3 et $-3$",
+   "pieges": [
+    "un seul antécédent : 3, car la racine carrée est unique",
+    "aucun antécédent, car 9 n'est pas l'image d'un nombre entier",
+    "trois antécédents : 3, $-3$ et 0 qui est neutre"
+   ],
+   "note": "Les nombres opposés ont la même image par $x \\mapsto x^{2}$."
+  },
+  {
+   "id": "fg-fonction",
+   "chap": "fgen",
+   "type": "definition",
+   "titre": "Qu'est-ce qu'une fonction ?",
+   "question": "Une fonction est un procédé qui, à chaque nombre de départ, associe ...",
+   "reponse": "un unique nombre d'arrivée, appelé son image",
+   "pieges": [
+    "un ou plusieurs nombres d'arrivée, appelés ses images possibles",
+    "un nombre d'arrivée qui doit toujours être plus grand que le départ",
+    "un nombre d'arrivée choisi au hasard à chaque utilisation"
+   ],
+   "note": "Un programme de calcul est une fonction : à un nombre choisi, il associe un seul résultat."
+  },
+  {
+   "id": "fg-sens",
+   "chap": "fgen",
+   "type": "regle",
+   "titre": "Sens de lecture",
+   "question": "Pour trouver l'image, on part de ... ; pour trouver un antécédent, on part de ...",
+   "reponse": "l'abscisse (axe horizontal) ; l'ordonnée (axe vertical)",
+   "pieges": [
+    "l'ordonnée (axe vertical) ; l'abscisse (axe horizontal)",
+    "l'abscisse (axe horizontal) ; l'abscisse (axe horizontal)",
+    "l'ordonnée (axe vertical) ; l'ordonnée (axe vertical)"
+   ],
+   "note": "Image : on lit en ordonnée. Antécédent : on lit en abscisse."
+  },
+  {
+   "id": "fg-ant-image",
+   "chap": "fgen",
+   "type": "regle",
+   "titre": "Ne pas confondre les deux calculs",
+   "question": "Calculer une image se fait par ... ; chercher un antécédent se fait par ...",
+   "reponse": "un calcul direct ; la résolution d'une équation",
+   "pieges": [
+    "la résolution d'une équation ; un calcul direct",
+    "un calcul direct ; encore un calcul direct",
+    "la résolution d'une équation ; encore une équation"
+   ],
+   "note": "Image : $f(4) = \\dots$ Antécédent de 11 : $2x + 3 = 11$."
+  },
+  {
+   "id": "fg-prog",
+   "chap": "fgen",
+   "type": "propriete",
+   "titre": "Programme de calcul et fonction",
+   "question": "Le programme « multiplier par 3, puis ajouter 2 » correspond à la fonction ...",
+   "reponse": "$x \\mapsto 3x + 2$",
+   "pieges": [
+    "$x \\mapsto 3 + 2x$, qui change l'ordre des deux nombres",
+    "$x \\mapsto 3(x + 2)$, qui additionne avant de multiplier",
+    "$x \\mapsto x + 5$, qui additionne les deux nombres"
+   ],
+   "note": "L'ordre des opérations du programme est celui de l'expression."
+  },
+  {
+   "id": "fg-carre",
+   "chap": "fgen",
+   "type": "regle",
+   "titre": "Image par une fonction carré",
+   "question": "Pour $f(x) = x^{2}$, l'image de $-4$ est ...",
+   "reponse": "16, car $(-4)^{2} = (-4) \\times (-4) = 16$",
+   "pieges": [
+    "$-16$, car le signe moins reste devant le résultat",
+    "$-8$, car on multiplie $-4$ par 2",
+    "8, car on multiplie 4 par 2 sans signe"
+   ],
+   "note": "Le carré d'un nombre est toujours positif ou nul."
+  },
+  {
+   "id": "fg-lin",
+   "chap": "flin",
+   "type": "propriete",
+   "titre": "Fonction linéaire : image de 1",
+   "question": "Pour $f(x) = 5x$, l'image de 1 est ...",
+   "reponse": "5, qui est le coefficient de $x$",
+   "pieges": [
+    "1, car 1 est le nombre de départ",
+    "6, car on ajoute 5 au nombre 1",
+    "0, car 1 est un petit nombre à multiplier"
+   ],
+   "note": "$f(1) = 5 \\times 1 = 5$ ; $f(2) = 10$."
+  },
+  {
+   "id": "fg-tarif",
+   "chap": "fgen",
+   "type": "propriete",
+   "titre": "Fonction et situation",
+   "question": "Un tarif de 3 € par séance avec un abonnement de 10 € correspond à ...",
+   "reponse": "$f(x) = 3x + 10$, où $x$ est le nombre de séances",
+   "pieges": [
+    "$f(x) = 10x + 3$, où $x$ est le nombre de séances",
+    "$f(x) = 3 + 10 + x$, où $x$ est le nombre de séances",
+    "$f(x) = 13x$, où $x$ est le nombre de séances"
+   ],
+   "note": "Pour 4 séances : $3 \\times 4 + 10 = 22$ €."
   },
   {
    "id": "thales",
@@ -2163,15 +3027,6 @@ Savoirs.enregistrer({
     "$\\dfrac{AM}{AB} = \\dfrac{AC}{AN} = \\dfrac{BC}{MN}$",
     "$AM \\times AB = AN \\times AC$"
    ],
-   "exemples": [
-    {
-     "donnees": "$(MN) \\parallel (BC)$ ; $AM = 2$, $AB = 5$, $AN = 2{,}8$",
-     "question": "Longueur $AC$ ?",
-     "reponse": 7,
-     "unite": "cm",
-     "correction": "$\\dfrac{2}{5} = \\dfrac{2{,}8}{AC}$ donc $AC = \\dfrac{2{,}8 \\times 5}{2} = 7$ cm"
-    }
-   ],
    "note": "Les rapports sont côté sur côté : $AM/AB$ et non $AM/MB$.",
    "morceaux": [
     "\\dfrac{AM}{AB}",
@@ -2183,6 +3038,28 @@ Savoirs.enregistrer({
    "intrus": [
     "\\dfrac{AM}{MB}",
     "\\dfrac{AB}{AM}"
+   ],
+   "exemples": [
+    {
+     "donnees": "$(MN) \\parallel (BC)$ ; $AM = 2$, $AB = 5$, $AN = 2{,}8$",
+     "question": "Longueur $AC$ ?",
+     "reponse": 7,
+     "unite": "cm",
+     "correction": "$\\dfrac{2}{5} = \\dfrac{2{,}8}{AC}$ donc $AC = \\dfrac{2{,}8 \\times 5}{2} = 7$ cm"
+    }
+   ]
+  },
+  {
+   "id": "thales-pap",
+   "chap": "thal",
+   "type": "definition",
+   "titre": "Configuration en papillon",
+   "question": "La configuration en papillon est celle où ...",
+   "reponse": "les deux sécantes en $A$ coupent deux parallèles de part et d'autre de $A$",
+   "pieges": [
+    "les deux droites parallèles sont du même côté de $A$",
+    "les droites sécantes sont perpendiculaires en $A$ et coupent deux parallèles",
+    "il n'y a pas de droites parallèles, seulement deux sécantes"
    ]
   },
   {
@@ -2193,9 +3070,9 @@ Savoirs.enregistrer({
    "question": "Si $\\dfrac{AM}{AB} = \\dfrac{AN}{AC}$ (avec les points alignés dans le même ordre), alors ...",
    "reponse": "$(MN) \\parallel (BC)$",
    "pieges": [
-    "$(MN) \\perp (BC)$",
-    "$MN = BC$",
-    "$AMN$ est isocèle"
+    "$(MN) \\perp (BC)$ : les droites sont perpendiculaires",
+    "$MN = BC$ : les deux segments ont la même longueur",
+    "le triangle $AMN$ est isocèle en $A$ et $M$ est le milieu"
    ],
    "morceaux": [
     "\\dfrac{AM}{AB} = \\dfrac{AN}{AC}",
@@ -2215,9 +3092,9 @@ Savoirs.enregistrer({
    "question": "Si $\\dfrac{AM}{AB} \\neq \\dfrac{AN}{AC}$ alors ...",
    "reponse": "$(MN)$ et $(BC)$ ne sont pas parallèles",
    "pieges": [
-    "$(MN)$ et $(BC)$ sont perpendiculaires",
-    "on ne peut pas conclure",
-    "$M$ et $N$ sont confondus"
+    "$(MN)$ et $(BC)$ sont perpendiculaires, par construction",
+    "on ne peut pas conclure, il manque des données",
+    "les points $M$ et $N$ sont confondus, comme $A$ et $B$"
    ],
    "morceaux": [
     "\\dfrac{AM}{AB} \\neq \\dfrac{AN}{AC}",
@@ -2236,9 +3113,9 @@ Savoirs.enregistrer({
    "question": "Pour calculer une longueur avec Thalès, on ...",
    "reponse": "écrit l'égalité des rapports puis on utilise le produit en croix",
    "pieges": [
-    "additionne les longueurs connues puis on divise par 2",
-    "utilise Pythagore puis on prend la racine carrée",
-    "mesure la figure à la règle puis on arrondit"
+    "additionne les longueurs connues puis on divise le résultat par 2",
+    "utilise le théorème de Pythagore puis on prend la racine carrée",
+    "mesure la figure à la règle puis on arrondit le résultat obtenu"
    ]
   },
   {
@@ -2249,45 +3126,178 @@ Savoirs.enregistrer({
    "question": "Avant d'écrire les rapports, il faut citer ...",
    "reponse": "les droites sécantes et les droites parallèles",
    "pieges": [
-    "la mesure des angles de la figure",
-    "le périmètre du grand triangle",
-    "uniquement le résultat final"
+    "la mesure de tous les angles de la figure et leur somme",
+    "le périmètre du grand triangle et celui du petit triangle",
+    "uniquement le résultat final avec son unité, sans justification"
    ]
   },
   {
-   "id": "thales-pap",
+   "id": "thales-add",
+   "chap": "thal",
+   "type": "propriete",
+   "titre": "Longueur d'un segment coupé",
+   "question": "Si $M$ est un point du segment $[AB]$, alors $AB$ est égal à ...",
+   "reponse": "$AM + MB$",
+   "pieges": [
+    "$AM - MB$, la différence des deux longueurs",
+    "$AM \\times MB$, le produit des deux longueurs",
+    "$MB - AM$, la différence dans l'autre sens"
+   ],
+   "note": "Exemple : $AM = 3$ cm et $MB = 4$ cm donnent $AB = 7$ cm."
+  },
+  {
+   "id": "thales-ordre",
+   "chap": "thal",
+   "type": "regle",
+   "titre": "Que comparent les rapports ?",
+   "question": "Dans les rapports de l'égalité de Thalès, chaque rapport compare ...",
+   "reponse": "une longueur du petit triangle à la longueur correspondante du grand triangle",
+   "pieges": [
+    "deux longueurs du même grand triangle choisies au hasard dans la figure donnée",
+    "une longueur du petit triangle à son périmètre tout entier, tous les côtés ajoutés",
+    "une longueur du petit triangle à la longueur d'un autre côté du même petit triangle"
+   ],
+   "note": "$AM$ correspond à $AB$, $AN$ à $AC$ et $MN$ à $BC$."
+  },
+  {
+   "id": "thales-cond",
+   "chap": "thal",
+   "type": "regle",
+   "titre": "Conditions d'utilisation",
+   "question": "On peut utiliser le théorème de Thalès quand ...",
+   "reponse": "deux droites parallèles coupent deux droites sécantes",
+   "pieges": [
+    "le triangle a un angle droit et que deux de ses côtés sont égaux",
+    "les trois angles de la figure sont connus avant de commencer le calcul",
+    "deux droites sont perpendiculaires et que les longueurs sont entières"
+   ],
+   "note": "Sans droites parallèles, on ne peut pas écrire l'égalité des rapports."
+  },
+  {
+   "id": "thales-prod",
+   "chap": "thal",
+   "type": "regle",
+   "titre": "Produit en croix",
+   "question": "Si $\\dfrac{a}{b} = \\dfrac{c}{d}$, alors ...",
+   "reponse": "$a \\times d = b \\times c$",
+   "pieges": [
+    "$a \\times b = c \\times d$, en multipliant en ligne",
+    "$a \\times c = b \\times d$, en multipliant les numérateurs",
+    "$a + d = b + c$, en additionnant en croix"
+   ],
+   "note": "Exemple : $\\dfrac{3}{x} = \\dfrac{6}{10}$ donne $6x = 30$, donc $x = 5$."
+  },
+  {
+   "id": "thales-k",
    "chap": "thal",
    "type": "definition",
-   "titre": "Configuration en papillon",
-   "question": "La configuration en papillon est celle où ...",
-   "reponse": "les deux sécantes en $A$ coupent deux parallèles de part et d'autre de $A$",
+   "titre": "Le coefficient de réduction",
+   "question": "Dans $\\dfrac{AM}{AB} = \\dfrac{AN}{AC} = \\dfrac{MN}{BC} = k$, le nombre $k$ est ...",
+   "reponse": "le coefficient de réduction du triangle $ABC$ au triangle $AMN$",
    "pieges": [
-    "les deux droites parallèles sont du même côté de $A$",
-    "les droites sécantes sont perpendiculaires en $A$ et coupent deux parallèles",
-    "il n'y a pas de droites parallèles, seulement deux sécantes"
-   ]
+    "l'aire du triangle $AMN$ divisée par l'aire du triangle $ABC$ entier",
+    "la différence entre les longueurs $AB$ et $AM$ sur la droite $(AB)$",
+    "la longueur $AM$ exprimée en centimètres, quelle que soit la figure"
+   ],
+   "note": "Chaque côté de $AMN$ est égal à $k$ fois le côté correspondant de $ABC$."
   },
   {
-   "id": "eq-ax",
-   "chap": "equ",
-   "type": "regle",
-   "titre": "Résoudre ax + b = cx + d",
-   "question": "Pour résoudre $ax + b = cx + d$, on ...",
-   "reponse": "regroupe les $x$ d'un côté, les nombres de l'autre, réduit puis divise",
+   "id": "thales-perim",
+   "chap": "thal",
+   "type": "propriete",
+   "titre": "Périmètre et Thalès",
+   "question": "Le périmètre du triangle $AMN$ est égal à celui de $ABC$ multiplié par ...",
+   "reponse": "$k = \\dfrac{AM}{AB}$",
    "pieges": [
-    "regroupe tout d'un seul côté, sans réduire ni diviser",
-    "divise chaque membre par $x$ puis réduit",
-    "remplace $x$ par 0 puis calcule"
+    "$k^{2}$, comme pour les aires des deux triangles",
+    "$\\dfrac{AB}{AM}$, l'inverse du rapport $k$",
+    "$k + 1$, car il faut ajouter un côté"
    ],
-   "exemples": [
-    {
-     "donnees": "Résoudre $3x + 5 = 2x + 9$",
-     "question": "Solution ?",
-     "reponse": 4,
-     "unite": "",
-     "correction": "$3x - 2x = 9 - 5$ donc $x = 4$"
-    }
-   ]
+   "note": "Les trois côtés sont multipliés par $k$, donc leur somme aussi."
+  },
+  {
+   "id": "thales-recip-egal",
+   "chap": "thal",
+   "type": "regle",
+   "titre": "Utiliser la réciproque",
+   "question": "Pour montrer que $(MN)$ et $(BC)$ sont parallèles avec la réciproque, on compare ...",
+   "reponse": "les rapports $\\dfrac{AM}{AB}$ et $\\dfrac{AN}{AC}$ et on vérifie l'alignement",
+   "pieges": [
+    "les rapports $\\dfrac{AM}{MB}$ et $\\dfrac{AN}{AC}$ puis on conclut sur le résultat",
+    "les longueurs $MN$ et $BC$ en vérifiant seulement qu'elles sont égales entre elles",
+    "les angles $\\widehat{AMN}$ et $\\widehat{ABC}$ qui doivent mesurer chacun 90°, droits"
+   ],
+   "note": "Les points doivent être alignés dans le même ordre."
+  },
+  {
+   "id": "thales-ordre-pts",
+   "chap": "thal",
+   "type": "regle",
+   "titre": "Ordre des points",
+   "question": "Pour la réciproque, les points $A$, $M$, $B$ d'une part et $A$, $N$, $C$ d'autre part doivent être ...",
+   "reponse": "alignés dans le même ordre sur chaque droite",
+   "pieges": [
+    "alignés dans l'ordre contraire sur la deuxième droite seulement",
+    "équidistants et placés à égale distance du sommet $A$ dans la figure",
+    "placés sur deux droites perpendiculaires qui se coupent en $A$"
+   ],
+   "note": "Si l'ordre n'est pas le même, on ne peut pas conclure."
+  },
+  {
+   "id": "thales-pap-pos",
+   "chap": "thal",
+   "type": "definition",
+   "titre": "Position de A en papillon",
+   "question": "Dans la configuration en papillon, le point $A$ est situé ...",
+   "reponse": "entre $B$ et $M$ et entre $C$ et $N$",
+   "pieges": [
+    "à l'extérieur des segments $[BM]$ et $[CN]$ dans la figure",
+    "sur la droite $(BC)$ entre les points $B$ et $C$ de la figure",
+    "sur la droite $(MN)$ entre les points $M$ et $N$ de la figure"
+   ],
+   "note": "Les droites $(BC)$ et $(MN)$ sont parallèles et $A$ est entre elles."
+  },
+  {
+   "id": "thales-unite",
+   "chap": "thal",
+   "type": "regle",
+   "titre": "Mêmes unités",
+   "question": "Avant d'écrire un rapport, les deux longueurs doivent être exprimées ...",
+   "reponse": "dans la même unité",
+   "pieges": [
+    "en centimètres, toujours, même si elles sont données en mètres",
+    "avec le même nombre de chiffres dans leur écriture décimale",
+    "en mètres, toujours, même si elles sont données en centimètres"
+   ],
+   "note": "Exemple : 3 m et 40 cm deviennent 300 cm et 40 cm."
+  },
+  {
+   "id": "thales-hauteur",
+   "chap": "thal",
+   "type": "propriete",
+   "titre": "Ombres et Thalès",
+   "question": "À la même heure, un objet vertical et son ombre sont dans le même rapport pour ...",
+   "reponse": "tous les objets verticaux, car les rayons du soleil sont parallèles",
+   "pieges": [
+    "un seul objet vertical, le plus grand des objets de la figure donnée",
+    "tous les objets, même s'ils ne sont pas verticaux sur le sol plat",
+    "les objets dont les hauteurs sont égales deux à deux seulement, sinon non"
+   ],
+   "note": "Un piquet de 1 m a une ombre de 2 m : un arbre d'ombre 10 m mesure 5 m."
+  },
+  {
+   "id": "thales-pas-egal",
+   "chap": "thal",
+   "type": "regle",
+   "titre": "Rapports différents",
+   "question": "Si $\\dfrac{AM}{AB}$ et $\\dfrac{AN}{AC}$ ne sont pas égaux, alors ...",
+   "reponse": "les droites $(MN)$ et $(BC)$ ne sont pas parallèles",
+   "pieges": [
+    "les droites $(MN)$ et $(BC)$ sont parallèles quand même, sans égalité",
+    "les droites $(MN)$ et $(BC)$ sont perpendiculaires, par construction",
+    "on a $AM = AN$ car le triangle est isocèle en $A$"
+   ],
+   "note": "C'est la contraposée du théorème de Thalès."
   },
   {
    "id": "eq-produit",
@@ -2322,16 +3332,52 @@ Savoirs.enregistrer({
    ]
   },
   {
+   "id": "eq-concl",
+   "chap": "equ",
+   "type": "regle",
+   "titre": "Vérifier et conclure",
+   "question": "Dans un problème, après la résolution, on ...",
+   "reponse": "vérifie que la solution convient à l'énoncé et conclut par une phrase",
+   "pieges": [
+    "garde toujours les deux solutions trouvées sans les vérifier dans l'énoncé",
+    "ne conclut pas par une phrase : le calcul de $x$ suffit",
+    "écrit seulement la valeur de $x$ obtenue, sans la comparer à l'énoncé"
+   ],
+   "note": "Par exemple, une longueur ne peut pas être négative."
+  },
+  {
+   "id": "eq-ax",
+   "chap": "equ",
+   "type": "regle",
+   "titre": "Résoudre ax + b = cx + d",
+   "question": "Pour résoudre $ax + b = cx + d$, on ...",
+   "reponse": "regroupe les $x$ d'un côté, les nombres de l'autre, réduit puis divise",
+   "pieges": [
+    "regroupe tout d'un seul côté, sans réduire ni diviser par le coefficient de $x$",
+    "divise chaque membre par $x$ puis réduit, ce qui est possible pour toute équation",
+    "remplace $x$ par 0 puis calcule la valeur de chaque membre de l'équation"
+   ],
+   "exemples": [
+    {
+     "donnees": "Résoudre $3x + 5 = 2x + 9$",
+     "question": "Solution ?",
+     "reponse": 4,
+     "unite": "",
+     "correction": "$3x - 2x = 9 - 5$ donc $x = 4$"
+    }
+   ]
+  },
+  {
    "id": "eq-carre",
    "chap": "equ",
    "type": "regle",
    "titre": "Équation x² = a",
-   "question": "L'équation $x^{2} = a$ a ...",
-   "reponse": "deux solutions si $a > 0$, une solution si $a = 0$, aucune si $a < 0$",
+   "question": "Pour $a > 0$, l'équation $x^{2} = a$ a ...",
+   "reponse": "deux solutions : $\\sqrt{a}$ et $-\\sqrt{a}$",
    "pieges": [
-    "une seule solution toujours : la racine carrée de $a$",
-    "toujours deux solutions, même si $a$ est négatif",
-    "aucune solution si $a$ n'est pas un carré parfait"
+    "une seule solution : $\\sqrt{a}$, la racine carrée de $a$",
+    "deux solutions : $a$ et $-a$, opposées l'une de l'autre",
+    "aucune solution si $a$ n'est pas un carré parfait, par exemple si $a = 10$"
    ],
    "exemples": [
     {
@@ -2344,18 +3390,256 @@ Savoirs.enregistrer({
    ]
   },
   {
-   "id": "eq-concl",
+   "id": "eq-solution",
+   "chap": "equ",
+   "type": "definition",
+   "titre": "Solution d'une équation",
+   "question": "Une solution d'une équation est ...",
+   "reponse": "une valeur de $x$ qui rend l'égalité vraie",
+   "pieges": [
+    "une valeur de $x$ qui rend l'égalité fausse",
+    "un nombre qui apparaît dans le membre de gauche",
+    "un nombre positif qui est plus petit que $x$"
+   ],
+   "note": "Par exemple, 4 est solution de $3x - 2 = 10$ car $3 \\times 4 - 2 = 10$."
+  },
+  {
+   "id": "eq-balance",
    "chap": "equ",
    "type": "regle",
-   "titre": "Vérifier et conclure",
-   "question": "Dans un problème, après la résolution, on ...",
-   "reponse": "vérifie que la solution convient à l'énoncé et conclut par une phrase",
+   "titre": "Ajouter ou soustraire",
+   "question": "On peut ajouter ou soustraire aux deux membres d'une équation ...",
+   "reponse": "le même nombre",
    "pieges": [
-    "garde toujours les deux solutions sans vérifier",
-    "ne conclut pas : le calcul suffit",
-    "écrit seulement la valeur de $x$"
+    "n'importe quel nombre dans un seul membre",
+    "uniquement un nombre positif dans un membre",
+    "le double du nombre dans le membre de droite"
    ],
-   "note": "Par exemple, une longueur ne peut pas être négative."
+   "note": "$x + 5 = 12$ donne $x = 12 - 5 = 7$."
+  },
+  {
+   "id": "eq-mult",
+   "chap": "equ",
+   "type": "regle",
+   "titre": "Diviser ou multiplier",
+   "question": "On peut multiplier ou diviser les deux membres d'une équation par ...",
+   "reponse": "un même nombre différent de zéro",
+   "pieges": [
+    "un même nombre, même nul si c'est possible",
+    "un nombre différent dans chaque membre",
+    "le nombre $x$, qui est l'inconnue cherchée"
+   ],
+   "note": "$3x = 12$ donne $x = 12 \\div 3 = 4$."
+  },
+  {
+   "id": "eq-signe",
+   "chap": "equ",
+   "type": "regle",
+   "titre": "Changer de membre",
+   "question": "Quand un terme passe de l'autre côté du signe égal, ...",
+   "reponse": "on lui applique l'opération contraire : son signe change",
+   "pieges": [
+    "il garde le même signe et on le multiplie aussi par 2 dans l'autre membre",
+    "il garde toujours son signe dans l'autre membre, même quand il change de côté",
+    "on lui applique la même opération et son signe ne change pas du tout"
+   ],
+   "note": "$x + 5 = 12$ donne $x = 12 - 5$."
+  },
+  {
+   "id": "eq-simple",
+   "chap": "equ",
+   "type": "regle",
+   "titre": "Équation du type x + a = b",
+   "question": "Pour résoudre $x + 7 = 12$, on ...",
+   "reponse": "soustrait 7 aux deux membres : $x = 5$",
+   "pieges": [
+    "ajoute 7 aux deux membres : $x = 19$",
+    "soustrait 7 à un seul membre : $x = 5$",
+    "divise les deux membres par 7 : $x = 12 \\div 7$"
+   ],
+   "note": "On vérifie : $5 + 7 = 12$."
+  },
+  {
+   "id": "eq-coef",
+   "chap": "equ",
+   "type": "regle",
+   "titre": "Équation du type ax = b",
+   "question": "Pour résoudre $4x = 20$, on ...",
+   "reponse": "divise les deux membres par 4 : $x = 5$",
+   "pieges": [
+    "soustrait 4 aux deux membres : $x = 16$",
+    "multiplie les deux membres par 4 : $x = 80$",
+    "divise seulement le membre de gauche par 4"
+   ],
+   "note": "On vérifie : $4 \\times 5 = 20$."
+  },
+  {
+   "id": "eq-neg",
+   "chap": "equ",
+   "type": "regle",
+   "titre": "Coefficient négatif",
+   "question": "L'équation $-3x = 12$ a pour solution ...",
+   "reponse": "$-4$, en divisant les deux membres par $-3$",
+   "pieges": [
+    "$4$, en divisant les deux membres par $3$ sans le signe",
+    "$-9$, en ajoutant $3$ aux deux membres",
+    "$-36$, en multipliant les deux membres par $-3$"
+   ],
+   "note": "On vérifie : $-3 \\times (-4) = 12$."
+  },
+  {
+   "id": "eq-frac",
+   "chap": "equ",
+   "type": "regle",
+   "titre": "Solution fractionnaire",
+   "question": "L'équation $2x = 5$ a pour solution ...",
+   "reponse": "$\\dfrac{5}{2}$, soit $2{,}5$, en divisant 5 par 2",
+   "pieges": [
+    "$\\dfrac{2}{5}$, soit $0{,}4$, en divisant 2 par 5",
+    "$3$, car 5 divisé par 2 vaut environ 3",
+    "$10$, en multipliant 5 par 2 par erreur"
+   ],
+   "note": "Une solution n'est pas toujours un entier."
+  },
+  {
+   "id": "eq-paren",
+   "chap": "equ",
+   "type": "regle",
+   "titre": "Parenthèses",
+   "question": "Pour résoudre $3(x + 2) = 10$, on commence par ...",
+   "reponse": "développer : $3x + 6 = 10$",
+   "pieges": [
+    "supprimer les parenthèses : $3 + x + 2 = 10$",
+    "ajouter 3 à chaque membre de l'équation",
+    "diviser seulement le terme $x$ par 3 à gauche"
+   ],
+   "note": "On peut aussi diviser les deux membres par 3 d'abord."
+  },
+  {
+   "id": "eq-regroupe",
+   "chap": "equ",
+   "type": "regle",
+   "titre": "Termes en x des deux côtés",
+   "question": "Pour résoudre $5x + 1 = 2x + 10$, on ...",
+   "reponse": "regroupe les termes en $x$ d'un côté : $3x = 9$",
+   "pieges": [
+    "additionne les termes en $x$ des deux membres : $7x + 1 = 10$",
+    "supprime le terme $2x$ de droite sans le déplacer : $5x = 9$",
+    "regroupe les nombres avec les $x$ du même côté : $x = 11$"
+   ],
+   "note": "On trouve $x = 3$."
+  },
+  {
+   "id": "eq-impossible",
+   "chap": "equ",
+   "type": "propriete",
+   "titre": "Pas de solution",
+   "question": "Si on obtient $0 = 5$ en résolvant une équation, alors ...",
+   "reponse": "l'équation n'a aucune solution",
+   "pieges": [
+    "l'équation a une seule solution : 5",
+    "l'équation a pour solution zéro",
+    "l'équation a une infinité de solutions"
+   ],
+   "note": "Si on obtient $0 = 0$, tous les nombres sont solutions."
+  },
+  {
+   "id": "eq-produit-sol",
+   "chap": "equ",
+   "type": "propriete",
+   "titre": "Solutions d'un produit nul",
+   "question": "Les solutions de $(x - 2)(x + 5) = 0$ sont ...",
+   "reponse": "$2$ et $-5$",
+   "pieges": [
+    "$-2$ et $5$ : les signes sont changés",
+    "$2$ et $5$ : le signe de 5 est oublié",
+    "$-2$ et $-5$ : les deux signes sont changés"
+   ],
+   "note": "$x - 2 = 0$ donne $x = 2$ et $x + 5 = 0$ donne $x = -5$."
+  },
+  {
+   "id": "eq-produit-x",
+   "chap": "equ",
+   "type": "propriete",
+   "titre": "Ne pas diviser par x",
+   "question": "Pour résoudre $x^{2} - 4x = 0$, on ...",
+   "reponse": "factorise : $x(x - 4) = 0$, donc $x = 0$ ou $x = 4$",
+   "pieges": [
+    "divise par $x$ : $x - 4 = 0$, donc $x = 4$ seulement",
+    "isole $x^{2}$ : $x^{2} = 4x$, donc $x = 4$",
+    "écrit $x = 0$ et $x = 4$ sans factoriser"
+   ],
+   "note": "Diviser par $x$ ferait perdre la solution 0."
+  },
+  {
+   "id": "eq-carre-pos",
+   "chap": "equ",
+   "type": "propriete",
+   "titre": "Deux solutions opposées",
+   "question": "L'équation $x^{2} = 36$ a pour solutions ...",
+   "reponse": "$6$ et $-6$",
+   "pieges": [
+    "$6$ seulement, la racine carrée de 36",
+    "$18$ et $-18$, la moitié de 36",
+    "$36$ et $-36$, le nombre lui-même"
+   ],
+   "note": "Les deux nombres opposés ont le même carré."
+  },
+  {
+   "id": "eq-isoler-carre",
+   "chap": "equ",
+   "type": "regle",
+   "titre": "Isoler x²",
+   "question": "Pour résoudre $2x^{2} = 50$, on ...",
+   "reponse": "divise par 2 : $x^{2} = 25$, donc $x = 5$ ou $x = -5$",
+   "pieges": [
+    "prend la racine carrée de 50 puis on divise le résultat par 2",
+    "divise 50 par 2 puis on obtient directement $x = 25$ comme solution",
+    "soustrait 2 aux deux membres de l'équation : $x^{2} = 48$"
+   ],
+   "note": "Les deux solutions sont 5 et $-5$."
+  },
+  {
+   "id": "eq-mise",
+   "chap": "equ",
+   "type": "regle",
+   "titre": "Mettre en équation",
+   "question": "Pour mettre un problème en équation, on commence par ...",
+   "reponse": "choisir l'inconnue $x$ et dire ce qu'elle représente",
+   "pieges": [
+    "écrire le résultat final sans jamais nommer l'inconnue du problème",
+    "résoudre l'équation avant de la poser, de tête, sans écrire",
+    "choisir au hasard une valeur de départ pour $x$ et la tester"
+   ],
+   "note": "Exemple : « Soit $x$ le nombre de séances. »"
+  },
+  {
+   "id": "eq-verif",
+   "chap": "equ",
+   "type": "regle",
+   "titre": "Vérifier une solution",
+   "question": "Pour vérifier qu'un nombre est solution, on ...",
+   "reponse": "remplace $x$ par ce nombre dans chaque membre et on compare",
+   "pieges": [
+    "remplace $x$ dans le membre de gauche seulement et on s'arrête là",
+    "ajoute ce nombre aux deux membres de l'équation puis on réduit",
+    "regarde si ce nombre est positif et entier, rien de plus que cela"
+   ],
+   "note": "Si les deux résultats sont égaux, le nombre est solution."
+  },
+  {
+   "id": "eq-inconnue",
+   "chap": "equ",
+   "type": "definition",
+   "titre": "Membres d'une équation",
+   "question": "Dans $3x + 2 = 5x - 6$, le membre de droite est ...",
+   "reponse": "$5x - 6$",
+   "pieges": [
+    "$3x + 2$, qui est écrit avant le signe égal",
+    "$-6$, car c'est le dernier nombre écrit",
+    "$5x$, car on ne compte pas le nombre"
+   ],
+   "note": "Le membre de gauche est $3x + 2$."
   },
   {
    "id": "st-etendue",
@@ -3775,18 +5059,6 @@ Savoirs.enregistrer({
    ]
   },
   {
-   "id": "o68",
-   "chap": "prem",
-   "enonce": "Calculer le PGCD de 252 et 198 par des divisions successives.",
-   "bon": "prem-eucl",
-   "explication": "$252 = 198 + 54$ ; $198 = 3 \\times 54 + 36$ ; $54 = 36 + 18$ ; $36 = 2 \\times 18$ : le dernier reste non nul est 18.",
-   "autres": [
-    "prem-decomp",
-    "prem-crit",
-    "prem-irred"
-   ]
-  },
-  {
    "id": "o69",
    "chap": "prem",
    "enonce": "Décomposer 84 en produit de facteurs premiers.",
@@ -3807,7 +5079,7 @@ Savoirs.enregistrer({
    "autres": [
     "prem-def",
     "prem-decomp",
-    "prem-eucl"
+    "prem-pgcd"
    ]
   },
   {

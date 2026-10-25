@@ -9,6 +9,13 @@ window.Savoirs = {
     Savoirs.niveaux[donnees.id] = donnees;
   },
 
+  // Techniques d'entraînement d'un niveau (« Je m'entraîne ») : donnees/<niveau>/techniques.js
+  techniques: {},
+  enregistrerTechniques: function (idNiveau, liste) {
+    // Un fichier par chapitre : les listes s'ajoutent
+    Savoirs.techniques[idNiveau] = (Savoirs.techniques[idNiveau] || []).concat(liste);
+  },
+
   // Charge les fichiers d'un niveau la première fois qu'on le choisit.
   // Simples balises <script>, pour que cela marche aussi en ouvrant index.html depuis un fichier.
   charger: function (id) {

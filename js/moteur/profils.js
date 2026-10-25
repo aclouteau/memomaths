@@ -10,7 +10,7 @@
   const PREFIXE = "SAV1-";
   // Pour vérifier un code importé : identifiants courts (lettres, chiffres, tirets), limites de taille
   const CLE_SURE = /^[a-z0-9][a-z0-9-]{0,39}$/i;
-  const COMPETENCES = ["completer", "reconstituer", "appliquer", "outil"];
+  const COMPETENCES = ["completer", "reconstituer", "appliquer", "outil", "rappel"];
   const TAILLE_MAX_CODE = 200000;
   const FICHES_MAX = 5000;
 

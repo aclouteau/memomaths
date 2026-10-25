@@ -254,5 +254,92 @@
   };
 
   Savoirs.calculs = G;
-  Savoirs.calculsOutils = { L: L, T: T }; // pour les tests
+
+  // ---------- Outils des techniques d'entraînement (donnees/<niveau>/techniques*.js) ----------
+  const nonNul = (a, b) => { let x; do { x = ent(a, b); } while (x === 0); return x; };
+  const signeAuHasard = () => (Math.random() < 0.5 ? -1 : 1);
+  // Décimal positif, non entier, ayant exactement `chiffres` chiffres après la virgule (1 ou 2), au plus max
+  const decimal = (max, chiffres) => { const p = Math.pow(10, chiffres); let k; do { k = ent(1, Math.round(max * p)); } while (k % 10 === 0); return k / p; };
+  const decimales = (x) => { const t = String(net(x)); return t.includes(".") ? t.split(".")[1].length : 0; };
+  // Cas faciles (sans nombre négatif, déjà simplifié…) : 1 fois sur 8 au niveau 1, 1 sur 20 au niveau 2, jamais au niveau 3
+  const PART_FACILE = { 1: 1 / 8, 2: 1 / 20, 3: 0 };
+  const facile = (niveau) => Math.random() < PART_FACILE[niveau];
+  const pgcd = (a, b) => { a = Math.abs(a); b = Math.abs(b); while (b) { const r = a % b; a = b; b = r; } return a; };
+  const ppcm = (a, b) => (a / pgcd(a, b)) * b;
+  // Fraction en LaTeX, le signe devant : F(-3, 4) = -\dfrac{3}{4}
+  const F = (n, d) => (n * d < 0 ? "-" : "") + "\\dfrac{" + Math.abs(n) + "}{" + Math.abs(d) + "}";
+  // Nombre relatif écrit avec son signe et entre parenthèses : (+5), (-5)
+  const S = (x) => "(" + (x < 0 ? "" : "+") + L(x) + ")";
+  // Nombre écrit avec exactement d chiffres après la virgule (valeur arrondie, 12,50 €)
+  const fixe = (x, d) => x.toFixed(d).replace(".", "{,}");
+  const fixeTexte = (x, d) => x.toFixed(d).replace("-", "−").replace(".", ",");
+  const pluriel = (n, un, plusieurs) => T(n) + " " + (Math.abs(n) >= 2 ? plusieurs : un);
+  // Polynôme en x, coefficients du plus haut degré au terme constant : [3, -5, 2] → "3x^2-5x+2" (réponse "expression")
+  function polyTexte(c) {
+    const n = c.length - 1;
+    let s = "";
+    c.forEach((a, i) => {
+      a = net(a);
+      if (!a) return;
+      const d = n - i, abs = Math.abs(a);
+      s += (a < 0 ? "-" : s ? "+" : "") + (d > 0 && abs === 1 ? "" : String(abs)) + (d > 0 ? "x" + (d > 1 ? "^" + d : "") : "");
+    });
+    return s || "0";
+  }
+  // Même polynôme en LaTeX : x^{2} + 6x + 9
+  const polyLatex = (c) => Savoirs.expressions.latex(polyTexte(c));
+  // Calcul « au tableau », étape par étape : "6*[(7+9)-3]" → 6 × [(7 + 9) − 3] = 6 × (16 − 3) = 6 × 13 = 78.
+  // D'abord l'intérieur des parenthèses (les plus intérieures), puis × et ÷, puis + et − de gauche à droite.
+  // Renvoie { latex (l'expression), etapes ("… = … = résultat"), valeur, intermediaires (toutes les valeurs calculées) }.
+  function calculEtapes(texte) {
+    let t = (texte.match(/\d+(?:\.\d+)?|[-+*/()[\]]/g) || []).map((x) => (/\d/.test(x) ? +x : x));
+    const valeurs = [];
+    const op = (a, o, b) => { const r = net(o === "+" ? a + b : o === "-" ? a - b : o === "*" ? a * b : a / b); valeurs.push(r); return r; };
+    function plat(s) { // une étape sur une suite sans parenthèses
+      if (s.some((x) => x === "*" || x === "/")) {
+        const r = [];
+        for (let i = 0; i < s.length; i++) {
+          if ((s[i + 1] === "*" || s[i + 1] === "/") && typeof s[i] === "number") {
+            let v = s[i];
+            while (s[i + 1] === "*" || s[i + 1] === "/") { v = op(v, s[i + 1], s[i + 2]); i += 2; }
+            r.push(v);
+          } else r.push(s[i]);
+        }
+        return r;
+      }
+      return [op(s[0], s[1], s[2])].concat(s.slice(3));
+    }
+    const ecrire = (s) => s.map((x, i) => {
+      if (typeof x === "number") return L(x);
+      if (x === "*") return " \\times ";
+      if (x === "/") return " \\div ";
+      if (x === "+" || x === "-") return " " + x + " ";
+      if (x === "[") return s.slice(i + 1).indexOf("(") !== -1 && s.slice(i + 1).indexOf("(") < s.slice(i + 1).indexOf("]") ? "\\left[" : "(";
+      if (x === "]") { const avant = s.slice(0, i), o = avant.lastIndexOf("["); return avant.slice(o).includes("(") ? "\\right]" : ")"; }
+      return x;
+    }).join("");
+    const latex = ecrire(t), etapes = [latex];
+    while (t.length > 1) {
+      const f = t.findIndex((x) => x === ")" || x === "]");
+      if (f !== -1) {
+        let o = f - 1; while (t[o] !== "(" && t[o] !== "[") o--;
+        const dedans = t.slice(o + 1, f);
+        t = t.slice(0, o).concat(dedans.length === 1 ? dedans : [t[o]].concat(plat(dedans), [t[f]]), t.slice(f + 1));
+        // Une parenthèse qui ne contient plus qu'un nombre disparaît dans la même étape
+        let change = true;
+        while (change) { change = false; for (let i = 0; i + 2 < t.length; i++) if ((t[i] === "(" || t[i] === "[") && typeof t[i + 1] === "number" && (t[i + 2] === ")" || t[i + 2] === "]")) { t.splice(i, 3, t[i + 1]); change = true; } }
+      } else t = plat(t);
+      etapes.push(ecrire(t));
+    }
+    return { latex: latex, etapes: etapes.join(" = "), valeur: t[0], intermediaires: valeurs };
+  }
+  // Remplace x par une valeur dans une écriture LaTeX : 2x^{2} - x → 2 \times (-3)^{2} - (-3)
+  const substituer = (latex, v) => latex.replace(/(\d|\})x/g, "$1 \\times x").replace(/x/g, v < 0 ? "(" + L(v) + ")" : L(v));
+
+  Savoirs.calculsOutils = {
+    L: L, T: T, P: P, ent: ent, choix: choix, net: net, arr: arr,
+    nonNul: nonNul, signeAuHasard: signeAuHasard, decimal: decimal, decimales: decimales, facile: facile,
+    pgcd: pgcd, ppcm: ppcm, F: F, S: S, fixe: fixe, fixeTexte: fixeTexte, pluriel: pluriel,
+    polyTexte: polyTexte, polyLatex: polyLatex, substituer: substituer, calculEtapes: calculEtapes
+  };
 })();

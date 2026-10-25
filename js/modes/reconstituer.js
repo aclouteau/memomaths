@@ -36,6 +36,7 @@
 
   Savoirs.modes.push({
     id: "reconstituer",
+    interne: true, // forme de carte utilisée par « J'apprends », plus un bouton de l'accueil
     titre: "Je reconstitue",
     description: "Remets les morceaux de la formule dans l'ordre.",
     competence: "reconstituer",

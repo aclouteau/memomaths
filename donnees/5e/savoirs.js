@@ -316,9 +316,9 @@ Savoirs.enregistrer({
    "question": "La valeur absolue d'un nombre est ...",
    "reponse": "sa distance à 0 (le nombre privé de son signe)",
    "pieges": [
-    "son opposé",
-    "le nombre précédé d'un signe $-$",
-    "son inverse"
+    "son opposé, c'est-à-dire le nombre de signe contraire",
+    "le nombre précédé d'un signe $-$ ou d'un signe $+$",
+    "son inverse, c'est-à-dire le nombre $1$ divisé par lui"
    ],
    "note": "La valeur absolue de $-5$ est 5, celle de 5 est 5."
   },
@@ -344,10 +344,122 @@ Savoirs.enregistrer({
    "reponse": "$(\\text{abscisse} ; \\text{ordonnée})$ : d'abord l'axe horizontal",
    "pieges": [
     "$(\\text{ordonnée} ; \\text{abscisse})$ : d'abord l'axe vertical",
-    "dans n'importe quel ordre",
-    "on met toujours le plus grand nombre en premier"
+    "dans n'importe quel ordre, puisque les deux axes sont équivalents",
+    "on met toujours le plus grand nombre en premier, puis le plus petit"
    ],
    "note": "$(3 ; -2)$ et $(-2 ; 3)$ ne sont pas le même point."
+  },
+  {
+   "id": "rel-def",
+   "chap": "rel1",
+   "type": "definition",
+   "titre": "Nombre relatif",
+   "question": "Un nombre relatif est un nombre ...",
+   "reponse": "précédé d'un signe $+$ ou $-$, qui dit de quel côté de zéro il est",
+   "pieges": [
+    "toujours précédé d'un signe $-$, qui dit seulement que ce nombre est négatif",
+    "toujours écrit sans aucun signe quand il est plus grand que zéro, sinon avec une virgule",
+    "toujours écrit sans virgule, qu'il soit positif ou qu'il soit négatif"
+   ],
+   "note": "Exemples : $+3$ et $-3$ sont deux nombres relatifs à la même distance de 0, de part et d'autre."
+  },
+  {
+   "id": "rel-zero",
+   "chap": "rel1",
+   "type": "propriete",
+   "titre": "Le nombre 0",
+   "question": "Le nombre $0$ est ...",
+   "reponse": "ni positif ni négatif, et son opposé est lui-même",
+   "pieges": [
+    "positif, et son opposé est le nombre négatif qui est juste à côté",
+    "négatif, et son opposé est le nombre positif qui est juste à côté",
+    "à la fois positif et négatif, et il n'a donc aucun opposé"
+   ],
+   "note": "On écrit simplement $0$, jamais $+0$ ni $-0$."
+  },
+  {
+   "id": "rel-opp-opp",
+   "chap": "rel1",
+   "type": "propriete",
+   "titre": "Opposé de l'opposé",
+   "question": "L'opposé de l'opposé d'un nombre $a$ est ...",
+   "reponse": "ce nombre $a$ lui-même : $-(-a) = a$",
+   "pieges": [
+    "l'opposé de $a$ : $-(-a) = -a$",
+    "toujours un nombre négatif quel que soit $a$",
+    "toujours égal à $0$ quel que soit $a$"
+   ],
+   "note": "Exemple : l'opposé de $-5$ est $5$, et l'opposé de $5$ est de nouveau $-5$."
+  },
+  {
+   "id": "rel-abs-opp",
+   "chap": "rel1",
+   "type": "propriete",
+   "titre": "Opposés et valeur absolue",
+   "question": "Deux nombres opposés ont ...",
+   "reponse": "la même valeur absolue et des signes contraires",
+   "pieges": [
+    "la même valeur absolue et le même signe",
+    "des valeurs absolues différentes et le même signe",
+    "des valeurs absolues différentes et des signes contraires"
+   ],
+   "note": "Exemple : $7$ et $-7$ sont à la même distance de 0, soit $7$."
+  },
+  {
+   "id": "rel-comp-pos",
+   "chap": "rel1",
+   "type": "regle",
+   "titre": "Comparer un positif et un négatif",
+   "question": "De deux nombres de signes contraires, le plus grand est ...",
+   "reponse": "le nombre positif (par exemple $-8 < 3$)",
+   "pieges": [
+    "celui qui a la plus grande valeur absolue (par exemple $-8 < 3$ est faux)",
+    "le nombre négatif, car on lit le signe en premier",
+    "celui qui s'écrit avec le moins de chiffres"
+   ],
+   "note": "Sur une droite graduée, les nombres négatifs sont à gauche de 0 et les nombres positifs à droite."
+  },
+  {
+   "id": "rel-dist",
+   "chap": "rel1",
+   "type": "formule",
+   "titre": "Distance entre deux points",
+   "question": "Sur une droite graduée, la distance entre deux points d'abscisses $a$ et $b$ (avec $a < b$) est ...",
+   "reponse": "$b - a$ (la plus grande abscisse moins la plus petite)",
+   "pieges": [
+    "$a - b$ (la plus petite abscisse moins la plus grande)",
+    "$a + b$ (la somme des deux abscisses)",
+    "$a \\times b$ (le produit des deux abscisses)"
+   ],
+   "note": "Si $a$ et $b$ sont de signes contraires, on peut aussi ajouter leurs valeurs absolues : de $-3$ à $4$, la distance est $3 + 4 = 7$."
+  },
+  {
+   "id": "rel-entier-voisin",
+   "chap": "rel1",
+   "type": "regle",
+   "titre": "Encadrer par des entiers",
+   "question": "Le plus grand entier relatif inférieur à $-3{,}2$ est ...",
+   "reponse": "$-4$ (et non $-3$, car $-3 > -3{,}2$)",
+   "pieges": [
+    "$-3$ (la partie entière sans le signe)",
+    "$-3{,}3$ (le décimal qui suit)",
+    "$4$ (la valeur absolue arrondie)"
+   ],
+   "note": "Pour un nombre négatif, l'entier inférieur est plus éloigné de zéro que la partie entière."
+  },
+  {
+   "id": "rel-coord-signe",
+   "chap": "rel1",
+   "type": "regle",
+   "titre": "Position selon les signes",
+   "question": "Un point d'abscisse négative et d'ordonnée positive est situé ...",
+   "reponse": "à gauche de l'axe des ordonnées et au-dessus de l'axe des abscisses",
+   "pieges": [
+    "à droite de l'axe des ordonnées et au-dessus de l'axe des abscisses",
+    "à gauche de l'axe des ordonnées et en dessous de l'axe des abscisses",
+    "à droite de l'axe des ordonnées et en dessous de l'axe des abscisses"
+   ],
+   "note": "L'abscisse se lit sur l'axe horizontal, l'ordonnée sur l'axe vertical."
   },
   {
    "id": "priorites",
@@ -361,6 +473,7 @@ Savoirs.enregistrer({
     "toujours de gauche à droite, sans aucune priorité",
     "multiplications, puis parenthèses, puis divisions, puis additions"
    ],
+   "note": "À priorité égale, on calcule de gauche à droite.",
    "exemples": [
     {
      "donnees": "Calculer $5 + 3 \\times 2$",
@@ -376,8 +489,7 @@ Savoirs.enregistrer({
      "unite": "",
      "correction": "À priorité égale, de gauche à droite : $6 \\times 3 = 18$"
     }
-   ],
-   "note": "À priorité égale, on calcule de gauche à droite."
+   ]
   },
   {
    "id": "distrib",
@@ -387,18 +499,9 @@ Savoirs.enregistrer({
    "question": "$k \\times (a + b)$ vaut ...",
    "reponse": "$k \\times a + k \\times b$",
    "pieges": [
-    "$k \\times a + b$",
-    "$k + a \\times b$",
-    "$(k + a) \\times (k + b)$"
-   ],
-   "exemples": [
-    {
-     "donnees": "Calculer $4 \\times (5 + 3)$ en distribuant",
-     "question": "Résultat ?",
-     "reponse": 32,
-     "unite": "",
-     "correction": "$4 \\times 5 + 4 \\times 3 = 20 + 12 = 32$"
-    }
+    "$k \\times a + b$ : le facteur $k$ ne multiplie que $a$",
+    "$k + a \\times b$ : le facteur $k$ s'ajoute à $a$",
+    "$(k + a) \\times (k + b)$ : le facteur $k$ est ajouté deux fois"
    ],
    "note": "Il faut multiplier chaque terme de la parenthèse.",
    "morceaux": [
@@ -425,6 +528,15 @@ Savoirs.enregistrer({
     "+",
     "a",
     ")"
+   ],
+   "exemples": [
+    {
+     "donnees": "Calculer $4 \\times (5 + 3)$ en distribuant",
+     "question": "Résultat ?",
+     "reponse": 32,
+     "unite": "",
+     "correction": "$4 \\times 5 + 4 \\times 3 = 20 + 12 = 32$"
+    }
    ]
   },
   {
@@ -435,11 +547,137 @@ Savoirs.enregistrer({
    "question": "Pour poser un calcul en plusieurs étapes, on ...",
    "reponse": "écrit une ligne par étape, avec le signe $=$ seulement entre deux écritures égales",
    "pieges": [
-    "enchaîne les résultats avec des signes $=$ sur une seule ligne",
-    "n'écrit que le résultat final",
-    "écrit les étapes dans le désordre"
+    "enchaîne tous les résultats avec des signes $=$ sur une seule ligne, même quand ils sont différents",
+    "n'écrit que le résultat final, sans montrer les étapes intermédiaires",
+    "écrit les étapes dans le désordre, en commençant par la dernière opération"
    ],
    "note": "« 3 + 4 = 7 × 2 = 14 » est faux : 3 + 4 n'est pas égal à 14."
+  },
+  {
+   "id": "ench-gauche",
+   "chap": "ench",
+   "type": "regle",
+   "titre": "Opérations de même priorité",
+   "question": "Dans un calcul sans parenthèses qui ne contient que des additions et soustractions (ou que des multiplications et divisions), on calcule ...",
+   "reponse": "de gauche à droite : $20 - 8 + 3 = 12 + 3 = 15$",
+   "pieges": [
+    "de droite à gauche : $20 - 8 + 3 = 20 - 11 = 9$",
+    "toujours les additions avant les soustractions : $20 - 8 + 3 = 23 - 8 = 15$ par chance",
+    "dans n'importe quel ordre, le résultat est toujours le même"
+   ],
+   "note": "Pour $24 \\div 4 \\times 3$ : $24 \\div 4 = 6$ puis $6 \\times 3 = 18$ (et non $24 \\div 12 = 2$)."
+  },
+  {
+   "id": "ench-paren",
+   "chap": "ench",
+   "type": "regle",
+   "titre": "Parenthèses",
+   "question": "Dans un calcul avec des parenthèses, on commence par ...",
+   "reponse": "calculer ce qui est entre parenthèses (en commençant par les plus intérieures)",
+   "pieges": [
+    "calculer les multiplications d'abord, même s'il y a des parenthèses dans le calcul",
+    "calculer les additions d'abord, car elles sont plus simples que le reste",
+    "calculer de gauche à droite sans s'occuper des parenthèses du calcul"
+   ],
+   "note": "Avec des parenthèses imbriquées, on utilise parfois des crochets pour mieux les distinguer."
+  },
+  {
+   "id": "ench-implicite",
+   "chap": "ench",
+   "type": "regle",
+   "titre": "Signe × sous-entendu",
+   "question": "Quand un nombre est directement devant une parenthèse, comme dans $3(2 + 5)$, cela signifie ...",
+   "reponse": "$3 \\times (2 + 5)$ : le signe $\\times$ est sous-entendu",
+   "pieges": [
+    "$3 + (2 + 5)$ : le signe $+$ est sous-entendu devant la parenthèse",
+    "$32 + 5$ : on colle le $3$ au premier nombre de la parenthèse",
+    "$3 - (2 + 5)$ : le signe $-$ est sous-entendu devant la parenthèse"
+   ],
+   "note": "On ne peut pas supprimer le signe $\\times$ entre deux nombres, mais on peut le supprimer devant une parenthèse ou une lettre."
+  },
+  {
+   "id": "ench-moins",
+   "chap": "ench",
+   "type": "formule",
+   "titre": "Distributivité avec une soustraction",
+   "question": "$k \\times (a - b)$ vaut ...",
+   "reponse": "$k \\times a - k \\times b$",
+   "pieges": [
+    "$k \\times a - b$",
+    "$k - a \\times b$",
+    "$k \\times a + k \\times b$"
+   ],
+   "note": "Exemple : $7 \\times 98 = 7 \\times (100 - 2) = 700 - 14 = 686$."
+  },
+  {
+   "id": "ench-fact",
+   "chap": "ench",
+   "type": "formule",
+   "titre": "Factoriser pour calculer",
+   "question": "$k \\times a + k \\times b$ vaut aussi ...",
+   "reponse": "$k \\times (a + b)$",
+   "pieges": [
+    "$k + a \\times b$",
+    "$(k + k) \\times (a + b)$",
+    "$k \\times a \\times b$"
+   ],
+   "note": "Exemple : $13 \\times 47 + 13 \\times 53 = 13 \\times (47 + 53) = 13 \\times 100 = 1\\,300$."
+  },
+  {
+   "id": "ench-barre",
+   "chap": "ench",
+   "type": "regle",
+   "titre": "Barre de fraction",
+   "question": "Dans $\\dfrac{3 + 9}{2 + 2}$, la barre de fraction signifie qu'on doit ...",
+   "reponse": "calculer le numérateur et le dénominateur avant de diviser : $\\dfrac{12}{4} = 3$",
+   "pieges": [
+    "diviser d'abord $9$ par $2$, puis additionner : $3 + 4{,}5 + 2$ pour finir",
+    "calculer seulement le numérateur : le dénominateur reste inchangé jusqu'à la fin",
+    "diviser $3$ par $2$ et $9$ par $2$ séparément, sans aucune parenthèse nulle part"
+   ],
+   "note": "La barre de fraction joue le rôle de parenthèses : $\\dfrac{3 + 9}{2 + 2} = (3 + 9) \\div (2 + 2)$."
+  },
+  {
+   "id": "ench-assoc",
+   "chap": "ench",
+   "type": "regle",
+   "titre": "Calcul astucieux",
+   "question": "Pour calculer $25 \\times 17 \\times 4$ astucieusement, on ...",
+   "reponse": "regroupe $25 \\times 4 = 100$, car on peut changer l'ordre",
+   "pieges": [
+    "calcule $25 \\times 17$ puis $\\times 4$, car l'ordre des nombres est imposé",
+    "ajoute $25$ et $4$ avant de multiplier le résultat par $17$",
+    "ne peut pas changer l'ordre des nombres, car il y en a trois dans le produit"
+   ],
+   "note": "Une multiplication peut se faire dans n'importe quel ordre, comme une addition : $25 \\times 17 \\times 4 = 25 \\times 4 \\times 17 = 1\\,700$."
+  },
+  {
+   "id": "ench-noncomm",
+   "chap": "ench",
+   "type": "propriete",
+   "titre": "Soustraction et division",
+   "question": "La soustraction et la division sont-elles commutatives (peut-on changer l'ordre des nombres) ?",
+   "reponse": "non : $8 - 3 \\neq 3 - 8$ et $8 \\div 2 \\neq 2 \\div 8$",
+   "pieges": [
+    "oui, toutes les deux : $8 - 3 = 3 - 8$ et $8 \\div 2 = 2 \\div 8$",
+    "seulement la soustraction, puisque $8 - 3 = 3 - 8$ en valeur absolue",
+    "seulement la division, puisque $8 \\div 2 = 2 \\div 8$ en valeur absolue"
+   ],
+   "note": "Seules l'addition et la multiplication sont commutatives."
+  },
+  {
+   "id": "ench-div-dec",
+   "chap": "ench",
+   "type": "regle",
+   "titre": "Diviser par un décimal",
+   "question": "Pour diviser par un décimal, comme $12 \\div 0{,}25$, on ...",
+   "reponse": "multiplie le dividende et le diviseur par 100 : $1\\,200 \\div 25 = 48$",
+   "pieges": [
+    "multiplie seulement le diviseur par 100 : $12 \\div 25 = 0{,}48$",
+    "divise seulement le dividende par 100 : $0{,}12 \\div 0{,}25 = 0{,}48$",
+    "ajoute 100 au dividende et au diviseur : $112 \\div 100{,}25$"
+   ],
+   "note": "Le quotient ne change pas quand on multiplie le dividende et le diviseur par le même nombre."
   },
   {
    "id": "tri-iso",
@@ -503,9 +741,9 @@ Savoirs.enregistrer({
    "question": "Le centre du cercle circonscrit à un triangle est ...",
    "reponse": "le point de rencontre des trois médiatrices des côtés",
    "pieges": [
-    "le point de rencontre des trois hauteurs",
-    "le milieu du plus grand côté",
-    "le point de rencontre des trois bissectrices"
+    "le point de rencontre des trois hauteurs du triangle",
+    "le milieu du plus grand côté du triangle",
+    "le point de rencontre des trois bissectrices du triangle"
    ]
   },
   {
@@ -516,11 +754,109 @@ Savoirs.enregistrer({
    "question": "Une hauteur d'un triangle est une droite qui ...",
    "reponse": "passe par un sommet et est perpendiculaire à la droite qui porte le côté opposé",
    "pieges": [
-    "passe par un sommet et par le milieu du côté opposé",
-    "passe par le milieu d'un côté et lui est perpendiculaire",
-    "est parallèle à un côté"
+    "passe par un sommet et par le milieu du côté opposé à ce sommet (c'est une médiane)",
+    "passe par le milieu d'un côté et lui est perpendiculaire (c'est une médiatrice)",
+    "passe par un sommet et est parallèle à la droite qui porte le côté opposé"
    ],
    "note": "Une hauteur peut être à l'extérieur du triangle."
+  },
+  {
+   "id": "tri-equi",
+   "chap": "tri",
+   "type": "propriete",
+   "titre": "Triangle équilatéral",
+   "question": "Dans un triangle équilatéral, chaque angle mesure ...",
+   "reponse": "$60^{\\circ}$ (car $180 \\div 3 = 60$)",
+   "pieges": [
+    "$45^{\\circ}$ (car il y a trois côtés égaux)",
+    "$90^{\\circ}$ (car il y a un angle droit)",
+    "$30^{\\circ}$ (car $180 \\div 6 = 30$)"
+   ],
+   "note": "Un triangle équilatéral a trois côtés égaux et trois angles égaux."
+  },
+  {
+   "id": "tri-iso-ang",
+   "chap": "tri",
+   "type": "propriete",
+   "titre": "Angles d'un triangle isocèle",
+   "question": "Dans un triangle isocèle, les deux angles à la base sont ...",
+   "reponse": "égaux (les angles opposés aux côtés égaux)",
+   "pieges": [
+    "supplémentaires (leur somme vaut $180^{\\circ}$)",
+    "complémentaires (leur somme vaut $90^{\\circ}$)",
+    "égaux à l'angle au sommet principal"
+   ],
+   "note": "Si l'angle au sommet vaut $40^{\\circ}$, chaque angle à la base vaut $(180 - 40) \\div 2 = 70^{\\circ}$."
+  },
+  {
+   "id": "tri-rect-ang",
+   "chap": "tri",
+   "type": "propriete",
+   "titre": "Triangle rectangle",
+   "question": "Dans un triangle rectangle, les deux angles aigus ont pour somme ...",
+   "reponse": "$90^{\\circ}$ (ils sont complémentaires)",
+   "pieges": [
+    "$180^{\\circ}$ (ils sont supplémentaires)",
+    "$45^{\\circ}$ (ils sont toujours égaux)",
+    "$100^{\\circ}$ (ils sont toujours complémentaires)"
+   ],
+   "note": "Exemple : si un angle aigu vaut $35^{\\circ}$, l'autre vaut $90 - 35 = 55^{\\circ}$."
+  },
+  {
+   "id": "tri-med",
+   "chap": "tri",
+   "type": "propriete",
+   "titre": "Propriété de la médiatrice",
+   "question": "Si un point $M$ est sur la médiatrice d'un segment $[AB]$, alors ...",
+   "reponse": "$M$ est à égale distance des extrémités : $MA = MB$",
+   "pieges": [
+    "$M$ est le milieu du segment : $MA = MB = \\dfrac{AB}{2}$",
+    "$M$ est aligné avec $A$ et $B$ : $MA + MB = AB$",
+    "$M$ est à égale distance de $A$ et de $B$ seulement s'il est sur $[AB]$"
+   ],
+   "note": "Réciproque : un point équidistant de $A$ et $B$ est sur la médiatrice de $[AB]$."
+  },
+  {
+   "id": "tri-ortho",
+   "chap": "tri",
+   "type": "propriete",
+   "titre": "Concours des hauteurs",
+   "question": "Les trois hauteurs d'un triangle ...",
+   "reponse": "se coupent en un même point, appelé orthocentre",
+   "pieges": [
+    "sont toujours parallèles entre elles dans un triangle",
+    "se coupent toujours au centre du cercle circonscrit",
+    "se coupent toujours à l'intérieur du triangle, au milieu"
+   ],
+   "note": "Dans un triangle obtusangle, l'orthocentre est à l'extérieur du triangle."
+  },
+  {
+   "id": "tri-med-conc",
+   "chap": "tri",
+   "type": "propriete",
+   "titre": "Concours des médiatrices",
+   "question": "Les trois médiatrices d'un triangle ...",
+   "reponse": "se coupent en un même point, centre du cercle circonscrit",
+   "pieges": [
+    "se coupent en un même point, centre du cercle inscrit dans le triangle",
+    "sont toujours parallèles deux à deux, comme les rails du train",
+    "se coupent en trois points différents à l'intérieur du triangle"
+   ],
+   "note": "Ce point est à égale distance des trois sommets : $OA = OB = OC$."
+  },
+  {
+   "id": "tri-aplati",
+   "chap": "tri",
+   "type": "propriete",
+   "titre": "Triangle aplati",
+   "question": "Si le plus grand côté d'un triangle est égal à la somme des deux autres, alors ...",
+   "reponse": "les trois points sont alignés : pas de vrai triangle",
+   "pieges": [
+    "le triangle existe, mais il est forcément rectangle en un des sommets",
+    "le triangle existe, mais il est forcément isocèle en un des sommets",
+    "on peut le construire en dessinant un triangle très allongé et très fin"
+   ],
+   "note": "Exemple : $AB = 3$, $BC = 4$, $AC = 7$ : $B$ est sur le segment $[AC]$."
   },
   {
    "id": "carre-def",
@@ -530,9 +866,22 @@ Savoirs.enregistrer({
    "question": "$a^{2}$ et $a^{3}$ signifient ...",
    "reponse": "$a^{2} = a \\times a$ et $a^{3} = a \\times a \\times a$",
    "pieges": [
-    "$a^{2} = a \\times 2$ et $a^{3} = a \\times 3$",
-    "$a^{2} = a + a$ et $a^{3} = a + a + a$",
-    "$a^{2} = 2^{a}$ et $a^{3} = 3^{a}$"
+    "$a^{2} = a \\times 2$ et $a^{3} = a \\times 3$ : on multiplie par l'exposant",
+    "$a^{2} = a + a$ et $a^{3} = a + a + a$ : on additionne le nombre",
+    "$a^{2} = 2^{a}$ et $a^{3} = 3^{a}$ : on échange le nombre et l'exposant"
+   ],
+   "morceaux": [
+    "a^{2}",
+    "=",
+    "a",
+    "\\times",
+    "a"
+   ],
+   "intrus": [
+    "a",
+    "\\times",
+    "2",
+    "+"
    ],
    "exemples": [
     {
@@ -549,19 +898,6 @@ Savoirs.enregistrer({
      "unite": "",
      "correction": "$4 \\times 4 \\times 4 = 64$"
     }
-   ],
-   "morceaux": [
-    "a^{2}",
-    "=",
-    "a",
-    "\\times",
-    "a"
-   ],
-   "intrus": [
-    "a",
-    "\\times",
-    "2",
-    "+"
    ]
   },
   {
@@ -608,9 +944,9 @@ Savoirs.enregistrer({
    "question": "$1\\ \\text{dm}^{3}$ est égal à ...",
    "reponse": "1 L, soit $1\\,000\\ \\text{cm}^{3}$",
    "pieges": [
-    "1 mL",
-    "$100\\ \\text{cm}^{3}$",
-    "10 L"
+    "1 mL, soit $1\\ \\text{cm}^{3}$ exactement",
+    "$100\\ \\text{cm}^{3}$, soit 1 centilitre",
+    "10 L, soit $10\\,000\\ \\text{cm}^{3}$"
    ],
    "morceaux": [
     "1\\ \\text{dm}^{3}",
@@ -621,6 +957,118 @@ Savoirs.enregistrer({
     "1\\ \\text{mL}",
     "10\\ \\text{L}"
    ]
+  },
+  {
+   "id": "puis-carres-liste",
+   "chap": "puis",
+   "type": "regle",
+   "titre": "Carrés à connaître",
+   "question": "Les carrés de 13, 14 et 15 valent ...",
+   "reponse": "$13^{2} = 169$ ; $14^{2} = 196$ ; $15^{2} = 225$",
+   "pieges": [
+    "$13^{2} = 156$ ; $14^{2} = 186$ ; $15^{2} = 215$",
+    "$13^{2} = 169$ ; $14^{2} = 192$ ; $15^{2} = 225$",
+    "$13^{2} = 26$ ; $14^{2} = 28$ ; $15^{2} = 30$"
+   ],
+   "note": "On peut aussi calculer $13 \\times 13 = 13 \\times 10 + 13 \\times 3 = 130 + 39 = 169$."
+  },
+  {
+   "id": "puis-dix",
+   "chap": "puis",
+   "type": "regle",
+   "titre": "Puissances de 10",
+   "question": "$10^{2}$ et $10^{3}$ valent ...",
+   "reponse": "$10^{2} = 100$ et $10^{3} = 1\\,000$",
+   "pieges": [
+    "$10^{2} = 20$ et $10^{3} = 30$",
+    "$10^{2} = 1\\,000$ et $10^{3} = 100$",
+    "$10^{2} = 100$ et $10^{3} = 10\\,000$"
+   ],
+   "note": "L'exposant donne le nombre de zéros après le 1."
+  },
+  {
+   "id": "puis-pas-double",
+   "chap": "puis",
+   "type": "regle",
+   "titre": "Carré et double",
+   "question": "Le carré d'un nombre est-il son double (par exemple $5^{2}$ et $2 \\times 5$) ?",
+   "reponse": "non : $5^{2} = 25$ alors que $2 \\times 5 = 10$",
+   "pieges": [
+    "oui : $5^{2} = 2 \\times 5 = 10$ quel que soit le nombre",
+    "oui : $5^{2} = 5 + 5 = 10$ dans tous les cas",
+    "seulement pour 5 : $5^{2} = 10$, mais pas pour 6"
+   ],
+   "note": "Le carré et le double ne sont égaux que pour le nombre 2 (et pour 0) : $2^{2} = 2 \\times 2 = 4$."
+  },
+  {
+   "id": "puis-dec",
+   "chap": "puis",
+   "type": "regle",
+   "titre": "Carré d'un décimal",
+   "question": "$0{,}3^{2}$ vaut ...",
+   "reponse": "$0{,}09$ (on calcule $3 \\times 3 = 9$ puis on place deux décimales)",
+   "pieges": [
+    "$0{,}9$ (on garde un seul chiffre après la virgule du nombre)",
+    "$0{,}6$ (on double le nombre au lieu de le multiplier par lui-même)",
+    "$9$ (on oublie complètement la virgule dans le résultat du calcul)"
+   ],
+   "note": "Le carré d'un décimal a deux fois plus de chiffres après la virgule : $1{,}2^{2} = 1{,}44$."
+  },
+  {
+   "id": "puis-aire-carre",
+   "chap": "puis",
+   "type": "formule",
+   "titre": "Aire d'un carré",
+   "question": "L'aire d'un carré de côté $c$ s'écrit ...",
+   "reponse": "$c^{2}$ ; elle s'exprime en unités d'aire (cm², m²…)",
+   "pieges": [
+    "$2c$ ; elle s'exprime en unités de longueur (cm, m…)",
+    "$4c$ ; elle s'exprime en unités de longueur (cm, m…)",
+    "$c^{3}$ ; elle s'exprime en unités de volume (cm³, m³…)"
+   ],
+   "note": "Exemple : un carré de côté 7 cm a pour aire $7^{2} = 49$ cm²."
+  },
+  {
+   "id": "puis-vol-cube",
+   "chap": "puis",
+   "type": "formule",
+   "titre": "Volume d'un cube",
+   "question": "Le volume d'un cube d'arête $a$ s'écrit ...",
+   "reponse": "$a^{3}$ ; il s'exprime en unités de volume (cm³, m³…)",
+   "pieges": [
+    "$3a$ ; il s'exprime en unités de longueur (cm, m…) comme l'arête",
+    "$6a^{2}$ ; il s'exprime en unités d'aire (cm², m²…) comme la surface",
+    "$a^{2}$ ; il s'exprime en unités d'aire (cm², m²…) comme un carré"
+   ],
+   "note": "Exemple : un cube d'arête 4 cm a pour volume $4^{3} = 64$ cm³."
+  },
+  {
+   "id": "puis-cubes",
+   "chap": "puis",
+   "type": "regle",
+   "titre": "Cubes à connaître",
+   "question": "Les cubes de 2, 3, 4 et 5 valent ...",
+   "reponse": "$2^{3} = 8$ ; $3^{3} = 27$ ; $4^{3} = 64$ ; $5^{3} = 125$",
+   "pieges": [
+    "$2^{3} = 6$ ; $3^{3} = 9$ ; $4^{3} = 12$ ; $5^{3} = 15$",
+    "$2^{3} = 8$ ; $3^{3} = 27$ ; $4^{3} = 48$ ; $5^{3} = 125$",
+    "$2^{3} = 8$ ; $3^{3} = 81$ ; $4^{3} = 64$ ; $5^{3} = 125$"
+   ],
+   "note": "Le seul cube exigible par cœur en 5e est $10^{3} = 1\\,000$ ; les autres se calculent ou se connaissent par habitude."
+  },
+  {
+   "id": "puis-somme-carre",
+   "chap": "puis",
+   "type": "regle",
+   "titre": "Carré d'une somme",
+   "question": "$(2 + 3)^{2}$ est-il égal à $2^{2} + 3^{2}$ ?",
+   "reponse": "non : $(2 + 3)^{2} = 25$ alors que $2^{2} + 3^{2} = 13$",
+   "pieges": [
+    "oui : $(2 + 3)^{2} = 2^{2} + 3^{2} = 13$ dans tous les cas",
+    "oui : les deux écritures donnent toutes les deux 25",
+    "oui : les deux écritures donnent toutes les deux 10"
+   ],
+   "note": "On commence par calculer la parenthèse : $(2 + 3)^{2} = 5^{2} = 25$."
   },
   {
    "id": "sc-def",
@@ -643,9 +1091,9 @@ Savoirs.enregistrer({
    "question": "La symétrie centrale conserve ...",
    "reponse": "les longueurs, l'alignement, les angles et les aires",
    "pieges": [
-    "seulement les longueurs",
-    "les longueurs mais pas les angles",
-    "la direction des droites uniquement"
+    "seulement les longueurs, mais ni les angles ni les aires",
+    "les longueurs et les aires, mais pas les angles ni l'alignement",
+    "la direction des droites uniquement, mais ni les longueurs ni les aires"
    ],
    "note": "L'image d'une droite est une droite parallèle."
   },
@@ -657,11 +1105,123 @@ Savoirs.enregistrer({
    "question": "Une figure a un centre de symétrie $O$ si ...",
    "reponse": "elle est superposable à elle-même après un demi-tour autour de $O$",
    "pieges": [
-    "elle est superposable à elle-même après un pliage suivant une droite",
-    "elle a un angle droit en $O$",
-    "$O$ est un sommet de la figure"
+    "elle est superposable à elle-même après un pliage suivant une droite quelconque",
+    "elle a un angle droit en $O$ et deux côtés de même longueur",
+    "$O$ est un sommet de la figure et le milieu d'un côté en même temps"
    ],
    "note": "Axe de symétrie : pliage. Centre de symétrie : demi-tour."
+  },
+  {
+   "id": "sc-demi-tour",
+   "chap": "sym",
+   "type": "propriete",
+   "titre": "Demi-tour",
+   "question": "La symétrie centrale de centre $O$ correspond à ...",
+   "reponse": "un demi-tour autour du point $O$",
+   "pieges": [
+    "un quart de tour autour du point $O$",
+    "un pliage le long d'une droite passant par $O$",
+    "un glissement qui déplace tous les points de la même longueur"
+   ],
+   "note": "Un demi-tour tourne la figure de $180^{\\circ}$ : l'image est « à l'envers »."
+  },
+  {
+   "id": "sc-centre-fixe",
+   "chap": "sym",
+   "type": "propriete",
+   "titre": "Image du centre",
+   "question": "Le symétrique du centre $O$ par rapport à $O$ est ...",
+   "reponse": "$O$ lui-même",
+   "pieges": [
+    "le point $O'$ placé à la même distance de $O$ dans l'autre direction",
+    "le milieu du segment $[OO']$ où $O'$ est un point quelconque",
+    "un point différent de $O$, toujours situé sur la médiatrice"
+   ],
+   "note": "Le centre est le seul point qui ne bouge pas."
+  },
+  {
+   "id": "sc-droite",
+   "chap": "sym",
+   "type": "propriete",
+   "titre": "Image d'une droite",
+   "question": "L'image d'une droite par une symétrie centrale est ...",
+   "reponse": "une droite parallèle à la droite de départ",
+   "pieges": [
+    "une droite perpendiculaire à la droite de départ",
+    "une droite sécante à la droite de départ en $O$",
+    "une demi-droite de même origine que la droite de départ"
+   ],
+   "note": "Si la droite passe par le centre $O$, son image est la même droite."
+  },
+  {
+   "id": "sc-seg",
+   "chap": "sym",
+   "type": "propriete",
+   "titre": "Image d'un segment",
+   "question": "L'image d'un segment $[AB]$ par une symétrie centrale est ...",
+   "reponse": "un segment $[A'B']$ de même longueur : $A'B' = AB$",
+   "pieges": [
+    "un segment $[A'B']$ deux fois plus long : $A'B' = 2 \\times AB$",
+    "un segment $[A'B']$ de même longueur placé sur la même droite",
+    "un segment $[A'B']$ de longueur différente, choisie librement"
+   ],
+   "note": "Les longueurs, les angles et les aires sont conservés."
+  },
+  {
+   "id": "sc-cercle",
+   "chap": "sym",
+   "type": "propriete",
+   "titre": "Image d'un cercle",
+   "question": "L'image d'un cercle de centre $I$ et de rayon $r$ par une symétrie centrale est ...",
+   "reponse": "un cercle de même rayon $r$, dont le centre est le symétrique de $I$",
+   "pieges": [
+    "un cercle de rayon $2r$, dont le centre est le symétrique de $I$ par rapport à $O$",
+    "un cercle de même rayon $r$, dont le centre est toujours le même point $I$ de départ",
+    "une ellipse dont les deux foyers sont le point $I$ et son symétrique par rapport à $O$"
+   ],
+   "note": "Si le centre $O$ est le centre du cercle, l'image est le cercle lui-même."
+  },
+  {
+   "id": "sc-para",
+   "chap": "sym",
+   "type": "propriete",
+   "titre": "Parallélogramme",
+   "question": "Le centre de symétrie d'un parallélogramme est ...",
+   "reponse": "le point d'intersection de ses diagonales (leur milieu commun)",
+   "pieges": [
+    "le point d'intersection de ses hauteurs (leur point commun) à l'intérieur",
+    "le milieu d'un seul de ses côtés (le plus long des quatre côtés)",
+    "l'un de ses sommets (celui de l'angle aigu le plus petit)"
+   ],
+   "note": "Un parallélogramme a un centre de symétrie, mais en général pas d'axe de symétrie."
+  },
+  {
+   "id": "sc-figures",
+   "chap": "sym",
+   "type": "regle",
+   "titre": "Figures à centre de symétrie",
+   "question": "Parmi ces figures, lesquelles ont un centre de symétrie : le carré, le triangle équilatéral, le cercle ?",
+   "reponse": "le carré et le cercle (pas le triangle équilatéral)",
+   "pieges": [
+    "le triangle équilatéral et le cercle (pas le carré)",
+    "le carré et le triangle équilatéral (pas le cercle)",
+    "les trois figures ont toutes un centre de symétrie"
+   ],
+   "note": "Un polygone régulier a un centre de symétrie si et seulement si son nombre de côtés est pair."
+  },
+  {
+   "id": "sc-unique",
+   "chap": "sym",
+   "type": "propriete",
+   "titre": "Un seul centre",
+   "question": "Une figure peut avoir ...",
+   "reponse": "au plus un centre de symétrie",
+   "pieges": [
+    "deux centres de symétrie au maximum, comme les axes de symétrie",
+    "autant de centres de symétrie qu'elle a de côtés",
+    "un nombre infini de centres de symétrie si elle est assez grande"
+   ],
+   "note": "Le cercle a un seul centre de symétrie (son centre), mais une infinité d'axes de symétrie."
   },
   {
    "id": "lit-double",
@@ -685,18 +1245,9 @@ Savoirs.enregistrer({
    "question": "$3 \\times (x + 5)$ s'écrit ...",
    "reponse": "$3x + 15$",
    "pieges": [
-    "$3x + 5$",
-    "$3 + 5x$",
-    "$x + 15$"
-   ],
-   "exemples": [
-    {
-     "donnees": "Pour $x = 2$, calculer $3 \\times (x + 5)$",
-     "question": "Résultat ?",
-     "reponse": 21,
-     "unite": "",
-     "correction": "$3 \\times (2 + 5) = 3 \\times 7 = 21$"
-    }
+    "$3x + 5$ : le facteur 3 ne multiplie que $x$",
+    "$3 + 5x$ : le facteur 3 est ajouté à la parenthèse",
+    "$x + 15$ : le facteur 3 ne multiplie que le nombre 5"
    ],
    "morceaux": [
     "3",
@@ -715,6 +1266,15 @@ Savoirs.enregistrer({
     "5x",
     "+",
     "3x"
+   ],
+   "exemples": [
+    {
+     "donnees": "Pour $x = 2$, calculer $3 \\times (x + 5)$",
+     "question": "Résultat ?",
+     "reponse": 21,
+     "unite": "",
+     "correction": "$3 \\times (2 + 5) = 3 \\times 7 = 21$"
+    }
    ]
   },
   {
@@ -750,9 +1310,9 @@ Savoirs.enregistrer({
    "question": "Le périmètre d'un rectangle de longueur $L$ et de largeur $\\ell$ vaut ...",
    "reponse": "$2 \\times (L + \\ell)$",
    "pieges": [
-    "$L \\times \\ell$",
-    "$2 \\times L + \\ell$",
-    "$L + \\ell$"
+    "$L \\times \\ell$ : c'est la formule de l'aire du rectangle",
+    "$2 \\times L + \\ell$ : on oublie de doubler la largeur",
+    "$L + \\ell$ : on oublie de doubler la somme des côtés"
    ]
   },
   {
@@ -770,6 +1330,104 @@ Savoirs.enregistrer({
    "note": "Un seul test ne suffit pas. $3n + 1 = 4n$ est vraie pour $n = 1$ seulement."
   },
   {
+   "id": "lit-mult",
+   "chap": "lit",
+   "type": "regle",
+   "titre": "Signe × sous-entendu",
+   "question": "On peut supprimer le signe $\\times$ entre un nombre et une lettre : $3 \\times x$ s'écrit ...",
+   "reponse": "$3x$ (et $x \\times x$ s'écrit $x^{2}$)",
+   "pieges": [
+    "$3 + x$ (et $x \\times x$ s'écrit $2x$)",
+    "$x^{3}$ (et $x \\times x$ s'écrit $2x$)",
+    "$3x$ (et $x \\times x$ s'écrit $2x$)"
+   ],
+   "note": "Le nombre s'écrit toujours devant la lettre : on écrit $3x$ et non $x3$."
+  },
+  {
+   "id": "lit-valeur",
+   "chap": "lit",
+   "type": "regle",
+   "titre": "Remplacer la lettre",
+   "question": "Pour calculer $2x + 3$ quand $x = 4$, on ...",
+   "reponse": "remplace $x$ par $4$ en gardant $\\times$ : $2 \\times 4 + 3 = 11$",
+   "pieges": [
+    "écrit $24 + 3 = 27$ en collant les deux chiffres ensemble",
+    "écrit $2 + 4 + 3 = 9$ en additionnant tous les nombres de l'expression",
+    "écrit $2 \\times (4 + 3) = 14$ en ajoutant des parenthèses au calcul"
+   ],
+   "note": "On rétablit le signe $\\times$ caché entre le nombre et la lettre : $2x$ devient $2 \\times 4$, pas $24$."
+  },
+  {
+   "id": "lit-x2",
+   "chap": "lit",
+   "type": "regle",
+   "titre": "Carré et double",
+   "question": "Pour $x = 5$, $x^{2}$ et $2x$ valent ...",
+   "reponse": "$x^{2} = 25$ et $2x = 10$ : ce ne sont pas les mêmes nombres",
+   "pieges": [
+    "$x^{2} = 10$ et $2x = 10$ : ce sont les mêmes nombres",
+    "$x^{2} = 25$ et $2x = 25$ : ce sont les mêmes nombres",
+    "$x^{2} = 10$ et $2x = 25$ : c'est l'inverse des vraies valeurs"
+   ],
+   "note": "$x^{2} = x \\times x$ alors que $2x = 2 \\times x$ : l'exposant n'est pas un coefficient."
+  },
+  {
+   "id": "lit-nature",
+   "chap": "lit",
+   "type": "regle",
+   "titre": "Termes de même nature",
+   "question": "On peut additionner $3x$ et $5x$, mais pas $3x$ et $5$ car ...",
+   "reponse": "ce ne sont pas des termes de même nature : $3x + 5x = 8x$ mais $3x + 5$ ne se réduit pas",
+   "pieges": [
+    "ce sont des termes de même nature : $3x + 5 = 8x$ comme d'habitude pour les additions",
+    "$5$ est un nombre trop petit pour $3x$ : $3x + 5 = 8x$ seulement si $x$ est plus grand que $5$",
+    "la lettre $x$ ne vaut rien dans une somme : $3x + 5 = 8$ dans tous les cas, quelle que soit sa valeur"
+   ],
+   "note": "On réduit seulement les termes de même nature : $3x + 5x + 2 + 4 = 8x + 6$."
+  },
+  {
+   "id": "lit-fact",
+   "chap": "lit",
+   "type": "formule",
+   "titre": "Factoriser",
+   "question": "$k \\times a + k \\times b$ s'écrit aussi ...",
+   "reponse": "$k \\times (a + b)$ (on met le facteur commun $k$ en facteur)",
+   "pieges": [
+    "$k \\times a + b$ (le facteur $k$ disparaît pour le second terme)",
+    "$k + (a \\times b)$ (le facteur $k$ s'ajoute au produit)",
+    "$(k + a) \\times b$ (le facteur $k$ s'ajoute au premier terme)"
+   ],
+   "note": "Exemple : $3x + 3 \\times 5 = 3 \\times (x + 5) = 3(x + 5)$."
+  },
+  {
+   "id": "lit-contre",
+   "chap": "lit",
+   "type": "regle",
+   "titre": "Contre-exemple",
+   "question": "Pour montrer qu'une égalité est fausse, il suffit de ...",
+   "reponse": "trouver une seule valeur de la lettre pour laquelle l'égalité est fausse",
+   "pieges": [
+    "la tester avec plusieurs valeurs de la lettre qui donnent des résultats différents",
+    "montrer qu'elle est vraie pour une valeur de la lettre",
+    "la vérifier avec la valeur zéro uniquement, car 0 est la plus simple"
+   ],
+   "note": "Exemple : $2x = x + 2$ est fausse pour $x = 5$ ($10 \\neq 7$), mais vraie pour $x = 2$."
+  },
+  {
+   "id": "lit-traduire",
+   "chap": "lit",
+   "type": "regle",
+   "titre": "Traduire une phrase",
+   "question": "« Le double de la somme de $x$ et de 3 » s'écrit ...",
+   "reponse": "$2 \\times (x + 3)$, ou $2(x + 3)$ (les parenthèses entourent la somme)",
+   "pieges": [
+    "$2x + 3$, car le double ne porte que sur $x$ et il n'y a pas de parenthèses",
+    "$2 + x + 3$, car le double est une simple addition de nombres et de lettres",
+    "$x + 3 \\times 2$, car la somme passe avant la multiplication dans une phrase"
+   ],
+   "note": "$2x + 3$ se lit « le double de $x$, augmenté de 3 »."
+  },
+  {
    "id": "aire-tri",
    "chap": "aire",
    "type": "formule",
@@ -777,10 +1435,11 @@ Savoirs.enregistrer({
    "question": "Aire d'un triangle de base $b$ et de hauteur $h$ ?",
    "reponse": "$\\mathcal{A} = \\dfrac{b \\times h}{2}$",
    "pieges": [
-    "$\\mathcal{A} = b \\times h$",
-    "$\\mathcal{A} = \\dfrac{b + h}{2}$",
-    "$\\mathcal{A} = 2 \\times b \\times h$"
+    "$\\mathcal{A} = b \\times h$ (on oublie de diviser par 2)",
+    "$\\mathcal{A} = \\dfrac{b + h}{2}$ (on additionne au lieu de multiplier)",
+    "$\\mathcal{A} = 2 \\times b \\times h$ (on double au lieu de diviser)"
    ],
+   "note": "La hauteur est perpendiculaire à la base.",
    "morceaux": [
     "\\mathcal{A}",
     "=",
@@ -798,8 +1457,7 @@ Savoirs.enregistrer({
      "unite": "cm²",
      "correction": "$\\dfrac{8 \\times 5}{2} = 20$ cm²"
     }
-   ],
-   "note": "La hauteur est perpendiculaire à la base."
+   ]
   },
   {
    "id": "aire-para",
@@ -813,15 +1471,6 @@ Savoirs.enregistrer({
     "$\\mathcal{A} = \\dfrac{b \\times h}{2}$",
     "$\\mathcal{A} = 2 \\times (b + h)$"
    ],
-   "exemples": [
-    {
-     "donnees": "$b = 6$ cm et $h = 4$ cm",
-     "question": "Aire ?",
-     "reponse": 24,
-     "unite": "cm²",
-     "correction": "$6 \\times 4 = 24$ cm²"
-    }
-   ],
    "morceaux": [
     "\\mathcal{A}",
     "=",
@@ -832,6 +1481,15 @@ Savoirs.enregistrer({
    "intrus": [
     "+",
     "2"
+   ],
+   "exemples": [
+    {
+     "donnees": "$b = 6$ cm et $h = 4$ cm",
+     "question": "Aire ?",
+     "reponse": 24,
+     "unite": "cm²",
+     "correction": "$6 \\times 4 = 24$ cm²"
+    }
    ]
   },
   {
@@ -882,9 +1540,9 @@ Savoirs.enregistrer({
    "question": "Périmètre d'un cercle de rayon $r$ ?",
    "reponse": "$P = 2 \\times \\pi \\times r$",
    "pieges": [
-    "$P = \\pi \\times r^{2}$",
-    "$P = \\pi \\times r$",
-    "$P = 2 \\times r$"
+    "$P = \\pi \\times r^{2}$ (c'est la formule de l'aire du disque)",
+    "$P = \\pi \\times r$ (on oublie le facteur $2$ du diamètre)",
+    "$P = 2 \\times r$ (on oublie $\\pi$ complètement)"
    ],
    "morceaux": [
     "P",
@@ -924,6 +1582,104 @@ Savoirs.enregistrer({
    "note": "1 ha = 10 000 m² ; 1 a = 100 m²."
   },
   {
+   "id": "aire-rect-carre",
+   "chap": "aire",
+   "type": "formule",
+   "titre": "Aire d'un rectangle et d'un carré",
+   "question": "Aire d'un rectangle de longueur $L$ et de largeur $\\ell$ ?",
+   "reponse": "$\\mathcal{A} = L \\times \\ell$ (pour un carré de côté $c$ : $c \\times c$)",
+   "pieges": [
+    "$\\mathcal{A} = 2 \\times (L + \\ell)$ (pour un carré de côté $c$ : $4 \\times c$)",
+    "$\\mathcal{A} = L + \\ell$ (pour un carré de côté $c$ : $2 \\times c$)",
+    "$\\mathcal{A} = \\dfrac{L \\times \\ell}{2}$ (pour un carré de côté $c$ : $c \\div 2$)"
+   ],
+   "note": "Ne pas confondre avec le périmètre, qui additionne les côtés."
+  },
+  {
+   "id": "aire-hauteur",
+   "chap": "aire",
+   "type": "propriete",
+   "titre": "Hauteur d'un triangle ou d'un parallélogramme",
+   "question": "La hauteur utilisée pour calculer une aire est ...",
+   "reponse": "perpendiculaire à la base (elle peut être à l'extérieur)",
+   "pieges": [
+    "le côté oblique le plus proche de la base du triangle ou du parallélogramme",
+    "la distance entre les deux sommets les plus éloignés de la figure",
+    "toujours à l'intérieur de la figure, posée sur un de ses côtés"
+   ],
+   "note": "Dans un triangle obtusangle, une hauteur est à l'extérieur du triangle."
+  },
+  {
+   "id": "aire-pi",
+   "chap": "aire",
+   "type": "valeur",
+   "titre": "La valeur de pi",
+   "question": "Une valeur approchée usuelle de $\\pi$ est ...",
+   "reponse": "$3{,}14$ (environ $\\dfrac{22}{7}$)",
+   "pieges": [
+    "$3{,}41$ (environ $\\dfrac{7}{22}$)",
+    "$3$ exactement, comme $\\dfrac{3}{1}$",
+    "$3{,}10$ exactement, comme $\\dfrac{31}{10}$"
+   ],
+   "note": "$\\pi$ est le quotient du périmètre d'un cercle par son diamètre."
+  },
+  {
+   "id": "aire-diametre",
+   "chap": "aire",
+   "type": "propriete",
+   "titre": "Rayon et diamètre",
+   "question": "Le rayon d'un cercle est ... de son diamètre",
+   "reponse": "la moitié",
+   "pieges": [
+    "le double",
+    "le quart",
+    "le tiers"
+   ],
+   "note": "Un cercle de diamètre $10$ cm a un rayon de $5$ cm."
+  },
+  {
+   "id": "aire-perim-diam",
+   "chap": "aire",
+   "type": "formule",
+   "titre": "Périmètre avec le diamètre",
+   "question": "Périmètre d'un cercle de diamètre $d$ ?",
+   "reponse": "$P = \\pi \\times d$",
+   "pieges": [
+    "$P = \\pi \\times d^{2}$",
+    "$P = \\dfrac{\\pi \\times d}{2}$",
+    "$P = 2 \\times \\pi \\times d$"
+   ],
+   "note": "C'est la même formule que $2 \\times \\pi \\times r$, car $d = 2 \\times r$."
+  },
+  {
+   "id": "aire-compose",
+   "chap": "aire",
+   "type": "methode",
+   "titre": "Figure composée",
+   "question": "Pour calculer l'aire d'une figure composée, on ...",
+   "reponse": "découpe en figures simples, puis on additionne ou on soustrait les aires",
+   "pieges": [
+    "additionne les périmètres des figures simples que l'on a trouvées dedans",
+    "multiplie les aires des figures simples que l'on a trouvées dedans",
+    "calcule seulement l'aire de la plus grande des figures simples"
+   ],
+   "note": "Une figure en L est un grand rectangle moins un petit, ou deux rectangles côte à côte."
+  },
+  {
+   "id": "aire-demi",
+   "chap": "aire",
+   "type": "formule",
+   "titre": "Aire d'un demi-disque",
+   "question": "Aire d'un demi-disque de rayon $r$ ?",
+   "reponse": "$\\mathcal{A} = \\dfrac{\\pi \\times r^{2}}{2}$",
+   "pieges": [
+    "$\\mathcal{A} = \\pi \\times r^{2}$ (c'est celle du disque entier)",
+    "$\\mathcal{A} = \\dfrac{\\pi \\times r}{2}$ (on oublie le carré)",
+    "$\\mathcal{A} = \\pi \\times \\dfrac{r}{2}$ (on oublie le carré)"
+   ],
+   "note": "Avec $r = 4$ cm : $\\dfrac{3{,}14 \\times 16}{2} = 25{,}12\\ \\text{cm}^{2}$."
+  },
+  {
    "id": "div-eucl",
    "chap": "div",
    "type": "regle",
@@ -931,9 +1687,9 @@ Savoirs.enregistrer({
    "question": "Une division euclidienne de $a$ par $b$ s'écrit ...",
    "reponse": "$a = b \\times q + r$ avec $r < b$",
    "pieges": [
-    "$a = b \\times q + r$ avec $r > b$",
-    "$a = b + q + r$",
-    "$a = q \\div b + r$"
+    "$a = b \\times q + r$ avec $r > b$ (le reste est trop grand)",
+    "$a = b + q + r$ (on additionne au lieu de multiplier)",
+    "$a = q \\div b + r$ (on divise au lieu de multiplier)"
    ],
    "note": "$17 = 3 \\times 5 + 2$.",
    "morceaux": [
@@ -958,9 +1714,9 @@ Savoirs.enregistrer({
    "question": "$21 = 3 \\times 7$ : on dit que ...",
    "reponse": "21 est un multiple de 3 et 3 est un diviseur de 21",
    "pieges": [
-    "21 est un diviseur de 3 et 3 est un multiple de 21",
-    "21 est le quotient de 3 et 3 est le reste",
-    "21 est un multiple de 7 et 3 est le quotient"
+    "21 est un diviseur de 3 et 3 est un multiple de 21 (sens inversé)",
+    "21 est le quotient de 3 et 3 est le reste (mots confondus)",
+    "21 est un multiple de 7 et 3 est le quotient (mots confondus)"
    ]
   },
   {
@@ -971,9 +1727,9 @@ Savoirs.enregistrer({
    "question": "Un nombre est divisible par 3 quand ...",
    "reponse": "la somme de ses chiffres est divisible par 3",
    "pieges": [
-    "son dernier chiffre est divisible par 3",
-    "son dernier chiffre est 3, 6 ou 9",
-    "il est impair"
+    "son dernier chiffre est divisible par 3 (on ne regarde que le dernier)",
+    "son dernier chiffre est 3, 6 ou 9 (on confond avec les multiples de 3)",
+    "il est impair (on confond avec les nombres impairs)"
    ],
    "note": "Par 9 : la somme des chiffres est divisible par 9. 12 est divisible par 3 mais pas par 9."
   },
@@ -991,6 +1747,90 @@ Savoirs.enregistrer({
    ]
   },
   {
+   "id": "div-crit-9",
+   "chap": "div",
+   "type": "propriete",
+   "titre": "Divisibilité par 9",
+   "question": "Un nombre est divisible par 9 quand ...",
+   "reponse": "la somme de ses chiffres est divisible par 9",
+   "pieges": [
+    "son dernier chiffre est 9 (comme pour 10 avec le chiffre 0)",
+    "la somme de ses chiffres est divisible par 3 seulement",
+    "il se termine par 0 ou 9 (comme pour 5 avec 0 ou 5)"
+   ],
+   "note": "Exemple : $4\\,563$ : $4 + 5 + 6 + 3 = 18$, donc divisible par 9 (et par 3)."
+  },
+  {
+   "id": "div-reste",
+   "chap": "div",
+   "type": "propriete",
+   "titre": "Le reste est plus petit que le diviseur",
+   "question": "Dans une division euclidienne par 7, le reste peut valoir ...",
+   "reponse": "0, 1, 2, 3, 4, 5 ou 6 (strictement moins que 7)",
+   "pieges": [
+    "1, 2, 3, 4, 5, 6 ou 7 (jusqu'à 7 compris)",
+    "n'importe quel entier, même 20, tant que le quotient reste entier",
+    "0, 1, 2, 3 ou 4 (au plus la moitié de 7)"
+   ],
+   "note": "Si le reste vaut 7, on peut encore ajouter 1 au quotient."
+  },
+  {
+   "id": "div-reste-nul",
+   "chap": "div",
+   "type": "propriete",
+   "titre": "Reste nul",
+   "question": "Dans la division euclidienne de $a$ par $b$, si le reste est nul, alors ...",
+   "reponse": "$a$ est un multiple de $b$ et $b$ est un diviseur de $a$",
+   "pieges": [
+    "$a$ est un diviseur de $b$ et $b$ est un multiple de $a$",
+    "$a$ et $b$ sont égaux",
+    "le quotient est aussi nul"
+   ],
+   "note": "Exemple : $42 = 6 \\times 7 + 0$."
+  },
+  {
+   "id": "div-un",
+   "chap": "div",
+   "type": "propriete",
+   "titre": "Diviseurs évidents",
+   "question": "Tout nombre entier supérieur à 1 a au moins pour diviseurs ...",
+   "reponse": "1 et lui-même",
+   "pieges": [
+    "2 et lui-même",
+    "1 et 10",
+    "lui-même seulement"
+   ],
+   "note": "Exemple : les diviseurs de 7 sont 1 et 7 ; ceux de 12 sont 1, 2, 3, 4, 6 et 12."
+  },
+  {
+   "id": "div-multiples-inf",
+   "chap": "div",
+   "type": "propriete",
+   "titre": "Combien de multiples, combien de diviseurs ?",
+   "question": "Un nombre entier non nul a ...",
+   "reponse": "une infinité de multiples, mais un nombre fini de diviseurs",
+   "pieges": [
+    "un nombre fini de multiples, mais une infinité de diviseurs possibles",
+    "une infinité de multiples et aussi une infinité de diviseurs",
+    "autant de multiples que de diviseurs, toujours en même nombre"
+   ],
+   "note": "Les multiples de 5 : 0, 5, 10, 15, 20, ... ; les diviseurs de 20 : 1, 2, 4, 5, 10, 20."
+  },
+  {
+   "id": "div-quotient",
+   "chap": "div",
+   "type": "propriete",
+   "titre": "Quotient entier",
+   "question": "Dans une division euclidienne, le quotient est ...",
+   "reponse": "un nombre entier",
+   "pieges": [
+    "un nombre décimal avec des chiffres après la virgule",
+    "toujours inférieur au reste",
+    "toujours égal au reste"
+   ],
+   "note": "Exemple : dans $50 = 7 \\times 7 + 1$, le quotient est $7$, pas $7{,}14$."
+  },
+  {
    "id": "quotient",
    "chap": "rat1",
    "type": "definition",
@@ -998,9 +1838,9 @@ Savoirs.enregistrer({
    "question": "Le quotient $\\dfrac{a}{b}$ (avec $b \\neq 0$) est le nombre ...",
    "reponse": "qui, multiplié par $b$, donne $a$",
    "pieges": [
-    "qui, ajouté à $b$, donne $a$",
-    "égal à $a - b$",
-    "égal à $b \\div a$"
+    "qui, ajouté à $b$, donne $a$ (on confond avec une soustraction)",
+    "égal à $a - b$ (on confond avec une soustraction)",
+    "égal à $b \\div a$ (on inverse la division)"
    ]
   },
   {
@@ -1011,9 +1851,9 @@ Savoirs.enregistrer({
    "question": "$\\dfrac{a}{b} = \\dfrac{a \\times k}{b \\times k}$ : on obtient une fraction égale en ...",
    "reponse": "multipliant (ou en divisant) le numérateur et le dénominateur par le même nombre non nul",
    "pieges": [
-    "ajoutant le même nombre au numérateur et au dénominateur",
-    "ne multipliant que le dénominateur",
-    "ne changeant que le numérateur"
+    "ajoutant (ou en soustrayant) le même nombre au numérateur et au dénominateur, ce qui change la valeur",
+    "ne multipliant que le dénominateur par le nombre choisi (cela change la valeur)",
+    "ne changeant que le numérateur, comme on veut (cela change la valeur)"
    ],
    "note": "$\\dfrac{3}{4} = \\dfrac{9}{12}$.",
    "morceaux": [
@@ -1080,6 +1920,90 @@ Savoirs.enregistrer({
    ]
   },
   {
+   "id": "rat-irred",
+   "chap": "rat1",
+   "type": "propriete",
+   "titre": "Fraction irréductible",
+   "question": "Une fraction est irréductible quand ...",
+   "reponse": "on ne peut plus la simplifier (plus de diviseur commun autre que 1)",
+   "pieges": [
+    "son numérateur est plus petit que son dénominateur (elle est alors « propre »)",
+    "son dénominateur est un nombre premier (comme 7 ou 13)",
+    "son numérateur est égal à 1 (ce sont les seules irréductibles)"
+   ],
+   "note": "$\\dfrac{3}{4}$ est irréductible ; $\\dfrac{6}{8}$ ne l'est pas, car $6$ et $8$ sont divisibles par $2$."
+  },
+  {
+   "id": "rat-simpl",
+   "chap": "rat1",
+   "type": "methode",
+   "titre": "Simplifier une fraction",
+   "question": "Pour simplifier une fraction, on ...",
+   "reponse": "divise le numérateur et le dénominateur par un même diviseur commun",
+   "pieges": [
+    "soustrait le même nombre au numérateur et au dénominateur de la fraction",
+    "divise seulement le dénominateur par un diviseur commun aux deux nombres",
+    "divise le numérateur par le dénominateur et écrit le résultat"
+   ],
+   "note": "$\\dfrac{18}{24} = \\dfrac{18 \\div 6}{24 \\div 6} = \\dfrac{3}{4}$."
+  },
+  {
+   "id": "rat-div",
+   "chap": "rat1",
+   "type": "propriete",
+   "titre": "Fraction et division",
+   "question": "$\\dfrac{3}{4}$ représente aussi ...",
+   "reponse": "la division $3 \\div 4$, c'est-à-dire $0{,}75$",
+   "pieges": [
+    "la division $4 \\div 3$, c'est-à-dire $1{,}33$",
+    "la soustraction $4 - 3 = 1$",
+    "le produit $3 \\times 4 = 12$"
+   ],
+   "note": "Une fraction est un quotient : on divise le numérateur par le dénominateur."
+  },
+  {
+   "id": "rat-sup1",
+   "chap": "rat1",
+   "type": "propriete",
+   "titre": "Fraction plus grande ou plus petite que 1",
+   "question": "Une fraction est supérieure à 1 quand ...",
+   "reponse": "son numérateur est plus grand que son dénominateur",
+   "pieges": [
+    "son numérateur est plus petit que son dénominateur",
+    "son dénominateur est pair, comme pour $\\dfrac{3}{2}$",
+    "son numérateur et son dénominateur sont impairs"
+   ],
+   "note": "$\\dfrac{7}{5} > 1$ ; $\\dfrac{5}{7} < 1$."
+  },
+  {
+   "id": "rat-quantite",
+   "chap": "rat1",
+   "type": "methode",
+   "titre": "Prendre une fraction d'une quantité",
+   "question": "Prendre les $\\dfrac{3}{4}$ de 80, c'est calculer ...",
+   "reponse": "$\\dfrac{3}{4} \\times 80 = 3 \\times 80 \\div 4 = 60$",
+   "pieges": [
+    "$80 \\div 3 \\times 4 = 106{,}67$ (on inverse la fraction)",
+    "$80 - \\dfrac{3}{4} = 79{,}25$ (on soustrait la fraction)",
+    "$80 + 3 \\div 4 = 80{,}75$ (on ajoute le quotient)"
+   ],
+   "note": "Prendre $\\dfrac{1}{4}$ d'une quantité, c'est la diviser par $4$."
+  },
+  {
+   "id": "rat-pct-quantite",
+   "chap": "rat1",
+   "type": "methode",
+   "titre": "Prendre un pourcentage d'une quantité",
+   "question": "Calculer $25\\,\\%$ de 80, c'est calculer ...",
+   "reponse": "$\\dfrac{25}{100} \\times 80 = 20$",
+   "pieges": [
+    "$25 \\times 80 = 2\\,000$ (on oublie de diviser par 100)",
+    "$80 - 25 = 55$ (on soustrait le pourcentage)",
+    "$\\dfrac{80}{100} \\times 25 = 20$ en divisant $25$ par $100$ (on confond les rôles)"
+   ],
+   "note": "$10\\,\\%$ d'une quantité : on la divise par $10$ ; $50\\,\\%$ : on la divise par $2$."
+  },
+  {
    "id": "ang-def",
    "chap": "ang",
    "type": "definition",
@@ -1114,9 +2038,9 @@ Savoirs.enregistrer({
    "question": "Deux angles sont supplémentaires quand ...",
    "reponse": "leur somme est égale à $180^{\\circ}$",
    "pieges": [
-    "leur somme est égale à $90^{\\circ}$",
-    "leur somme est égale à $360^{\\circ}$",
-    "ils sont égaux"
+    "leur somme est égale à $90^{\\circ}$ (ce sont des angles complémentaires)",
+    "leur somme est égale à $360^{\\circ}$ (le tour complet)",
+    "ils sont égaux (c'est le cas pour des angles opposés)"
    ]
   },
   {
@@ -1132,6 +2056,104 @@ Savoirs.enregistrer({
     "toujours droits"
    ],
    "note": "Réciproque : si des angles alternes-internes sont égaux, les droites sont parallèles. Une mesure sur un dessin ne prouve rien."
+  },
+  {
+   "id": "ang-compl",
+   "chap": "ang",
+   "type": "propriete",
+   "titre": "Angles complémentaires",
+   "question": "Deux angles sont complémentaires quand ...",
+   "reponse": "leur somme est égale à $90^{\\circ}$",
+   "pieges": [
+    "leur somme est égale à $180^{\\circ}$ (ce sont des supplémentaires)",
+    "leur somme est égale à $360^{\\circ}$ (le tour complet)",
+    "ils sont égaux et mesurent chacun $45^{\\circ}$ (cas particulier seulement)"
+   ],
+   "note": "Le complémentaire de $35^{\\circ}$ est $90 - 35 = 55^{\\circ}$."
+  },
+  {
+   "id": "ang-corr",
+   "chap": "ang",
+   "type": "propriete",
+   "titre": "Angles correspondants",
+   "question": "Si deux droites sont parallèles, alors les angles correspondants sont ...",
+   "reponse": "égaux",
+   "pieges": [
+    "supplémentaires",
+    "complémentaires",
+    "opposés par le sommet"
+   ],
+   "note": "Les angles correspondants sont du même côté de la sécante, l'un en haut, l'autre en bas."
+  },
+  {
+   "id": "ang-recip",
+   "chap": "ang",
+   "type": "propriete",
+   "titre": "Réciproque pour le parallélisme",
+   "question": "Si deux droites coupées par une sécante forment des angles alternes-internes égaux, alors ...",
+   "reponse": "ces deux droites sont parallèles",
+   "pieges": [
+    "ces deux droites sont perpendiculaires",
+    "la sécante est perpendiculaire aux deux droites",
+    "on ne peut rien dire sur ces deux droites"
+   ],
+   "note": "On utilise cette propriété pour prouver que deux droites sont parallèles."
+  },
+  {
+   "id": "ang-adj",
+   "chap": "ang",
+   "type": "propriete",
+   "titre": "Angles adjacents",
+   "question": "Deux angles adjacents dont les côtés non communs sont alignés sont ...",
+   "reponse": "supplémentaires (leur somme vaut $180^{\\circ}$)",
+   "pieges": [
+    "complémentaires (leur somme vaut $90^{\\circ}$, ils forment un angle droit)",
+    "égaux (ce sont alors des angles opposés par le sommet)",
+    "alternes-internes (ils sont alors égaux, avec deux parallèles)"
+   ],
+   "note": "Sur une droite, deux angles adjacents forment ensemble un angle plat."
+  },
+  {
+   "id": "ang-tour",
+   "chap": "ang",
+   "type": "propriete",
+   "titre": "Angles autour d'un point",
+   "question": "La somme des angles autour d'un point (un tour complet) vaut ...",
+   "reponse": "$360^{\\circ}$",
+   "pieges": [
+    "$180^{\\circ}$",
+    "$90^{\\circ}$",
+    "$270^{\\circ}$"
+   ],
+   "note": "Quatre angles droits font un tour complet : $4 \\times 90 = 360$."
+  },
+  {
+   "id": "ang-bissectrice",
+   "chap": "ang",
+   "type": "propriete",
+   "titre": "Bissectrice",
+   "question": "La bissectrice d'un angle est la demi-droite qui ...",
+   "reponse": "partage l'angle en deux angles égaux",
+   "pieges": [
+    "est perpendiculaire à un côté de l'angle",
+    "partage l'angle en deux angles supplémentaires",
+    "est parallèle à un côté de l'angle"
+   ],
+   "note": "La bissectrice d'un angle de $80^{\\circ}$ forme deux angles de $40^{\\circ}$."
+  },
+  {
+   "id": "ang-aigu-obtus",
+   "chap": "ang",
+   "type": "propriete",
+   "titre": "Aigu, droit, obtus",
+   "question": "Un angle obtus mesure ...",
+   "reponse": "plus de $90^{\\circ}$ et moins de $180^{\\circ}$",
+   "pieges": [
+    "moins de $90^{\\circ}$ (c'est un angle aigu)",
+    "exactement $180^{\\circ}$ (c'est un angle plat)",
+    "plus de $180^{\\circ}$ (c'est un angle rentrant)"
+   ],
+   "note": "Un angle aigu mesure moins de $90^{\\circ}$ ; un angle droit mesure $90^{\\circ}$."
   },
   {
    "id": "rel-add",

@@ -3,6 +3,7 @@
 (function () {
   Savoirs.modes.push({
     id: "completer",
+    interne: true, // forme de carte utilisée par « J'apprends », plus un bouton de l'accueil
     titre: "Je complète",
     description: "Choisis la bonne fin de la formule ou de la propriété.",
     competence: "completer",

@@ -443,6 +443,20 @@ Savoirs.enregistrer({
    "note": "Les parenthèses passent avant tout. À priorité égale : de gauche à droite."
   },
   {
+   "id": "rel-zero",
+   "chap": "rel1",
+   "type": "definition",
+   "titre": "Le nombre zéro",
+   "question": "Le nombre 0 est ...",
+   "reponse": "ni positif ni négatif",
+   "pieges": [
+    "positif",
+    "négatif",
+    "à la fois positif et négatif"
+   ],
+   "note": "Un nombre écrit sans signe est positif, mais 0 est le seul relatif qui n'est ni strictement positif ni strictement négatif."
+  },
+  {
    "id": "rel-oppose",
    "chap": "rel1",
    "type": "definition",
@@ -454,6 +468,7 @@ Savoirs.enregistrer({
     "$|a|$ : toujours positif",
     "$a - 1$"
    ],
+   "note": "L'opposé de $-7{,}5$ est $7{,}5$ ; l'opposé de 0 est 0.",
    "morceaux": [
     "a",
     "+",
@@ -469,16 +484,58 @@ Savoirs.enregistrer({
    ]
   },
   {
+   "id": "rel-dist",
+   "chap": "rel1",
+   "type": "definition",
+   "titre": "Distance à zéro",
+   "question": "La distance à zéro d'un nombre relatif est ...",
+   "reponse": "toujours positive ou nulle",
+   "pieges": [
+    "toujours négative ou nulle",
+    "du même signe que le nombre",
+    "égale à son opposé"
+   ],
+   "note": "La distance à zéro de $-3$ est 3, celle de $2$ est 2 : c'est la distance entre l'origine et le point qui représente le nombre."
+  },
+  {
+   "id": "rel-compar",
+   "chap": "rel1",
+   "type": "propriete",
+   "titre": "Comparer deux nombres négatifs",
+   "question": "Entre deux nombres négatifs, le plus grand est celui ...",
+   "reponse": "dont la distance à zéro est la plus petite",
+   "pieges": [
+    "dont la distance à zéro est la plus grande",
+    "qui s'écrit avec le plus de chiffres",
+    "qui est le plus éloigné de la droite"
+   ],
+   "note": "$-2 > -7$ car $-2$ est plus proche de 0 que $-7$ (distances à zéro : 2 et 7). Tout nombre négatif est inférieur à 0."
+  },
+  {
+   "id": "rel-add-meme",
+   "chap": "rel1",
+   "type": "regle",
+   "titre": "Addition : même signe",
+   "question": "Pour additionner deux relatifs de même signe, on ...",
+   "reponse": "additionne les distances à zéro et on garde le signe commun",
+   "pieges": [
+    "soustrait les distances à zéro et on garde le signe commun",
+    "additionne les distances à zéro et on prend toujours le signe $+$",
+    "soustrait les distances à zéro et on prend le signe du plus petit"
+   ],
+   "note": "$(-7) + (-4) = -11$ : distances $7 + 4 = 11$, signe commun $-$."
+  },
+  {
    "id": "rel-add",
    "chap": "rel1",
    "type": "regle",
-   "titre": "Addition de relatifs",
+   "titre": "Addition : signes contraires",
    "question": "Comment additionner deux relatifs de signes contraires, par exemple $(-7) + (+3)$ ?",
-   "reponse": "on soustrait les distances à zéro et on garde le signe du plus éloigné de 0 : $-4$",
+   "reponse": "on soustrait les distances à zéro, signe du plus éloigné de 0 : $-4$",
    "pieges": [
-    "on additionne les distances à zéro : $-10$",
-    "on additionne les distances à zéro et on garde le signe $+$ : $+10$",
-    "on soustrait et on garde toujours le signe $+$ : $+4$"
+    "on additionne les distances à zéro, signe du plus éloigné de 0 : $-10$",
+    "on soustrait les distances à zéro, signe du plus proche de 0 : $+4$",
+    "on soustrait les distances à zéro, signe du second nombre : $+4$"
    ],
    "note": "Même signe : on additionne les distances à zéro et on garde ce signe."
   },
@@ -491,8 +548,25 @@ Savoirs.enregistrer({
    "reponse": "ajouter son opposé : $a - b = a + (-b)$",
    "pieges": [
     "ajouter ce nombre : $a - b = a + b$",
-    "multiplier par $-1$",
-    "diviser par son opposé"
+    "multiplier par son opposé : $a - b = a \\times (-b)$",
+    "ajouter l'inverse : $a - b = a + \\dfrac{1}{b}$"
+   ],
+   "note": "$(-2) - (-6) = (-2) + (+6) = 4$.",
+   "morceaux": [
+    "a",
+    "-",
+    "b",
+    "=",
+    "a",
+    "+",
+    "(",
+    "-b",
+    ")"
+   ],
+   "intrus": [
+    "a",
+    "+",
+    "b"
    ],
    "exemples": [
     {
@@ -509,23 +583,157 @@ Savoirs.enregistrer({
      "unite": "",
      "correction": "$-3 - 5 = (-3) + (-5) = -8$"
     }
+   ]
+  },
+  {
+   "id": "rel-sous-neg",
+   "chap": "rel1",
+   "type": "regle",
+   "titre": "Soustraire un nombre négatif",
+   "question": "Soustraire un nombre négatif, $a - (-b)$, revient à ...",
+   "reponse": "$a + b$",
+   "pieges": [
+    "$a - b$",
+    "$-a - b$",
+    "$-a + b$"
    ],
+   "note": "$5 - (-2) = 5 + 2 = 7$ (et non 3)."
+  },
+  {
+   "id": "rel-dist-axe",
+   "chap": "rel1",
+   "type": "propriete",
+   "titre": "Distance entre deux points d'une droite graduée",
+   "question": "Si $A$ et $B$ ont pour abscisses $x_A$ et $x_B$, la distance $AB$ est ...",
+   "reponse": "la plus grande abscisse moins la plus petite",
+   "pieges": [
+    "la somme des deux abscisses",
+    "la plus petite abscisse moins la plus grande",
+    "le produit des deux abscisses"
+   ],
+   "note": "$A(-4)$ et $B(3)$ : $AB = 3 - (-4) = 3 + 4 = 7$.",
    "morceaux": [
-    "a",
-    "-",
-    "b",
+    "AB",
     "=",
+    "\\text{plus grande abscisse}",
+    "-",
+    "\\text{plus petite abscisse}"
+   ],
+   "intrus": [
+    "+"
+   ]
+  },
+  {
+   "id": "rel-ecr-simpl",
+   "chap": "rel1",
+   "type": "regle",
+   "titre": "Écriture simplifiée",
+   "question": "On peut supprimer les parenthèses : $a + (-b)$ s'écrit ...",
+   "reponse": "$a - b$",
+   "pieges": [
+    "$a + b$",
+    "$-a - b$",
+    "$-a + b$"
+   ],
+   "note": "Aussi : $a + (+b) = a + b$ et $a - (+b) = a - b$. Exemple : $(+5) + (-3) - (+2) - (-4)$ s'écrit $5 - 3 - 2 + 4$.",
+   "morceaux": [
     "a",
     "+",
     "(",
     "-b",
-    ")"
+    ")",
+    "=",
+    "a",
+    "-",
+    "b"
    ],
    "intrus": [
-    "a",
-    "+",
-    "b"
+    "+b"
    ]
+  },
+  {
+   "id": "rel-somme-alg",
+   "chap": "rel1",
+   "type": "regle",
+   "titre": "Somme algébrique",
+   "question": "Pour calculer $5 - 9 + 2 - 4$, on peut ...",
+   "reponse": "regrouper les termes positifs, puis les termes négatifs",
+   "pieges": [
+    "calculer toujours de la droite vers la gauche",
+    "supprimer tous les signes moins du calcul",
+    "additionner tous les nombres sans tenir compte du signe"
+   ],
+   "note": "On garde à chaque terme son signe : $5 - 9 + 2 - 4 = 5 + 2 - 9 - 4 = 7 - 13 = -6$."
+  },
+  {
+   "id": "rel-commut",
+   "chap": "rel1",
+   "type": "propriete",
+   "titre": "Commutativité",
+   "question": "L'addition de relatifs est commutative. La soustraction ...",
+   "reponse": "ne l'est pas : $a - b \\neq b - a$",
+   "pieges": [
+    "l'est aussi : $a - b = b - a$",
+    "l'est seulement avec des nombres positifs",
+    "l'est seulement avec des nombres entiers"
+   ],
+   "note": "$5 - 2 = 3$ mais $2 - 5 = -3$. Par contre $a + b = b + a$ et $(a + b) + c = a + (b + c)$."
+  },
+  {
+   "id": "carre-def",
+   "chap": "pyth",
+   "type": "definition",
+   "titre": "Carré d'un nombre",
+   "question": "Le carré d'un nombre $a$ est ...",
+   "reponse": "$a \\times a$, noté $a^{2}$",
+   "pieges": [
+    "$a \\times 2$, noté $a^{2}$",
+    "$a + a$, noté $a^{2}$",
+    "$a \\times a$, noté $2a$"
+   ],
+   "note": "Le carré d'un nombre est toujours positif ou nul : $(-4)^{2} = 16$."
+  },
+  {
+   "id": "racine-def",
+   "chap": "pyth",
+   "type": "definition",
+   "titre": "Racine carrée",
+   "question": "La racine carrée d'un nombre positif $a$ est ...",
+   "reponse": "le nombre positif dont le carré est $a$, noté $\\sqrt{a}$",
+   "pieges": [
+    "le nombre dont le double est $a$, noté $\\sqrt{a}$",
+    "le nombre négatif dont le carré est $a$, noté $\\sqrt{a}$",
+    "la moitié de $a$, notée $\\sqrt{a}$"
+   ],
+   "note": "$\\sqrt{25} = 5$ car $5^{2} = 25$ ; $(\\sqrt{13})^{2} = 13$ ; $\\sqrt{7^{2}} = 7$."
+  },
+  {
+   "id": "carres-parfaits",
+   "chap": "pyth",
+   "type": "regle",
+   "titre": "Carrés parfaits",
+   "question": "Les carrés parfaits à connaître sont les carrés des entiers ...",
+   "reponse": "de 1 à 12 (de 1 à 144)",
+   "pieges": [
+    "de 1 à 10 (de 1 à 100)",
+    "de 1 à 15 (de 1 à 225)",
+    "de 1 à 20 (de 1 à 400)"
+   ],
+   "note": "1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144. Exemple : $\\sqrt{121} = 11$ ; en revanche $\\sqrt{20}$ n'est pas entière : $4 < \\sqrt{20} < 5$."
+  },
+  {
+   "id": "racine-approch",
+   "chap": "pyth",
+   "type": "regle",
+   "titre": "Racine carrée non entière",
+   "question": "Si $a$ n'est pas un carré parfait, $\\sqrt{a}$ ...",
+   "reponse": "n'est pas entière : on en donne une valeur approchée",
+   "pieges": [
+    "est entière : la calculatrice donne sa valeur exacte",
+    "n'existe pas, car $a$ n'est pas un carré parfait",
+    "est égale à la moitié de $a$, à peu près toujours"
+   ],
+   "note": "$\\sqrt{20} \\approx 4{,}47$ (au centième). La valeur exacte reste $\\sqrt{20}$ ; on peut l'encadrer : $4 < \\sqrt{20} < 5$."
   },
   {
    "id": "hypotenuse",
@@ -542,6 +750,20 @@ Savoirs.enregistrer({
    "note": "C'est aussi le plus long côté du triangle rectangle."
   },
   {
+   "id": "hyp-longueur",
+   "chap": "pyth",
+   "type": "propriete",
+   "titre": "L'hypoténuse est le plus long côté",
+   "question": "Dans un triangle rectangle, l'hypoténuse est ...",
+   "reponse": "strictement plus longue que chacun des deux autres côtés",
+   "pieges": [
+    "toujours égale à la somme des longueurs des deux autres côtés",
+    "parfois plus courte que l'un des deux autres côtés",
+    "égale à la longueur de l'un des deux autres côtés"
+   ],
+   "note": "C'est utile pour vérifier un résultat : si on trouve un côté de l'angle droit plus long que l'hypoténuse, il y a une erreur."
+  },
+  {
    "id": "pythagore",
    "chap": "pyth",
    "type": "propriete",
@@ -553,6 +775,7 @@ Savoirs.enregistrer({
     "$AB^{2} = BC^{2} + AC^{2}$",
     "$BC^{2} = AB^{2} - AC^{2}$"
    ],
+   "note": "Hypoténuse : on additionne les carrés. Côté de l'angle droit : on soustrait.",
    "morceaux": [
     "BC^{2}",
     "=",
@@ -579,8 +802,21 @@ Savoirs.enregistrer({
      "unite": "cm",
      "correction": "$AC^{2} = 13^{2} - 5^{2} = 144$ donc $AC = 12$ cm"
     }
+   ]
+  },
+  {
+   "id": "pyth-hyp",
+   "chap": "pyth",
+   "type": "regle",
+   "titre": "Calculer l'hypoténuse",
+   "question": "Pour calculer l'hypoténuse avec Pythagore, on ...",
+   "reponse": "additionne les carrés des deux côtés de l'angle droit, puis prend la racine",
+   "pieges": [
+    "additionne les longueurs des deux côtés de l'angle droit, sans les élever au carré",
+    "soustrait les carrés des deux côtés de l'angle droit, puis prend la racine",
+    "additionne les carrés des deux côtés de l'angle droit, sans prendre la racine"
    ],
-   "note": "Hypoténuse : on additionne les carrés. Côté de l'angle droit : on soustrait."
+   "note": "$BC^{2} = 3^{2} + 4^{2} = 25$, donc $BC = \\sqrt{25} = 5$ cm."
   },
   {
    "id": "pyth-cote",
@@ -590,9 +826,62 @@ Savoirs.enregistrer({
    "question": "Pour calculer un côté de l'angle droit avec Pythagore, on ...",
    "reponse": "soustrait le carré de l'autre côté au carré de l'hypoténuse, puis prend la racine",
    "pieges": [
-    "additionne les carrés des deux autres côtés, puis prend la racine carrée",
-    "soustrait les longueurs des deux autres côtés, sans carré",
-    "additionne les longueurs des deux autres côtés, puis prend la racine"
+    "additionne les carrés des deux autres côtés, puis prend la racine carrée du total",
+    "soustrait les longueurs des deux autres côtés, sans les élever au carré, puis conclut",
+    "additionne les longueurs des deux autres côtés, puis prend la racine carrée de la somme"
+   ]
+  },
+  {
+   "id": "pyth-racine-fin",
+   "chap": "pyth",
+   "type": "regle",
+   "titre": "Ne pas oublier la racine",
+   "question": "Si on a trouvé $BC^{2} = 25$, alors ...",
+   "reponse": "$BC = \\sqrt{25} = 5$",
+   "pieges": [
+    "$BC = 25$",
+    "$BC = 25^{2} = 625$",
+    "$BC = 25 \\div 2 = 12{,}5$"
+   ],
+   "note": "On calcule d'abord le carré de la longueur, puis on prend la racine carrée : une longueur est positive."
+  },
+  {
+   "id": "pyth-cond",
+   "chap": "pyth",
+   "type": "regle",
+   "titre": "Quand utiliser le théorème",
+   "question": "Le théorème de Pythagore s'applique dans un triangle ...",
+   "reponse": "dont on sait qu'il est rectangle",
+   "pieges": [
+    "dont on sait qu'il est isocèle",
+    "dont on sait qu'il est équilatéral",
+    "quelconque"
+   ],
+   "note": "Il faut d'abord écrire « On sait que ABC est rectangle en A » : le théorème ne s'applique pas sinon."
+  },
+  {
+   "id": "pyth-cote-form",
+   "chap": "pyth",
+   "type": "formule",
+   "titre": "Carré d'un côté de l'angle droit",
+   "question": "Si un triangle ABC est rectangle en A, alors ...",
+   "reponse": "$AB^{2} = BC^{2} - AC^{2}$",
+   "pieges": [
+    "$AB^{2} = BC^{2} + AC^{2}$",
+    "$AB^{2} = AC^{2} - BC^{2}$",
+    "$AB^{2} = BC - AC^{2}$"
+   ],
+   "note": "On isole $AB^{2}$ dans $BC^{2} = AB^{2} + AC^{2}$. Comme $BC$ est l'hypoténuse, on retranche toujours à son carré.",
+   "morceaux": [
+    "AB^{2}",
+    "=",
+    "BC^{2}",
+    "-",
+    "AC^{2}"
+   ],
+   "intrus": [
+    "+",
+    "AC"
    ]
   },
   {
@@ -609,6 +898,34 @@ Savoirs.enregistrer({
    ]
   },
   {
+   "id": "pyth-triplet",
+   "chap": "pyth",
+   "type": "regle",
+   "titre": "Triplets pythagoriciens",
+   "question": "Trois nombres entiers $a$, $b$, $c$ tels que $a^{2} + b^{2} = c^{2}$ s'appellent ...",
+   "reponse": "un triplet pythagoricien, par exemple $(3 ; 4 ; 5)$",
+   "pieges": [
+    "un triplet de Thalès, par exemple $(3 ; 4 ; 5)$",
+    "un triplet pythagoricien, par exemple $(2 ; 3 ; 4)$",
+    "un triplet isocèle, par exemple $(3 ; 4 ; 5)$"
+   ],
+   "note": "Autres triplets : $(5 ; 12 ; 13)$, $(8 ; 15 ; 17)$, $(7 ; 24 ; 25)$ ; leurs multiples aussi : $(6 ; 8 ; 10)$."
+  },
+  {
+   "id": "effectif",
+   "chap": "stat",
+   "type": "definition",
+   "titre": "Effectif",
+   "question": "L'effectif d'une valeur dans une série est ...",
+   "reponse": "le nombre de fois où cette valeur apparaît dans la série",
+   "pieges": [
+    "le nombre de valeurs différentes que contient la série",
+    "la proportion de cette valeur dans la série, en pourcentage",
+    "la somme de cette valeur et de toutes les autres"
+   ],
+   "note": "L'effectif total est la somme de tous les effectifs. Exemple : 6 élèves sur 25 ont lu 3 livres, donc l'effectif de la valeur 3 est 6 et l'effectif total est 25."
+  },
+  {
    "id": "frequence",
    "chap": "stat",
    "type": "formule",
@@ -620,6 +937,7 @@ Savoirs.enregistrer({
     "$f = n \\times N$",
     "$f = n - N$"
    ],
+   "note": "La somme des fréquences vaut toujours 1.",
    "morceaux": [
     "f",
     "=",
@@ -637,8 +955,21 @@ Savoirs.enregistrer({
      "unite": "",
      "correction": "$f = \\dfrac{5}{25} = 0{,}2$"
     }
+   ]
+  },
+  {
+   "id": "freq-somme",
+   "chap": "stat",
+   "type": "propriete",
+   "titre": "Somme des fréquences",
+   "question": "La somme de toutes les fréquences d'une série vaut ...",
+   "reponse": "1, soit 100 %",
+   "pieges": [
+    "0,5, soit 50 %",
+    "10, soit 1 000 %",
+    "l'effectif total"
    ],
-   "note": "La somme des fréquences vaut toujours 1."
+   "note": "Cela permet de vérifier un tableau de fréquences : si la somme ne fait pas 1, il y a une erreur."
   },
   {
    "id": "moyenne",
@@ -648,18 +979,9 @@ Savoirs.enregistrer({
    "question": "Moyenne d'une série de valeurs ?",
    "reponse": "$\\text{moyenne} = \\dfrac{\\text{somme des valeurs}}{\\text{effectif total}}$",
    "pieges": [
-    "$\\dfrac{\\text{somme des valeurs}}{\\text{nombre de valeurs différentes}}$",
-    "$\\dfrac{\\text{valeur max} + \\text{valeur min}}{2}$",
-    "$\\text{valeur du milieu de la série rangée}$"
-   ],
-   "exemples": [
-    {
-     "donnees": "Notes : 8 ; 12 ; 15 ; 10 ; 5",
-     "question": "Moyenne ?",
-     "reponse": 10,
-     "unite": "",
-     "correction": "$\\dfrac{8 + 12 + 15 + 10 + 5}{5} = \\dfrac{50}{5} = 10$"
-    }
+    "$\\text{moyenne} = \\dfrac{\\text{somme des valeurs}}{\\text{nombre de valeurs différentes}}$",
+    "$\\text{moyenne} = \\dfrac{\\text{valeur maximale} + \\text{valeur minimale}}{2}$",
+    "$\\text{moyenne} = \\dfrac{\\text{somme des valeurs}}{\\text{valeur maximale}}$"
    ],
    "morceaux": [
     "\\text{moyenne}",
@@ -669,7 +991,44 @@ Savoirs.enregistrer({
    "intrus": [
     "\\dfrac{\\text{effectif total}}{\\text{somme des valeurs}}",
     "+"
+   ],
+   "exemples": [
+    {
+     "donnees": "Notes : 8 ; 12 ; 15 ; 10 ; 5",
+     "question": "Moyenne ?",
+     "reponse": 10,
+     "unite": "",
+     "correction": "$\\dfrac{8 + 12 + 15 + 10 + 5}{5} = \\dfrac{50}{5} = 10$"
+    }
    ]
+  },
+  {
+   "id": "moyenne-pond",
+   "chap": "stat",
+   "type": "regle",
+   "titre": "Moyenne pondérée",
+   "question": "Quand les valeurs sont données avec leurs effectifs, pour calculer la moyenne on multiplie chaque valeur par ...",
+   "reponse": "son effectif, on additionne les résultats, puis on divise par l'effectif total",
+   "pieges": [
+    "son effectif, on additionne les résultats, puis on divise par le nombre de valeurs",
+    "sa fréquence, on additionne les résultats, puis on divise par l'effectif total",
+    "son rang, on additionne les résultats, puis on divise par l'effectif total"
+   ],
+   "note": "Exemple : 7 (3 fois), 10 (1 fois) : $\\dfrac{7 \\times 3 + 10 \\times 1}{4} = \\dfrac{31}{4} = 7{,}75$."
+  },
+  {
+   "id": "moyenne-classes",
+   "chap": "stat",
+   "type": "regle",
+   "titre": "Moyenne d'une série en classes",
+   "question": "Pour une série regroupée en classes, on remplace chaque classe par ...",
+   "reponse": "son centre (le milieu de l'intervalle)",
+   "pieges": [
+    "sa borne inférieure (le début de l'intervalle)",
+    "sa borne supérieure (la fin de l'intervalle)",
+    "son amplitude (la largeur de l'intervalle)"
+   ],
+   "note": "Pour la classe $160 \\leqslant t < 170$, le centre est $\\dfrac{160 + 170}{2} = 165$. On obtient une valeur approchée de la moyenne."
   },
   {
    "id": "mediane",
@@ -679,11 +1038,53 @@ Savoirs.enregistrer({
    "question": "La médiane d'une série est la valeur qui ...",
    "reponse": "partage la série rangée en deux groupes de même effectif",
    "pieges": [
-    "est la plus fréquente",
-    "est la moyenne des valeurs",
-    "est la valeur du milieu d'une série non rangée"
+    "est la valeur la plus fréquente de la série, celle d'effectif maximal",
+    "est la moyenne de toutes les valeurs de la série, sans les ranger",
+    "est la valeur située au milieu de la série, même non rangée"
    ],
    "note": "Il faut d'abord ranger. Effectif impair : valeur centrale ; pair : milieu des deux valeurs centrales."
+  },
+  {
+   "id": "med-methode",
+   "chap": "stat",
+   "type": "regle",
+   "titre": "Trouver la médiane",
+   "question": "Pour trouver la médiane, on range les valeurs dans l'ordre croissant. Si l'effectif total est impair, la médiane est ...",
+   "reponse": "la valeur du milieu ; s'il est pair, c'est le milieu des deux valeurs centrales",
+   "pieges": [
+    "la moyenne des valeurs ; s'il est pair, c'est la plus petite des deux valeurs centrales",
+    "la valeur la plus fréquente ; s'il est pair, c'est la somme des deux valeurs centrales",
+    "la valeur du milieu ; s'il est pair, c'est la plus grande des deux valeurs centrales"
+   ],
+   "note": "Pour 5 valeurs, c'est la 3e ; pour 6 valeurs, c'est le milieu des 3e et 4e valeurs."
+  },
+  {
+   "id": "indicateur",
+   "chap": "stat",
+   "type": "propriete",
+   "titre": "Choisir moyenne ou médiane",
+   "question": "Une valeur isolée très grande modifie fortement ...",
+   "reponse": "la moyenne mais pas la médiane",
+   "pieges": [
+    "la médiane mais pas la moyenne",
+    "la moyenne et la médiane de la même façon",
+    "ni la moyenne, ni la médiane, ni les effectifs"
+   ],
+   "note": "Cinq salaires : 1 500 € (4 fois) et 6 000 €. Moyenne : 2 400 € ; médiane : 1 500 € ; la médiane décrit mieux le salaire courant."
+  },
+  {
+   "id": "classe-def",
+   "chap": "stat",
+   "type": "definition",
+   "titre": "Classe",
+   "question": "Une classe, en statistiques, est ...",
+   "reponse": "un intervalle de valeurs, par exemple $160 \\leqslant t < 170$",
+   "pieges": [
+    "une valeur isolée de la série rangée, par exemple $t = 165$",
+    "un groupe d'individus de la population, par exemple 26 élèves",
+    "un nombre de valeurs de la série, par exemple $t < 170$"
+   ],
+   "note": "On regroupe en classes quand les données sont très nombreuses ou toutes différentes. L'effectif d'une classe est le nombre de valeurs qu'elle contient ; sur un histogramme, la hauteur des rectangles est proportionnelle à l'effectif."
   },
   {
    "id": "rel-signe-prod",
@@ -697,20 +1098,49 @@ Savoirs.enregistrer({
     "nul",
     "du signe du plus grand"
    ],
-   "note": "Même signe : positif. Produit de plusieurs facteurs : nombre pair de facteurs négatifs → positif ; impair → négatif."
+   "note": "Même signe : positif. Signes contraires : négatif. Le produit par 0 est toujours 0."
   },
   {
-   "id": "rel-div0",
+   "id": "rel-prod-dist",
+   "chap": "rel2",
+   "type": "propriete",
+   "titre": "Distance à zéro d'un produit",
+   "question": "La distance à zéro du produit de deux relatifs est ...",
+   "reponse": "le produit de leurs distances à zéro",
+   "pieges": [
+    "la somme de leurs distances à zéro",
+    "la différence de leurs distances à zéro",
+    "le quotient de leurs distances à zéro"
+   ],
+   "note": "On calcule d'abord comme avec des nombres positifs, puis on choisit le signe. $(-4) \\times 7$ : $4 \\times 7 = 28$, signes contraires, donc $-28$."
+  },
+  {
+   "id": "rel-prod-zero",
    "chap": "rel2",
    "type": "regle",
-   "titre": "Division par zéro",
-   "question": "Que peut-on dire de $a \\div 0$ ?",
-   "reponse": "c'est impossible : on ne divise jamais par 0",
+   "titre": "Produit par zéro",
+   "question": "Un produit dont l'un des facteurs vaut 0 est ...",
+   "reponse": "nul (égal à 0)",
    "pieges": [
-    "c'est égal à 0 car on n'a rien à partager",
-    "c'est égal à $a$ car on ne divise pas",
-    "c'est égal à 1 comme $a \\div a$"
-   ]
+    "du signe de l'autre facteur",
+    "égal à l'autre facteur",
+    "impossible à calculer"
+   ],
+   "note": "$(-9) \\times 0 = 0$ et $0 \\times 5 = 0$."
+  },
+  {
+   "id": "rel-prod-impair",
+   "chap": "rel2",
+   "type": "propriete",
+   "titre": "Produit de plusieurs facteurs",
+   "question": "Un produit de plusieurs facteurs non nuls est négatif quand ...",
+   "reponse": "le nombre de facteurs négatifs est impair",
+   "pieges": [
+    "le nombre de facteurs négatifs est pair",
+    "au moins un facteur est négatif",
+    "le nombre de facteurs positifs est impair"
+   ],
+   "note": "Nombre pair de facteurs négatifs : produit positif. Nombre impair : produit négatif. Exemple : $(-2) \\times 3 \\times (-5) = 30$ (deux facteurs négatifs)."
   },
   {
    "id": "rel-carre-neg",
@@ -732,7 +1162,120 @@ Savoirs.enregistrer({
      "unite": "",
      "correction": "$(-5)^{2} = (-5) \\times (-5) = 25$"
     }
-   ]
+   ],
+   "note": "$(-4)^{2} = (-4) \\times (-4) = 16$."
+  },
+  {
+   "id": "rel-moins-carre",
+   "chap": "rel2",
+   "type": "regle",
+   "titre": "Moins devant un carré",
+   "question": "$-5^{2}$ vaut ...",
+   "reponse": "$-25$",
+   "pieges": [
+    "$25$",
+    "$-10$",
+    "$10$"
+   ],
+   "note": "L'exposant ne porte que sur 5 : $-5^{2} = -(5 \\times 5) = -25$. Avec des parenthèses, $(-5)^{2} = 25$."
+  },
+  {
+   "id": "rel-carre-pos",
+   "chap": "rel2",
+   "type": "propriete",
+   "titre": "Signe d'un carré",
+   "question": "Le carré d'un nombre relatif est toujours ...",
+   "reponse": "supérieur ou égal à 0",
+   "pieges": [
+    "strictement supérieur à 0",
+    "du même signe que le nombre",
+    "inférieur ou égal à 0"
+   ],
+   "note": "Deux facteurs égaux ont le même signe, donc leur produit est positif. Le carré de 0 est 0."
+  },
+  {
+   "id": "rel-quotient-def",
+   "chap": "rel2",
+   "type": "definition",
+   "titre": "Quotient",
+   "question": "Le quotient $a \\div b$ (avec $b \\neq 0$) est le nombre ...",
+   "reponse": "qui, multiplié par $b$, donne $a$",
+   "pieges": [
+    "qui, additionné à $b$, donne $a$",
+    "qui, multiplié par $a$, donne $b$",
+    "qui, retranché de $b$, donne $a$"
+   ],
+   "note": "$(-20) \\div 4 = -5$ car $(-5) \\times 4 = -20$."
+  },
+  {
+   "id": "rel-div-signe",
+   "chap": "rel2",
+   "type": "regle",
+   "titre": "Signe d'un quotient",
+   "question": "Le quotient de deux nombres de signes contraires est ...",
+   "reponse": "négatif",
+   "pieges": [
+    "positif",
+    "nul",
+    "du signe du plus grand"
+   ],
+   "note": "Même règle de signe que pour le produit. Même signe : positif."
+  },
+  {
+   "id": "rel-div0",
+   "chap": "rel2",
+   "type": "regle",
+   "titre": "Division par zéro",
+   "question": "Que peut-on dire de $a \\div 0$ ?",
+   "reponse": "c'est impossible : on ne divise jamais par 0",
+   "pieges": [
+    "c'est égal à 0 car il n'y a plus rien à partager",
+    "c'est égal à $a$ car on ne divise pas du tout",
+    "c'est égal à 1 car un nombre divisé par lui-même vaut 1"
+   ],
+   "note": "Mais $0 \\div a = 0$ si $a \\neq 0$."
+  },
+  {
+   "id": "rel-prod-moinsun",
+   "chap": "rel2",
+   "type": "propriete",
+   "titre": "Multiplier par −1",
+   "question": "Multiplier un nombre par $-1$ donne ...",
+   "reponse": "son opposé",
+   "pieges": [
+    "son inverse",
+    "sa distance à zéro",
+    "toujours un nombre négatif"
+   ],
+   "note": "$(-1) \\times 7 = -7$ et $(-1) \\times (-7) = 7$."
+  },
+  {
+   "id": "rel-prior",
+   "chap": "rel2",
+   "type": "regle",
+   "titre": "Priorités avec des relatifs",
+   "question": "Dans $5 + (-3) \\times 4$, on calcule d'abord ...",
+   "reponse": "la multiplication $(-3) \\times 4$",
+   "pieges": [
+    "l'addition $5 + (-3)$, car elle est écrite en premier",
+    "la parenthèse $(-3)$, puis on ajoute",
+    "le plus petit des trois nombres"
+   ],
+   "note": "$5 + (-3) \\times 4 = 5 + (-12) = -7$. Priorités : parenthèses, puis multiplications et divisions (de gauche à droite), enfin additions et soustractions."
+  },
+  {
+   "id": "rel-paren-ecriture",
+   "chap": "rel2",
+   "type": "regle",
+   "titre": "Parenthèses autour d'un négatif",
+   "question": "On met des parenthèses autour d'un nombre négatif quand il ...",
+   "reponse": "suit un signe d'opération",
+   "pieges": [
+    "commence un calcul",
+    "est écrit avec une virgule",
+    "est plus petit que $-10$"
+   ],
+   "note": "On écrit $5 \\times (-3)$ et non $5 \\times -3$ ; mais $-3 \\times 5$ est correct au début d'un calcul."
   },
   {
    "id": "transl-def",
@@ -742,10 +1285,11 @@ Savoirs.enregistrer({
    "question": "Une translation est un glissement défini par ...",
    "reponse": "une direction, un sens et une longueur",
    "pieges": [
-    "un centre, un angle et un sens",
-    "un axe de symétrie",
-    "un point fixe et un rapport"
-   ]
+    "un centre, un angle et un sens de rotation",
+    "un axe de symétrie et une distance",
+    "un point fixe et un rapport d'agrandissement"
+   ],
+   "note": "Une translation est un glissement : la figure se déplace sans tourner ni se retourner."
   },
   {
    "id": "transl-para",
@@ -755,11 +1299,34 @@ Savoirs.enregistrer({
    "question": "M' est l'image de M par la translation qui transforme A en B si ...",
    "reponse": "$ABM'M$ est un parallélogramme",
    "pieges": [
-    "ABMM' est un parallélogramme",
-    "M est le milieu de [AM']",
-    "(AB) est perpendiculaire à (MM')"
+    "$ABMM'$ est un parallélogramme",
+    "$M$ est le milieu de $[AM']$",
+    "$(AB)$ est perpendiculaire à $(MM')$"
    ],
-   "note": "Il peut être aplati (si $M$ est sur $(AB)$)."
+   "note": "Attention à l'ordre des lettres : $ABM'M$, pas $ABMM'$. Si $M$ est sur $(AB)$, le parallélogramme est aplati.",
+   "morceaux": [
+    "ABM'M",
+    "est un",
+    "parallélogramme"
+   ],
+   "intrus": [
+    "ABMM'",
+    "losange"
+   ]
+  },
+  {
+   "id": "transl-sens",
+   "chap": "transl",
+   "type": "regle",
+   "titre": "Sens d'une translation",
+   "question": "La translation qui transforme $A$ en $B$ a pour direction, sens et longueur ...",
+   "reponse": "la droite $(AB)$, le sens de $A$ vers $B$ et la longueur $AB$",
+   "pieges": [
+    "la droite $(AB)$, le sens de $B$ vers $A$ et la longueur $AB$",
+    "la droite $(AB)$, le sens de $A$ vers $B$ et la longueur $AB \\div 2$",
+    "une droite perpendiculaire à $(AB)$, le sens de $A$ vers $B$ et la longueur $AB$"
+   ],
+   "note": "Une erreur fréquente : inverser le sens, de $B$ vers $A$ au lieu de $A$ vers $B$."
   },
   {
    "id": "transl-cons",
@@ -770,21 +1337,76 @@ Savoirs.enregistrer({
    "reponse": "les longueurs, les angles, les aires, l'alignement et le parallélisme",
    "pieges": [
     "seulement les longueurs, mais pas les angles ni les aires",
-    "les longueurs et les angles, mais pas les aires ni l'alignement",
-    "les longueurs et les aires, mais pas le parallélisme"
-   ]
+    "les longueurs et les angles, mais pas les aires ni l'alignement des points",
+    "les longueurs et les aires, mais pas le parallélisme des droites"
+   ],
+   "note": "Elle ne conserve pas les positions : la figure se déplace, mais elle ne change ni de forme ni de taille."
+  },
+  {
+   "id": "transl-droite",
+   "chap": "transl",
+   "type": "propriete",
+   "titre": "Image d'une droite, d'un segment",
+   "question": "L'image d'une droite par une translation est ...",
+   "reponse": "une droite parallèle à la droite de départ",
+   "pieges": [
+    "une droite perpendiculaire à la droite de départ",
+    "une droite qui coupe la droite de départ",
+    "une droite de longueur différente, mais parallèle"
+   ],
+   "note": "L'image d'un segment est un segment de même longueur."
+  },
+  {
+   "id": "transl-cercle",
+   "chap": "transl",
+   "type": "propriete",
+   "titre": "Image d'un cercle",
+   "question": "L'image d'un cercle par une translation est ...",
+   "reponse": "un cercle de même rayon",
+   "pieges": [
+    "un cercle de rayon double",
+    "une ellipse de même rayon",
+    "un cercle de même centre"
+   ],
+   "note": "Le centre du cercle, lui, est déplacé : c'est l'image du centre."
+  },
+  {
+   "id": "transl-figure",
+   "chap": "transl",
+   "type": "regle",
+   "titre": "Image d'une figure",
+   "question": "Pour construire l'image d'une figure, on construit ...",
+   "reponse": "l'image de chacun de ses sommets, puis on les relie",
+   "pieges": [
+    "l'image du premier sommet, puis on recopie la figure à côté",
+    "l'image de la figure en la retournant, puis on les relie",
+    "l'image du centre de la figure uniquement et on recopie"
+   ],
+   "note": "Erreur fréquente : oublier de translater un des sommets."
   },
   {
    "id": "transl-rep",
    "chap": "transl",
    "type": "regle",
    "titre": "Translation dans un repère",
-   "question": "Dans un repère, la translation de vecteur $(a ; b)$ transforme $(x ; y)$ en ...",
+   "question": "Dans un repère, la translation de $(+a ; +b)$ transforme le point $(x ; y)$ en ...",
    "reponse": "$(x + a ; y + b)$",
    "pieges": [
     "$(x \\times a ; y \\times b)$",
     "$(x + b ; y + a)$",
     "$(x - a ; y - b)$"
+   ],
+   "note": "Exemple : la translation de $(+3 ; -2)$ envoie $(-4 ; 1)$ sur $(-4 + 3 ; 1 - 2) = (-1 ; -1)$.",
+   "morceaux": [
+    "(",
+    "x + a",
+    ";",
+    "y + b",
+    ")"
+   ],
+   "intrus": [
+    "x \\times a",
+    "y - b"
    ],
    "exemples": [
     {
@@ -797,6 +1419,43 @@ Savoirs.enregistrer({
    ]
   },
   {
+   "id": "transl-depl",
+   "chap": "transl",
+   "type": "regle",
+   "titre": "Déplacement d'une translation",
+   "question": "Si la translation transforme $A(x_A ; y_A)$ en $B(x_B ; y_B)$, son déplacement est ...",
+   "reponse": "$(x_B - x_A ; y_B - y_A)$",
+   "pieges": [
+    "$(x_A - x_B ; y_A - y_B)$",
+    "$(x_B + x_A ; y_B + y_A)$",
+    "$(x_B - y_B ; x_A - y_A)$"
+   ],
+   "note": "On lit le déplacement de $A$ vers $B$ : arrivée moins départ."
+  },
+  {
+   "id": "frac-egales",
+   "chap": "frac1",
+   "type": "propriete",
+   "titre": "Fractions égales",
+   "question": "Pour $k \\neq 0$, $\\dfrac{a}{b}$ est égal à ...",
+   "reponse": "$\\dfrac{a \\times k}{b \\times k}$",
+   "pieges": [
+    "$\\dfrac{a \\times k}{b + k}$",
+    "$\\dfrac{a \\div k}{b \\times k}$",
+    "$\\dfrac{a \\times b}{b \\times k}$"
+   ],
+   "note": "On ne change pas la valeur d'une fraction en multipliant (ou en divisant) son numérateur et son dénominateur par un même nombre non nul. Ajouter le même nombre en haut et en bas, ça change la valeur.",
+   "morceaux": [
+    "\\dfrac{a}{b}",
+    "=",
+    "\\dfrac{a \\times k}{b \\times k}"
+   ],
+   "intrus": [
+    "\\dfrac{a + k}{b + k}",
+    "\\dfrac{a \\times k}{b}"
+   ]
+  },
+  {
    "id": "frac-simpl",
    "chap": "frac1",
    "type": "regle",
@@ -804,9 +1463,9 @@ Savoirs.enregistrer({
    "question": "Pour simplifier $\\dfrac{a}{b}$ on ...",
    "reponse": "divise le numérateur et le dénominateur par un même nombre",
    "pieges": [
-    "ajoute le même nombre en haut et en bas",
-    "soustrait le même nombre en haut et en bas",
-    "divise seulement le numérateur"
+    "ajoute le même nombre au numérateur et au dénominateur",
+    "soustrait le même nombre au numérateur et au dénominateur de la fraction",
+    "divise seulement le numérateur par un même nombre"
    ],
    "morceaux": [
     "\\dfrac{a}{b}",
@@ -816,6 +1475,48 @@ Savoirs.enregistrer({
    "intrus": [
     "\\dfrac{a - k}{b - k}"
    ]
+  },
+  {
+   "id": "frac-irred",
+   "chap": "frac1",
+   "type": "definition",
+   "titre": "Fraction irréductible",
+   "question": "Une fraction est irréductible quand ...",
+   "reponse": "on ne peut plus la simplifier (aucun diviseur commun autre que 1)",
+   "pieges": [
+    "elle est plus petite que 1 : le numérateur est inférieur au dénominateur",
+    "son numérateur et son dénominateur sont des nombres premiers entre eux, donc pairs",
+    "on peut la simplifier une seule fois par un même nombre"
+   ],
+   "note": "Exemple : $\\dfrac{18}{24} = \\dfrac{3}{4}$ et $\\dfrac{3}{4}$ est irréductible. Une fraction comme $\\dfrac{9}{4}$ (plus grande que 1) peut être irréductible."
+  },
+  {
+   "id": "frac-compar",
+   "chap": "frac1",
+   "type": "regle",
+   "titre": "Comparer deux fractions",
+   "question": "Pour comparer deux fractions, on les réduit d'abord ...",
+   "reponse": "au même dénominateur, puis on compare leurs numérateurs",
+   "pieges": [
+    "au même dénominateur, puis on compare leurs dénominateurs",
+    "au même numérateur, puis on compare leurs dénominateurs",
+    "en les additionnant, puis on compare la somme à 1"
+   ],
+   "note": "Exemple : $\\dfrac{3}{4}$ et $\\dfrac{5}{7}$ deviennent $\\dfrac{21}{28}$ et $\\dfrac{20}{28}$ : $\\dfrac{3}{4}$ est la plus grande."
+  },
+  {
+   "id": "frac-neg-compar",
+   "chap": "frac1",
+   "type": "propriete",
+   "titre": "Fractions négatives",
+   "question": "Une fraction positive est ...",
+   "reponse": "toujours plus grande que n'importe quelle fraction négative",
+   "pieges": [
+    "parfois plus petite qu'une fraction négative",
+    "toujours plus petite que n'importe quelle fraction négative",
+    "plus grande qu'une fraction négative seulement si son numérateur est plus grand"
+   ],
+   "note": "Entre deux fractions négatives, la plus grande est celle qui est la plus proche de 0 : $-\\dfrac{1}{4} > -\\dfrac{1}{2}$."
   },
   {
    "id": "frac-add-meme",
@@ -829,15 +1530,6 @@ Savoirs.enregistrer({
     "$\\dfrac{a + b}{c^{2}}$",
     "$\\dfrac{a \\times b}{c}$"
    ],
-   "exemples": [
-    {
-     "donnees": "Calculer $\\dfrac{3}{7} + \\dfrac{2}{7}$ (numérateur de la réponse)",
-     "question": "Numérateur ?",
-     "reponse": 5,
-     "unite": "",
-     "correction": "$\\dfrac{3 + 2}{7} = \\dfrac{5}{7}$"
-    }
-   ],
    "morceaux": [
     "\\dfrac{a}{c}",
     "+",
@@ -848,7 +1540,55 @@ Savoirs.enregistrer({
    "intrus": [
     "\\dfrac{a + b}{c + c}",
     "\\times"
+   ],
+   "exemples": [
+    {
+     "donnees": "Calculer $\\dfrac{3}{7} + \\dfrac{2}{7}$ (numérateur de la réponse)",
+     "question": "Numérateur ?",
+     "reponse": 5,
+     "unite": "",
+     "correction": "$\\dfrac{3 + 2}{7} = \\dfrac{5}{7}$"
+    }
    ]
+  },
+  {
+   "id": "frac-sous-meme",
+   "chap": "frac1",
+   "type": "regle",
+   "titre": "Soustraire des fractions de même dénominateur",
+   "question": "$\\dfrac{a}{c} - \\dfrac{b}{c}$ vaut ...",
+   "reponse": "$\\dfrac{a - b}{c}$",
+   "pieges": [
+    "$\\dfrac{a - b}{c - c}$",
+    "$\\dfrac{a - b}{c^{2}}$",
+    "$\\dfrac{a \\div b}{c}$"
+   ],
+   "note": "Le dénominateur ne change pas. Le résultat peut être négatif : $\\dfrac{2}{7} - \\dfrac{5}{7} = \\dfrac{-3}{7} = -\\dfrac{3}{7}$.",
+   "morceaux": [
+    "\\dfrac{a}{c}",
+    "-",
+    "\\dfrac{b}{c}",
+    "=",
+    "\\dfrac{a - b}{c}"
+   ],
+   "intrus": [
+    "\\dfrac{a - b}{c - c}",
+    "\\div"
+   ]
+  },
+  {
+   "id": "frac-denom",
+   "chap": "frac1",
+   "type": "regle",
+   "titre": "Dénominateur commun",
+   "question": "Pour additionner $\\dfrac{a}{b}$ et $\\dfrac{c}{d}$ avec $b \\neq d$, on cherche ...",
+   "reponse": "un multiple commun de $b$ et de $d$, qu'on prend comme nouveau dénominateur",
+   "pieges": [
+    "un diviseur commun de $b$ et de $d$, qu'on prend comme nouveau dénominateur",
+    "la somme de $b$ et de $d$, qu'on prend comme nouveau dénominateur",
+    "le plus grand de $b$ et de $d$, qu'on garde comme nouveau dénominateur"
+   ],
+   "note": "Le produit $b \\times d$ convient toujours ; le plus petit multiple commun donne des calculs plus petits : pour $\\dfrac{1}{4} + \\dfrac{1}{6}$, le dénominateur commun 12."
   },
   {
    "id": "frac-add-diff",
@@ -858,10 +1598,24 @@ Savoirs.enregistrer({
    "question": "Pour additionner $\\dfrac{1}{2}$ et $\\dfrac{1}{3}$ on ...",
    "reponse": "les réduit d'abord au même dénominateur : $\\dfrac{3}{6} + \\dfrac{2}{6} = \\dfrac{5}{6}$",
    "pieges": [
-    "additionne les numérateurs et les dénominateurs : $\\dfrac{2}{5}$",
-    "additionne seulement les dénominateurs",
-    "multiplie les deux fractions"
+    "additionne les numérateurs et les dénominateurs : $\\dfrac{1 + 1}{2 + 3} = \\dfrac{2}{5}$",
+    "additionne seulement les dénominateurs : $\\dfrac{1}{2 + 3} = \\dfrac{1}{5}$",
+    "multiplie les deux fractions : $\\dfrac{1}{2} \\times \\dfrac{1}{3} = \\dfrac{1}{6}$"
    ]
+  },
+  {
+   "id": "frac-sous-neg",
+   "chap": "frac1",
+   "type": "regle",
+   "titre": "Soustraire une fraction",
+   "question": "Soustraire une fraction, c'est ...",
+   "reponse": "ajouter son opposée : $\\dfrac{a}{c} + \\dfrac{-b}{c}$",
+   "pieges": [
+    "ajouter son inverse : $\\dfrac{a}{c} - \\dfrac{b}{c} = \\dfrac{a}{c} + \\dfrac{c}{b}$",
+    "soustraire les dénominateurs : $\\dfrac{a}{c} - \\dfrac{b}{c} = \\dfrac{a}{c - c}$",
+    "ajouter sa moitié : $\\dfrac{a}{c} - \\dfrac{b}{c} = \\dfrac{a}{c} + \\dfrac{b}{2c}$"
+   ],
+   "note": "Les règles de signes sont celles des nombres relatifs : $\\dfrac{2}{5} - \\left(-\\dfrac{3}{5}\\right) = \\dfrac{2}{5} + \\dfrac{3}{5} = \\dfrac{5}{5} = 1$."
   },
   {
    "id": "recip",
@@ -871,9 +1625,9 @@ Savoirs.enregistrer({
    "question": "Si, dans un triangle ABC, on a $BC^{2} = AB^{2} + AC^{2}$, alors ...",
    "reponse": "le triangle ABC est rectangle en A",
    "pieges": [
+    "le triangle ABC est rectangle en B",
     "le triangle ABC est isocèle en A",
-    "$BC = AB + AC$",
-    "le triangle ABC est équilatéral"
+    "le triangle ABC est équilatéral, car $BC = AB + AC$"
    ],
    "note": "La réciproque sert à prouver qu'un triangle est rectangle.",
    "morceaux": [
@@ -894,9 +1648,9 @@ Savoirs.enregistrer({
    "question": "Si, dans un triangle ABC, on a $BC^{2} \\neq AB^{2} + AC^{2}$, alors ...",
    "reponse": "le triangle ABC n'est pas rectangle en A",
    "pieges": [
-    "le triangle ABC est rectangle en B",
-    "le triangle ABC est équilatéral",
-    "on ne peut rien conclure"
+    "le triangle ABC n'est pas rectangle en B",
+    "le triangle ABC est équilatéral, de côté BC",
+    "on ne peut rien conclure sur le triangle"
    ],
    "morceaux": [
     "BC^{2} \\neq AB^{2} + AC^{2}",
@@ -915,10 +1669,91 @@ Savoirs.enregistrer({
    "question": "Avec la réciproque, on compare ...",
    "reponse": "le carré du plus grand côté et la somme des carrés des deux autres",
    "pieges": [
-    "la somme des deux plus petits côtés et le plus grand",
-    "les carrés des deux plus petits côtés entre eux",
-    "le périmètre et le plus grand côté"
+    "la somme des deux plus petits côtés et le plus grand côté, sans carré",
+    "les carrés des deux plus petits côtés entre eux, puis au plus grand",
+    "le périmètre du triangle et le carré du plus grand côté"
    ]
+  },
+  {
+   "id": "recip-grand",
+   "chap": "recip",
+   "type": "propriete",
+   "titre": "Où est l'angle droit ?",
+   "question": "Si un triangle est rectangle, son angle droit est ...",
+   "reponse": "opposé au plus grand côté",
+   "pieges": [
+    "opposé au plus petit côté",
+    "adjacent au plus grand côté",
+    "situé entre les deux plus petits côtés"
+   ],
+   "note": "Dans un triangle rectangle, le plus grand côté est l'hypoténuse ; le sommet de l'angle droit est le sommet commun aux deux autres côtés."
+  },
+  {
+   "id": "recip-redac",
+   "chap": "recip",
+   "type": "regle",
+   "titre": "Rédiger avec la réciproque",
+   "question": "Dans la rédaction, on écrit ... avant de conclure.",
+   "reponse": "« D'une part … D'autre part … On constate que … »",
+   "pieges": [
+    "« On sait que ABC est rectangle … D'après Pythagore … »",
+    "« On mesure les trois côtés … On constate que … »",
+    "« Le triangle semble rectangle … Donc … »"
+   ],
+   "note": "On ne peut pas écrire $BC^{2} = AB^{2} + AC^{2}$ avant de savoir que c'est vrai : on calcule les deux membres séparément.",
+   "morceaux": [
+    "\\text{D'une part}",
+    "\\text{D'autre part}",
+    "\\text{On constate que}",
+    "\\text{D'après la réciproque}",
+    "\\text{Donc}"
+   ],
+   "intrus": [
+    "\\text{On mesure}",
+    "\\text{On sait que}"
+   ]
+  },
+  {
+   "id": "recip-choix",
+   "chap": "recip",
+   "type": "regle",
+   "titre": "Quel théorème utiliser ?",
+   "question": "Pour prouver qu'un triangle est rectangle quand on connaît ses trois longueurs, on utilise ...",
+   "reponse": "la réciproque du théorème de Pythagore",
+   "pieges": [
+    "le théorème de Pythagore direct",
+    "la contraposée du théorème de Pythagore",
+    "le théorème de Thalès"
+   ],
+   "note": "Direct : on sait qu'il est rectangle et on cherche une longueur. Réciproque : on prouve qu'il est rectangle (égalité). Contraposée : on prouve qu'il ne l'est pas (inégalité)."
+  },
+  {
+   "id": "recip-mesure",
+   "chap": "recip",
+   "type": "regle",
+   "titre": "Mesurer ne prouve rien",
+   "question": "Pour démontrer qu'un triangle est rectangle, on ...",
+   "reponse": "calcule avec les longueurs données, on ne mesure pas l'angle",
+   "pieges": [
+    "mesure l'angle avec le rapporteur, sur la figure faite à main levée",
+    "vérifie que la figure à main levée a bien l'air rectangle",
+    "compare les longueurs mesurées à la règle sur la figure"
+   ],
+   "note": "Une figure à main levée ou une mesure peut tromper : seul le calcul avec les longueurs de l'énoncé est une preuve."
+  },
+  {
+   "id": "recip-corde",
+   "chap": "recip",
+   "type": "regle",
+   "titre": "Corde à nœuds",
+   "question": "Une corde à 12 nœuds équidistants, tendue en triangle 3 – 4 – 5, permet de tracer ...",
+   "reponse": "un angle droit, car $3^{2} + 4^{2} = 5^{2}$",
+   "pieges": [
+    "un angle plat, car $3 + 4 + 5 = 12$",
+    "un triangle équilatéral, car $12 = 3 \\times 4$",
+    "un angle droit, car $3 + 4 = 5 + 2$"
+   ],
+   "note": "C'est la réciproque du théorème de Pythagore : elle sert aux maçons pour tracer des angles droits."
   },
   {
    "id": "prop-def",
@@ -926,12 +1761,81 @@ Savoirs.enregistrer({
    "type": "definition",
    "titre": "Situation de proportionnalité",
    "question": "Deux grandeurs sont proportionnelles si ...",
-   "reponse": "on passe des valeurs de l'une à celles de l'autre en multipliant toujours par le même nombre (le coefficient)",
+   "reponse": "on passe de l'une à l'autre en multipliant toujours par le même nombre",
    "pieges": [
-    "les deux grandeurs augmentent en même temps (quand l'une grandit, l'autre aussi)",
+    "les deux grandeurs augmentent en même temps : quand l'une grandit, l'autre aussi",
     "on passe de l'une à l'autre en ajoutant toujours le même nombre",
     "la représentation graphique est une droite quelconque, même sans passer par l'origine"
    ]
+  },
+  {
+   "id": "prop-coef",
+   "chap": "prop",
+   "type": "regle",
+   "titre": "Trouver le coefficient",
+   "question": "Pour trouver le coefficient de proportionnalité, on calcule ...",
+   "reponse": "le quotient d'une valeur de la 2e ligne par celle de la 1re ligne",
+   "pieges": [
+    "la différence entre deux valeurs d'une même colonne du tableau",
+    "la somme des valeurs de la première et de la deuxième ligne du tableau",
+    "le quotient de la première valeur par la dernière valeur de la même ligne"
+   ],
+   "note": "Exemple : 2 cahiers coûtent 3 € ; $3 \\div 2 = 1{,}5$ €/cahier. Si les quotients ne sont pas tous égaux, ce n'est pas un tableau de proportionnalité."
+  },
+  {
+   "id": "prop-croix",
+   "chap": "prop",
+   "type": "propriete",
+   "titre": "Produit en croix",
+   "question": "Si $\\dfrac{a}{b} = \\dfrac{c}{d}$ (nombres non nuls), alors ...",
+   "reponse": "$a \\times d = b \\times c$",
+   "pieges": [
+    "$a \\times b = c \\times d$",
+    "$a + d = b + c$",
+    "$a \\times c = b \\times d$"
+   ],
+   "note": "Pour 5 m à 18 € et 8 m à $x$ € : $5 \\times x = 8 \\times 18$, donc $x = 144 \\div 5 = 28{,}8$ €.",
+   "morceaux": [
+    "a",
+    "\\times",
+    "d",
+    "=",
+    "b",
+    "\\times",
+    "c"
+   ],
+   "intrus": [
+    "+",
+    "a \\times b"
+   ]
+  },
+  {
+   "id": "prop-unite",
+   "chap": "prop",
+   "type": "regle",
+   "titre": "Passage à l'unité",
+   "question": "Le passage à l'unité consiste à ...",
+   "reponse": "calculer la valeur pour 1, puis la multiplier par la quantité",
+   "pieges": [
+    "calculer la valeur pour 10, puis la diviser par la quantité demandée",
+    "ajouter la valeur pour 1 à chaque valeur du tableau",
+    "calculer la valeur totale, puis la diviser par la quantité demandée"
+   ],
+   "note": "5 m coûtent 18 € : 1 m coûte $18 \\div 5 = 3{,}6$ €, donc 8 m coûtent $8 \\times 3{,}6 = 28{,}8$ €."
+  },
+  {
+   "id": "prop-graphe",
+   "chap": "prop",
+   "type": "propriete",
+   "titre": "Représentation graphique",
+   "question": "Deux grandeurs sont proportionnelles si et seulement si leurs points sont ...",
+   "reponse": "alignés avec l'origine du repère (sur une droite passant par O)",
+   "pieges": [
+    "alignés sur une droite quelconque, même qui ne passe pas par l'origine",
+    "alignés sur une droite horizontale, parallèle à l'axe des abscisses",
+    "placés sur une courbe qui monte de plus en plus vite"
+   ],
+   "note": "Le coefficient est le nombre lu pour $x = 1$."
   },
   {
    "id": "pourcent",
@@ -945,15 +1849,6 @@ Savoirs.enregistrer({
     "$\\dfrac{V}{100} + t$",
     "$\\dfrac{100}{t} \\times V$"
    ],
-   "exemples": [
-    {
-     "donnees": "Calculer $20\\,\\%$ de 85 €",
-     "question": "Résultat ?",
-     "reponse": 17,
-     "unite": "€",
-     "correction": "$\\dfrac{20}{100} \\times 85 = 17$ €"
-    }
-   ],
    "morceaux": [
     "\\dfrac{t}{100}",
     "\\times",
@@ -963,6 +1858,15 @@ Savoirs.enregistrer({
     "t",
     "+",
     "\\dfrac{100}{t}"
+   ],
+   "exemples": [
+    {
+     "donnees": "Calculer $20\\,\\%$ de 85 €",
+     "question": "Résultat ?",
+     "reponse": 17,
+     "unite": "€",
+     "correction": "$\\dfrac{20}{100} \\times 85 = 17$ €"
+    }
    ]
   },
   {
@@ -977,15 +1881,6 @@ Savoirs.enregistrer({
     "$1 - \\dfrac{t}{100}$",
     "$t$"
    ],
-   "exemples": [
-    {
-     "donnees": "Un article à 40 € augmente de $15\\,\\%$",
-     "question": "Nouveau prix ?",
-     "reponse": 46,
-     "unite": "€",
-     "correction": "$40 \\times \\left(1 + \\dfrac{15}{100}\\right) = 40 \\times 1{,}15 = 46$ €"
-    }
-   ],
    "morceaux": [
     "1",
     "+",
@@ -995,6 +1890,15 @@ Savoirs.enregistrer({
     "-",
     "\\times",
     "t"
+   ],
+   "exemples": [
+    {
+     "donnees": "Un article à 40 € augmente de $15\\,\\%$",
+     "question": "Nouveau prix ?",
+     "reponse": 46,
+     "unite": "€",
+     "correction": "$40 \\times \\left(1 + \\dfrac{15}{100}\\right) = 40 \\times 1{,}15 = 46$ €"
+    }
    ]
   },
   {
@@ -1009,15 +1913,6 @@ Savoirs.enregistrer({
     "$1 + \\dfrac{t}{100}$",
     "100 - t"
    ],
-   "exemples": [
-    {
-     "donnees": "Un article à 80 € baisse de $25\\,\\%$",
-     "question": "Nouveau prix ?",
-     "reponse": 60,
-     "unite": "€",
-     "correction": "$80 \\times \\left(1 - \\dfrac{25}{100}\\right) = 80 \\times 0{,}75 = 60$ €"
-    }
-   ],
    "note": "+20 % puis −20 % ne ramène pas à la valeur de départ.",
    "morceaux": [
     "1",
@@ -1028,7 +1923,50 @@ Savoirs.enregistrer({
     "+",
     "\\times",
     "t"
+   ],
+   "exemples": [
+    {
+     "donnees": "Un article à 80 € baisse de $25\\,\\%$",
+     "question": "Nouveau prix ?",
+     "reponse": 60,
+     "unite": "€",
+     "correction": "$80 \\times \\left(1 - \\dfrac{25}{100}\\right) = 80 \\times 0{,}75 = 60$ €"
+    }
    ]
+  },
+  {
+   "id": "taux-evol",
+   "chap": "prop",
+   "type": "formule",
+   "titre": "Taux d'évolution",
+   "question": "Le taux d'évolution d'une valeur $V_0$ à une valeur $V_1$ est ...",
+   "reponse": "$\\dfrac{V_1 - V_0}{V_0}$",
+   "pieges": [
+    "$\\dfrac{V_1 - V_0}{V_1}$",
+    "$\\dfrac{V_0 - V_1}{V_0}$",
+    "$\\dfrac{V_1}{V_0 - V_1}$"
+   ],
+   "note": "Pour un prix de 40 € à 46 € : $\\dfrac{46 - 40}{40} = 0{,}15$ : hausse de 15 %. Un taux négatif correspond à une baisse.",
+   "morceaux": [
+    "\\dfrac{V_1 - V_0}{V_0}"
+   ],
+   "intrus": [
+    "\\dfrac{V_1 - V_0}{V_1}"
+   ]
+  },
+  {
+   "id": "pourc-succ",
+   "chap": "prop",
+   "type": "propriete",
+   "titre": "Pourcentages successifs",
+   "question": "Une hausse de 20 % suivie d'une baisse de 20 % ...",
+   "reponse": "ne ramène pas au départ ($1{,}2 \\times 0{,}8 = 0{,}96$)",
+   "pieges": [
+    "ramène à la valeur de départ, car $20 - 20 = 0$ ($+20 - 20$)",
+    "ramène à la valeur de départ, car $1{,}2 \\times 0{,}8 = 1$ en tout",
+    "donne une valeur plus grande que la valeur de départ, toujours"
+   ],
+   "note": "Les pourcentages ne s'additionnent pas : on multiplie les coefficients multiplicateurs."
   },
   {
    "id": "echelle",
@@ -1053,6 +1991,20 @@ Savoirs.enregistrer({
    ]
   },
   {
+   "id": "echelle-unites",
+   "chap": "prop",
+   "type": "regle",
+   "titre": "Échelle et unités",
+   "question": "Avec une échelle, la longueur réelle est égale à ...",
+   "reponse": "la longueur sur le plan multipliée par le dénominateur (même unité)",
+   "pieges": [
+    "la longueur sur le plan divisée par le dénominateur de l'échelle (même unité)",
+    "la longueur sur le plan multipliée par l'échelle, quelle que soit l'unité",
+    "la longueur sur le plan augmentée du dénominateur de l'échelle (même unité)"
+   ],
+   "note": "Il faut convertir : 4 cm sur une carte à $\\dfrac{1}{50\\,000}$ : $4 \\times 50\\,000 = 200\\,000$ cm $= 2$ km."
+  },
+  {
    "id": "rot-def",
    "chap": "rot",
    "type": "definition",
@@ -1073,9 +2025,9 @@ Savoirs.enregistrer({
    "question": "Une rotation conserve ...",
    "reponse": "les longueurs, les angles, les aires, l'alignement et le parallélisme",
    "pieges": [
-    "seulement les longueurs, mais pas les angles",
-    "les longueurs mais pas les angles ni les aires",
-    "la direction des segments et leur longueur"
+    "les longueurs et les angles, mais pas les aires ni l'alignement des points",
+    "les longueurs, les aires et les angles seulement quand l'angle de la rotation est un angle droit",
+    "les longueurs et la direction des segments, mais pas les angles"
    ]
   },
   {
@@ -1103,15 +2055,6 @@ Savoirs.enregistrer({
     "$\\dfrac{180^{\\circ}}{n}$",
     "$360^{\\circ} - n$"
    ],
-   "exemples": [
-    {
-     "donnees": "Pentagone régulier ($n = 5$)",
-     "question": "Angle de la rotation ?",
-     "reponse": 72,
-     "unite": "°",
-     "correction": "$\\dfrac{360}{5} = 72^{\\circ}$"
-    }
-   ],
    "morceaux": [
     "\\text{angle}",
     "=",
@@ -1120,7 +2063,149 @@ Savoirs.enregistrer({
    "intrus": [
     "\\dfrac{180^{\\circ}}{n}",
     "\\times"
+   ],
+   "exemples": [
+    {
+     "donnees": "Pentagone régulier ($n = 5$)",
+     "question": "Angle de la rotation ?",
+     "reponse": 72,
+     "unite": "°",
+     "correction": "$\\dfrac{360}{5} = 72^{\\circ}$"
+    }
    ]
+  },
+  {
+   "id": "rot-dist",
+   "chap": "rot",
+   "type": "propriete",
+   "titre": "Distance au centre",
+   "question": "Si $M'$ est l'image de $M$ par la rotation de centre $O$, alors ...",
+   "reponse": "$OM' = OM$",
+   "pieges": [
+    "$MM' = OM$",
+    "$OM' = 2 \\times OM$",
+    "$OM' = OM + MM'$"
+   ],
+   "note": "Le point et son image sont sur un même cercle de centre $O$.",
+   "morceaux": [
+    "OM'",
+    "=",
+    "OM"
+   ],
+   "intrus": [
+    "MM'",
+    "2 \\times"
+   ]
+  },
+  {
+   "id": "rot-angle",
+   "chap": "rot",
+   "type": "propriete",
+   "titre": "Angle au centre",
+   "question": "Si $M'$ est l'image de $M$ par une rotation de centre $O$, l'angle $\\widehat{MOM'}$ mesure ...",
+   "reponse": "l'angle de la rotation",
+   "pieges": [
+    "le double de l'angle de la rotation",
+    "la moitié de l'angle de la rotation",
+    "toujours $90^{\\circ}$"
+   ],
+   "note": "Le triangle $OMM'$ est isocèle en $O$."
+  },
+  {
+   "id": "rot-sens",
+   "chap": "rot",
+   "type": "definition",
+   "titre": "Sens direct",
+   "question": "Le sens direct (ou trigonométrique) est le sens ...",
+   "reponse": "contraire des aiguilles d'une montre",
+   "pieges": [
+    "des aiguilles d'une montre, quand on regarde l'horloge de face",
+    "de lecture, de gauche à droite puis de haut en bas",
+    "qui va du bas vers le haut de la feuille"
+   ],
+   "note": "Le sens des aiguilles d'une montre s'appelle le sens indirect (ou horaire)."
+  },
+  {
+   "id": "rot-centre",
+   "chap": "rot",
+   "type": "propriete",
+   "titre": "Le centre ne bouge pas",
+   "question": "Par une rotation de centre $O$, l'image du point $O$ est ...",
+   "reponse": "le point $O$ lui-même",
+   "pieges": [
+    "le symétrique de $O$ par rapport à la droite $(MM')$",
+    "un point du cercle de centre $O$ et de rayon 1",
+    "un point qui dépend de l'angle de la rotation"
+   ],
+   "note": "On dit que le centre est le seul point invariant (sauf si la rotation est l'identité)."
+  },
+  {
+   "id": "rot-cercle",
+   "chap": "rot",
+   "type": "propriete",
+   "titre": "Image d'un cercle",
+   "question": "L'image d'un cercle de centre $A$ et de rayon $r$ par une rotation est ...",
+   "reponse": "un cercle de rayon $r$ dont le centre est l'image de $A$",
+   "pieges": [
+    "le même cercle, de même centre $A$ et de même rayon $r$, même si $A$ n'est pas le centre de la rotation",
+    "un cercle de rayon $2r$ dont le centre est l'image de $A$",
+    "une ellipse de même centre que le cercle de départ"
+   ],
+   "note": "La rotation conserve les longueurs, donc le rayon."
+  },
+  {
+   "id": "rot-quart",
+   "chap": "rot",
+   "type": "formule",
+   "titre": "Quart de tour direct autour de l'origine",
+   "question": "Dans un repère orthonormé, l'image de $M(x\\,;\\,y)$ par la rotation de centre $O$ et d'angle $90^{\\circ}$ dans le sens direct est ...",
+   "reponse": "$M'(-y\\,;\\,x)$",
+   "pieges": [
+    "$M'(y\\,;\\,-x)$",
+    "$M'(-x\\,;\\,-y)$",
+    "$M'(y\\,;\\,x)$"
+   ],
+   "note": "Exemple : $(2\\,;\\,1)$ devient $(-1\\,;\\,2)$.",
+   "morceaux": [
+    "M'",
+    "(",
+    "-y",
+    ";",
+    "x",
+    ")"
+   ],
+   "intrus": [
+    "y",
+    "-x"
+   ]
+  },
+  {
+   "id": "rot-quart-h",
+   "chap": "rot",
+   "type": "formule",
+   "titre": "Quart de tour horaire autour de l'origine",
+   "question": "Dans un repère orthonormé, l'image de $M(x\\,;\\,y)$ par la rotation de centre $O$ et d'angle $90^{\\circ}$ dans le sens des aiguilles d'une montre est ...",
+   "reponse": "$M'(y\\,;\\,-x)$",
+   "pieges": [
+    "$M'(-y\\,;\\,x)$",
+    "$M'(-x\\,;\\,-y)$",
+    "$M'(x\\,;\\,-y)$"
+   ],
+   "note": "Exemple : $(2\\,;\\,1)$ devient $(1\\,;\\,-2)$."
+  },
+  {
+   "id": "rot-poly-k",
+   "chap": "rot",
+   "type": "propriete",
+   "titre": "Rotations d'un polygone régulier",
+   "question": "Un polygone régulier à $n$ côtés, de centre $O$, est aussi invariant par la rotation de centre $O$ et d'angle ...",
+   "reponse": "$k \\times \\dfrac{360^{\\circ}}{n}$, avec $k$ entier",
+   "pieges": [
+    "$k \\times 360^{\\circ}$, avec $k$ entier",
+    "$\\dfrac{360^{\\circ}}{n \\times k}$, avec $k$ entier",
+    "$\\dfrac{180^{\\circ}}{n}$ uniquement"
+   ],
+   "note": "Cela revient à répéter la rotation de base plusieurs fois de suite."
   },
   {
    "id": "frac-mult",
@@ -1134,6 +2219,7 @@ Savoirs.enregistrer({
     "$\\dfrac{a \\times c}{b + d}$",
     "$\\dfrac{a \\times d}{b \\times c}$"
    ],
+   "note": "Pas besoin de dénominateur commun pour multiplier.",
    "morceaux": [
     "\\dfrac{a}{b}",
     "\\times",
@@ -1144,8 +2230,7 @@ Savoirs.enregistrer({
    "intrus": [
     "\\dfrac{a \\times d}{b \\times c}",
     "+"
-   ],
-   "note": "Pas besoin de dénominateur commun pour multiplier."
+   ]
   },
   {
    "id": "inverse",
@@ -1194,6 +2279,141 @@ Savoirs.enregistrer({
      "correction": "$\\dfrac{2}{3} \\times \\dfrac{5}{4} = \\dfrac{10}{12} = \\dfrac{5}{6} \\approx 0{,}83$"
     }
    ]
+  },
+  {
+   "id": "frac-simpl-croix",
+   "chap": "frac2",
+   "type": "regle",
+   "titre": "Simplifier avant de multiplier",
+   "question": "Pour multiplier deux fractions, il est plus simple de ...",
+   "reponse": "simplifier en croix : un numérateur avec le dénominateur de l'autre fraction",
+   "pieges": [
+    "mettre les deux fractions au même dénominateur avant de multiplier, comme pour une addition",
+    "simplifier les deux numérateurs entre eux puis les deux dénominateurs entre eux, avant de multiplier",
+    "toujours multiplier d'abord : la simplification est interdite avant d'avoir le résultat final"
+   ],
+   "note": "Exemple : $\\dfrac{4}{9} \\times \\dfrac{3}{8} = \\dfrac{\\cancel{4}^{1}}{\\cancel{9}_{3}} \\times \\dfrac{\\cancel{3}^{1}}{\\cancel{8}_{2}} = \\dfrac{1}{6}$."
+  },
+  {
+   "id": "frac-de",
+   "chap": "frac2",
+   "type": "regle",
+   "titre": "Prendre une fraction d'une quantité",
+   "question": "Prendre $\\dfrac{a}{b}$ d'une quantité $Q$, c'est calculer ...",
+   "reponse": "$\\dfrac{a}{b} \\times Q$",
+   "pieges": [
+    "$\\dfrac{a \\times Q}{b + Q}$",
+    "$\\dfrac{a}{b} \\div Q$",
+    "$Q - \\dfrac{a}{b}$"
+   ],
+   "note": "Exemple : les $\\dfrac{3}{4}$ de 20 € valent $\\dfrac{3}{4} \\times 20 = 15$ €.",
+   "morceaux": [
+    "\\dfrac{a}{b}",
+    "\\times",
+    "Q"
+   ],
+   "intrus": [
+    "+",
+    "\\div"
+   ]
+  },
+  {
+   "id": "frac-entier",
+   "chap": "frac2",
+   "type": "formule",
+   "titre": "Multiplier une fraction par un entier",
+   "question": "Pour un entier $n$, $n \\times \\dfrac{a}{b}$ vaut ...",
+   "reponse": "$\\dfrac{n \\times a}{b}$",
+   "pieges": [
+    "$\\dfrac{n \\times a}{n \\times b}$",
+    "$\\dfrac{a}{n \\times b}$",
+    "$\\dfrac{a + n}{b}$"
+   ],
+   "note": "On peut écrire $n = \\dfrac{n}{1}$. Seul le numérateur est multiplié par $n$."
+  },
+  {
+   "id": "inv-entier",
+   "chap": "frac2",
+   "type": "definition",
+   "titre": "Inverse d'un entier",
+   "question": "L'inverse d'un entier non nul $n$ est ...",
+   "reponse": "$\\dfrac{1}{n}$",
+   "pieges": [
+    "$-n$",
+    "$n$",
+    "$\\dfrac{n}{100}$"
+   ],
+   "note": "Exemple : l'inverse de 5 est $\\dfrac{1}{5}$, car $5 \\times \\dfrac{1}{5} = 1$."
+  },
+  {
+   "id": "inv-zero",
+   "chap": "frac2",
+   "type": "propriete",
+   "titre": "Zéro n'a pas d'inverse",
+   "question": "Le nombre 0 ...",
+   "reponse": "n'a pas d'inverse, car aucun nombre multiplié par 0 ne donne 1",
+   "pieges": [
+    "a pour inverse 0, car $0 \\times 0 = 0$ et il est le seul à le vérifier",
+    "a pour inverse 1, car $1$ est l'élément neutre de la multiplication",
+    "a pour inverse son opposé, qui est aussi 0"
+   ],
+   "note": "C'est pour cela qu'on ne peut pas diviser par 0."
+  },
+  {
+   "id": "inv-decimal",
+   "chap": "frac2",
+   "type": "propriete",
+   "titre": "Inverse d'un décimal",
+   "question": "L'inverse de $0{,}5$ est ...",
+   "reponse": "2, car $0{,}5 = \\dfrac{1}{2}$",
+   "pieges": [
+    "0,5, car un nombre décimal est son propre inverse",
+    "5, car il suffit de décaler la virgule",
+    "−0,5, car c'est l'opposé de 0,5"
+   ],
+   "note": "On écrit d'abord le décimal sous forme de fraction : $0{,}25 = \\dfrac{1}{4}$, donc son inverse est 4."
+  },
+  {
+   "id": "frac-prior",
+   "chap": "frac2",
+   "type": "regle",
+   "titre": "Priorités opératoires",
+   "question": "Dans un calcul sans parenthèses avec fractions, on calcule en premier ...",
+   "reponse": "les multiplications et les divisions, puis les additions et les soustractions",
+   "pieges": [
+    "les additions et les soustractions, puis les multiplications et les divisions",
+    "ce qui est le plus à gauche, quelle que soit l'opération",
+    "ce qui contient le plus petit dénominateur, quelle que soit l'opération"
+   ],
+   "note": "Les parenthèses sont prioritaires sur tout le reste."
+  },
+  {
+   "id": "frac-resultat",
+   "chap": "frac2",
+   "type": "regle",
+   "titre": "Forme du résultat",
+   "question": "Le résultat d'un calcul avec des fractions se donne sous la forme ...",
+   "reponse": "d'une fraction irréductible",
+   "pieges": [
+    "d'une fraction dont le dénominateur est le plus grand possible",
+    "d'un nombre décimal arrondi au centième",
+    "d'une fraction dont le numérateur est le plus grand possible"
+   ],
+   "note": "Une fraction est irréductible quand on ne peut plus simplifier : $\\dfrac{6}{9}$ devient $\\dfrac{2}{3}$."
+  },
+  {
+   "id": "frac-reste",
+   "chap": "frac2",
+   "type": "formule",
+   "titre": "La fraction qui reste",
+   "question": "Si on utilise une fraction $f$ d'une quantité, la fraction restante est ...",
+   "reponse": "$1 - f$",
+   "pieges": [
+    "$f - 1$",
+    "$\\dfrac{1}{f}$",
+    "$f$"
+   ],
+   "note": "Exemple : on dépense $\\dfrac{1}{4}$ d'une somme, il reste $1 - \\dfrac{1}{4} = \\dfrac{3}{4}$."
   },
   {
    "id": "egaux-def",
