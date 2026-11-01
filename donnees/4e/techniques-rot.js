@@ -5,6 +5,8 @@
   const { L, T, ent, choix, net, decimal, facile } = Savoirs.calculsOutils;
 
   // ---------- Polygones réguliers ----------
+  // « Le carré », mais « L'hexagone », « L'octogone » (élision devant une voyelle ou un h muet)
+  const le = (nom) => (/^[aeiouyh]/.test(nom) ? "L'" : "Le ");
   const NOMS = { 3: "triangle équilatéral", 4: "carré", 5: "pentagone régulier", 6: "hexagone régulier", 8: "octogone régulier", 10: "décagone régulier" };
   const nomPolygone = (n) => (NOMS[n] && Math.random() < 0.7 ? NOMS[n] : "polygone régulier à " + n + " côtés");
   // Lettres des sommets : consécutives, sans O (c'est le centre)
@@ -53,7 +55,7 @@
           const n = choix([3, 4, 5, 6, 8, 9, 10, 12]), nom = nomPolygone(n), r = 360 / n;
           const s = sommets(n), lettres = Math.random() < 0.5;
           return {
-            enonce: lettres ? "Le " + nom + " $" + s.join("") + "$ a pour centre $O$. Quel est l'angle de la rotation de centre $O$ qui envoie $" + s[0] + "$ sur $" + s[1] + "$ ?"
+            enonce: lettres ? le(nom) + nom + " $" + s.join("") + "$ a pour centre $O$. Quel est l'angle de la rotation de centre $O$ qui envoie $" + s[0] + "$ sur $" + s[1] + "$ ?"
               : "Un " + nom + " a pour centre $O$. Quel est l'angle de la rotation de centre $O$ qui envoie chaque sommet sur le sommet suivant ?",
             reponse: r, unite: "°", correction: "L'angle est $\\dfrac{360^{\\circ}}{n}$. Ici $n = " + n + "$ : $360 \\div " + n + " = " + r + "$."
           };
@@ -62,9 +64,9 @@
           for (;;) {
             const n = choix([5, 6, 8, 9, 10, 12]), demiTour = facile(2), k = demiTour ? n / 2 : ent(2, Math.ceil(n / 2) - 1);
             if (!Number.isInteger(k) || k >= n / 2 && !demiTour) continue;
-            const s = sommets(n), pas = 360 / n, r = k * pas;
+            const s = sommets(n), pas = 360 / n, r = k * pas, nom = nomPolygone(n);
             return {
-              enonce: "Le " + nomPolygone(n) + " $" + s.join("") + "$ a pour centre $O$. Quel est l'angle de la rotation de centre $O$ qui envoie $" + s[0] + "$ sur $" + s[k] + "$ (dans le sens direct) ?",
+              enonce: le(nom) + nom + " $" + s.join("") + "$ a pour centre $O$. Quel est l'angle de la rotation de centre $O$ qui envoie $" + s[0] + "$ sur $" + s[k] + "$ (dans le sens direct) ?",
               reponse: r, unite: "°",
               correction: "Chaque sommet est à $\\dfrac{360^{\\circ}}{" + n + "} = " + pas + "^{\\circ}$ du suivant. De $" + s[0] + "$ à $" + s[k] + "$, il y a " + k + " « pas » : $" + k + " \\times " + pas + " = " + r + "$."
             };

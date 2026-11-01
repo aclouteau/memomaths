@@ -132,10 +132,11 @@
           }
           if (cas === 2) { const a = ent(21, 179), r = net(a / 2); return { enonce: "La bissectrice de l'angle $\\widehat{xOy}$ de $" + D(a) + "$ le partage en deux angles. Calculer chacun d'eux.", reponse: r, unite: "°", correction: "La bissectrice partage l'angle en deux angles égaux : $" + D(a) + " \\div 2 = " + D(r) + "$." }; }
           for (;;) {
-            const k = choix([2, 3, 4, 5]), x = ent(10, 60), reste = 360 - (k + 1) * x;
+            // Les deux angles inconnus valent x et k × x (somme (k + 1) × x) ; les deux angles donnés font le reste du tour
+            const k = choix([2, 3, 4, 5]), x = ent(10, 60), inconnus = (k + 1) * x, reste = 360 - inconnus;
             if (reste < 40) continue;
             const b = ent(20, reste - 20), c = reste - b;
-            return { enonce: "Autour d'un point, quatre angles adjacents forment un tour complet. Deux d'entre eux mesurent $" + D(b) + "$ et $" + D(c) + "$ ; des deux autres, l'un est " + RAPPORTS[k] + " fois plus grand que l'autre. Calculer le plus petit des deux.", reponse: x, unite: "°", correction: "Les deux angles inconnus ont pour somme $" + D(360) + " - (" + somme([b, c]) + ") = " + D(reste) + "$. Si le petit vaut $x$, le grand vaut $" + k + " \\times x$ et $" + (k + 1) + " \\times x = " + D(reste) + "$, donc $x = " + D(reste) + " \\div " + (k + 1) + " = " + D(x) + "$." };
+            return { enonce: "Autour d'un point, quatre angles adjacents forment un tour complet. Deux d'entre eux mesurent $" + D(b) + "$ et $" + D(c) + "$ ; des deux autres, l'un est " + RAPPORTS[k] + " fois plus grand que l'autre. Calculer le plus petit des deux.", reponse: x, unite: "°", correction: "Les deux angles inconnus ont pour somme $" + D(360) + " - (" + somme([b, c]) + ") = " + D(360) + " - " + D(reste) + " = " + D(inconnus) + "$. Si le petit vaut $x$, le grand vaut $" + k + " \\times x$ et $" + (k + 1) + " \\times x = " + D(inconnus) + "$, donc $x = " + D(inconnus) + " \\div " + (k + 1) + " = " + D(x) + "$." };
           }
         }
       }

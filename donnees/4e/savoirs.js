@@ -317,6 +317,15 @@ Savoirs.enregistrer({
    "intrus": [
     "90^{\\circ}",
     "360^{\\circ}"
+   ],
+   "exemples": [
+    {
+     "donnees": "Dans le triangle $ABC$, $\\widehat{A} = 50^{\\circ}$ et $\\widehat{B} = 70^{\\circ}$",
+     "question": "Mesure de $\\widehat{C}$ ?",
+     "reponse": 60,
+     "unite": "°",
+     "correction": "$\\widehat{C} = 180^{\\circ} - 50^{\\circ} - 70^{\\circ} = 60^{\\circ}$"
+    }
    ]
   },
   {
@@ -2303,29 +2312,6 @@ Savoirs.enregistrer({
    ]
   },
   {
-   "id": "tri-somme-angles",
-   "chap": "sembl",
-   "type": "propriete",
-   "titre": "Somme des angles d'un triangle",
-   "question": "Dans un triangle, la somme des mesures des trois angles est égale à ...",
-   "reponse": "$180^{\\circ}$",
-   "pieges": [
-    "$90^{\\circ}$",
-    "$360^{\\circ}$",
-    "$120^{\\circ}$"
-   ],
-   "exemples": [
-    {
-     "donnees": "Dans le triangle $ABC$, $\\widehat{A} = 50^{\\circ}$ et $\\widehat{B} = 70^{\\circ}$",
-     "question": "Mesure de $\\widehat{C}$ ?",
-     "reponse": 60,
-     "unite": "°",
-     "correction": "$\\widehat{C} = 180^{\\circ} - 50^{\\circ} - 70^{\\circ} = 60^{\\circ}$"
-    }
-   ],
-   "note": "C'est pour cela que deux angles égaux suffisent : le troisième est alors forcément égal aussi."
-  },
-  {
    "id": "sembl-forme",
    "chap": "sembl",
    "type": "propriete",
@@ -3040,13 +3026,13 @@ Savoirs.enregistrer({
    "type": "propriete",
    "titre": "Contre-exemple",
    "question": "Pour prouver qu'une égalité n'est pas toujours vraie, ...",
-   "reponse": "un seul contre-exemple suffit : une valeur pour laquelle elle est fausse",
+   "reponse": "un seul contre-exemple suffit",
    "pieges": [
     "il faut la tester sur au moins trois valeurs",
     "il faut la tester sur toutes les valeurs possibles",
     "il faut développer et réduire les deux membres"
    ],
-   "note": "Par exemple, $2x + 3 = 5x$ est fausse pour $x = 0$ : $3 \\neq 0$."
+   "note": "Un contre-exemple est une valeur pour laquelle l'égalité est fausse. Par exemple, $2x + 3 = 5x$ est fausse pour $x = 0$ : $3 \\neq 0$."
   },
   {
    "id": "lit4-reduire",
@@ -3054,13 +3040,13 @@ Savoirs.enregistrer({
    "type": "regle",
    "titre": "Réduire une expression",
    "question": "Réduites, les expressions $3x + 5x$ et $3x + 2$ s'écrivent ...",
-   "reponse": "$8x$ et $3x + 2$ (qui ne se réduit pas)",
+   "reponse": "$8x$ et $3x + 2$",
    "pieges": [
     "$8x$ et $5x$",
     "$8x^{2}$ et $5x$",
     "$15x$ et $3x + 2$"
    ],
-   "note": "Réduire, c'est regrouper les termes de même nature : les termes en $x$ entre eux, les nombres entre eux."
+   "note": "Réduire, c'est regrouper les termes de même nature : les termes en $x$ entre eux, les nombres entre eux. $3x + 2$ ne se réduit pas : $3x$ et $2$ ne sont pas de même nature."
   },
   {
    "id": "lit4-distrib",
@@ -4687,7 +4673,7 @@ Savoirs.enregistrer({
    "id": "o-sembl1",
    "chap": "sembl",
    "enonce": "Dans le triangle $ABC$, $\\widehat{A} = 48^{\\circ}$ et $\\widehat{B} = 75^{\\circ}$. Quelle est la mesure de $\\widehat{C}$ ?",
-   "bon": "tri-somme-angles",
+   "bon": "angles-tri",
    "explication": "$\\widehat{C} = 180^{\\circ} - 48^{\\circ} - 75^{\\circ} = 57^{\\circ}$.",
    "autres": [
     "sembl-2ang",
@@ -4702,7 +4688,7 @@ Savoirs.enregistrer({
    "bon": "sembl-2ang",
    "explication": "Deux angles égaux deux à deux suffisent : les triangles sont semblables.",
    "autres": [
-    "tri-somme-angles",
+    "angles-tri",
     "sembl-forme",
     "sembl-paralleles"
    ]
@@ -4715,7 +4701,7 @@ Savoirs.enregistrer({
    "explication": "Angles correspondants égaux et angle $\\widehat{A}$ commun : $AMN$ et $ABC$ sont semblables.",
    "autres": [
     "sembl-2ang",
-    "tri-somme-angles",
+    "angles-tri",
     "pythagore"
    ]
   },

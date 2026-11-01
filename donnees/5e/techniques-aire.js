@@ -3,14 +3,14 @@
 // Avec π : on calcule avec la vraie valeur de π (touche π de la calculatrice) et on demande la valeur
 // arrondie au dixième ; seule cette valeur est acceptée (décision de l'enseignant, au lieu de « prendre 3,14 »).
 (function () {
-  const { L, T, ent, choix, net, decimal, decimales, facile } = Savoirs.calculsOutils;
+  const { L, T, ent, choix, net, decimal, decimales, facile, fixe } = Savoirs.calculsOutils;
   const dec = (min, max) => { let x; do { x = decimal(max, 1); } while (x < min); return x; };
   const PI = " Donner la valeur arrondie au dixième.";
   const au10 = (x) => net(Math.round(x * 10) / 10);
   // Une valeur trop proche d'un « 5 » au centième rendrait l'arrondi discutable : on tire alors d'autres nombres
   const ambigu = (x) => Math.abs(x * 10 - Math.floor(x * 10) - 0.5) < 0.02;
   // Fin de correction : « ≈ 69,115 cm, soit 69,1 cm au dixième. » (u : unité écrite hors formule)
-  const arrondi = (x, u) => "\\approx " + L(net(Math.round(x * 1000) / 1000)) + "$ " + u + ", soit $" + L(au10(x)) + "$ " + u + " au dixième.";
+  const arrondi = (x, u) => "\\approx " + L(net(Math.round(x * 1000) / 1000)) + "$ " + u + ", soit $" + fixe(au10(x), 1) + "$ " + u + " au dixième.";
   const tirer = (f) => { for (;;) { const e = f(); if (!ambigu(e.valeur)) { delete e.valeur; return e; } } };
   const cm2 = "cm$^{2}$", m2 = "\\ \\text{m}^{2}";
   // Figures cotées (js/moteur/schemas.js) : les longueurs sont écrites sur la figure plutôt que dans l'énoncé

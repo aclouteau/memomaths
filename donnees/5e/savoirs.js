@@ -2377,10 +2377,11 @@ Savoirs.enregistrer({
    "question": "Volume d'un prisme droit de base d'aire $B$ et de hauteur $h$ ?",
    "reponse": "$V = B \\times h$",
    "pieges": [
-    "$V = \\dfrac{\\mathcal{B} \\times h}{3}$ (c'est le volume d'une pyramide)",
-    "$V = P \\times h$ (avec le périmètre $P$ de la base)",
-    "$V = \\mathcal{B} + h$ (on additionne)"
+    "$V = \\dfrac{B \\times h}{3}$",
+    "$V = P \\times h$",
+    "$V = B + h$"
    ],
+   "note": "On multiplie l'aire de la base (pas son périmètre $P$) par la hauteur. $\\dfrac{B \\times h}{3}$ est le volume d'une pyramide.",
    "morceaux": [
     "V",
     "=",

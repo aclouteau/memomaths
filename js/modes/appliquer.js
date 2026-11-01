@@ -306,10 +306,22 @@
       let ex, entete, calculatrice = false;
       if (savoir.type === "technique") {
         // Technique : un exercice tiré au hasard, au niveau de l'élève ; après la réponse, le niveau est mis à jour
-        const n = niveauTechnique(savoir, contexte);
+        let n = niveauTechnique(savoir, contexte);
         const finiTechnique = fini;
+        // Sécurité : si un exercice ne peut pas être tiré (fichier manquant ou pas à jour en ligne…), on retente,
+        // puis on essaie un niveau plus facile ; sinon la carte le dit et laisse passer, sans bloquer la séance
+        let g = null;
+        for (let essai = 0; essai < 12 && !g; essai++) {
+          const niv = Math.max(1, n - Math.floor(essai / 4));
+          try { g = savoir.technique.niveaux[niv](); n = niv; } catch (e) { if (essai === 0 && window.console) console.error(e); }
+        }
+        if (!g) {
+          zone.innerHTML = '<p class="consigne">Je m\'entraîne</p><p class="titre-savoir">' + m.texte(savoir.titre) + "</p>" +
+            "<p>Cet exercice n'est pas disponible pour l'instant.</p>" + '<button class="bouton-principal passer">Passer</button>';
+          zone.querySelector(".passer").addEventListener("click", () => finiTechnique(true));
+          return;
+        }
         fini = (juste) => { finiTechnique(juste); noterNiveau(savoir, contexte, n, juste); };
-        const g = savoir.technique.niveaux[n]();
         // Le format peut changer selon le niveau (décimal, puis fraction…) : l'exercice tiré le précise alors
         const format = g.format || savoir.technique.format;
         ex = { donnees: g.enonce, question: "Ta réponse", reponse: g.reponse, unite: g.unite || "", correction: g.correction, schema: g.schema,

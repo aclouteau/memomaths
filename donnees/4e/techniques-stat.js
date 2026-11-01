@@ -417,7 +417,7 @@
             const p = choix([10, 20, 25, 30, 40, 45, 60, 75, 15, 35]), a = net(p * 3.6);
             return {
               enonce: "Dans un diagramme circulaire, une catégorie représente $" + p + "\\,\\%$ de l'effectif total. Quel est l'angle de son secteur ?", reponse: a, unite: "°",
-              correction: "Angle $= \\text{fréquence} \\times 360^{\\circ} = \\dfrac{" + p + "}{100} \\times 360^{\\circ} = " + T(a) + "^{\\circ}$."
+              correction: "Angle $= \\text{fréquence} \\times 360^{\\circ} = \\dfrac{" + p + "}{100} \\times 360^{\\circ} = " + L(a) + "^{\\circ}$."
             };
           }
           for (;;) {
@@ -441,7 +441,7 @@
             if (!Number.isInteger(p * 10)) continue;
             return {
               enonce: "Dans un diagramme circulaire, un secteur a un angle de $" + a + "^{\\circ}$. Quel pourcentage de l'effectif total représente-t-il ?", reponse: p, unite: "%",
-              correction: "Fréquence $= \\dfrac{" + a + "}{360} = " + T(net(a / 360)) + "$, soit $" + T(p) + "\\,\\%$."
+              correction: "Fréquence $= \\dfrac{" + a + "}{360} = " + L(net(a / 360)) + "$, soit $" + L(p) + "\\,\\%$."
             };
           }
         }

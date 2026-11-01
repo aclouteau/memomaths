@@ -4,7 +4,7 @@
 // et de contenances. Les longueurs sont données sur un schéma coté (js/moteur/schemas.js).
 // Avec π : vraie valeur de π (touche π de la calculatrice) et valeur arrondie au dixième, comme en 5e.
 (function () {
-  const { L, T, ent, choix, net, decimal, facile } = Savoirs.calculsOutils;
+  const { L, T, ent, choix, net, decimal, facile, fixe } = Savoirs.calculsOutils;
   const S = Savoirs.schemas;
   const dec = (min, max) => { let x; do { x = decimal(max, 1); } while (x < min); return x; };
   const cm = (x, u) => T(x) + " " + (u || "cm");
@@ -13,7 +13,7 @@
   const PI = " Donner la valeur arrondie au dixième.";
   const au10 = (x) => net(Math.round(x * 10) / 10);
   const ambigu = (x) => Math.abs(x * 10 - Math.floor(x * 10) - 0.5) < 0.02;
-  const arrondi = (x, u) => "\\approx " + L(net(Math.round(x * 1000) / 1000)) + "$ " + u + ", soit $" + L(au10(x)) + "$ " + u + " au dixième.";
+  const arrondi = (x, u) => "\\approx " + L(net(Math.round(x * 1000) / 1000)) + "$ " + u + ", soit $" + fixe(au10(x), 1) + "$ " + u + " au dixième.";
   const tirer = (f) => { for (;;) { const e = f(); if (!ambigu(e.valeur)) { delete e.valeur; return e; } } };
 
   // ---------- Conversions : chaque unité est repérée par sa puissance de 10 (mètre, ou mètre cube) ----------

@@ -93,32 +93,34 @@
   }
 
   // ---------- Fréquence ----------
-  const EXPERIENCES = [["lancers d'une pièce", "« pile »", "sort"], ["lancers d'un dé", "« six »", "sort"], ["tirages", "une boule rouge", "sort"], ["lancers d'une punaise", "« pointe en haut »", "apparaît"]];
+  // [expériences, événement, verbe, « de » + événement (élision), question « combien de fois … ? »]
+  const EXPERIENCES = [["lancers d'une pièce", "« pile »", "sort", "de « pile »", "« pile » est-il sorti"], ["lancers d'un dé", "« six »", "sort", "de « six »", "« six » est-il sorti"],
+    ["tirages", "une boule rouge", "sort", "d'une boule rouge", "une boule rouge est-elle sortie"], ["lancers d'une punaise", "« pointe en haut »", "apparaît", "de « pointe en haut »", "« pointe en haut » est-il apparu"]];
   function frequence(niveau) {
-    const [exp, ev, verbe] = choix(EXPERIENCES);
+    const [exp, ev, verbe, deEv, combien] = choix(EXPERIENCES);
     const proba = ev === "« six »" ? 1 / 6 : ev === "« pile »" ? 0.5 : 0.35;
     const vraisemblable = (n) => Math.max(1, Math.min(n - 1, Math.round(n * proba * (0.7 + Math.random() * 0.6))));
     if (niveau < 3) {
       const n = niveau === 1 ? (facile(1) ? 100 : choix([10, 20, 25, 50, 100])) : (facile(2) ? 1000 : choix([40, 50, 200, 250, 400, 500]));
       let k; do { k = vraisemblable(n); } while (niveau === 2 && n !== 1000 && Math.abs(k / n * 100 - Math.round(k / n * 100)) > 1e-9);
       const f = net(k / n);
-      return { enonce: "Sur " + T(n) + " " + exp + ", " + ev + " " + verbe + " " + k + " fois. Quelle est la fréquence de " + ev + " (en nombre décimal) ?", reponse: f,
+      return { enonce: "Sur " + T(n) + " " + exp + ", " + ev + " " + verbe + " " + k + " fois. Quelle est la fréquence " + deEv + " (en nombre décimal) ?", reponse: f,
         correction: "$f = \\dfrac{" + k + "}{" + L(n) + "} = " + L(f) + "$." };
     }
     const type = choix(["pourcent", "occurrences", "reunies"]);
     if (type === "pourcent") {
       const n = choix([20, 25, 50, 200, 500]), k = vraisemblable(n), f = net(k / n * 100);
-      return { enonce: "Sur " + n + " " + exp + ", " + ev + " " + verbe + " " + k + " fois. Quelle est la fréquence de " + ev + " en pourcentage ?", reponse: f, unite: "%",
+      return { enonce: "Sur " + n + " " + exp + ", " + ev + " " + verbe + " " + k + " fois. Quelle est la fréquence " + deEv + " en pourcentage ?", reponse: f, unite: "%",
         correction: "$f = \\dfrac{" + k + "}{" + n + "} = " + L(net(k / n)) + "$, soit $" + L(f) + "\\,\\%$." };
     }
     if (type === "occurrences") {
-      const n = choix([50, 100, 200, 400, 500]), p = choix([10, 15, 20, 25, 30, 40, 45, 60]), k = n * p / 100;
-      return { enonce: "On a fait " + n + " " + exp + ". La fréquence de " + ev + " est de $" + p + "\\,\\%$. Combien de fois " + ev + " est-" + (verbe === "sort" ? "il sorti" : "il apparu") + " ?", reponse: k, unite: "fois",
+      let n, p, k; do { n = choix([50, 100, 200, 400, 500]); p = choix([10, 15, 20, 25, 30, 40, 45, 60]); k = n * p / 100; } while (!Number.isInteger(k)); // un nombre de fois est entier
+      return { enonce: "On a fait " + n + " " + exp + ". La fréquence " + deEv + " est de $" + p + "\\,\\%$. Combien de fois " + combien + " ?", reponse: k, unite: "fois",
         correction: "$" + p + "\\,\\%$ de $" + n + "$ : $\\dfrac{" + p + "}{100} \\times " + n + " = " + k + "$ fois." };
     }
     let n1, n2, k1, k2, f;
     do { n1 = choix([50, 100, 150]); n2 = choix([50, 100, 200, 250]); k1 = vraisemblable(n1); k2 = vraisemblable(n2); f = (k1 + k2) / (n1 + n2); } while (Math.abs(f * 1000 - Math.round(f * 1000)) > 1e-9);
-    return { enonce: "Dans une première série de " + n1 + " " + exp + ", " + ev + " " + verbe + " " + k1 + " fois ; dans une seconde série de " + n2 + " " + exp + ", " + ev + " " + verbe + " " + k2 + " fois. Quelle est la fréquence de " + ev + " sur l'ensemble des deux séries (en nombre décimal) ?",
+    return { enonce: "Dans une première série de " + n1 + " " + exp + ", " + ev + " " + verbe + " " + k1 + " fois ; dans une seconde série de " + n2 + " " + exp + ", " + ev + " " + verbe + " " + k2 + " fois. Quelle est la fréquence " + deEv + " sur l'ensemble des deux séries (en nombre décimal) ?",
       reponse: net(f), correction: "Sur l'ensemble : $" + k1 + " + " + k2 + " = " + (k1 + k2) + "$ fois " + ev + " pour $" + n1 + " + " + n2 + " = " + (n1 + n2) + "$ " + exp + ". $f = \\dfrac{" + (k1 + k2) + "}{" + (n1 + n2) + "} = " + L(net(f)) + "$." };
   }
 
