@@ -336,7 +336,13 @@
   // Remplace x par une valeur dans une écriture LaTeX : 2x^{2} - x → 2 \times (-3)^{2} - (-3)
   const substituer = (latex, v) => latex.replace(/(\d|\})x/g, "$1 \\times x").replace(/x/g, v < 0 ? "(" + L(v) + ")" : L(v));
 
+  // Tableau (statistiques, proportionnalité) en LaTeX : lignes = [["Note", 12, 14], ["Effectif", 3, 5]] ;
+  // la première colonne (les titres) est du texte, les autres sont des nombres ou du LaTeX ("?" pour la case cherchée)
+  const tableau = (lignes) => "$\\begin{array}{|l|" + "c|".repeat(lignes[0].length - 1) + "}\\hline " +
+    lignes.map((l) => "\\text{" + l[0] + "} & " + l.slice(1).map((x) => (typeof x === "number" ? L(x) : x)).join(" & ") + " \\\\ \\hline ").join("") + "\\end{array}$";
+
   Savoirs.calculsOutils = {
+    tableau: tableau,
     L: L, T: T, P: P, ent: ent, choix: choix, net: net, arr: arr,
     nonNul: nonNul, signeAuHasard: signeAuHasard, decimal: decimal, decimales: decimales, facile: facile,
     pgcd: pgcd, ppcm: ppcm, F: F, S: S, fixe: fixe, fixeTexte: fixeTexte, pluriel: pluriel,

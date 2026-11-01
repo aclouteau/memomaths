@@ -56,7 +56,8 @@
       }
     },
     {
-      id: "lit-egalite", chap: "lit", titre: "Une égalité est-elle vraie ?", format: "choix", options: ["oui", "non"],
+      // Tester une égalité : rattachée au chapitre 15 (equ) par la mise à jour de novembre 2026, comme le savoir lit-contre
+      id: "lit-egalite", chap: "equ", titre: "Une égalité est-elle vraie ?", format: "choix", options: ["oui", "non"],
       niveaux: {
         1: () => {
           const a = ent(2, 9), b = ent(1, 9), x = ent(1, 9), vraie = facile(1) || Math.random() < 0.5, g = a * x + b, c = vraie ? g : g + choix([1, -1, 2, -2, 3]);

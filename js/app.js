@@ -71,7 +71,12 @@
   function reglages() { return profils.reglages(joueur, niveau.id) || {}; }
   function changerReglages(changement) { profils.enregistrerReglages(joueur, niveau.id, Object.assign(reglages(), changement)); }
 
-  function chapitre(id) { return niveau.chapitres.find((c) => c.id === id); }
+  // Un chapitre renommé ou fusionné (catalogue.js, « renommes ») est retrouvé sous son nouvel id :
+  // le chapitre choisi par l'élève ou donné par un ancien lien reste valable
+  function chapitre(id) {
+    const nouveau = ((entree && entree.renommes) || {})[id];
+    return niveau.chapitres.find((c) => c.id === id) || (nouveau ? niveau.chapitres.find((c) => c.id === nouveau) : undefined);
+  }
   // Couleur du thème : elle est donnée par le catalogue du niveau d'où vient le chapitre
   function theme(idChap) {
     const c = chapitre(idChap);
@@ -121,13 +126,15 @@
     const ids = new Set(base.savoirs.map((s) => s.id));
     const enonces = new Set(base.outils.map((o) => o.enonce));
     // Regroupement (catalogue.js) : savoirs et techniques des années précédentes rattachés à un chapitre de l'année
+    // (un regroupement, ou une liste de regroupements : un par chapitre d'accueil)
     const r = (Savoirs.catalogue.find((e) => e.id === id) || {}).regroupe;
-    const regroupe = (idNiveau, sid) => r && (r.savoirs[idNiveau] || []).indexOf(sid) >= 0;
-    const doublon = (idNiveau, sid) => r && (r.doublons[idNiveau] || []).indexOf(sid) >= 0;
+    const groupes = r ? [].concat(r) : [];
+    const accueil = (cle, idNiveau, sid) => { const g = groupes.find((x) => ((idNiveau ? (x[cle] || {})[idNiveau] : x[cle]) || []).indexOf(sid) >= 0); return g ? g.chap : null; };
+    const doublon = (idNiveau, sid) => !!accueil("doublons", idNiveau, sid);
     // Techniques d'entraînement : la clé « t-4e-prod-deux » sert à la progression (même clé dans tous les niveaux)
     const techniquesDe = (idNiveau, pre) => (Savoirs.techniques[idNiveau] || []).map((t) => {
       const cle = "t-" + idNiveau + "-" + t.id;
-      return Object.assign({}, t, { chap: r && r.techniques.indexOf(cle) >= 0 ? r.chap : pre + t.chap, cle: cle });
+      return Object.assign({}, t, { chap: accueil("techniques", null, cle) || pre + t.chap, cle: cle });
     });
     const n = {
       id: base.id, titre: base.titre, niveau: base.niveau,
@@ -138,7 +145,7 @@
       const d = Savoirs.niveaux[e.id], pre = e.id + ":";
       for (const c of d.chapitres) n.chapitres.push({ id: pre + c.id, titre: c.titre, ordre: c.ordre, annee: e.id, origine: e.id, idTheme: c.id, revision: true });
       for (const s of d.savoirs) if (!ids.has(s.id) && !doublon(e.id, s.id)) {
-        ids.add(s.id); n.savoirs.push(Object.assign({}, s, { chap: regroupe(e.id, s.id) ? r.chap : pre + s.chap }));
+        ids.add(s.id); n.savoirs.push(Object.assign({}, s, { chap: accueil("savoirs", e.id, s.id) || pre + s.chap }));
       }
       for (const o of d.outils) if (!enonces.has(o.enonce)) { enonces.add(o.enonce); n.outils.push(Object.assign({}, o, { id: pre + o.id, chap: pre + o.chap })); }
       n.techniques = n.techniques.concat(techniquesDe(e.id, pre));

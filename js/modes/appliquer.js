@@ -29,7 +29,11 @@
     return t.includes(".") ? t.split(".")[1].length : 0;
   }
 
-  function versTexte(x) { return String(x).replace(".", ",").replace("-", "−"); }
+  // Écriture française d'une réponse ; un très petit nombre est écrit en entier (0,0000000381, pas 3.81e-8)
+  function versTexte(x) {
+    const t = Math.abs(x) < 1e-6 && x !== 0 ? Number(x).toFixed(20).replace(/0+$/, "") : String(x);
+    return t.replace(".", ",").replace("-", "−");
+  }
   // Énoncé, suivi du schéma coté quand l'exercice en a un (js/moteur/schemas.js)
   const question = (ex) => '<div class="question">' + m.texte(ex.donnees) + "</div>" + (ex.schema ? '<div class="figure">' + ex.schema + "</div>" : "");
 
@@ -53,7 +57,8 @@
     "t-3e-thales-longueur": [3], "t-3e-thales-situation": [2, 3], "t-3e-thales-perimetre": [3], "t-3e-thales-parallele-oui-non": [3],
     "t-3e-pv-vol-cylindre": [1, 2, 3], "t-3e-pv-vol-pyramide-cone": [2, 3], "t-3e-pv-sphere-boule": [1, 2, 3], "t-3e-pv-contenance": [3]
   };
-  const avecCalculatrice = (savoir, niveau) => (CALCULATRICE[savoir.id] || []).includes(niveau);
+  // Une technique peut aussi le dire elle-même : calculatrice: [2, 3]
+  const avecCalculatrice = (savoir, niveau) => ((savoir.technique && savoir.technique.calculatrice) || CALCULATRICE[savoir.id] || []).includes(niveau);
   function niveauTechnique(carte, contexte) {
     const progression = contexte && contexte.progression;
     const f = progression && progression.fiche("appliquer", carte.id);
@@ -91,9 +96,10 @@
   // Deux boutons : « Positif » / « Négatif » (format "signe", réponse 1 ou −1), ou deux réponses écrites dans
   // technique.options (format "choix", par exemple « rectangle » / « non rectangle » ; réponse : l'une des deux)
   function afficherSigne(carte, zone, fini, ex, entete) {
-    const options = carte.technique.format === "choix" ? carte.technique.options.map((o) => [o, o.charAt(0).toUpperCase() + o.slice(1)]) : [[1, "Positif"], [-1, "Négatif"]];
+    const choix = ex.format === "choix", liste = ex.options || carte.technique.options;
+    const options = choix ? liste.map((o) => [o, o.charAt(0).toUpperCase() + o.slice(1)]) : [[1, "Positif"], [-1, "Négatif"]];
     zone.innerHTML = entete + question(ex) +
-      '<div class="propositions choix-signe" role="group" aria-label="' + (carte.technique.format === "choix" ? "Réponse" : "Signe") + '">' +
+      '<div class="propositions choix-signe" role="group" aria-label="' + (choix ? "Réponse" : "Signe") + '">' +
       options.map(([v, t]) =>
         '<button class="proposition" data-signe="' + m.echapper(String(v)) + '"><span class="marque" aria-hidden="true"></span><span class="contenu">' + m.echapper(t) + "</span></button>").join("") +
       "</div>" + '<div class="correction" hidden></div>';
@@ -117,10 +123,13 @@
 
   // Format « toucher » : l'élève touche un angle sur la figure (js/moteur/figures.js). Chaque angle est aussi
   // un bouton pour le clavier et le lecteur d'écran (Entrée ou Espace).
+  // La figure peut aussi être un SVG tout prêt (js/moteur/schemas.js) dont les zones sont des côtés, des sommets…
+  // ex.aide remplace alors « Touche l'angle sur la figure. »
   function afficherToucher(carte, zone, fini, ex, entete, figure) {
-    zone.innerHTML = entete + question(ex) +
-      '<div class="figure">' + Savoirs.figures.toucher(figure) + "</div>" +
-      '<p class="aide-toucher">Touche l\'angle sur la figure.</p>' + '<div class="correction" hidden></div>';
+    const libre = typeof figure === "string";
+    zone.innerHTML = entete + '<div class="question">' + m.texte(ex.donnees) + "</div>" +
+      '<div class="figure">' + (libre ? figure : Savoirs.figures.toucher(figure)) + "</div>" +
+      '<p class="aide-toucher">' + m.echapper(ex.aide || "Touche l'angle sur la figure.") + "</p>" + '<div class="correction" hidden></div>';
     const svg = zone.querySelector(".figure-toucher"), zones = Array.from(zone.querySelectorAll(".zone-angle"));
     let fait = false;
     function choisir(z) {
@@ -134,7 +143,8 @@
         else if (autre === z) autre.classList.add("faux");
       });
       svg.classList.add("fini");
-      zone.querySelector(".aide-toucher").textContent = juste ? "✓ C'est le bon angle." : "✗ Ce n'est pas cet angle : le bon angle est en bleu.";
+      zone.querySelector(".aide-toucher").textContent = libre ? (juste ? "✓ C'est juste." : "✗ Ce n'est pas celui-ci : la bonne réponse est en bleu.")
+        : juste ? "✓ C'est le bon angle." : "✗ Ce n'est pas cet angle : le bon angle est en bleu.";
       const correction = zone.querySelector(".correction");
       correction.innerHTML = m.texte(ex.correction);
       correction.hidden = false;
@@ -300,9 +310,10 @@
         const finiTechnique = fini;
         fini = (juste) => { finiTechnique(juste); noterNiveau(savoir, contexte, n, juste); };
         const g = savoir.technique.niveaux[n]();
-        ex = { donnees: g.enonce, question: "Ta réponse", reponse: g.reponse, unite: g.unite || "", correction: g.correction, schema: g.schema };
         // Le format peut changer selon le niveau (décimal, puis fraction…) : l'exercice tiré le précise alors
         const format = g.format || savoir.technique.format;
+        ex = { donnees: g.enonce, question: "Ta réponse", reponse: g.reponse, unite: g.unite || "", correction: g.correction, schema: g.schema,
+          format: format, options: g.options, aide: g.aide };
         savoir.reponse = format === "toucher" ? (g.libelle || "l'angle montré sur la figure")
           : format === "signe" ? (g.reponse > 0 ? "positif" : "négatif") : format === "choix" ? g.reponse
           : format === "fraction" ? "$" + fractionLatex(...fractionAttendue(g.reponse)) + "$"
@@ -326,7 +337,8 @@
       // Exercice d'entraînement : seule la valeur arrondie demandée est acceptée (7,2 et pas 7,24, décision de l'enseignant).
       // Exemple d'un savoir : un écart d'un demi-chiffre sur le dernier rang est toléré, comme avant.
       const arrondi = savoir.type !== "technique" && /arrondi/i.test(ex.donnees + " " + ex.question);
-      const tolerance = arrondi ? Math.pow(10, -decimales(ex.reponse)) / 2 + 1e-9 : 1e-9;
+      // Sans arrondi : écart relatif (les très petits nombres de la notation scientifique, 3,81 × 10⁻⁹, restent exigeants)
+      const tolerance = arrondi ? Math.pow(10, -decimales(ex.reponse)) / 2 + 1e-9 : Math.min(1e-9, Math.abs(ex.reponse) * 1e-9 + 1e-15);
 
       zone.innerHTML = entete +
         question(ex) +

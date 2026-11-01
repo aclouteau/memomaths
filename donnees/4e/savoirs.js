@@ -72,7 +72,7 @@ Savoirs.enregistrer({
   },
   {
    "id": "sembl",
-   "titre": "Triangles égaux et triangles semblables",
+   "titre": "Triangles semblables",
    "ordre": 11,
    "annee": "4e"
   },
@@ -83,32 +83,32 @@ Savoirs.enregistrer({
    "annee": "4e"
   },
   {
-   "id": "pyr",
-   "titre": "Pyramides",
+   "id": "lit",
+   "titre": "Calcul littéral",
    "ordre": 13,
+   "annee": "4e"
+  },
+  {
+   "id": "vol",
+   "titre": "Volumes (pyramide et cône)",
+   "ordre": 14,
    "annee": "4e"
   },
   {
    "id": "equ",
    "titre": "Équations",
-   "ordre": 14,
+   "ordre": 15,
    "annee": "4e"
   },
   {
    "id": "gc",
    "titre": "Grandeurs composées",
-   "ordre": 15,
+   "ordre": 16,
    "annee": "4e"
   },
   {
    "id": "sci",
    "titre": "Puissances : notation scientifique",
-   "ordre": 16,
-   "annee": "4e"
-  },
-  {
-   "id": "cone",
-   "titre": "Cône de révolution",
    "ordre": 17,
    "annee": "4e"
   },
@@ -291,75 +291,6 @@ Savoirs.enregistrer({
      "unite": "cm",
      "correction": "$P = 2 \\times \\pi \\times 5 = 10\\pi \\approx 31{,}4$ cm"
     }
-   ]
-  },
-  {
-   "id": "vol-pave",
-   "chap": "pre",
-   "type": "formule",
-   "titre": "Volume d'un pavé droit",
-   "question": "Volume d'un pavé droit de longueur $L$, largeur $\\ell$, hauteur $h$ ?",
-   "reponse": "$V = L \\times \\ell \\times h$",
-   "pieges": [
-    "$V = L + \\ell + h$",
-    "$V = \\dfrac{1}{3} \\times L \\times \\ell \\times h$",
-    "$V = 2 \\times (L \\times \\ell + \\ell \\times h + L \\times h)$"
-   ],
-   "exemples": [
-    {
-     "donnees": "$L = 5$ cm, $\\ell = 4$ cm, $h = 3$ cm",
-     "question": "Volume ?",
-     "reponse": 60,
-     "unite": "cm³",
-     "correction": "$V = 5 \\times 4 \\times 3 = 60$ cm³"
-    }
-   ],
-   "morceaux": [
-    "V",
-    "=",
-    "L",
-    "\\times",
-    "\\ell",
-    "\\times",
-    "h"
-   ],
-   "intrus": [
-    "+",
-    "3"
-   ]
-  },
-  {
-   "id": "vol-prisme",
-   "chap": "pre",
-   "type": "formule",
-   "titre": "Volume d'un prisme droit ou d'un cylindre",
-   "question": "Volume d'un prisme droit (ou d'un cylindre) de base d'aire $B$ et de hauteur $h$ ?",
-   "reponse": "$V = B \\times h$",
-   "pieges": [
-    "$V = \\dfrac{1}{3} \\times B \\times h$",
-    "$V = P_{\\text{base}} \\times h$",
-    "$V = B + h$"
-   ],
-   "exemples": [
-    {
-     "donnees": "cylindre : $r = 2$ cm et $h = 10$ cm (arrondir à l'unité)",
-     "question": "Volume ?",
-     "reponse": 126,
-     "unite": "cm³",
-     "correction": "$V = \\pi \\times 2^{2} \\times 10 = 40\\pi \\approx 126$ cm³"
-    }
-   ],
-   "note": "Pour un cylindre, $B = \\pi \\times r^{2}$ donc $V = \\pi \\times r^{2} \\times h$.",
-   "morceaux": [
-    "V",
-    "=",
-    "B",
-    "\\times",
-    "h"
-   ],
-   "intrus": [
-    "+",
-    "\\dfrac{1}{3}"
    ]
   },
   {
@@ -1061,6 +992,40 @@ Savoirs.enregistrer({
     "un nombre de valeurs de la série, par exemple $t < 170$"
    ],
    "note": "On regroupe en classes quand les données sont très nombreuses ou toutes différentes. L'effectif d'une classe est le nombre de valeurs qu'elle contient ; sur un histogramme, la hauteur des rectangles est proportionnelle à l'effectif."
+  },
+  {
+   "id": "stat-circulaire",
+   "chap": "stat",
+   "type": "formule",
+   "titre": "Diagramme circulaire",
+   "question": "Dans un diagramme circulaire, l'angle d'un secteur est égal à ...",
+   "reponse": "$\\text{fréquence} \\times 360^{\\circ}$",
+   "pieges": [
+    "$\\text{fréquence} \\times 100^{\\circ}$",
+    "$\\text{effectif} \\times 360^{\\circ}$",
+    "$\\text{effectif total} \\div 360^{\\circ}$"
+   ],
+   "exemples": [
+    {
+     "donnees": "Dans une classe de 36 élèves, 5 élèves ont 11 ans",
+     "question": "Angle du secteur « 11 ans » ?",
+     "reponse": 50,
+     "unite": "°",
+     "correction": "$\\dfrac{5}{36} \\times 360 = 50$°"
+    }
+   ],
+   "note": "Autrement dit : angle $= \\dfrac{\\text{effectif}}{\\text{effectif total}} \\times 360^{\\circ}$. Le disque entier ($360^{\\circ}$) représente l'effectif total.",
+   "morceaux": [
+    "\\text{angle}",
+    "=",
+    "\\dfrac{\\text{effectif}}{\\text{effectif total}}",
+    "\\times",
+    "360^{\\circ}"
+   ],
+   "intrus": [
+    "100",
+    "\\div"
+   ]
   },
   {
    "id": "rel-signe-prod",
@@ -2312,19 +2277,6 @@ Savoirs.enregistrer({
    "note": "Exemple : on dépense $\\dfrac{1}{4}$ d'une somme, il reste $1 - \\dfrac{1}{4} = \\dfrac{3}{4}$."
   },
   {
-   "id": "egaux-def",
-   "chap": "sembl",
-   "type": "definition",
-   "titre": "Triangles égaux",
-   "question": "Deux triangles sont égaux si ...",
-   "reponse": "ils sont superposables (mêmes longueurs, mêmes angles)",
-   "pieges": [
-    "ils ont la même aire",
-    "ils ont le même périmètre",
-    "ils ont les mêmes angles seulement"
-   ]
-  },
-  {
    "id": "sembl-def",
    "chap": "sembl",
    "type": "definition",
@@ -2335,8 +2287,7 @@ Savoirs.enregistrer({
     "ils ont la même aire et le même périmètre",
     "ils ont un seul angle égal, les autres sont différents",
     "ils ont le même périmètre, mais des angles différents"
-   ],
-   "note": "Leurs côtés homologues sont alors proportionnels."
+   ]
   },
   {
    "id": "sembl-2ang",
@@ -2346,35 +2297,61 @@ Savoirs.enregistrer({
    "question": "Pour affirmer que deux triangles sont semblables, il suffit que ...",
    "reponse": "deux angles de l'un soient égaux à deux angles de l'autre",
    "pieges": [
-    "un angle de l'un soit égal à un angle de l'autre",
-    "un côté de l'un soit égal à un côté de l'autre",
-    "leurs périmètres soient égaux"
+    "un angle de l'un soit égal à un angle de l'autre, c'est suffisant",
+    "un côté de l'un soit égal à un côté de l'autre, c'est suffisant",
+    "leurs périmètres soient égaux, quels que soient les angles"
    ]
   },
   {
-   "id": "agrand-k",
+   "id": "tri-somme-angles",
    "chap": "sembl",
    "type": "propriete",
-   "titre": "Agrandissement et réduction de rapport k",
-   "question": "Dans un agrandissement ou une réduction de rapport $k$, les aires sont multipliées par ...",
-   "reponse": "$k^{2}$",
+   "titre": "Somme des angles d'un triangle",
+   "question": "Dans un triangle, la somme des mesures des trois angles est égale à ...",
+   "reponse": "$180^{\\circ}$",
    "pieges": [
-    "$k$",
-    "$k^{3}$",
-    "$2k$"
+    "$90^{\\circ}$",
+    "$360^{\\circ}$",
+    "$120^{\\circ}$"
    ],
-   "note": "Longueurs × k ; angles inchangés ; aires × k² ; volumes × k³.",
-   "morceaux": [
-    "\\mathcal{A}'",
-    "=",
-    "k^{2}",
-    "\\times",
-    "\\mathcal{A}"
+   "exemples": [
+    {
+     "donnees": "Dans le triangle $ABC$, $\\widehat{A} = 50^{\\circ}$ et $\\widehat{B} = 70^{\\circ}$",
+     "question": "Mesure de $\\widehat{C}$ ?",
+     "reponse": 60,
+     "unite": "°",
+     "correction": "$\\widehat{C} = 180^{\\circ} - 50^{\\circ} - 70^{\\circ} = 60^{\\circ}$"
+    }
    ],
-   "intrus": [
-    "k",
-    "2k"
-   ]
+   "note": "C'est pour cela que deux angles égaux suffisent : le troisième est alors forcément égal aussi."
+  },
+  {
+   "id": "sembl-forme",
+   "chap": "sembl",
+   "type": "propriete",
+   "titre": "Même forme, pas forcément même taille",
+   "question": "Deux triangles semblables ont ...",
+   "reponse": "la même forme, mais pas forcément la même taille",
+   "pieges": [
+    "la même taille, mais pas forcément la même forme",
+    "toujours la même forme et la même taille",
+    "les mêmes longueurs, mais pas forcément les mêmes angles"
+   ],
+   "note": "L'un est un agrandissement ou une réduction de l'autre."
+  },
+  {
+   "id": "sembl-paralleles",
+   "chap": "sembl",
+   "type": "propriete",
+   "titre": "Droites parallèles et triangles semblables",
+   "question": "$M$ est sur $[AB]$, $N$ est sur $[AC]$ et $(MN) \\parallel (BC)$. Alors les triangles $AMN$ et $ABC$ ...",
+   "reponse": "sont semblables",
+   "pieges": [
+    "sont égaux (superposables)",
+    "ont la même aire",
+    "sont semblables seulement si $M$ est le milieu de $[AB]$"
+   ],
+   "note": "$\\widehat{AMN} = \\widehat{ABC}$ (angles correspondants, car $(MN) \\parallel (BC)$) et l'angle $\\widehat{A}$ est commun : deux angles égaux deux à deux suffisent."
   },
   {
    "id": "puiss-def",
@@ -2382,12 +2359,13 @@ Savoirs.enregistrer({
    "type": "definition",
    "titre": "Puissance d'un nombre",
    "question": "$a^{n}$ (avec $n$ entier positif) signifie ...",
-   "reponse": "le produit de $n$ facteurs égaux à $a$ : $a \\times a \\times \\dots \\times a$",
+   "reponse": "le produit de $n$ facteurs égaux à $a$",
    "pieges": [
-    "$a$ multiplié par $n$ : $a \\times n$",
-    "$a$ ajouté $n$ fois à lui-même : $a + a + \\dots + a$",
-    "$n$ multiplié par lui-même $a$ fois : $n^{a}$"
-   ]
+    "la somme de $n$ termes égaux à $a$",
+    "le produit de $a$ facteurs égaux à $n$",
+    "le produit de $n$ par $a$, une seule fois"
+   ],
+   "note": "$a^{n} = a \\times a \\times \\dots \\times a$ ($n$ facteurs). Exemple : $2^{3} = 2 \\times 2 \\times 2 = 8$."
   },
   {
    "id": "puiss-prod",
@@ -2434,15 +2412,6 @@ Savoirs.enregistrer({
     "$a^{m \\div n}$",
     "$a^{n-m}$"
    ],
-   "exemples": [
-    {
-     "donnees": "Calculer $\\dfrac{5^{6}}{5^{4}}$ (donner le nombre)",
-     "question": "Résultat ?",
-     "reponse": 25,
-     "unite": "",
-     "correction": "$5^{6-4} = 5^{2} = 25$"
-    }
-   ],
    "morceaux": [
     "\\dfrac{a^{m}}{a^{n}}",
     "=",
@@ -2451,6 +2420,15 @@ Savoirs.enregistrer({
    "intrus": [
     "a^{m+n}",
     "a^{n-m}"
+   ],
+   "exemples": [
+    {
+     "donnees": "Calculer $\\dfrac{5^{6}}{5^{4}}$ (donner le nombre)",
+     "question": "Résultat ?",
+     "reponse": 25,
+     "unite": "",
+     "correction": "$5^{6-4} = 5^{2} = 25$"
+    }
    ]
   },
   {
@@ -2461,18 +2439,9 @@ Savoirs.enregistrer({
    "question": "$(a^{m})^{n}$ vaut ...",
    "reponse": "$a^{m \\times n}$",
    "pieges": [
-    "$a^{m+n}$",
-    "$a^{m^{n}}$",
-    "$a^{m}\\times n$"
-   ],
-   "exemples": [
-    {
-     "donnees": "Calculer $(2^{3})^{2}$ (donner le nombre)",
-     "question": "Résultat ?",
-     "reponse": 64,
-     "unite": "",
-     "correction": "$(2^{3})^{2} = 2^{6} = 64$"
-    }
+    "$a^{m+n}$ (on additionne les exposants comme dans un produit)",
+    "$a^{m^{n}}$ (on met l'exposant en puissance de l'exposant)",
+    "$a^{m}\\times n$ (on multiplie la puissance par l'exposant)"
    ],
    "morceaux": [
     "(",
@@ -2483,6 +2452,15 @@ Savoirs.enregistrer({
    ],
    "intrus": [
     "a^{m+n}"
+   ],
+   "exemples": [
+    {
+     "donnees": "Calculer $(2^{3})^{2}$ (donner le nombre)",
+     "question": "Résultat ?",
+     "reponse": 64,
+     "unite": "",
+     "correction": "$(2^{3})^{2} = 2^{6} = 64$"
+    }
    ]
   },
   {
@@ -2493,18 +2471,9 @@ Savoirs.enregistrer({
    "question": "$a^{-n}$ (avec $a \\neq 0$) vaut ...",
    "reponse": "$\\dfrac{1}{a^{n}}$",
    "pieges": [
-    "$-a^{n}$",
-    "$-\\dfrac{1}{a^{n}}$",
-    "$a^{n}$"
-   ],
-   "exemples": [
-    {
-     "donnees": "Calculer $2^{-3}$ (donner un décimal)",
-     "question": "Résultat ?",
-     "reponse": 0.125,
-     "unite": "",
-     "correction": "$2^{-3} = \\dfrac{1}{2^{3}} = \\dfrac{1}{8} = 0{,}125$"
-    }
+    "$-a^{n}$ (l'exposant négatif change le signe)",
+    "$-\\dfrac{1}{a^{n}}$ (l'exposant négatif change le signe et inverse)",
+    "$a^{n}$ (l'exposant négatif ne change rien)"
    ],
    "note": "Un exposant négatif ne rend pas le nombre négatif.",
    "morceaux": [
@@ -2515,6 +2484,15 @@ Savoirs.enregistrer({
    "intrus": [
     "-a^{n}",
     "\\dfrac{1}{-a^{n}}"
+   ],
+   "exemples": [
+    {
+     "donnees": "Calculer $2^{-3}$ (donner un décimal)",
+     "question": "Résultat ?",
+     "reponse": 0.125,
+     "unite": "",
+     "correction": "$2^{-3} = \\dfrac{1}{2^{3}} = \\dfrac{1}{8} = 0{,}125$"
+    }
    ]
   },
   {
@@ -2525,9 +2503,9 @@ Savoirs.enregistrer({
    "question": "Pour tout nombre $a \\neq 0$, $a^{0}$ vaut ...",
    "reponse": "1",
    "pieges": [
-    "0",
-    "$a$",
-    "impossible à calculer"
+    "0 (le produit de zéro facteur est nul)",
+    "$a$ (il reste un seul facteur)",
+    "impossible à calculer (il n'y a aucun facteur)"
    ],
    "morceaux": [
     "a^{0}",
@@ -2576,29 +2554,196 @@ Savoirs.enregistrer({
    ]
   },
   {
+   "id": "puiss-un",
+   "chap": "puis",
+   "type": "regle",
+   "titre": "Exposant 1",
+   "question": "Pour tout nombre $a$, $a^{1}$ vaut ...",
+   "reponse": "$a$",
+   "pieges": [
+    "1 (comme pour l'exposant 0)",
+    "0 (l'exposant 1 annule la puissance)",
+    "$a \\times a$ (comme pour l'exposant 2)"
+   ],
+   "note": "Exemple : $7^{1} = 7$."
+  },
+  {
+   "id": "puiss-moins-base",
+   "chap": "puis",
+   "type": "regle",
+   "titre": "Le signe moins et l'exposant",
+   "question": "$-3^{2}$ et $(-3)^{2}$ valent respectivement ...",
+   "reponse": "$-9$ et $9$",
+   "pieges": [
+    "$9$ et $9$ (on ignore le signe moins qui est devant le premier nombre)",
+    "$-9$ et $-9$ (on ignore les parenthèses du second nombre)",
+    "$-6$ et $6$ (on multiplie le nombre par l'exposant)"
+   ],
+   "note": "Le signe moins est pris en compte après la puissance, sauf s'il est dans les parenthèses."
+  },
+  {
+   "id": "puiss-dix-grand",
+   "chap": "puis",
+   "type": "regle",
+   "titre": "Grandes puissances de 10",
+   "question": "$10^{n}$ (avec $n$ entier positif) s'écrit avec ...",
+   "reponse": "un $1$ suivi de $n$ zéros",
+   "pieges": [
+    "un $1$ suivi de $n + 1$ zéros",
+    "un $n$ suivi de dix zéros",
+    "un $1$ suivi de $n - 1$ zéros"
+   ],
+   "note": "Exemple : $10^{5} = 100\\,000$."
+  },
+  {
+   "id": "puiss-inverse",
+   "chap": "puis",
+   "type": "regle",
+   "titre": "Inverse et exposant négatif",
+   "question": "L'inverse de $a^{n}$ est ...",
+   "reponse": "$a^{-n}$",
+   "pieges": [
+    "$-a^{n}$",
+    "$a^{n-1}$",
+    "$\\dfrac{1}{a}^{n}$ avec une signification différente"
+   ],
+   "note": "Exemple : l'inverse de $2^{3}$ est $2^{-3} = \\dfrac{1}{8}$."
+  },
+  {
    "id": "pyr-def",
-   "chap": "pyr",
+   "chap": "vol",
    "type": "definition",
    "titre": "Pyramide",
    "question": "Une pyramide est un solide formé ...",
    "reponse": "d'une base polygonale et de faces triangulaires qui ont un sommet commun",
    "pieges": [
-    "de deux bases parallèles et de faces rectangulaires",
-    "d'une base circulaire et d'un sommet commun à toutes les faces",
-    "de six faces carrées identiques, comme un cube"
+    "de deux bases polygonales et de faces rectangulaires qui les relient",
+    "d'une base circulaire et d'une surface courbe qui a un sommet unique",
+    "d'une base polygonale et de faces rectangulaires qui ont un côté commun"
    ]
   },
   {
+   "id": "cone-def",
+   "chap": "vol",
+   "type": "definition",
+   "titre": "Cône de révolution",
+   "question": "Un cône de révolution est un solide ...",
+   "reponse": "engendré par un triangle rectangle tournant autour d'un côté de l'angle droit",
+   "pieges": [
+    "engendré par un triangle rectangle tournant autour de son plus grand côté",
+    "engendré par un rectangle tournant autour d'un de ses deux plus petits côtés",
+    "engendré par un demi-disque tournant autour du diamètre qui le limite"
+   ],
+   "note": "Sa base est un disque et il a un seul sommet."
+  },
+  {
+   "id": "vol-pave",
+   "chap": "vol",
+   "type": "formule",
+   "titre": "Volume d'un pavé droit",
+   "question": "Volume d'un pavé droit de longueur $L$, largeur $\\ell$, hauteur $h$ ?",
+   "reponse": "$V = L \\times \\ell \\times h$",
+   "pieges": [
+    "$V = L + \\ell + h$",
+    "$V = \\dfrac{1}{3} \\times L \\times \\ell \\times h$",
+    "$V = 2 \\times (L \\times \\ell + \\ell \\times h + L \\times h)$"
+   ],
+   "exemples": [
+    {
+     "donnees": "$L = 5$ cm, $\\ell = 4$ cm, $h = 3$ cm",
+     "question": "Volume ?",
+     "reponse": 60,
+     "unite": "cm³",
+     "correction": "$V = 5 \\times 4 \\times 3 = 60$ cm³"
+    }
+   ],
+   "morceaux": [
+    "V",
+    "=",
+    "L",
+    "\\times",
+    "\\ell",
+    "\\times",
+    "h"
+   ],
+   "intrus": [
+    "+",
+    "3"
+   ]
+  },
+  {
+   "id": "vol-prisme",
+   "chap": "vol",
+   "type": "formule",
+   "titre": "Volume d'un prisme droit ou d'un cylindre",
+   "question": "Volume d'un prisme droit (ou d'un cylindre) de base d'aire $B$ et de hauteur $h$ ?",
+   "reponse": "$V = B \\times h$",
+   "pieges": [
+    "$V = \\dfrac{1}{3} \\times B \\times h$",
+    "$V = P_{\\text{base}} \\times h$",
+    "$V = B + h$"
+   ],
+   "exemples": [
+    {
+     "donnees": "cylindre : $r = 2$ cm et $h = 10$ cm (arrondir à l'unité)",
+     "question": "Volume ?",
+     "reponse": 126,
+     "unite": "cm³",
+     "correction": "$V = \\pi \\times 2^{2} \\times 10 = 40\\pi \\approx 126$ cm³"
+    }
+   ],
+   "note": "Pour un cylindre, $B = \\pi \\times r^{2}$ donc $V = \\pi \\times r^{2} \\times h$.",
+   "morceaux": [
+    "V",
+    "=",
+    "B",
+    "\\times",
+    "h"
+   ],
+   "intrus": [
+    "+",
+    "\\dfrac{1}{3}"
+   ]
+  },
+  {
+   "id": "pyr-hauteur",
+   "chap": "vol",
+   "type": "definition",
+   "titre": "Hauteur d'une pyramide",
+   "question": "La hauteur d'une pyramide est le segment qui ...",
+   "reponse": "joint le sommet à la base en étant perpendiculaire à la base",
+   "pieges": [
+    "joint le sommet au milieu d'une arête de la base, en suivant la face",
+    "joint le sommet à un sommet de la base, en suivant une arête",
+    "joint deux sommets de la base en passant par son centre"
+   ],
+   "note": "Elle est différente de la hauteur d'une face triangulaire."
+  },
+  {
+   "id": "cone-hauteur",
+   "chap": "vol",
+   "type": "definition",
+   "titre": "Hauteur et génératrice",
+   "question": "Dans un cône de révolution, la hauteur est ... et la génératrice est ...",
+   "reponse": "le segment du sommet au centre de la base ; le segment du sommet à un point du cercle de base",
+   "pieges": [
+    "le segment du sommet à un point du cercle de base ; le segment du sommet au centre de la base",
+    "le diamètre du disque de base ; le rayon du disque de base, deux fois plus court",
+    "le segment du sommet au centre de la base ; le diamètre du disque de base"
+   ],
+   "note": "La hauteur est perpendiculaire à la base ; la génératrice est plus longue que la hauteur."
+  },
+  {
    "id": "pyr-vol",
-   "chap": "pyr",
+   "chap": "vol",
    "type": "formule",
    "titre": "Volume d'une pyramide",
    "question": "Volume d'une pyramide d'aire de base $B$ et de hauteur $h$ ?",
    "reponse": "$V = \\dfrac{1}{3} \\times B \\times h$",
    "pieges": [
-    "$V = B \\times h$",
-    "$V = \\dfrac{1}{2} \\times B \\times h$",
-    "$V = \\dfrac{1}{3} \\times P_{\\text{base}} \\times h$"
+    "$V = \\mathcal{B} \\times h$ (c'est le volume d'un prisme)",
+    "$V = \\dfrac{\\mathcal{B} \\times h}{2}$ (on divise par 2)",
+    "$V = \\dfrac{P \\times h}{3}$ (avec le périmètre $P$ de la base)"
    ],
    "morceaux": [
     "V",
@@ -2624,8 +2769,158 @@ Savoirs.enregistrer({
    ]
   },
   {
+   "id": "cone-vol",
+   "chap": "vol",
+   "type": "formule",
+   "titre": "Volume d'un cône de révolution",
+   "question": "Volume d'un cône de rayon $r$ et de hauteur $h$ ?",
+   "reponse": "$V = \\dfrac{1}{3} \\times \\pi \\times r^{2} \\times h$",
+   "pieges": [
+    "$V = \\pi \\times r^{2} \\times h$ (c'est le volume d'un cylindre)",
+    "$V = \\dfrac{1}{3} \\times \\pi \\times r^{2} \\times g$ (avec la génératrice au lieu de la hauteur)",
+    "$V = \\dfrac{1}{3} \\times \\pi \\times r \\times h$ (on oublie le carré du rayon)"
+   ],
+   "morceaux": [
+    "V",
+    "=",
+    "\\dfrac{1}{3}",
+    "\\times",
+    "\\pi",
+    "\\times",
+    "r^{2}",
+    "\\times",
+    "h"
+   ],
+   "intrus": [
+    "g",
+    "\\dfrac{1}{2}"
+   ],
+   "exemples": [
+    {
+     "donnees": "$r = 3$ cm et $h = 5$ cm (arrondir au dixième)",
+     "question": "Volume ?",
+     "reponse": 47.1,
+     "unite": "cm³",
+     "correction": "$V = \\dfrac{1}{3} \\times \\pi \\times 3^{2} \\times 5 = 15\\pi \\approx 47{,}1$ cm³"
+    }
+   ]
+  },
+  {
+   "id": "cone-pi",
+   "chap": "vol",
+   "type": "propriete",
+   "titre": "Calculer avec pi",
+   "question": "Pour calculer un volume avec $\\pi$, on utilise ...",
+   "reponse": "la touche $\\pi$ de la calculatrice, puis on arrondit",
+   "pieges": [
+    "$3$ à la place de $\\pi$, puis on arrondit",
+    "$3{,}41$ à la place de $\\pi$, puis on arrondit",
+    "$\\dfrac{7}{22}$ à la place de $\\pi$, puis on arrondit"
+   ],
+   "note": "On donne en général la valeur arrondie au dixième."
+  },
+  {
+   "id": "vol-m3",
+   "chap": "vol",
+   "type": "propriete",
+   "titre": "Mètre cube et décimètre cube",
+   "question": "$1\\ \\text{m}^{3}$ est égal à ...",
+   "reponse": "$1\\,000\\ \\text{dm}^{3}$",
+   "pieges": [
+    "$100\\ \\text{dm}^{3}$",
+    "$10\\ \\text{dm}^{3}$",
+    "$10\\,000\\ \\text{dm}^{3}$"
+   ],
+   "exemples": [
+    {
+     "donnees": "Une cuve a un volume de $2{,}5\\ \\text{m}^{3}$",
+     "question": "Volume en $\\text{dm}^{3}$ ?",
+     "reponse": 2500,
+     "unite": "dm³",
+     "correction": "$2{,}5 \\times 1\\,000 = 2\\,500\\ \\text{dm}^{3}$"
+    }
+   ],
+   "note": "D'une unité de volume à la suivante, on multiplie par $1\\,000$ (car $10 \\times 10 \\times 10 = 1\\,000$) : $1\\ \\text{dm}^{3} = 1\\,000\\ \\text{cm}^{3}$."
+  },
+  {
+   "id": "vol-dm3-litre",
+   "chap": "vol",
+   "type": "propriete",
+   "titre": "Décimètre cube et litre",
+   "question": "$1\\ \\text{dm}^{3}$ est égal à ...",
+   "reponse": "$1$ L",
+   "pieges": [
+    "$10$ L",
+    "$100$ L",
+    "$1\\,000$ L"
+   ],
+   "exemples": [
+    {
+     "donnees": "Un aquarium a un volume de $0{,}06\\ \\text{m}^{3}$",
+     "question": "Contenance en litres ?",
+     "reponse": 60,
+     "unite": "L",
+     "correction": "$0{,}06\\ \\text{m}^{3} = 0{,}06 \\times 1\\,000 = 60\\ \\text{dm}^{3}$, soit $60$ L"
+    }
+   ],
+   "note": "Donc $1\\ \\text{m}^{3} = 1\\,000$ L."
+  },
+  {
+   "id": "vol-cm3-ml",
+   "chap": "vol",
+   "type": "propriete",
+   "titre": "Centimètre cube et millilitre",
+   "question": "$1\\ \\text{cm}^{3}$ est égal à ...",
+   "reponse": "$1$ mL",
+   "pieges": [
+    "$1$ cL",
+    "$1$ L",
+    "$10$ mL"
+   ],
+   "note": "$1$ L $= 1\\,000$ mL et $1\\ \\text{dm}^{3} = 1\\,000\\ \\text{cm}^{3}$."
+  },
+  {
+   "id": "pyr-litre",
+   "chap": "vol",
+   "type": "propriete",
+   "titre": "Volume en litres",
+   "question": "$1\\ \\text{L}$ est égal à ...",
+   "reponse": "$1\\,000\\ \\text{cm}^{3}$",
+   "pieges": [
+    "$100\\ \\text{cm}^{3}$",
+    "$10\\,000\\ \\text{cm}^{3}$",
+    "$10\\ \\text{cm}^{3}$"
+   ],
+   "note": "$1\\ \\text{L} = 1\\ \\text{dm}^{3} = 1\\,000\\ \\text{cm}^{3}$ : une pyramide de $3\\,000\\ \\text{cm}^{3}$ contient $3$ L."
+  },
+  {
+   "id": "agrand-k",
+   "chap": "vol",
+   "type": "propriete",
+   "titre": "Agrandissement et réduction de rapport k",
+   "question": "Dans un agrandissement ou une réduction de rapport $k$, les aires sont multipliées par ...",
+   "reponse": "$k^{2}$",
+   "pieges": [
+    "$k$",
+    "$k^{3}$",
+    "$2k$"
+   ],
+   "note": "Longueurs × k ; angles inchangés ; aires × k² ; volumes × k³.",
+   "morceaux": [
+    "\\mathcal{A}'",
+    "=",
+    "k^{2}",
+    "\\times",
+    "\\mathcal{A}"
+   ],
+   "intrus": [
+    "k",
+    "2k"
+   ]
+  },
+  {
    "id": "pyr-red",
-   "chap": "pyr",
+   "chap": "vol",
    "type": "propriete",
    "titre": "Réduction d'une pyramide",
    "question": "Quand on réduit une pyramide avec un rapport $k$, son volume est multiplié par ...",
@@ -2648,6 +2943,203 @@ Savoirs.enregistrer({
    ]
   },
   {
+   "id": "cone-red",
+   "chap": "vol",
+   "type": "propriete",
+   "titre": "Réduction d'un cône",
+   "question": "Quand on réduit un cône avec un rapport $k$, son volume est multiplié par ...",
+   "reponse": "$k^{3}$",
+   "pieges": [
+    "$k$",
+    "$k^{2}$",
+    "$3k$"
+   ],
+   "note": "Comme pour les pyramides : longueurs $\\times k$, aires $\\times k^{2}$, volumes $\\times k^{3}$."
+  },
+  {
+   "id": "vol-reperage",
+   "chap": "vol",
+   "type": "definition",
+   "titre": "Repérage dans un pavé droit",
+   "question": "Dans un pavé droit muni d'un repère, un point est repéré par ...",
+   "reponse": "trois nombres : son abscisse, son ordonnée et son altitude",
+   "pieges": [
+    "deux nombres : son abscisse et son ordonnée",
+    "un seul nombre : sa distance à l'origine",
+    "trois nombres : sa longueur, sa largeur et son volume"
+   ],
+   "note": "On écrit les coordonnées dans cet ordre : $(x\\,;\\,y\\,;\\,z)$. L'origine a pour coordonnées $(0\\,;\\,0\\,;\\,0)$."
+  },
+  {
+   "id": "vol-reperage-ordre",
+   "chap": "vol",
+   "type": "regle",
+   "titre": "Ordre des coordonnées dans l'espace",
+   "question": "Le point $G$ a pour coordonnées $(4\\,;\\,3\\,;\\,2)$. Son altitude est ...",
+   "reponse": "$2$",
+   "pieges": [
+    "$4$",
+    "$3$",
+    "$9$"
+   ],
+   "note": "Dans l'ordre : abscisse $4$, ordonnée $3$, altitude $2$."
+  },
+  {
+   "id": "lit4-conventions",
+   "chap": "lit",
+   "type": "regle",
+   "titre": "Conventions d'écriture",
+   "question": "$3 \\times x$, $a \\times b$ et $x \\times x$ s'écrivent ...",
+   "reponse": "$3x$, $ab$ et $x^{2}$",
+   "pieges": [
+    "$3x$, $ab$ et $2x$",
+    "$3 + x$, $ab$ et $x^{2}$",
+    "$x3$, $a + b$ et $2x$"
+   ],
+   "note": "On écrit aussi $1x = x$. Mais on ne supprime pas le signe $\\times$ entre deux nombres : $3 \\times 5$ ne s'écrit pas $35$."
+  },
+  {
+   "id": "lit4-somme-produit",
+   "chap": "lit",
+   "type": "definition",
+   "titre": "Somme ou produit ?",
+   "question": "L'expression $3(x + 2)$ est ...",
+   "reponse": "un produit, car la dernière opération à effectuer est une multiplication",
+   "pieges": [
+    "une somme, car elle contient le signe $+$",
+    "une somme, car la dernière opération à effectuer est une addition",
+    "ni une somme ni un produit, car elle contient une lettre"
+   ],
+   "note": "$3x + 2$ est une somme : la dernière opération à effectuer est l'addition."
+  },
+  {
+   "id": "lit4-substituer",
+   "chap": "lit",
+   "type": "methode",
+   "titre": "Calculer la valeur d'une expression",
+   "question": "Pour calculer $3x^{2} - 2x$ quand $x = 4$, on ...",
+   "reponse": "remplace $x$ par $4$, puis applique les priorités : $3 \\times 4^{2} - 2 \\times 4 = 40$",
+   "pieges": [
+    "calcule de gauche à droite : $(3 \\times 4)^{2} - 2 \\times 4 = 136$",
+    "remplace $x^{2}$ par $8$ : $3 \\times 8 - 2 \\times 4 = 16$",
+    "remplace $x$ par $4$ sans signe $\\times$ : $34^{2} - 24$"
+   ],
+   "exemples": [
+    {
+     "donnees": "$A = 2x^{2} + 5x - 3$ et $x = 3$",
+     "question": "Valeur de $A$ ?",
+     "reponse": 30,
+     "correction": "$A = 2 \\times 3^{2} + 5 \\times 3 - 3 = 18 + 15 - 3 = 30$"
+    }
+   ],
+   "note": "On remet les signes $\\times$ et on met des parenthèses autour d'un nombre négatif : $x = -1$ donne $3 \\times (-1)^{2} - 2 \\times (-1) = 5$."
+  },
+  {
+   "id": "lit4-contre",
+   "chap": "lit",
+   "type": "propriete",
+   "titre": "Contre-exemple",
+   "question": "Pour prouver qu'une égalité n'est pas toujours vraie, ...",
+   "reponse": "un seul contre-exemple suffit : une valeur pour laquelle elle est fausse",
+   "pieges": [
+    "il faut la tester sur au moins trois valeurs",
+    "il faut la tester sur toutes les valeurs possibles",
+    "il faut développer et réduire les deux membres"
+   ],
+   "note": "Par exemple, $2x + 3 = 5x$ est fausse pour $x = 0$ : $3 \\neq 0$."
+  },
+  {
+   "id": "lit4-reduire",
+   "chap": "lit",
+   "type": "regle",
+   "titre": "Réduire une expression",
+   "question": "Réduites, les expressions $3x + 5x$ et $3x + 2$ s'écrivent ...",
+   "reponse": "$8x$ et $3x + 2$ (qui ne se réduit pas)",
+   "pieges": [
+    "$8x$ et $5x$",
+    "$8x^{2}$ et $5x$",
+    "$15x$ et $3x + 2$"
+   ],
+   "note": "Réduire, c'est regrouper les termes de même nature : les termes en $x$ entre eux, les nombres entre eux."
+  },
+  {
+   "id": "lit4-distrib",
+   "chap": "lit",
+   "type": "formule",
+   "titre": "Distributivité simple",
+   "question": "$k(a + b)$ est égal à ...",
+   "reponse": "$ka + kb$",
+   "pieges": [
+    "$ka + b$",
+    "$k + a + b$",
+    "$ka \\times kb$"
+   ],
+   "note": "De même, $k(a - b) = ka - kb$. Développer, c'est transformer un produit en somme : $4(2x - 3) = 8x - 12$.",
+   "morceaux": [
+    "k(a + b)",
+    "=",
+    "ka",
+    "+",
+    "kb"
+   ],
+   "intrus": [
+    "\\times",
+    "b"
+   ]
+  },
+  {
+   "id": "lit4-moins-paren",
+   "chap": "lit",
+   "type": "regle",
+   "titre": "Supprimer des parenthèses précédées d'un signe moins",
+   "question": "$-(a - b + c)$ est égal à ...",
+   "reponse": "$-a + b - c$",
+   "pieges": [
+    "$-a - b + c$",
+    "$a - b + c$",
+    "$-a - b - c$"
+   ],
+   "note": "On change le signe de chaque terme de la parenthèse. Précédée d'un signe $+$, une parenthèse se supprime sans rien changer."
+  },
+  {
+   "id": "lit4-factoriser",
+   "chap": "lit",
+   "type": "formule",
+   "titre": "Factoriser",
+   "question": "$ka + kb$ s'écrit aussi ...",
+   "reponse": "$k(a + b)$",
+   "pieges": [
+    "$k(a \\times b)$",
+    "$k + (a + b)$",
+    "$ab(k + k)$"
+   ],
+   "note": "Factoriser, c'est transformer une somme en produit en mettant le facteur commun en évidence : $6x + 9 = 3(2x + 3)$.",
+   "morceaux": [
+    "ka + kb",
+    "=",
+    "k",
+    "(a + b)"
+   ],
+   "intrus": [
+    "(a \\times b)",
+    "+"
+   ]
+  },
+  {
+   "id": "lit4-programme",
+   "chap": "lit",
+   "type": "methode",
+   "titre": "Prouver un programme de calcul",
+   "question": "Pour prouver qu'un programme de calcul donne toujours le même résultat, on ...",
+   "reponse": "appelle $x$ le nombre choisi et on calcule avec $x$",
+   "pieges": [
+    "le teste sur trois nombres différents",
+    "le teste sur un nombre bien choisi",
+    "le teste sur tous les nombres de 1 à 10"
+   ],
+   "note": "Des essais permettent de deviner (conjecturer) le résultat, pas de le prouver."
+  },
+  {
    "id": "equ-def",
    "chap": "equ",
    "type": "definition",
@@ -2655,9 +3147,9 @@ Savoirs.enregistrer({
    "question": "Une solution d'une équation est une valeur de l'inconnue qui ...",
    "reponse": "rend l'égalité vraie",
    "pieges": [
-    "rend l'égalité fausse",
-    "annule le membre de gauche",
-    "est toujours un entier"
+    "rend l'égalité fausse (c'est une valeur qui ne convient pas)",
+    "annule le membre de gauche, c'est-à-dire qui le rend égal à zéro",
+    "est toujours un entier positif, jamais un décimal"
    ]
   },
   {
@@ -2668,9 +3160,9 @@ Savoirs.enregistrer({
    "question": "On ne change pas une égalité si on ...",
    "reponse": "ajoute, retranche, multiplie ou divise (par un nombre non nul) les deux membres par un même nombre",
    "pieges": [
-    "ajoute un nombre au membre de gauche seulement, sans toucher à celui de droite",
-    "divise par $x$ les deux membres, même si $x$ peut valoir 0",
-    "multiplie par 0 les deux membres pour simplifier"
+    "ajoute un nombre au membre de gauche seulement, sans toucher à celui de droite, car c'est plus rapide",
+    "divise par $x$ les deux membres, même si $x$ peut valoir 0, pour faire disparaître l'inconnue",
+    "multiplie par 0 les deux membres de l'égalité pour la simplifier au maximum, ce qui ne change rien"
    ],
    "exemples": [
     {
@@ -2697,10 +3189,122 @@ Savoirs.enregistrer({
    "question": "Dans la résolution d'un problème, quel est l'ordre des étapes ?",
    "reponse": "choisir l'inconnue, écrire l'équation, la résoudre, vérifier, conclure par une phrase",
    "pieges": [
-    "écrire l'équation, résoudre, conclure, choisir l'inconnue",
-    "résoudre, choisir l'inconnue, vérifier",
-    "choisir l'inconnue, résoudre, ne pas conclure"
+    "écrire l'équation, la résoudre, conclure, puis choisir l'inconnue (on commence par la fin)",
+    "résoudre, choisir l'inconnue, vérifier la solution (sans jamais mettre en équation)",
+    "choisir l'inconnue, résoudre l'équation, puis ne pas conclure (aucune phrase de réponse)"
    ]
+  },
+  {
+   "id": "equ-ax-b",
+   "chap": "equ",
+   "type": "methode",
+   "titre": "Équation $ax + b = c$",
+   "question": "Pour résoudre $3x + 5 = 20$, on ...",
+   "reponse": "retranche $5$ aux deux membres, puis divise par $3$",
+   "pieges": [
+    "divise seulement $3x$ par $3$, puis retranche $5$",
+    "retranche $3$ aux deux membres, puis divise par $5$",
+    "ajoute $5$ aux deux membres, puis divise par $3$"
+   ],
+   "note": "$3x = 15$, donc $x = 5$. On défait les opérations dans l'ordre inverse : d'abord l'addition, puis la multiplication."
+  },
+  {
+   "id": "equ-deux-cotes",
+   "chap": "equ",
+   "type": "methode",
+   "titre": "Inconnue des deux côtés",
+   "question": "Pour résoudre $5x + 2 = 2x + 14$, on ...",
+   "reponse": "regroupe les termes en $x$ d'un côté et les nombres de l'autre",
+   "pieges": [
+    "additionne les termes en $x$ des deux côtés, puis les nombres",
+    "retranche $2x$ d'un seul côté, puis regroupe les nombres",
+    "divise les deux côtés par $x$ pour supprimer l'inconnue"
+   ],
+   "note": "$5x - 2x = 14 - 2$, soit $3x = 12$, donc $x = 4$. On fait la même opération sur les deux membres pour garder l'égalité."
+  },
+  {
+   "id": "equ-paren",
+   "chap": "equ",
+   "type": "methode",
+   "titre": "Équation avec parenthèses",
+   "question": "Pour résoudre $2(x + 3) = 14$, on ...",
+   "reponse": "développe : $2x + 6 = 14$, puis $2x = 8$ et $x = 4$",
+   "pieges": [
+    "supprime les parenthèses sans distribuer : $2x + 3 = 14$, donc $x = 5{,}5$",
+    "ajoute $2$ et $3$ pour écrire $5x = 14$, donc $x = 2{,}8$",
+    "divise par $2$ et oublie le $3$ de la parenthèse : $x = 7$"
+   ],
+   "note": "On peut aussi diviser les deux membres par $2$ : $x + 3 = 7$."
+  },
+  {
+   "id": "equ-neg",
+   "chap": "equ",
+   "type": "methode",
+   "titre": "Coefficient négatif",
+   "question": "Pour résoudre $-3x = 12$, on ...",
+   "reponse": "divise les deux membres par $-3$",
+   "pieges": [
+    "divise les deux membres par $3$",
+    "ajoute $3$ aux deux membres",
+    "multiplie les deux membres par $-3$"
+   ],
+   "note": "$x = \\dfrac{12}{-3} = -4$. La solution peut être négative ou fractionnaire."
+  },
+  {
+   "id": "equ-verif",
+   "chap": "equ",
+   "type": "methode",
+   "titre": "Vérifier une solution",
+   "question": "Pour vérifier que $x = 4$ est solution de $3x + 1 = 13$, on ...",
+   "reponse": "remplace $x$ par $4$ dans chaque membre et compare les résultats",
+   "pieges": [
+    "remplace $x$ par $4$ dans le membre de gauche seulement, sans comparer",
+    "résout une autre équation pour confirmer le résultat obtenu",
+    "ajoute $4$ aux deux membres et compare les deux résultats"
+   ],
+   "note": "$3 \\times 4 + 1 = 13$ : les deux membres sont égaux, donc $4$ est solution."
+  },
+  {
+   "id": "equ-fraction",
+   "chap": "equ",
+   "type": "methode",
+   "titre": "Équation avec fraction",
+   "question": "Pour résoudre $\\dfrac{x}{4} = 3$, on ...",
+   "reponse": "multiplie les deux membres par $4$",
+   "pieges": [
+    "divise les deux membres par $4$",
+    "retranche $4$ aux deux membres",
+    "multiplie le membre de gauche par $4$"
+   ],
+   "note": "$x = 3 \\times 4 = 12$. Multiplier par le dénominateur supprime la fraction."
+  },
+  {
+   "id": "equ-sol-frac",
+   "chap": "equ",
+   "type": "propriete",
+   "titre": "Solution non entière",
+   "question": "La solution de $2x = 5$ est ...",
+   "reponse": "$x = \\dfrac{5}{2}$",
+   "pieges": [
+    "$x = \\dfrac{2}{5}$ (on divise $2$ par $5$)",
+    "$x = 3$ (on arrondit)",
+    "$x = 10$ (on multiplie au lieu de diviser)"
+   ],
+   "note": "Soit $2{,}5$ : la solution n'est pas toujours un entier ; on la donne exacte, en fraction irréductible."
+  },
+  {
+   "id": "equ-probleme",
+   "chap": "equ",
+   "type": "methode",
+   "titre": "Mise en équation",
+   "question": "Je pense à un nombre, je le double et j'ajoute $5$ : j'obtiens $17$. L'équation est ...",
+   "reponse": "$2x + 5 = 17$",
+   "pieges": [
+    "$2(x + 5) = 17$ (on double aussi le 5)",
+    "$x + 2 + 5 = 17$ (on additionne le 2)",
+    "$2x - 5 = 17$ (on soustrait au lieu d'ajouter)"
+   ],
+   "note": "On résout ensuite : $x = 6$."
   },
   {
    "id": "vitesse",
@@ -2745,15 +3349,6 @@ Savoirs.enregistrer({
     "$d = \\dfrac{t}{v}$",
     "$d = v + t$"
    ],
-   "exemples": [
-    {
-     "donnees": "$v = 90$ km/h pendant $t = 3$ h",
-     "question": "Distance ?",
-     "reponse": 270,
-     "unite": "km",
-     "correction": "$d = 90 \\times 3 = 270$ km"
-    }
-   ],
    "morceaux": [
     "d",
     "=",
@@ -2764,6 +3359,15 @@ Savoirs.enregistrer({
    "intrus": [
     "\\div",
     "+"
+   ],
+   "exemples": [
+    {
+     "donnees": "$v = 90$ km/h pendant $t = 3$ h",
+     "question": "Distance ?",
+     "reponse": 270,
+     "unite": "km",
+     "correction": "$d = 90 \\times 3 = 270$ km"
+    }
    ]
   },
   {
@@ -2778,15 +3382,6 @@ Savoirs.enregistrer({
     "$t = \\dfrac{v}{d}$",
     "$t = d - v$"
    ],
-   "exemples": [
-    {
-     "donnees": "$d = 120$ km à $v = 80$ km/h",
-     "question": "Durée (en heures) ?",
-     "reponse": 1.5,
-     "unite": "h",
-     "correction": "$t = \\dfrac{120}{80} = 1{,}5$ h $= 1$ h 30 min"
-    }
-   ],
    "morceaux": [
     "t",
     "=",
@@ -2795,6 +3390,15 @@ Savoirs.enregistrer({
    "intrus": [
     "\\dfrac{v}{d}",
     "\\times"
+   ],
+   "exemples": [
+    {
+     "donnees": "$d = 120$ km à $v = 80$ km/h",
+     "question": "Durée (en heures) ?",
+     "reponse": 1.5,
+     "unite": "h",
+     "correction": "$t = \\dfrac{120}{80} = 1{,}5$ h $= 1$ h 30 min"
+    }
    ]
   },
   {
@@ -2809,15 +3413,6 @@ Savoirs.enregistrer({
     "$E = P + t$",
     "$E = \\dfrac{t}{P}$"
    ],
-   "exemples": [
-    {
-     "donnees": "$P = 2$ kW pendant $t = 3$ h",
-     "question": "Énergie ?",
-     "reponse": 6,
-     "unite": "kWh",
-     "correction": "$E = 2 \\times 3 = 6$ kWh"
-    }
-   ],
    "note": "Penser à convertir les W en kW avant de calculer.",
    "morceaux": [
     "E",
@@ -2829,6 +3424,15 @@ Savoirs.enregistrer({
    "intrus": [
     "\\div",
     "+"
+   ],
+   "exemples": [
+    {
+     "donnees": "$P = 2$ kW pendant $t = 3$ h",
+     "question": "Énergie ?",
+     "reponse": 6,
+     "unite": "kWh",
+     "correction": "$E = 2 \\times 3 = 6$ kWh"
+    }
    ]
   },
   {
@@ -2839,9 +3443,9 @@ Savoirs.enregistrer({
    "question": "Pour convertir une vitesse de km/h en m/s, on ...",
    "reponse": "divise par 3,6",
    "pieges": [
-    "multiplie par 3,6",
-    "divise par 60",
-    "multiplie par 1 000"
+    "multiplie par 3,6 (on se trompe de sens)",
+    "divise par 60 (on convertit en minutes)",
+    "multiplie par 1 000 (on convertit les kilomètres en mètres seulement)"
    ],
    "exemples": [
     {
@@ -2861,11 +3465,81 @@ Savoirs.enregistrer({
    "question": "2,5 h s'écrit en heures et minutes :",
    "reponse": "2 h 30 min",
    "pieges": [
-    "2 h 50 min",
-    "2 h 5 min",
-    "2 h 25 min"
+    "2 h 50 min (on lit 0,5 comme 50 minutes)",
+    "2 h 5 min (on lit 0,5 comme 5 minutes)",
+    "2 h 25 min (on prend un quart d'heure à tort)"
    ],
    "note": "1 h = 60 min donc 0,5 h = 30 min."
+  },
+  {
+   "id": "gc-conv-hmin",
+   "chap": "gc",
+   "type": "regle",
+   "titre": "Heures et minutes",
+   "question": "$0{,}25$ h correspond à ...",
+   "reponse": "$15$ min",
+   "pieges": [
+    "$25$ min (la partie décimale lue comme des minutes)",
+    "$0{,}25$ min",
+    "$2$ min $5$ s"
+   ],
+   "note": "Pour convertir des heures décimales en minutes, on multiplie par $60$ : $0{,}25 \\times 60 = 15$."
+  },
+  {
+   "id": "gc-unite-v",
+   "chap": "gc",
+   "type": "regle",
+   "titre": "Unités d'une vitesse",
+   "question": "Une vitesse de $90$ km/h signifie que l'on parcourt ...",
+   "reponse": "$90$ km en $1$ heure",
+   "pieges": [
+    "$90$ km en $1$ minute",
+    "$90$ m en $1$ heure",
+    "$1$ km en $90$ heures"
+   ],
+   "note": "L'unité d'une vitesse est une unité de longueur divisée par une unité de durée."
+  },
+  {
+   "id": "gc-moy",
+   "chap": "gc",
+   "type": "regle",
+   "titre": "Vitesse moyenne",
+   "question": "La vitesse moyenne sur un trajet est ...",
+   "reponse": "la distance totale parcourue divisée par la durée totale",
+   "pieges": [
+    "la moyenne des vitesses de chaque partie du trajet",
+    "la vitesse maximale atteinte pendant le trajet parcouru",
+    "la distance totale multipliée par la durée totale du trajet"
+   ],
+   "note": "Elle n'est pas égale en général à la moyenne des vitesses."
+  },
+  {
+   "id": "gc-kwh",
+   "chap": "gc",
+   "type": "regle",
+   "titre": "Le kilowattheure",
+   "question": "$1$ kWh est l'énergie consommée par ...",
+   "reponse": "un appareil de $1$ kW qui fonctionne pendant $1$ heure",
+   "pieges": [
+    "un appareil de $1$ W qui fonctionne pendant $1$ heure",
+    "un appareil de $1$ kW qui fonctionne pendant $1$ minute",
+    "un appareil de $1$ kW pendant $1$ seconde"
+   ],
+   "note": "Un appareil de $2$ kW pendant $3$ h consomme $6$ kWh."
+  },
+  {
+   "id": "gc-prix",
+   "chap": "gc",
+   "type": "formule",
+   "titre": "Coût de l'énergie",
+   "question": "Le coût de l'énergie consommée est ...",
+   "reponse": "l'énergie en kWh multipliée par le prix du kWh",
+   "pieges": [
+    "la puissance en kW multipliée par le prix du kWh seulement",
+    "l'énergie en kWh divisée par le prix du kWh de l'énergie",
+    "la durée multipliée par le prix du kWh de l'énergie seulement"
+   ],
+   "note": "Exemple : $12$ kWh à $0{,}20$ € le kWh coûtent $2{,}40$ €."
   },
   {
    "id": "sci-def",
@@ -2888,9 +3562,9 @@ Savoirs.enregistrer({
    "question": "Pour calculer $(a \\times 10^{m}) \\times (b \\times 10^{n})$, on ...",
    "reponse": "multiplie $a$ par $b$, additionne les exposants, puis remet en notation scientifique",
    "pieges": [
-    "additionne $a$ et $b$, multiplie les exposants, puis remet en notation scientifique",
-    "multiplie $a$ par $b$, multiplie les exposants, puis remet en notation scientifique",
-    "additionne tout, puis remet en notation scientifique"
+    "additionne $a$ et $b$, multiplie les exposants, puis remet le résultat en notation scientifique",
+    "multiplie $a$ par $b$, multiplie aussi les exposants, puis remet le résultat en notation scientifique",
+    "additionne tout ensemble, puis remet le résultat en notation scientifique à la fin"
    ],
    "exemples": [
     {
@@ -2910,72 +3584,80 @@ Savoirs.enregistrer({
    "question": "Laquelle de ces écritures est en notation scientifique ?",
    "reponse": "$3{,}2 \\times 10^{-5}$",
    "pieges": [
-    "$12 \\times 10^{4}$",
-    "$0{,}5 \\times 10^{3}$",
-    "$32 \\times 10^{-6}$"
+    "$12 \\times 10^{4}$ (le nombre 12 est supérieur à 10)",
+    "$0{,}5 \\times 10^{3}$ (le nombre 0,5 est inférieur à 1)",
+    "$32 \\times 10^{-6}$ (le nombre 32 est supérieur à 10)"
    ]
   },
   {
-   "id": "cone-gen",
-   "chap": "cone",
-   "type": "propriete",
-   "titre": "Génératrice d'un cône",
-   "question": "Dans un cône de révolution de hauteur $h$, de rayon $r$ et de génératrice $g$ ...",
-   "reponse": "$g^{2} = h^{2} + r^{2}$",
+   "id": "sci-grand",
+   "chap": "sci",
+   "type": "regle",
+   "titre": "Grand nombre",
+   "question": "Pour un nombre supérieur à $10$, l'exposant $n$ de la notation scientifique est ...",
+   "reponse": "positif",
    "pieges": [
-    "$g = h + r$",
-    "$h^{2} = g^{2} + r^{2}$",
-    "$g^{2} = h^{2} - r^{2}$"
+    "négatif",
+    "égal à zéro",
+    "toujours égal à 1"
    ],
-   "note": "C'est le théorème de Pythagore dans le triangle rectangle formé par la hauteur, le rayon et la génératrice.",
-   "morceaux": [
-    "g^{2}",
-    "=",
-    "h^{2}",
-    "+",
-    "r^{2}"
-   ],
-   "intrus": [
-    "-",
-    "g"
-   ]
+   "note": "C'est le nombre de rangs dont on déplace la virgule vers la gauche : $45\\,000 = 4{,}5 \\times 10^{4}$."
   },
   {
-   "id": "cone-vol",
-   "chap": "cone",
-   "type": "formule",
-   "titre": "Volume d'un cône de révolution",
-   "question": "Volume d'un cône de rayon $r$ et de hauteur $h$ ?",
-   "reponse": "$V = \\dfrac{1}{3} \\times \\pi \\times r^{2} \\times h$",
+   "id": "sci-petit",
+   "chap": "sci",
+   "type": "regle",
+   "titre": "Petit nombre",
+   "question": "Pour un nombre strictement compris entre $0$ et $1$, l'exposant $n$ de la notation scientifique est ...",
+   "reponse": "négatif",
    "pieges": [
-    "$V = \\pi \\times r^{2} \\times h$",
-    "$V = \\dfrac{1}{3} \\times \\pi \\times r^{2} \\times g$",
-    "$V = \\dfrac{1}{3} \\times \\pi \\times r \\times h$"
+    "positif",
+    "égal à zéro",
+    "toujours égal à $-1$"
    ],
-   "morceaux": [
-    "V",
-    "=",
-    "\\dfrac{1}{3}",
-    "\\times",
-    "\\pi",
-    "\\times",
-    "r^{2}",
-    "\\times",
-    "h"
+   "note": "On déplace la virgule vers la droite : $0{,}0032 = 3{,}2 \\times 10^{-3}$."
+  },
+  {
+   "id": "sci-decale",
+   "chap": "sci",
+   "type": "regle",
+   "titre": "Multiplier par une puissance de 10",
+   "question": "Multiplier un nombre par $10^{n}$ ($n$ positif) revient à ...",
+   "reponse": "déplacer la virgule de $n$ rangs vers la droite",
+   "pieges": [
+    "ajouter $n$ au nombre",
+    "déplacer la virgule de $n$ rangs vers la gauche",
+    "multiplier le nombre par $n$"
    ],
-   "intrus": [
-    "g",
-    "\\dfrac{1}{2}"
+   "note": "$3{,}2 \\times 10^{4} = 32\\,000$."
+  },
+  {
+   "id": "sci-comp",
+   "chap": "sci",
+   "type": "regle",
+   "titre": "Comparer deux nombres en notation scientifique",
+   "question": "Pour comparer deux nombres positifs en notation scientifique, on compare ...",
+   "reponse": "d'abord les exposants, puis les nombres $a$ si les exposants sont égaux",
+   "pieges": [
+    "d'abord les nombres $a$, puis les exposants si les nombres $a$ sont égaux",
+    "seulement les nombres $a$ et jamais les exposants",
+    "seulement le nombre de chiffres de $a$ et celui des exposants"
    ],
-   "exemples": [
-    {
-     "donnees": "$r = 3$ cm et $h = 5$ cm (arrondir au dixième)",
-     "question": "Volume ?",
-     "reponse": 47.1,
-     "unite": "cm³",
-     "correction": "$V = \\dfrac{1}{3} \\times \\pi \\times 3^{2} \\times 5 = 15\\pi \\approx 47{,}1$ cm³"
-    }
-   ]
+   "note": "$2 \\times 10^{5} > 9 \\times 10^{4}$ car $5 > 4$."
+  },
+  {
+   "id": "sci-quot",
+   "chap": "sci",
+   "type": "regle",
+   "titre": "Quotient en notation scientifique",
+   "question": "Pour calculer $\\dfrac{a \\times 10^{m}}{b \\times 10^{n}}$, on ...",
+   "reponse": "divise $a$ par $b$, soustrait les exposants, puis remet en notation scientifique",
+   "pieges": [
+    "divise $a$ par $b$, additionne les exposants, puis remet en notation scientifique",
+    "soustrait $a$ et $b$, divise les exposants, puis remet en notation scientifique",
+    "multiplie $a$ par $b$, soustrait les exposants, puis remet en notation scientifique"
+   ],
+   "note": "$\\dfrac{6 \\times 10^{5}}{3 \\times 10^{2}} = 2 \\times 10^{3}$."
   },
   {
    "id": "proba-def",
@@ -2985,9 +3667,9 @@ Savoirs.enregistrer({
    "question": "Une probabilité est toujours un nombre ...",
    "reponse": "compris entre 0 et 1",
    "pieges": [
-    "supérieur à 1",
-    "entier",
-    "compris entre −1 et 1"
+    "supérieur à 1 (une probabilité peut dépasser 1)",
+    "entier (0 ou 1 seulement, sans valeur intermédiaire)",
+    "compris entre −1 et 1 (une probabilité peut être négative)"
    ],
    "note": "0 : événement impossible ; 1 : événement certain."
   },
@@ -3021,18 +3703,9 @@ Savoirs.enregistrer({
    "question": "$P(\\text{non } A)$ vaut ...",
    "reponse": "1 - P(A)",
    "pieges": [
-    "P(A) - 1",
-    "$\\dfrac{1}{P(A)}$",
-    "-P(A)"
-   ],
-   "exemples": [
-    {
-     "donnees": "$P(A) = 0{,}3$",
-     "question": "$P(\\text{non } A)$ ?",
-     "reponse": 0.7,
-     "unite": "",
-     "correction": "$1 - 0{,}3 = 0{,}7$"
-    }
+    "P(A) - 1 (on soustrait dans le mauvais sens)",
+    "$\\dfrac{1}{P(A)}$ (on prend l'inverse de la probabilité)",
+    "-P(A) (on prend l'opposé de la probabilité)"
    ],
    "morceaux": [
     "P",
@@ -3051,6 +3724,15 @@ Savoirs.enregistrer({
    "intrus": [
     "+",
     "\\dfrac{1}{P ( A )}"
+   ],
+   "exemples": [
+    {
+     "donnees": "$P(A) = 0{,}3$",
+     "question": "$P(\\text{non } A)$ ?",
+     "reponse": 0.7,
+     "unite": "",
+     "correction": "$1 - 0{,}3 = 0{,}7$"
+    }
    ]
   },
   {
@@ -3061,11 +3743,81 @@ Savoirs.enregistrer({
    "question": "Quand le nombre d'expériences devient très grand, la fréquence d'un événement ...",
    "reponse": "se rapproche de sa probabilité",
    "pieges": [
-    "devient exactement égale à sa probabilité",
-    "s'éloigne de sa probabilité",
-    "devient égale à 1"
+    "devient exactement égale à sa probabilité (même pour un petit nombre de tirages)",
+    "s'éloigne de sa probabilité quand on répète beaucoup",
+    "devient égale à 1 quand on répète beaucoup l'expérience"
    ],
    "note": "Une série de « pile » ne rend pas « face » plus probable au tirage suivant."
+  },
+  {
+   "id": "proba-certain",
+   "chap": "proba",
+   "type": "regle",
+   "titre": "Événement impossible, événement certain",
+   "question": "La probabilité d'un événement impossible est ... et celle d'un événement certain est ...",
+   "reponse": "$0$ ; $1$",
+   "pieges": [
+    "$1$ ; $0$ (impossible : 1, certain : 0, à l'envers)",
+    "$0$ ; $0{,}5$ (certain : une chance sur deux)",
+    "$-1$ ; $1$ (impossible : −1, certain : 1)"
+   ],
+   "note": "Obtenir 7 avec un dé à 6 faces est impossible : $P = 0$."
+  },
+  {
+   "id": "proba-somme",
+   "chap": "proba",
+   "type": "regle",
+   "titre": "Somme des probabilités",
+   "question": "La somme des probabilités de toutes les issues d'une expérience vaut ...",
+   "reponse": "$1$",
+   "pieges": [
+    "$0$ (les probabilités se compensent entre elles)",
+    "$100$ (comme avec les pourcentages)",
+    "le nombre d'issues de l'expérience (par exemple 6)"
+   ],
+   "note": "Pour un dé équilibré, six issues de probabilité $\\dfrac{1}{6}$ : $6 \\times \\dfrac{1}{6} = 1$."
+  },
+  {
+   "id": "proba-equi",
+   "chap": "proba",
+   "type": "definition",
+   "titre": "Issues équiprobables",
+   "question": "Des issues sont équiprobables quand ...",
+   "reponse": "elles ont toutes la même probabilité de se réaliser",
+   "pieges": [
+    "elles sont toutes favorables à l'événement étudié par l'expérience",
+    "leur nombre est pair, comme les 6 faces d'un dé",
+    "elles sont observées exactement le même nombre de fois"
+   ],
+   "note": "Les 6 faces d'un dé équilibré sont équiprobables."
+  },
+  {
+   "id": "proba-ou",
+   "chap": "proba",
+   "type": "regle",
+   "titre": "Événements incompatibles",
+   "question": "Si $A$ et $B$ ne peuvent pas se réaliser en même temps, alors $P(A \\text{ ou } B)$ vaut ...",
+   "reponse": "$P(A) + P(B)$",
+   "pieges": [
+    "$P(A) \\times P(B)$ (on multiplie les deux probabilités)",
+    "$P(A) - P(B)$ (on soustrait les deux probabilités)",
+    "$P(A) + P(B) + 1$ (on ajoute 1 à la somme)"
+   ],
+   "note": "Pour un dé : $P(1 \\text{ ou } 2) = \\dfrac{1}{6} + \\dfrac{1}{6} = \\dfrac{2}{6}$."
+  },
+  {
+   "id": "proba-pourcent",
+   "chap": "proba",
+   "type": "regle",
+   "titre": "Écritures d'une probabilité",
+   "question": "Une probabilité de $\\dfrac{1}{4}$ peut aussi s'écrire ...",
+   "reponse": "$0{,}25$ ou $25\\,\\%$",
+   "pieges": [
+    "$0{,}14$ ou $14\\,\\%$ (on lit 1/4 comme 1,4)",
+    "$4$ ou $400\\,\\%$ (on garde le dénominateur seul)",
+    "$0{,}4$ ou $40\\,\\%$ (on lit 1/4 comme 0,4)"
+   ],
+   "note": "Une probabilité est toujours comprise entre $0$ et $1$, c'est-à-dire entre $0\\,\\%$ et $100\\,\\%$."
   }
  ],
  "outils": [
@@ -3299,7 +4051,7 @@ Savoirs.enregistrer({
   },
   {
    "id": "o20",
-   "chap": "pyr",
+   "chap": "vol",
    "enonce": "Quel est le volume d'une pyramide de base carrée de 4 cm de côté et de 9 cm de hauteur ?",
    "bon": "pyr-vol",
    "explication": "Pyramide : $\\dfrac{1}{3} \\times B \\times h$.",
@@ -3311,7 +4063,7 @@ Savoirs.enregistrer({
   },
   {
    "id": "o21",
-   "chap": "cone",
+   "chap": "vol",
    "enonce": "Quel est le volume d'un cône de rayon 3 cm et de hauteur 7 cm ?",
    "bon": "cone-vol",
    "explication": "Cône : $\\dfrac{1}{3} \\times \\pi \\times r^{2} \\times h$.",
@@ -3322,20 +4074,8 @@ Savoirs.enregistrer({
    ]
   },
   {
-   "id": "o22",
-   "chap": "cone",
-   "enonce": "Un cône a une hauteur de 4 cm et un rayon de 3 cm. Quelle est la longueur de sa génératrice ?",
-   "bon": "cone-gen",
-   "explication": "$g^{2} = h^{2} + r^{2}$ (Pythagore dans le triangle rectangle de la coupe).",
-   "autres": [
-    "cone-vol",
-    "pythagore",
-    "pyr-vol"
-   ]
-  },
-  {
    "id": "o23",
-   "chap": "pyr",
+   "chap": "vol",
    "enonce": "Une pyramide est réduite avec un rapport $k = \\dfrac{1}{2}$. Par combien son volume est-il multiplié ?",
    "bon": "pyr-red",
    "explication": "Les volumes sont multipliés par $k^{3} = \\dfrac{1}{8}$.",
@@ -3347,7 +4087,7 @@ Savoirs.enregistrer({
   },
   {
    "id": "o24",
-   "chap": "sembl",
+   "chap": "vol",
    "enonce": "Un agrandissement de rapport 3 est appliqué à une figure. Par combien l'aire est-elle multipliée ?",
    "bon": "agrand-k",
    "explication": "Les aires sont multipliées par $k^{2} = 9$.",
@@ -3941,6 +4681,126 @@ Savoirs.enregistrer({
     "proba-f",
     "proba-contraire",
     "frequence"
+   ]
+  },
+  {
+   "id": "o-sembl1",
+   "chap": "sembl",
+   "enonce": "Dans le triangle $ABC$, $\\widehat{A} = 48^{\\circ}$ et $\\widehat{B} = 75^{\\circ}$. Quelle est la mesure de $\\widehat{C}$ ?",
+   "bon": "tri-somme-angles",
+   "explication": "$\\widehat{C} = 180^{\\circ} - 48^{\\circ} - 75^{\\circ} = 57^{\\circ}$.",
+   "autres": [
+    "sembl-2ang",
+    "sembl-def",
+    "sembl-paralleles"
+   ]
+  },
+  {
+   "id": "o-sembl2",
+   "chap": "sembl",
+   "enonce": "Les triangles $ABC$ et $DEF$ ont $\\widehat{A} = \\widehat{D} = 40^{\\circ}$ et $\\widehat{B} = \\widehat{E} = 65^{\\circ}$. Peut-on dire qu'ils sont semblables ?",
+   "bon": "sembl-2ang",
+   "explication": "Deux angles égaux deux à deux suffisent : les triangles sont semblables.",
+   "autres": [
+    "tri-somme-angles",
+    "sembl-forme",
+    "sembl-paralleles"
+   ]
+  },
+  {
+   "id": "o-sembl3",
+   "chap": "sembl",
+   "enonce": "$M$ est sur $[AB]$, $N$ est sur $[AC]$ et les droites $(MN)$ et $(BC)$ sont parallèles. Que dire des triangles $AMN$ et $ABC$ ?",
+   "bon": "sembl-paralleles",
+   "explication": "Angles correspondants égaux et angle $\\widehat{A}$ commun : $AMN$ et $ABC$ sont semblables.",
+   "autres": [
+    "sembl-2ang",
+    "tri-somme-angles",
+    "pythagore"
+   ]
+  },
+  {
+   "id": "o-vol1",
+   "chap": "vol",
+   "enonce": "Un aquarium a un volume de $45\\ \\text{dm}^{3}$. Combien de litres d'eau peut-il contenir ?",
+   "bon": "vol-dm3-litre",
+   "explication": "$1\\ \\text{dm}^{3} = 1$ L : il contient $45$ L.",
+   "autres": [
+    "vol-m3",
+    "vol-cm3-ml",
+    "vol-pave"
+   ]
+  },
+  {
+   "id": "o-vol2",
+   "chap": "vol",
+   "enonce": "Dans le pavé droit $ABCDEFGH$, on prend $A$ comme origine. Comment donner la position du sommet $G$ ?",
+   "bon": "vol-reperage",
+   "explication": "Par ses trois coordonnées : abscisse, ordonnée et altitude.",
+   "autres": [
+    "vol-pave",
+    "pyr-def",
+    "vol-m3"
+   ]
+  },
+  {
+   "id": "o-lit1",
+   "chap": "lit",
+   "enonce": "Écrire $4(2x - 3)$ sans parenthèses.",
+   "bon": "lit4-distrib",
+   "explication": "Distributivité : $4 \\times 2x - 4 \\times 3 = 8x - 12$.",
+   "autres": [
+    "lit4-factoriser",
+    "lit4-reduire",
+    "lit4-moins-paren"
+   ]
+  },
+  {
+   "id": "o-lit2",
+   "chap": "lit",
+   "enonce": "Écrire $15x + 10$ sous la forme d'un produit.",
+   "bon": "lit4-factoriser",
+   "explication": "Le facteur commun est $5$ : $15x + 10 = 5(3x + 2)$.",
+   "autres": [
+    "lit4-distrib",
+    "lit4-reduire",
+    "lit4-substituer"
+   ]
+  },
+  {
+   "id": "o-lit3",
+   "chap": "lit",
+   "enonce": "Écrire plus simplement $7x - 2 + 3x + 5$.",
+   "bon": "lit4-reduire",
+   "explication": "$7x + 3x = 10x$ et $-2 + 5 = 3$ : l'expression vaut $10x + 3$.",
+   "autres": [
+    "lit4-distrib",
+    "lit4-factoriser",
+    "lit4-conventions"
+   ]
+  },
+  {
+   "id": "o-lit4",
+   "chap": "lit",
+   "enonce": "Léo affirme que $2x + 3 = 5x$ pour tous les nombres $x$. Comment montrer qu'il a tort ?",
+   "bon": "lit4-contre",
+   "explication": "Un seul contre-exemple suffit : pour $x = 0$, $2 \\times 0 + 3 = 3$ mais $5 \\times 0 = 0$.",
+   "autres": [
+    "lit4-programme",
+    "lit4-reduire",
+    "lit4-substituer"
+   ]
+  },
+  {
+   "id": "o-stat1",
+   "chap": "stat",
+   "enonce": "Sur 36 élèves, 5 ont 11 ans. Quel angle donner au secteur « 11 ans » dans un diagramme circulaire ?",
+   "bon": "stat-circulaire",
+   "explication": "$\\dfrac{5}{36} \\times 360^{\\circ} = 50^{\\circ}$.",
+   "autres": [
+    "frequence",
+    "moyenne",
+    "effectif"
    ]
   }
  ]

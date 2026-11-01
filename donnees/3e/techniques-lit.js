@@ -120,7 +120,8 @@
         return { c: [g * c, g * d, 0], k: g, reponse: gx + "(" + polyTexte([c, d]) + ")", etapes: "Le facteur commun est $" + gx + "$ : $" + polyLatex([g * c, g * d, 0]) + " = " + gx + "(" + affine(c, d) + ")$." };
       }
     }
-    const forme = ent(1, 3);
+    // Mise à jour de novembre 2026 : factoriser a² + 2ab + b² n'est plus enseigné (forme 2 retirée du tirage)
+    const forme = choix([1, 3]);
     if (forme === 1) {
       for (;;) {
         const m = ent(1, 6), n = ent(2, 12);
@@ -324,7 +325,8 @@
           return { enonce: q + polyLatex([G * c, G * d, 0]) + " = " + gx + "(?x " + (d < 0 ? "-" : "+") + " " + Math.abs(d) + ")$ soit vraie ?", reponse: c, correction: "Il faut que $" + G + " \\times ? = " + G * c + "$, donc $? = \\dfrac{" + G * c + "}{" + G + "} = " + c + "$. On vérifie avec le terme en $x$ : $" + G + " \\times " + P(d) + " = " + G * d + "$." };
         },
         3: () => {
-          const m = ent(2, 12), n = ent(2, 6), forme = ent(1, 5), s = signe(), sg = s < 0 ? "-" : "+", q = "Quel nombre faut-il écrire à la place du point d'interrogation pour que l'égalité $";
+          // Formes 1 et 5 (retrouver (x + ?)² à partir de x² + 2mx + m²) retirées : cette factorisation n'est plus enseignée
+          const m = ent(2, 12), n = ent(2, 6), forme = choix([2, 3, 4]), s = signe(), sg = s < 0 ? "-" : "+", q = "Quel nombre faut-il écrire à la place du point d'interrogation pour que l'égalité $";
           if (forme === 1) return { enonce: q + polyLatex([1, 2 * m * s, m * m]) + " = (x " + sg + " ?)^{2}$ soit vraie ?", reponse: m, correction: "Le double produit est $2 \\times x \\times ? = " + 2 * m + "x$, donc $? = \\dfrac{" + 2 * m + "}{2} = " + m + "$. On vérifie : $" + m + "^{2} = " + m * m + "$." };
           if (forme === 2) return { enonce: q + "x^{2} " + sg + " ?x + " + m * m + " = (x " + sg + " " + m + ")^{2}$ soit vraie ?", reponse: 2 * m, correction: "$(x " + sg + " " + m + ")^{2} = x^{2} " + sg + " 2 \\times x \\times " + m + " + " + m + "^{2} = " + polyLatex([1, 2 * m * s, m * m]) + "$, donc $? = " + 2 * m + "$." };
           if (forme === 3) return { enonce: q + "x^{2} - " + m * m + " = (x - ?)(x + ?)$ soit vraie ?", reponse: m, correction: "C'est une différence de deux carrés : $x^{2} - " + m * m + " = x^{2} - " + m + "^{2} = (x - " + m + ")(x + " + m + ")$, donc $? = " + m + "$." };

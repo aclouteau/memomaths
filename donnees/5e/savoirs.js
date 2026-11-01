@@ -590,20 +590,6 @@ Savoirs.enregistrer({
    "note": "Seules l'addition et la multiplication sont commutatives."
   },
   {
-   "id": "ench-div-dec",
-   "chap": "ench",
-   "type": "regle",
-   "titre": "Diviser par un décimal",
-   "question": "Pour diviser par un décimal, comme $12 \\div 0{,}25$, on ...",
-   "reponse": "multiplie le dividende et le diviseur par 100 : $1\\,200 \\div 25 = 48$",
-   "pieges": [
-    "multiplie seulement le diviseur par 100 : $12 \\div 25 = 0{,}48$",
-    "divise seulement le dividende par 100 : $0{,}12 \\div 0{,}25 = 0{,}48$",
-    "ajoute 100 au dividende et au diviseur : $112 \\div 100{,}25$"
-   ],
-   "note": "Le quotient ne change pas quand on multiplie le dividende et le diviseur par le même nombre."
-  },
-  {
    "id": "tri-iso",
    "chap": "tri",
    "type": "definition",
@@ -1302,20 +1288,6 @@ Savoirs.enregistrer({
    "note": "Exemple : $3x + 3 \\times 5 = 3 \\times (x + 5) = 3(x + 5)$."
   },
   {
-   "id": "lit-contre",
-   "chap": "lit",
-   "type": "regle",
-   "titre": "Contre-exemple",
-   "question": "Pour montrer qu'une égalité est fausse, il suffit de ...",
-   "reponse": "trouver une seule valeur de la lettre pour laquelle l'égalité est fausse",
-   "pieges": [
-    "la tester avec plusieurs valeurs de la lettre qui donnent des résultats différents",
-    "montrer qu'elle est vraie pour une valeur de la lettre",
-    "la vérifier avec la valeur zéro uniquement, car 0 est la plus simple"
-   ],
-   "note": "Exemple : $2x = x + 2$ est fausse pour $x = 5$ ($10 \\neq 7$), mais vraie pour $x = 2$."
-  },
-  {
    "id": "lit-traduire",
    "chap": "lit",
    "type": "regle",
@@ -1358,39 +1330,6 @@ Savoirs.enregistrer({
      "reponse": 20,
      "unite": "cm²",
      "correction": "$\\dfrac{8 \\times 5}{2} = 20$ cm²"
-    }
-   ]
-  },
-  {
-   "id": "aire-para",
-   "chap": "aire",
-   "type": "formule",
-   "titre": "Aire d'un parallélogramme",
-   "question": "Aire d'un parallélogramme de base $b$ et de hauteur $h$ ?",
-   "reponse": "$\\mathcal{A} = b \\times h$",
-   "pieges": [
-    "$\\mathcal{A} = b \\times c$ ($c$ : côté oblique)",
-    "$\\mathcal{A} = \\dfrac{b \\times h}{2}$",
-    "$\\mathcal{A} = 2 \\times (b + h)$"
-   ],
-   "morceaux": [
-    "\\mathcal{A}",
-    "=",
-    "b",
-    "\\times",
-    "h"
-   ],
-   "intrus": [
-    "+",
-    "2"
-   ],
-   "exemples": [
-    {
-     "donnees": "$b = 6$ cm et $h = 4$ cm",
-     "question": "Aire ?",
-     "reponse": 24,
-     "unite": "cm²",
-     "correction": "$6 \\times 4 = 24$ cm²"
     }
    ]
   },
@@ -1659,6 +1598,20 @@ Savoirs.enregistrer({
     "$\\mathcal{A} = \\pi \\times \\dfrac{r}{2}$ (on oublie le carré)"
    ],
    "note": "Avec $r = 4$ cm : $\\dfrac{3{,}14 \\times 16}{2} = 25{,}12\\ \\text{cm}^{2}$."
+  },
+  {
+   "id": "aire-mediane",
+   "chap": "aire",
+   "type": "propriete",
+   "titre": "Médiane et aire",
+   "question": "Dans un triangle, une médiane partage le triangle en deux triangles ...",
+   "reponse": "de même aire",
+   "pieges": [
+    "de même périmètre",
+    "superposables (égaux)",
+    "rectangles"
+   ],
+   "note": "Les deux triangles ont des bases de même longueur (la médiane passe par le milieu du côté) et la même hauteur."
   },
   {
    "id": "div-eucl",
@@ -1985,6 +1938,20 @@ Savoirs.enregistrer({
    "note": "$10\\,\\%$ d'une quantité : on la divise par $10$ ; $50\\,\\%$ : on la divise par $2$."
   },
   {
+   "id": "ench-div-dec",
+   "chap": "rat1",
+   "type": "regle",
+   "titre": "Diviser par un décimal",
+   "question": "Pour diviser par un décimal, comme $12 \\div 0{,}25$, on ...",
+   "reponse": "multiplie le dividende et le diviseur par 100 : $1\\,200 \\div 25 = 48$",
+   "pieges": [
+    "multiplie seulement le diviseur par 100 : $12 \\div 25 = 0{,}48$",
+    "divise seulement le dividende par 100 : $0{,}12 \\div 0{,}25 = 0{,}48$",
+    "ajoute 100 au dividende et au diviseur : $112 \\div 100{,}25$"
+   ],
+   "note": "Le quotient ne change pas quand on multiplie le dividende et le diviseur par le même nombre."
+  },
+  {
    "id": "ang-def",
    "chap": "ang",
    "figure": {
@@ -2207,6 +2174,7 @@ Savoirs.enregistrer({
     "15",
     "3"
    ],
+   "note": "On additionne les valeurs absolues et on garde le signe.",
    "exemples": [
     {
      "donnees": "Calculer $(-6) + (-9)$",
@@ -2215,8 +2183,7 @@ Savoirs.enregistrer({
      "unite": "",
      "correction": "$(-6) + (-9) = -(6 + 9) = -15$"
     }
-   ],
-   "note": "On additionne les distances à zéro et on garde le signe."
+   ]
   },
   {
    "id": "rel-add2",
@@ -2230,6 +2197,7 @@ Savoirs.enregistrer({
     "10",
     "4"
    ],
+   "note": "On soustrait les valeurs absolues ($7 - 3$) et on garde le signe de celui qui a la plus grande valeur absolue.",
    "exemples": [
     {
      "donnees": "Calculer $(-7) + (+3)$",
@@ -2238,8 +2206,7 @@ Savoirs.enregistrer({
      "unite": "",
      "correction": "$(-7) + 3 = -(7 - 3) = -4$"
     }
-   ],
-   "note": "On soustrait les distances à zéro ($7 - 3$) et on garde le signe du plus éloigné de 0."
+   ]
   },
   {
    "id": "rel-sous",
@@ -2251,16 +2218,7 @@ Savoirs.enregistrer({
    "pieges": [
     "ajouter ce nombre",
     "multiplier par $-1$",
-    "diviser par son opposé"
-   ],
-   "exemples": [
-    {
-     "donnees": "Calculer $5 - (-2)$",
-     "question": "Résultat ?",
-     "reponse": 7,
-     "unite": "",
-     "correction": "$5 - (-2) = 5 + 2 = 7$"
-    }
+    "retrancher son opposé"
    ],
    "note": "$a - b = a + (-b)$. Soustraire ne fait pas toujours diminuer : $5 - (-2) = 7$.",
    "morceaux": [
@@ -2278,6 +2236,15 @@ Savoirs.enregistrer({
     "a",
     "+",
     "b"
+   ],
+   "exemples": [
+    {
+     "donnees": "Calculer $5 - (-2)$",
+     "question": "Résultat ?",
+     "reponse": 7,
+     "unite": "",
+     "correction": "$5 - (-2) = 5 + 2 = 7$"
+    }
    ]
   },
   {
@@ -2288,11 +2255,53 @@ Savoirs.enregistrer({
    "question": "$7 - (2 + 3)$ vaut ...",
    "reponse": "2",
    "pieges": [
-    "8",
-    "12",
-    "6"
+    "$8$",
+    "$12$",
+    "$-2$"
    ],
    "note": "On calcule d'abord la parenthèse : $7 - 5 = 2$. $7 - 2 + 3 = 8$ n'est pas la même chose."
+  },
+  {
+   "id": "rel-opp-somme",
+   "chap": "rel2",
+   "type": "propriete",
+   "titre": "Somme de deux opposés",
+   "question": "La somme de deux nombres opposés, comme $(-7) + (+7)$, vaut ...",
+   "reponse": "$0$",
+   "pieges": [
+    "$14$",
+    "$-14$",
+    "$-7$"
+   ],
+   "note": "Deux nombres opposés ont la même valeur absolue et des signes contraires."
+  },
+  {
+   "id": "rel-sous-neg",
+   "chap": "rel2",
+   "type": "regle",
+   "titre": "Soustraire un négatif",
+   "question": "$5 - (-3)$ vaut ...",
+   "reponse": "$8$",
+   "pieges": [
+    "$2$",
+    "$-8$",
+    "$-2$"
+   ],
+   "note": "Soustraire $-3$, c'est ajouter son opposé $+3$ : $5 + 3 = 8$."
+  },
+  {
+   "id": "rel-ecriture",
+   "chap": "rel2",
+   "type": "methode",
+   "titre": "Écriture simplifiée",
+   "question": "$(+4) + (-9)$ s'écrit plus simplement ...",
+   "reponse": "$4 - 9$",
+   "pieges": [
+    "$4 + 9$",
+    "$-4 - 9$",
+    "$-4 + 9$"
+   ],
+   "note": "On supprime le signe + et les parenthèses du premier nombre ; $+ (-9)$ s'écrit $- 9$. $4 - 9 = -5$."
   },
   {
    "id": "vol-pave",
@@ -2306,15 +2315,6 @@ Savoirs.enregistrer({
     "$V = 2 \\times (L + \\ell + h)$",
     "$V = L \\times \\ell$"
    ],
-   "exemples": [
-    {
-     "donnees": "$L = 5$ cm, $\\ell = 4$ cm, $h = 3$ cm",
-     "question": "Volume ?",
-     "reponse": 60,
-     "unite": "cm³",
-     "correction": "$5 \\times 4 \\times 3 = 60$ cm³"
-    }
-   ],
    "morceaux": [
     "V",
     "=",
@@ -2327,6 +2327,15 @@ Savoirs.enregistrer({
    "intrus": [
     "+",
     "3"
+   ],
+   "exemples": [
+    {
+     "donnees": "$L = 5$ cm, $\\ell = 4$ cm, $h = 3$ cm",
+     "question": "Volume ?",
+     "reponse": 60,
+     "unite": "cm³",
+     "correction": "$5 \\times 4 \\times 3 = 60$ cm³"
+    }
    ]
   },
   {
@@ -2341,15 +2350,6 @@ Savoirs.enregistrer({
     "$V = a^{2}$",
     "$V = 6 \\times a^{2}$"
    ],
-   "exemples": [
-    {
-     "donnees": "$a = 4$ cm",
-     "question": "Volume ?",
-     "reponse": 64,
-     "unite": "cm³",
-     "correction": "$4^{3} = 64$ cm³"
-    }
-   ],
    "morceaux": [
     "V",
     "=",
@@ -2358,6 +2358,15 @@ Savoirs.enregistrer({
    "intrus": [
     "a^{2}",
     "3a"
+   ],
+   "exemples": [
+    {
+     "donnees": "$a = 4$ cm",
+     "question": "Volume ?",
+     "reponse": 64,
+     "unite": "cm³",
+     "correction": "$4^{3} = 64$ cm³"
+    }
    ]
   },
   {
@@ -2368,9 +2377,9 @@ Savoirs.enregistrer({
    "question": "Volume d'un prisme droit de base d'aire $B$ et de hauteur $h$ ?",
    "reponse": "$V = B \\times h$",
    "pieges": [
-    "$V = \\dfrac{1}{3} \\times B \\times h$",
-    "$V = P_{\\text{base}} \\times h$",
-    "$V = B + h$"
+    "$V = \\dfrac{\\mathcal{B} \\times h}{3}$ (c'est le volume d'une pyramide)",
+    "$V = P \\times h$ (avec le périmètre $P$ de la base)",
+    "$V = \\mathcal{B} + h$ (on additionne)"
    ],
    "morceaux": [
     "V",
@@ -2441,11 +2450,39 @@ Savoirs.enregistrer({
    "question": "Le patron d'un prisme droit est formé de ...",
    "reponse": "deux bases et d'un rectangle pour chaque côté de la base",
    "pieges": [
-    "deux bases et d'un seul grand rectangle de même largeur",
-    "deux triangles seulement",
-    "six rectangles identiques"
+    "deux bases et d'un seul rectangle par paire de côtés",
+    "deux triangles seulement, sans aucun rectangle",
+    "six rectangles identiques, comme un cube"
    ],
    "note": "Pavé : 6 rectangles. Cylindre : 2 disques et 1 rectangle."
+  },
+  {
+   "id": "sol-prisme-elts",
+   "chap": "sol",
+   "type": "propriete",
+   "titre": "Faces d'un prisme droit",
+   "question": "Un prisme droit dont la base a $n$ côtés a ... faces",
+   "reponse": "$n + 2$",
+   "pieges": [
+    "$n$",
+    "$n + 1$",
+    "$2n$"
+   ],
+   "note": "Deux bases et $n$ faces latérales rectangulaires : un prisme à base triangulaire a $5$ faces."
+  },
+  {
+   "id": "sol-dm3",
+   "chap": "sol",
+   "type": "propriete",
+   "titre": "Décimètre cube et centimètre cube",
+   "question": "$1\\ \\text{dm}^{3}$ est égal à ...",
+   "reponse": "$1\\,000\\ \\text{cm}^{3}$",
+   "pieges": [
+    "$10\\ \\text{cm}^{3}$",
+    "$100\\ \\text{cm}^{3}$",
+    "$10\\,000\\ \\text{cm}^{3}$"
+   ],
+   "note": "Un cube de $1$ dm d'arête contient $10 \\times 10 \\times 10 = 1\\,000$ petits cubes de $1$ cm."
   },
   {
    "id": "frac-add",
@@ -2459,15 +2496,6 @@ Savoirs.enregistrer({
     "$\\dfrac{a + b}{c^{2}}$",
     "$\\dfrac{a \\times b}{c}$"
    ],
-   "exemples": [
-    {
-     "donnees": "Calculer $\\dfrac{3}{5} + \\dfrac{4}{5}$ (donner le numérateur de la fraction obtenue)",
-     "question": "Numérateur ?",
-     "reponse": 7,
-     "unite": "",
-     "correction": "$\\dfrac{3 + 4}{5} = \\dfrac{7}{5}$"
-    }
-   ],
    "morceaux": [
     "\\dfrac{a}{c}",
     "+",
@@ -2478,6 +2506,15 @@ Savoirs.enregistrer({
    "intrus": [
     "\\dfrac{a + b}{c + c}",
     "\\times"
+   ],
+   "exemples": [
+    {
+     "donnees": "Calculer $\\dfrac{3}{5} + \\dfrac{4}{5}$ (donner le numérateur de la fraction obtenue)",
+     "question": "Numérateur ?",
+     "reponse": 7,
+     "unite": "",
+     "correction": "$\\dfrac{3 + 4}{5} = \\dfrac{7}{5}$"
+    }
    ]
   },
   {
@@ -2486,13 +2523,13 @@ Savoirs.enregistrer({
    "type": "regle",
    "titre": "Écrire 1 en fraction",
    "question": "1 peut s'écrire ...",
-   "reponse": "$\\dfrac{n}{n}$ (avec $n \\neq 0$)",
+   "reponse": "$\\dfrac{n}{n}$",
    "pieges": [
-    "$\\dfrac{n}{1}$ seulement",
+    "$\\dfrac{n}{1}$",
     "$\\dfrac{0}{n}$",
     "$\\dfrac{1}{n}$"
    ],
-   "note": "Par exemple $1 = \\dfrac{5}{5}$. $1 - \\dfrac{2}{3} = \\dfrac{3}{3} - \\dfrac{2}{3} = \\dfrac{1}{3}$."
+   "note": "Avec $n \\neq 0$ : par exemple $1 = \\dfrac{5}{5}$. $1 - \\dfrac{2}{3} = \\dfrac{3}{3} - \\dfrac{2}{3} = \\dfrac{1}{3}$."
   },
   {
    "id": "frac-diff",
@@ -2500,12 +2537,55 @@ Savoirs.enregistrer({
    "type": "regle",
    "titre": "Additionner avec des dénominateurs différents",
    "question": "Pour calculer $\\dfrac{2}{5} + \\dfrac{1}{4}$ on ...",
-   "reponse": "met les deux fractions au même dénominateur (20) : $\\dfrac{8}{20} + \\dfrac{5}{20} = \\dfrac{13}{20}$",
+   "reponse": "met les deux fractions au même dénominateur",
    "pieges": [
-    "additionne les numérateurs et les dénominateurs : $\\dfrac{2 + 1}{5 + 4} = \\dfrac{3}{9}$",
-    "multiplie les deux fractions : $\\dfrac{2 \\times 1}{5 \\times 4} = \\dfrac{2}{20}$",
-    "garde le premier dénominateur : $\\dfrac{2 + 1}{5} = \\dfrac{3}{5}$"
-   ]
+    "additionne les numérateurs et les dénominateurs",
+    "multiplie les deux fractions entre elles",
+    "garde le premier dénominateur seulement"
+   ],
+   "note": "$\\dfrac{2}{5} + \\dfrac{1}{4} = \\dfrac{8}{20} + \\dfrac{5}{20} = \\dfrac{13}{20}$."
+  },
+  {
+   "id": "frac-sous",
+   "chap": "rat2",
+   "type": "regle",
+   "titre": "Soustraction de même dénominateur",
+   "question": "$\\dfrac{a}{c} - \\dfrac{b}{c}$ vaut ...",
+   "reponse": "$\\dfrac{a - b}{c}$",
+   "pieges": [
+    "$\\dfrac{a - b}{c - c}$",
+    "$\\dfrac{a - b}{2c}$",
+    "$\\dfrac{b - a}{c}$"
+   ],
+   "note": "On soustrait les numérateurs et on garde le dénominateur."
+  },
+  {
+   "id": "frac-multiple",
+   "chap": "rat2",
+   "type": "methode",
+   "titre": "Un dénominateur multiple de l'autre",
+   "question": "Pour calculer $\\dfrac{1}{3} + \\dfrac{5}{6}$, on écrit d'abord $\\dfrac{1}{3}$ sous la forme ...",
+   "reponse": "$\\dfrac{2}{6}$",
+   "pieges": [
+    "$\\dfrac{1}{6}$",
+    "$\\dfrac{3}{6}$",
+    "$\\dfrac{5}{6}$"
+   ],
+   "note": "On multiplie le numérateur et le dénominateur par $2$ : $\\dfrac{2}{6} + \\dfrac{5}{6} = \\dfrac{7}{6}$."
+  },
+  {
+   "id": "frac-simpl",
+   "chap": "rat2",
+   "type": "methode",
+   "titre": "Simplifier le résultat",
+   "question": "$\\dfrac{3}{8} + \\dfrac{1}{8} = \\dfrac{4}{8}$ se simplifie en ...",
+   "reponse": "$\\dfrac{1}{2}$",
+   "pieges": [
+    "$\\dfrac{4}{8}$, qui ne se simplifie pas",
+    "$\\dfrac{2}{8}$",
+    "$\\dfrac{1}{4}$"
+   ],
+   "note": "On divise le numérateur et le dénominateur par $4$."
   },
   {
    "id": "prop-def",
@@ -2513,13 +2593,13 @@ Savoirs.enregistrer({
    "type": "definition",
    "titre": "Situation de proportionnalité",
    "question": "Deux grandeurs sont proportionnelles si ...",
-   "reponse": "on passe de l'une à l'autre en multipliant toujours par le même nombre (le coefficient)",
+   "reponse": "on passe de l'une à l'autre en multipliant toujours par le même nombre",
    "pieges": [
-    "elles augmentent en même temps",
     "on passe de l'une à l'autre en ajoutant toujours le même nombre",
-    "les points sont alignés"
+    "elles augmentent toujours en même temps, de la même façon",
+    "on passe de l'une à l'autre en soustrayant toujours le même nombre"
    ],
-   "note": "Sur un graphique : points alignés avec l'origine."
+   "note": "Ce nombre est le coefficient de proportionnalité. Sur un graphique : points alignés avec l'origine."
   },
   {
    "id": "prop-coef",
@@ -2527,11 +2607,11 @@ Savoirs.enregistrer({
    "type": "regle",
    "titre": "Coefficient de proportionnalité",
    "question": "Le coefficient de proportionnalité se calcule en ...",
-   "reponse": "divisant une valeur de la seconde grandeur par la valeur correspondante de la première",
+   "reponse": "divisant une valeur de la seconde grandeur par celle de la première",
    "pieges": [
     "soustrayant la valeur de la première grandeur à celle de la seconde",
     "additionnant la valeur de la première grandeur à celle de la seconde",
-    "multipliant une valeur de la seconde grandeur par la valeur correspondante de la première"
+    "multipliant une valeur de la seconde grandeur par celle de la première"
    ],
    "exemples": [
     {
@@ -2553,7 +2633,21 @@ Savoirs.enregistrer({
    "pieges": [
     "calcule $N \\times 10$",
     "calcule $N \\div 100$",
-    "calcule $N \\div 2$"
+    "calcule $N - 10$"
+   ],
+   "note": "50 % = moitié ; 1 % = N ÷ 100.",
+   "morceaux": [
+    "10\\,\\%",
+    "\\text{ de }",
+    "N",
+    "=",
+    "N",
+    "\\div",
+    "10"
+   ],
+   "intrus": [
+    "\\times",
+    "100"
    ],
    "exemples": [
     {
@@ -2570,20 +2664,6 @@ Savoirs.enregistrer({
      "unite": "kg",
      "correction": "$36 \\div 2 = 18$ kg"
     }
-   ],
-   "note": "50 % = moitié ; 1 % = N ÷ 100.",
-   "morceaux": [
-    "10\\,\\%",
-    "\\text{ de }",
-    "N",
-    "=",
-    "N",
-    "\\div",
-    "10"
-   ],
-   "intrus": [
-    "\\times",
-    "100"
    ]
   },
   {
@@ -2592,13 +2672,55 @@ Savoirs.enregistrer({
    "type": "regle",
    "titre": "Ajouter ou multiplier ?",
    "question": "Si 2 kg coûtent 5 €, alors 5 kg coûtent ...",
-   "reponse": "12,50 €",
+   "reponse": "$12{,}50$ €",
    "pieges": [
-    "8 €",
-    "10 €",
-    "7,50 €"
+    "$8$ €",
+    "$10$ €",
+    "$7{,}50$ €"
    ],
-   "note": "On multiplie par le coefficient $2{,}5$ ; on n'ajoute pas."
+   "note": "On multiplie par le coefficient $2{,}5$ (prix de $1$ kg) ; on n'ajoute pas : $5 \\times 2{,}5 = 12{,}5$."
+  },
+  {
+   "id": "prop-unite",
+   "chap": "prop",
+   "type": "methode",
+   "titre": "Passage par l'unité",
+   "question": "Si 4 cahiers coûtent 10 €, pour trouver le prix de 7 cahiers, on peut d'abord calculer ...",
+   "reponse": "le prix d'un cahier",
+   "pieges": [
+    "le prix de 11 cahiers",
+    "la différence $7 - 4$",
+    "le prix de 3 cahiers seulement"
+   ],
+   "note": "Un cahier coûte $10 \\div 4 = 2{,}50$ €, donc 7 cahiers coûtent $7 \\times 2{,}5 = 17{,}50$ €."
+  },
+  {
+   "id": "prop-pourcent",
+   "chap": "prop",
+   "type": "methode",
+   "titre": "Appliquer un pourcentage",
+   "question": "Pour calculer $t\\,\\%$ d'une quantité $N$, on calcule ...",
+   "reponse": "$N \\times \\dfrac{t}{100}$",
+   "pieges": [
+    "$N + \\dfrac{t}{100}$",
+    "$N \\times t$",
+    "$N \\div t$"
+   ],
+   "note": "$15\\,\\%$ de $80$ : $80 \\times \\dfrac{15}{100} = 12$."
+  },
+  {
+   "id": "prop-echelle",
+   "chap": "prop",
+   "type": "definition",
+   "titre": "Échelle",
+   "question": "Sur une carte à l'échelle $\\dfrac{1}{1\\,000}$, $1$ cm représente ...",
+   "reponse": "$1\\,000$ cm, soit $10$ m",
+   "pieges": [
+    "$1\\,000$ m, soit $1$ km",
+    "$100$ cm, soit $1$ m",
+    "$10$ cm, soit $0{,}1$ m"
+   ],
+   "note": "Les longueurs réelles sont proportionnelles aux longueurs sur la carte."
   },
   {
    "id": "equ-def",
@@ -2610,7 +2732,7 @@ Savoirs.enregistrer({
    "pieges": [
     "rend l'égalité fausse",
     "annule le membre de gauche",
-    "est toujours un entier"
+    "rend les deux membres positifs"
    ]
   },
   {
@@ -2625,15 +2747,6 @@ Savoirs.enregistrer({
     "$x = b - c$",
     "$x = c \\times b$"
    ],
-   "exemples": [
-    {
-     "donnees": "Résoudre $x + 5 = 12$",
-     "question": "Solution ?",
-     "reponse": 7,
-     "unite": "",
-     "correction": "$x = 12 - 5 = 7$"
-    }
-   ],
    "morceaux": [
     "x",
     "=",
@@ -2644,6 +2757,15 @@ Savoirs.enregistrer({
    "intrus": [
     "+",
     "\\times"
+   ],
+   "exemples": [
+    {
+     "donnees": "Résoudre $x + 5 = 12$",
+     "question": "Solution ?",
+     "reponse": 7,
+     "unite": "",
+     "correction": "$x = 12 - 5 = 7$"
+    }
    ]
   },
   {
@@ -2658,15 +2780,6 @@ Savoirs.enregistrer({
     "$x = a \\div c$",
     "$x = c \\times a$"
    ],
-   "exemples": [
-    {
-     "donnees": "Résoudre $4x = 20$",
-     "question": "Solution ?",
-     "reponse": 5,
-     "unite": "",
-     "correction": "$x = 20 \\div 4 = 5$"
-    }
-   ],
    "morceaux": [
     "x",
     "=",
@@ -2677,6 +2790,15 @@ Savoirs.enregistrer({
    "intrus": [
     "\\times",
     "-"
+   ],
+   "exemples": [
+    {
+     "donnees": "Résoudre $4x = 20$",
+     "question": "Solution ?",
+     "reponse": 5,
+     "unite": "",
+     "correction": "$x = 20 \\div 4 = 5$"
+    }
    ]
   },
   {
@@ -2685,13 +2807,55 @@ Savoirs.enregistrer({
    "type": "regle",
    "titre": "Vérifier et conclure",
    "question": "Après avoir trouvé une solution, on ...",
-   "reponse": "la vérifie dans l'équation de départ puis conclut par une phrase",
+   "reponse": "la vérifie, puis conclut par une phrase",
    "pieges": [
     "passe directement à l'exercice suivant sans rien écrire",
     "ne conclut que si le résultat est un nombre entier",
     "écrit seulement le résultat sans phrase ni vérification"
    ],
    "note": "On pense à l'unité dans la phrase. $2x = 0$ et $x \\div 2 = 0$ ont pour solution 0."
+  },
+  {
+   "id": "equ-sous",
+   "chap": "equ",
+   "type": "regle",
+   "titre": "Équation $x - b = c$",
+   "question": "L'équation $x - b = c$ a pour solution ...",
+   "reponse": "$x = c + b$",
+   "pieges": [
+    "$x = c - b$",
+    "$x = b - c$",
+    "$x = c \\times b$"
+   ],
+   "note": "On ajoute $b$ aux deux membres : $x - 4 = 9$ donne $x = 13$."
+  },
+  {
+   "id": "equ-inconnue",
+   "chap": "equ",
+   "type": "methode",
+   "titre": "Mettre en équation",
+   "question": "« Je pense à un nombre, je lui ajoute $7$ et j'obtiens $20$. » L'équation est ...",
+   "reponse": "$x + 7 = 20$",
+   "pieges": [
+    "$7x = 20$",
+    "$x = 20 + 7$",
+    "$x - 7 = 20$"
+   ],
+   "note": "On appelle $x$ le nombre cherché ; la solution est $13$."
+  },
+  {
+   "id": "lit-contre",
+   "chap": "equ",
+   "type": "regle",
+   "titre": "Contre-exemple",
+   "question": "Pour montrer qu'une égalité est fausse, il suffit de ...",
+   "reponse": "trouver une seule valeur de la lettre pour laquelle l'égalité est fausse",
+   "pieges": [
+    "la tester avec plusieurs valeurs de la lettre qui donnent des résultats différents",
+    "montrer qu'elle est vraie pour une valeur de la lettre",
+    "la vérifier avec la valeur zéro uniquement, car 0 est la plus simple"
+   ],
+   "note": "Exemple : $2x = x + 2$ est fausse pour $x = 5$ ($10 \\neq 7$), mais vraie pour $x = 2$."
   },
   {
    "id": "para-def",
@@ -2702,7 +2866,7 @@ Savoirs.enregistrer({
    "reponse": "ses côtés opposés parallèles deux à deux",
    "pieges": [
     "quatre côtés de même longueur",
-    "quatre angles droits, comme un rectangle",
+    "quatre angles droits",
     "un seul angle droit et deux côtés égaux"
    ]
   },
@@ -2734,19 +2898,6 @@ Savoirs.enregistrer({
    ]
   },
   {
-   "id": "rectangle",
-   "chap": "para",
-   "type": "definition",
-   "titre": "Rectangle",
-   "question": "Un rectangle est un parallélogramme qui a ...",
-   "reponse": "un angle droit (ses diagonales sont alors égales)",
-   "pieges": [
-    "deux côtés consécutifs égaux",
-    "des diagonales perpendiculaires",
-    "quatre côtés égaux"
-   ]
-  },
-  {
    "id": "losange",
    "chap": "para",
    "type": "definition",
@@ -2755,7 +2906,7 @@ Savoirs.enregistrer({
    "reponse": "deux côtés consécutifs égaux",
    "pieges": [
     "un angle droit",
-    "des diagonales égales",
+    "des diagonales de même longueur",
     "un seul axe de symétrie"
    ],
    "note": "Ses diagonales sont alors perpendiculaires."
@@ -2787,6 +2938,67 @@ Savoirs.enregistrer({
    ]
   },
   {
+   "id": "rectangle",
+   "chap": "para",
+   "type": "definition",
+   "titre": "Rectangle",
+   "question": "Un rectangle est un parallélogramme qui a ...",
+   "reponse": "un angle droit",
+   "pieges": [
+    "deux côtés consécutifs égaux",
+    "des diagonales perpendiculaires",
+    "quatre côtés égaux"
+   ],
+   "note": "Ses diagonales sont alors de même longueur."
+  },
+  {
+   "id": "para-angles",
+   "chap": "para",
+   "type": "propriete",
+   "titre": "Angles d'un parallélogramme",
+   "question": "Dans un parallélogramme, deux angles consécutifs sont ...",
+   "reponse": "supplémentaires",
+   "pieges": [
+    "égaux (ils ont la même mesure)",
+    "complémentaires (leur somme vaut $90^{\\circ}$)",
+    "opposés (leur somme vaut $360^{\\circ}$)"
+   ],
+   "note": "Leur somme vaut $180^{\\circ}$. Les angles opposés sont égaux."
+  },
+  {
+   "id": "aire-para",
+   "chap": "aire",
+   "type": "formule",
+   "titre": "Aire d'un parallélogramme",
+   "question": "Aire d'un parallélogramme de base $b$ et de hauteur $h$ ?",
+   "reponse": "$\\mathcal{A} = b \\times h$",
+   "pieges": [
+    "$\\mathcal{A} = b \\times c$ ($c$ : côté oblique)",
+    "$\\mathcal{A} = \\dfrac{b \\times h}{2}$",
+    "$\\mathcal{A} = 2 \\times (b + h)$"
+   ],
+   "morceaux": [
+    "\\mathcal{A}",
+    "=",
+    "b",
+    "\\times",
+    "h"
+   ],
+   "intrus": [
+    "+",
+    "2"
+   ],
+   "exemples": [
+    {
+     "donnees": "$b = 6$ cm et $h = 4$ cm",
+     "question": "Aire ?",
+     "reponse": 24,
+     "unite": "cm²",
+     "correction": "$6 \\times 4 = 24$ cm²"
+    }
+   ]
+  },
+  {
    "id": "freq",
    "chap": "don",
    "type": "formule",
@@ -2798,6 +3010,7 @@ Savoirs.enregistrer({
     "$f = n \\times N$",
     "$f = n - N$"
    ],
+   "note": "La somme des fréquences vaut 1 (100 %).",
    "morceaux": [
     "f",
     "=",
@@ -2815,8 +3028,7 @@ Savoirs.enregistrer({
      "unite": "",
      "correction": "$\\dfrac{5}{25} = 0{,}2$"
     }
-   ],
-   "note": "La somme des fréquences vaut 1 (100 %)."
+   ]
   },
   {
    "id": "moyenne",
@@ -2830,15 +3042,6 @@ Savoirs.enregistrer({
     "$\\text{la valeur la plus fréquente}$",
     "$\\dfrac{\\text{somme des valeurs}}{\\text{nombre de valeurs différentes}}$"
    ],
-   "exemples": [
-    {
-     "donnees": "Notes : 8 ; 12 ; 15 ; 10 ; 5",
-     "question": "Moyenne ?",
-     "reponse": 10,
-     "unite": "",
-     "correction": "$\\dfrac{50}{5} = 10$"
-    }
-   ],
    "morceaux": [
     "\\text{moyenne}",
     "=",
@@ -2847,6 +3050,15 @@ Savoirs.enregistrer({
    "intrus": [
     "\\dfrac{\\text{nombre de valeurs}}{\\text{somme des valeurs}}",
     "+"
+   ],
+   "exemples": [
+    {
+     "donnees": "Notes : 8 ; 12 ; 15 ; 10 ; 5",
+     "question": "Moyenne ?",
+     "reponse": 10,
+     "unite": "",
+     "correction": "$\\dfrac{50}{5} = 10$"
+    }
    ]
   },
   {
@@ -2857,9 +3069,9 @@ Savoirs.enregistrer({
    "question": "Pour comparer des effectifs de catégories, on utilise de préférence ...",
    "reponse": "un diagramme en barres",
    "pieges": [
-    "un diagramme cartésien (courbe)",
+    "un diagramme cartésien (une courbe)",
     "un diagramme circulaire sans effectif total",
-    "un nuage de points"
+    "un nuage de points sans axe"
    ],
    "note": "Circulaire : parts d'un tout. Cartésien : évolution dans le temps."
   },
@@ -2869,12 +3081,41 @@ Savoirs.enregistrer({
    "type": "regle",
    "titre": "Comparer des fréquences",
    "question": "Peut-on comparer $30\\,\\%$ de 100 personnes et $20\\,\\%$ de 1 000 personnes sans calculer ?",
-   "reponse": "non : il faut tenir compte de l'effectif total (30 contre 200)",
+   "reponse": "non, il faut tenir compte de l'effectif total",
    "pieges": [
-    "oui, 30 % est toujours plus grand que 20 %",
-    "oui, il faut comparer les effectifs totaux seulement",
-    "non, c'est impossible"
-   ]
+    "oui, $30\\,\\%$ est toujours plus grand que $20\\,\\%$",
+    "oui, il suffit de comparer les deux effectifs totaux",
+    "non, on ne peut jamais comparer deux pourcentages"
+   ],
+   "note": "$30\\,\\%$ de $100$ font $30$ personnes, $20\\,\\%$ de $1\\,000$ font $200$ personnes."
+  },
+  {
+   "id": "don-effectif",
+   "chap": "don",
+   "type": "definition",
+   "titre": "Effectif total",
+   "question": "L'effectif total d'une série est ...",
+   "reponse": "le nombre total de valeurs",
+   "pieges": [
+    "la somme de toutes les valeurs",
+    "la plus grande valeur de la série",
+    "le nombre de valeurs différentes"
+   ],
+   "note": "Dans un tableau, c'est la somme des effectifs."
+  },
+  {
+   "id": "don-freq-pct",
+   "chap": "don",
+   "type": "methode",
+   "titre": "Fréquence en pourcentage",
+   "question": "Une fréquence de $0{,}35$ correspond à ...",
+   "reponse": "$35\\,\\%$",
+   "pieges": [
+    "$0{,}35\\,\\%$",
+    "$3{,}5\\,\\%$",
+    "$350\\,\\%$"
+   ],
+   "note": "On multiplie par $100$ : $0{,}35 = \\dfrac{35}{100}$."
   },
   {
    "id": "fonc-def",
@@ -2897,9 +3138,9 @@ Savoirs.enregistrer({
    "question": "Une situation de proportionnalité est représentée par ...",
    "reponse": "des points alignés avec l'origine du repère",
    "pieges": [
-    "des points alignés (n'importe où)",
-    "une courbe quelconque",
-    "des points sur l'axe horizontal"
+    "des points alignés, placés n'importe où",
+    "une courbe quelconque qui monte",
+    "des points tous situés sur l'axe horizontal"
    ],
    "note": "Points alignés qui ne passent pas par O : ce n'est pas de la proportionnalité."
   },
@@ -2909,12 +3150,55 @@ Savoirs.enregistrer({
    "type": "regle",
    "titre": "Lire un graphique distance-temps",
    "question": "Un segment horizontal sur un graphique distance-temps indique ...",
-   "reponse": "un arrêt (la distance ne change pas)",
+   "reponse": "un arrêt",
    "pieges": [
     "une vitesse très grande",
     "un retour en arrière",
     "un demi-tour"
-   ]
+   ],
+   "note": "La distance ne change pas pendant ce temps."
+  },
+  {
+   "id": "fonc-formule",
+   "chap": "fonc",
+   "type": "methode",
+   "titre": "Utiliser une formule",
+   "question": "Avec la formule $P = 4 \\times c$, pour $c = 5$, on obtient ...",
+   "reponse": "$P = 20$",
+   "pieges": [
+    "$P = 9$",
+    "$P = 45$",
+    "$P = 1{,}25$"
+   ],
+   "note": "On remplace $c$ par $5$ : $4 \\times 5 = 20$."
+  },
+  {
+   "id": "fonc-programme",
+   "chap": "fonc",
+   "type": "methode",
+   "titre": "Programme de calcul",
+   "question": "« Choisir un nombre, le multiplier par $3$, puis ajouter $2$. » Avec $4$, on obtient ...",
+   "reponse": "$14$",
+   "pieges": [
+    "$18$",
+    "$9$",
+    "$20$"
+   ],
+   "note": "$4 \\times 3 = 12$, puis $12 + 2 = 14$. L'ordre des étapes compte."
+  },
+  {
+   "id": "fonc-axes",
+   "chap": "fonc",
+   "type": "definition",
+   "titre": "Lire un point",
+   "question": "Sur un graphique, le point de coordonnées $(3 ; 5)$ a pour abscisse ...",
+   "reponse": "$3$",
+   "pieges": [
+    "$5$",
+    "$8$",
+    "$15$"
+   ],
+   "note": "L'abscisse se lit sur l'axe horizontal, l'ordonnée ($5$) sur l'axe vertical."
   },
   {
    "id": "proba-def",
@@ -2924,9 +3208,9 @@ Savoirs.enregistrer({
    "question": "Une probabilité est toujours un nombre ...",
    "reponse": "compris entre 0 et 1",
    "pieges": [
-    "supérieur à 1",
+    "supérieur à $1$",
     "entier",
-    "compris entre −1 et 1"
+    "compris entre $-1$ et $1$"
    ],
    "note": "0 : impossible ; 1 : certain."
   },
@@ -2942,15 +3226,6 @@ Savoirs.enregistrer({
     "$P(A) = \\text{nombre d'issues favorables} - \\text{nombre total d'issues}$",
     "$P(A) = \\dfrac{\\text{nombre d'issues non favorables}}{\\text{nombre total d'issues}}$"
    ],
-   "exemples": [
-    {
-     "donnees": "Un sac contient 3 boules rouges et 5 vertes ; on tire une boule au hasard",
-     "question": "Probabilité d'obtenir une rouge (décimale) ?",
-     "reponse": 0.375,
-     "unite": "",
-     "correction": "$\\dfrac{3}{8} = 0{,}375$"
-    }
-   ],
    "morceaux": [
     "P(A)",
     "=",
@@ -2959,6 +3234,15 @@ Savoirs.enregistrer({
    "intrus": [
     "\\dfrac{\\text{nombre total d'issues}}{\\text{nombre d'issues favorables}}",
     "-"
+   ],
+   "exemples": [
+    {
+     "donnees": "Un sac contient 3 boules rouges et 5 vertes ; on tire une boule au hasard",
+     "question": "Probabilité d'obtenir une rouge (décimale) ?",
+     "reponse": 0.375,
+     "unite": "",
+     "correction": "$\\dfrac{3}{8} = 0{,}375$"
+    }
    ]
   },
   {
@@ -2981,12 +3265,41 @@ Savoirs.enregistrer({
    "type": "propriete",
    "titre": "La pièce n'a pas de mémoire",
    "question": "Après 5 « pile » de suite, au lancer suivant, la probabilité d'obtenir « face » est ...",
-   "reponse": "toujours $\\dfrac{1}{2}$",
+   "reponse": "$\\dfrac{1}{2}$",
    "pieges": [
     "plus grande que $\\dfrac{1}{2}$",
     "plus petite que $\\dfrac{1}{2}$",
-    "égale à 1"
-   ]
+    "égale à $1$"
+   ],
+   "note": "Les lancers sont indépendants : la pièce n'a pas de mémoire."
+  },
+  {
+   "id": "proba-issue",
+   "chap": "proba",
+   "type": "definition",
+   "titre": "Issues d'une expérience",
+   "question": "Quand on lance un dé à 6 faces, les issues possibles sont ...",
+   "reponse": "$1$, $2$, $3$, $4$, $5$ et $6$",
+   "pieges": [
+    "$1$ et $6$ seulement",
+    "pair ou impair",
+    "$0$, $1$, $2$, $3$, $4$, $5$ et $6$"
+   ],
+   "note": "Un événement, comme « obtenir un nombre pair », regroupe plusieurs issues : $2$, $4$ et $6$."
+  },
+  {
+   "id": "proba-certain",
+   "chap": "proba",
+   "type": "propriete",
+   "titre": "Événement certain, impossible",
+   "question": "La probabilité d'un événement impossible est ...",
+   "reponse": "$0$",
+   "pieges": [
+    "$1$",
+    "$-1$",
+    "$\\dfrac{1}{2}$"
+   ],
+   "note": "Celle d'un événement certain est $1$. « Obtenir 7 avec un dé à 6 faces » est impossible."
   }
  ],
  "outils": [
@@ -3115,7 +3428,7 @@ Savoirs.enregistrer({
    "chap": "rel2",
    "enonce": "Calculer $(-4) + (-9)$.",
    "bon": "rel-add",
-   "explication": "Deux négatifs : on additionne les distances à zéro et on garde le signe $-$.",
+   "explication": "Deux négatifs : on additionne les valeurs absolues et on garde le signe $-$.",
    "autres": [
     "rel-add2",
     "rel-sous",
@@ -3629,7 +3942,7 @@ Savoirs.enregistrer({
    "chap": "rel2",
    "enonce": "Calculer $(+8) + (-13)$.",
    "bon": "rel-add2",
-   "explication": "Signes contraires : on soustrait les distances à zéro ($13 - 8 = 5$) et on garde le signe du plus éloigné de 0 : $-5$.",
+   "explication": "Signes contraires : on soustrait les valeurs absolues ($13 - 8 = 5$) et on garde le signe de celui qui a la plus grande valeur absolue : $-5$.",
    "autres": [
     "rel-add",
     "rel-sous",

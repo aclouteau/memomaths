@@ -400,6 +400,52 @@
           }
         }
       }
+    },
+    {
+      // Mise à jour de novembre 2026 : angle d'un secteur = fréquence × 360° = effectif ÷ effectif total × 360°
+      id: "stat-circulaire", chap: "stat", titre: "Angle d'un secteur dans un diagramme circulaire", format: "nombre",
+      niveaux: {
+        1: () => {
+          const N = facile(1) ? 36 : choix([36, 72, 90, 180, 360, 120]), n = ent(1, Math.floor(N / 2)), a = n * 360 / N;
+          return {
+            enonce: "Dans un diagramme circulaire, un effectif de " + n + " sur un effectif total de " + N + " est représenté par un secteur. Quel est l'angle de ce secteur ?", reponse: a, unite: "°",
+            correction: "Angle $= \\dfrac{\\text{effectif}}{\\text{effectif total}} \\times 360^{\\circ} = \\dfrac{" + n + "}{" + N + "} \\times 360^{\\circ} = " + a + "^{\\circ}$."
+          };
+        },
+        2: () => {
+          if (Math.random() < 0.5) {
+            const p = choix([10, 20, 25, 30, 40, 45, 60, 75, 15, 35]), a = net(p * 3.6);
+            return {
+              enonce: "Dans un diagramme circulaire, une catégorie représente $" + p + "\\,\\%$ de l'effectif total. Quel est l'angle de son secteur ?", reponse: a, unite: "°",
+              correction: "Angle $= \\text{fréquence} \\times 360^{\\circ} = \\dfrac{" + p + "}{100} \\times 360^{\\circ} = " + T(a) + "^{\\circ}$."
+            };
+          }
+          for (;;) {
+            const N = choix([24, 40, 48, 60, 80, 45, 30]), n = ent(1, N - 1), a = n * 360 / N;
+            if (!Number.isInteger(a)) continue;
+            return {
+              enonce: "Sur " + N + " élèves interrogés, " + n + " préfèrent le basket. Dans un diagramme circulaire, quel angle donner au secteur « basket » ?", reponse: a, unite: "°",
+              correction: "Angle $= \\dfrac{" + n + "}{" + N + "} \\times 360^{\\circ} = " + a + "^{\\circ}$."
+            };
+          }
+        },
+        3: () => {
+          for (;;) {
+            const N = choix([24, 36, 40, 48, 60, 72, 120]), n = ent(1, N - 1), a = n * 360 / N;
+            if (!Number.isInteger(a)) continue;
+            if (Math.random() < 0.6) return {
+              enonce: "Dans un diagramme circulaire qui représente " + N + " personnes, un secteur a un angle de $" + a + "^{\\circ}$. Combien de personnes représente-t-il ?", reponse: n,
+              correction: "Le disque entier ($360^{\\circ}$) représente " + N + " personnes. Le secteur représente $\\dfrac{" + a + "}{360} \\times " + N + " = " + n + "$ personnes."
+            };
+            const p = net(a / 3.6);
+            if (!Number.isInteger(p * 10)) continue;
+            return {
+              enonce: "Dans un diagramme circulaire, un secteur a un angle de $" + a + "^{\\circ}$. Quel pourcentage de l'effectif total représente-t-il ?", reponse: p, unite: "%",
+              correction: "Fréquence $= \\dfrac{" + a + "}{360} = " + T(net(a / 360)) + "$, soit $" + T(p) + "\\,\\%$."
+            };
+          }
+        }
+      }
     }
   ];
 

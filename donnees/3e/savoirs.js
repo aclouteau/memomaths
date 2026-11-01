@@ -17,6 +17,12 @@ Savoirs.enregistrer({
    "annee": "3e"
   },
   {
+   "id": "pourc",
+   "titre": "Proportionnalité et pourcentages",
+   "ordre": 0,
+   "annee": "3e"
+  },
+  {
    "id": "proba",
    "titre": "Probabilités",
    "ordre": 1,
@@ -66,7 +72,7 @@ Savoirs.enregistrer({
   },
   {
    "id": "thal",
-   "titre": "Théorème de Thalès",
+   "titre": "Triangles semblables et théorème de Thalès",
    "ordre": 9,
    "annee": "3e"
   },
@@ -110,12 +116,6 @@ Savoirs.enregistrer({
    "id": "esp",
    "titre": "Géométrie dans l'espace",
    "ordre": 16,
-   "annee": "3e"
-  },
-  {
-   "id": "sembl",
-   "titre": "Triangles semblables",
-   "ordre": 17,
    "annee": "3e"
   }
  ],
@@ -426,7 +426,7 @@ Savoirs.enregistrer({
   },
   {
    "id": "pourcent",
-   "chap": "pre",
+   "chap": "pourc",
    "type": "formule",
    "titre": "Calculer un pourcentage d'une quantité",
    "question": "$t\\,\\%$ d'une quantité $V$ ?",
@@ -458,7 +458,7 @@ Savoirs.enregistrer({
   },
   {
    "id": "hausse",
-   "chap": "pre",
+   "chap": "pourc",
    "type": "formule",
    "titre": "Augmentation en pourcentage",
    "question": "Pour augmenter une valeur de $t\\,\\%$, on la multiplie par ...",
@@ -490,7 +490,7 @@ Savoirs.enregistrer({
   },
   {
    "id": "baisse",
-   "chap": "pre",
+   "chap": "pourc",
    "type": "formule",
    "titre": "Baisse en pourcentage",
    "question": "Pour diminuer une valeur de $t\\,\\%$, on la multiplie par ...",
@@ -1463,6 +1463,7 @@ Savoirs.enregistrer({
     "$f = n \\times N$",
     "$f = n - N$"
    ],
+   "note": "La somme des fréquences vaut toujours 1.",
    "morceaux": [
     "f",
     "=",
@@ -1480,8 +1481,7 @@ Savoirs.enregistrer({
      "unite": "",
      "correction": "$f = \\dfrac{5}{25} = 0{,}2$"
     }
-   ],
-   "note": "La somme des fréquences vaut toujours 1."
+   ]
   },
   {
    "id": "moyenne",
@@ -1493,16 +1493,7 @@ Savoirs.enregistrer({
    "pieges": [
     "$\\dfrac{\\text{somme des valeurs}}{\\text{nombre de valeurs différentes}}$",
     "$\\dfrac{\\text{valeur max} + \\text{valeur min}}{2}$",
-    "$\\text{valeur du milieu de la série rangée}$"
-   ],
-   "exemples": [
-    {
-     "donnees": "Notes : 8 ; 12 ; 15 ; 10 ; 5",
-     "question": "Moyenne ?",
-     "reponse": 10,
-     "unite": "",
-     "correction": "$\\dfrac{8 + 12 + 15 + 10 + 5}{5} = \\dfrac{50}{5} = 10$"
-    }
+    "$\\dfrac{\\text{effectif total}}{\\text{somme des valeurs}}$"
    ],
    "morceaux": [
     "\\text{moyenne}",
@@ -1512,6 +1503,15 @@ Savoirs.enregistrer({
    "intrus": [
     "\\dfrac{\\text{effectif total}}{\\text{somme des valeurs}}",
     "+"
+   ],
+   "exemples": [
+    {
+     "donnees": "Notes : 8 ; 12 ; 15 ; 10 ; 5",
+     "question": "Moyenne ?",
+     "reponse": 10,
+     "unite": "",
+     "correction": "$\\dfrac{8 + 12 + 15 + 10 + 5}{5} = \\dfrac{50}{5} = 10$"
+    }
    ]
   },
   {
@@ -1522,11 +1522,109 @@ Savoirs.enregistrer({
    "question": "La médiane d'une série est la valeur qui ...",
    "reponse": "partage la série rangée en deux groupes de même effectif",
    "pieges": [
-    "est la plus fréquente",
-    "est la moyenne des valeurs",
-    "est la valeur du milieu d'une série non rangée"
+    "est la plus fréquente, celle qui a le plus grand effectif",
+    "est la moyenne de toutes les valeurs de la série",
+    "est la valeur du milieu de la série, sans la ranger"
    ],
    "note": "Il faut d'abord ranger. Effectif impair : valeur centrale ; pair : milieu des deux valeurs centrales."
+  },
+  {
+   "id": "st-etendue",
+   "chap": "stat",
+   "type": "definition",
+   "titre": "Étendue",
+   "question": "L'étendue d'une série est ...",
+   "reponse": "la différence entre la plus grande et la plus petite valeur",
+   "pieges": [
+    "la moyenne entre la plus grande et la plus petite valeur",
+    "la valeur du milieu de la série rangée",
+    "le nombre de valeurs de la série"
+   ],
+   "exemples": [
+    {
+     "donnees": "Série : 3 ; 8 ; 12 ; 15",
+     "question": "Étendue ?",
+     "reponse": 12,
+     "unite": "",
+     "correction": "$15 - 3 = 12$"
+    }
+   ]
+  },
+  {
+   "id": "st-pondere",
+   "chap": "stat",
+   "type": "formule",
+   "titre": "Moyenne pondérée",
+   "question": "Moyenne d'une série avec effectifs ?",
+   "reponse": "$\\dfrac{\\text{somme des (valeur} \\times \\text{effectif)}}{\\text{effectif total}}$",
+   "pieges": [
+    "$\\dfrac{\\text{somme des valeurs}}{\\text{nombre de valeurs différentes}}$",
+    "$\\dfrac{\\text{somme des effectifs}}{\\text{nombre de valeurs différentes}}$",
+    "$\\dfrac{\\text{somme des (valeur} \\times \\text{effectif)}}{\\text{nombre de valeurs}}$"
+   ],
+   "exemples": [
+    {
+     "donnees": "Notes : 10 (effectif 2) ; 14 (effectif 3)",
+     "question": "Moyenne ?",
+     "reponse": 12.4,
+     "unite": "",
+     "correction": "$\\dfrac{10 \\times 2 + 14 \\times 3}{5} = \\dfrac{62}{5} = 12{,}4$"
+    }
+   ]
+  },
+  {
+   "id": "st-classes",
+   "chap": "stat",
+   "type": "regle",
+   "titre": "Moyenne avec des classes",
+   "question": "Pour estimer une moyenne avec des classes, on utilise ...",
+   "reponse": "le centre de chaque classe",
+   "pieges": [
+    "l'extrémité gauche de chaque classe",
+    "l'extrémité droite de chaque classe",
+    "la classe de plus grand effectif"
+   ]
+  },
+  {
+   "id": "st-ranger",
+   "chap": "stat",
+   "type": "regle",
+   "titre": "Ranger avant tout",
+   "question": "Pour trouver la médiane, il faut d'abord ...",
+   "reponse": "ranger les valeurs dans l'ordre croissant",
+   "pieges": [
+    "calculer la moyenne de toutes les valeurs",
+    "calculer l'étendue de la série de valeurs",
+    "regrouper les valeurs en classes de même amplitude"
+   ]
+  },
+  {
+   "id": "st-mediane-pair",
+   "chap": "stat",
+   "type": "methode",
+   "titre": "Médiane d'un effectif pair",
+   "question": "La série rangée $3 ; 5 ; 8 ; 10 ; 12 ; 15$ a pour médiane ...",
+   "reponse": "$9$",
+   "pieges": [
+    "$8$",
+    "$10$",
+    "$8{,}8$"
+   ],
+   "note": "Effectif pair ($6$ valeurs) : on prend le milieu des deux valeurs centrales, $\\dfrac{8 + 10}{2} = 9$."
+  },
+  {
+   "id": "st-histo",
+   "chap": "stat",
+   "type": "definition",
+   "titre": "Histogramme",
+   "question": "Dans un histogramme (classes de même amplitude), chaque classe est représentée par ...",
+   "reponse": "un rectangle dont la hauteur est proportionnelle à l'effectif de la classe",
+   "pieges": [
+    "un secteur dont l'angle est proportionnel à l'effectif de la classe",
+    "un point, relié au point de la classe suivante",
+    "une barre étroite, séparée des autres par un espace"
+   ],
+   "note": "Les rectangles sont collés : la base de chacun est la classe (par exemple $150 \\leqslant t < 160$)."
   },
   {
    "id": "puiss-prod",
@@ -1559,7 +1657,8 @@ Savoirs.enregistrer({
      "unite": "",
      "correction": "$2^{3} \\times 2^{4} = 2^{7} = 128$"
     }
-   ]
+   ],
+   "note": "Formule hors programme (donnée dans la leçon pour information)."
   },
   {
    "id": "puiss-quot",
@@ -1573,6 +1672,15 @@ Savoirs.enregistrer({
     "$a^{m \\div n}$",
     "$a^{n-m}$"
    ],
+   "morceaux": [
+    "\\dfrac{a^{m}}{a^{n}}",
+    "=",
+    "a^{m-n}"
+   ],
+   "intrus": [
+    "a^{m+n}",
+    "a^{n-m}"
+   ],
    "exemples": [
     {
      "donnees": "Calculer $\\dfrac{5^{6}}{5^{4}}$ (donner le nombre)",
@@ -1582,15 +1690,7 @@ Savoirs.enregistrer({
      "correction": "$5^{6-4} = 5^{2} = 25$"
     }
    ],
-   "morceaux": [
-    "\\dfrac{a^{m}}{a^{n}}",
-    "=",
-    "a^{m-n}"
-   ],
-   "intrus": [
-    "a^{m+n}",
-    "a^{n-m}"
-   ]
+   "note": "Formule hors programme (donnée dans la leçon pour information)."
   },
   {
    "id": "puiss-puiss",
@@ -1600,18 +1700,9 @@ Savoirs.enregistrer({
    "question": "$(a^{m})^{n}$ vaut ...",
    "reponse": "$a^{m \\times n}$",
    "pieges": [
-    "$a^{m+n}$",
-    "$a^{m^{n}}$",
-    "$a^{m}\\times n$"
-   ],
-   "exemples": [
-    {
-     "donnees": "Calculer $(2^{3})^{2}$ (donner le nombre)",
-     "question": "Résultat ?",
-     "reponse": 64,
-     "unite": "",
-     "correction": "$(2^{3})^{2} = 2^{6} = 64$"
-    }
+    "$a^{m+n}$ (on additionne les exposants comme dans un produit)",
+    "$a^{m^{n}}$ (on met l'exposant en puissance de l'exposant)",
+    "$a^{m}\\times n$ (on multiplie la puissance par l'exposant)"
    ],
    "morceaux": [
     "(",
@@ -1622,7 +1713,17 @@ Savoirs.enregistrer({
    ],
    "intrus": [
     "a^{m+n}"
-   ]
+   ],
+   "exemples": [
+    {
+     "donnees": "Calculer $(2^{3})^{2}$ (donner le nombre)",
+     "question": "Résultat ?",
+     "reponse": 64,
+     "unite": "",
+     "correction": "$(2^{3})^{2} = 2^{6} = 64$"
+    }
+   ],
+   "note": "Formule hors programme (donnée dans la leçon pour information)."
   },
   {
    "id": "puiss-neg",
@@ -1632,18 +1733,9 @@ Savoirs.enregistrer({
    "question": "$a^{-n}$ (avec $a \\neq 0$) vaut ...",
    "reponse": "$\\dfrac{1}{a^{n}}$",
    "pieges": [
-    "$-a^{n}$",
-    "$-\\dfrac{1}{a^{n}}$",
-    "$a^{n}$"
-   ],
-   "exemples": [
-    {
-     "donnees": "Calculer $2^{-3}$ (donner un décimal)",
-     "question": "Résultat ?",
-     "reponse": 0.125,
-     "unite": "",
-     "correction": "$2^{-3} = \\dfrac{1}{2^{3}} = \\dfrac{1}{8} = 0{,}125$"
-    }
+    "$-a^{n}$ (l'exposant négatif change le signe)",
+    "$-\\dfrac{1}{a^{n}}$ (l'exposant négatif change le signe et inverse)",
+    "$a^{n}$ (l'exposant négatif ne change rien)"
    ],
    "note": "Un exposant négatif ne rend pas le nombre négatif.",
    "morceaux": [
@@ -1654,6 +1746,15 @@ Savoirs.enregistrer({
    "intrus": [
     "-a^{n}",
     "\\dfrac{1}{-a^{n}}"
+   ],
+   "exemples": [
+    {
+     "donnees": "Calculer $2^{-3}$ (donner un décimal)",
+     "question": "Résultat ?",
+     "reponse": 0.125,
+     "unite": "",
+     "correction": "$2^{-3} = \\dfrac{1}{2^{3}} = \\dfrac{1}{8} = 0{,}125$"
+    }
    ]
   },
   {
@@ -1664,9 +1765,9 @@ Savoirs.enregistrer({
    "question": "Pour tout nombre $a \\neq 0$, $a^{0}$ vaut ...",
    "reponse": "1",
    "pieges": [
-    "0",
-    "$a$",
-    "impossible à calculer"
+    "0 (le produit de zéro facteur est nul)",
+    "$a$ (il reste un seul facteur)",
+    "impossible à calculer (il n'y a aucun facteur)"
    ],
    "morceaux": [
     "a^{0}",
@@ -1735,9 +1836,9 @@ Savoirs.enregistrer({
    "question": "Pour calculer $(a \\times 10^{m}) \\times (b \\times 10^{n})$, on ...",
    "reponse": "multiplie $a$ par $b$, additionne les exposants, puis remet en notation scientifique",
    "pieges": [
-    "additionne $a$ et $b$, multiplie les exposants, puis remet en notation scientifique",
-    "multiplie $a$ par $b$, multiplie les exposants, puis remet en notation scientifique",
-    "additionne tout, puis remet en notation scientifique"
+    "additionne $a$ et $b$, multiplie les exposants, puis remet le résultat en notation scientifique",
+    "multiplie $a$ par $b$, multiplie aussi les exposants, puis remet le résultat en notation scientifique",
+    "additionne tout ensemble, puis remet le résultat en notation scientifique à la fin"
    ],
    "exemples": [
     {
@@ -1748,6 +1849,71 @@ Savoirs.enregistrer({
      "correction": "$3 \\times 2 = 6$ et $10^{4+3} = 10^{7}$ donc $6 \\times 10^{7} = 60\\,000\\,000$"
     }
    ]
+  },
+  {
+   "id": "puiss-prod2",
+   "chap": "puis",
+   "type": "formule",
+   "titre": "Puissance d'un produit",
+   "question": "$(a \\times b)^{n}$ vaut ...",
+   "reponse": "$a^{n} \\times b^{n}$",
+   "pieges": [
+    "$a^{n} + b^{n}$ (on additionne les deux puissances)",
+    "$a \\times b^{n}$ (l'exposant ne porte que sur $b$)",
+    "$(a \\times b)^{2n}$ (on double l'exposant du produit)"
+   ],
+   "morceaux": [
+    "(",
+    "a",
+    "\\times",
+    "b",
+    ")^{n}",
+    "=",
+    "a^{n}",
+    "\\times",
+    "b^{n}"
+   ],
+   "intrus": [
+    "+",
+    "2n"
+   ],
+   "exemples": [
+    {
+     "donnees": "Calculer $(2 \\times 3)^{2}$",
+     "question": "Résultat ?",
+     "reponse": 36,
+     "unite": "",
+     "correction": "$2^{2} \\times 3^{2} = 4 \\times 9 = 36$"
+    }
+   ],
+   "note": "Formule hors programme (donnée dans la leçon pour information)."
+  },
+  {
+   "id": "sci-ex",
+   "chap": "puis",
+   "type": "definition",
+   "titre": "Reconnaître une notation scientifique",
+   "question": "Laquelle de ces écritures est en notation scientifique ?",
+   "reponse": "$4{,}5 \\times 10^{-4}$",
+   "pieges": [
+    "$12 \\times 10^{4}$ (le nombre 12 est supérieur à 10)",
+    "$0{,}5 \\times 10^{3}$ (le nombre 0,5 est inférieur à 1)",
+    "$32 \\times 10^{-6}$ (le nombre 32 est supérieur à 10)"
+   ]
+  },
+  {
+   "id": "sci-quot",
+   "chap": "puis",
+   "type": "regle",
+   "titre": "Quotient en notation scientifique",
+   "question": "Pour calculer $\\dfrac{a \\times 10^{m}}{b \\times 10^{n}}$, on ...",
+   "reponse": "divise $a$ par $b$, soustrait les exposants, puis remet en notation scientifique",
+   "pieges": [
+    "divise $a$ par $b$, additionne les exposants, puis remet en notation scientifique",
+    "soustrait $a$ et $b$, divise les exposants, puis remet en notation scientifique",
+    "multiplie $a$ par $b$, soustrait les exposants, puis remet en notation scientifique"
+   ],
+   "note": "$\\dfrac{6 \\times 10^{5}}{3 \\times 10^{2}} = 2 \\times 10^{3}$."
   },
   {
    "id": "pyr-vol",
@@ -1871,31 +2037,115 @@ Savoirs.enregistrer({
    ]
   },
   {
-   "id": "sembl-def",
-   "chap": "sembl",
-   "type": "definition",
-   "titre": "Triangles semblables",
-   "question": "Deux triangles sont semblables si ...",
-   "reponse": "leurs angles sont égaux deux à deux",
+   "id": "sph-section",
+   "chap": "esp",
+   "type": "propriete",
+   "titre": "Section d'une sphère par un plan",
+   "question": "La section d'une sphère de rayon $R$ par un plan situé à la distance $d$ du centre est ...",
+   "reponse": "un cercle de rayon $r$ tel que $R^{2} = d^{2} + r^{2}$",
    "pieges": [
-    "ils ont la même aire et le même périmètre",
-    "ils ont un seul angle égal, les autres sont différents",
-    "ils ont le même périmètre, mais des angles différents"
-   ],
-   "note": "Leurs côtés homologues sont alors proportionnels."
+    "un cercle de rayon $R$, quelle que soit la distance $d$",
+    "un cercle de rayon $r$ tel que $r = R - d$",
+    "un cercle de rayon $r$ tel que $r^{2} = R^{2} + d^{2}$"
+   ]
   },
   {
-   "id": "sembl-2ang",
-   "chap": "sembl",
-   "type": "propriete",
-   "titre": "Deux angles égaux suffisent",
-   "question": "Pour affirmer que deux triangles sont semblables, il suffit que ...",
-   "reponse": "deux angles de l'un soient égaux à deux angles de l'autre",
+   "id": "sph-boule",
+   "chap": "esp",
+   "type": "definition",
+   "titre": "Sphère et boule",
+   "question": "La sphère de centre $O$ et de rayon $R$ est formée des points $M$ tels que ...",
+   "reponse": "$OM = R$",
    "pieges": [
-    "un angle de l'un soit égal à un angle de l'autre",
-    "un côté de l'un soit égal à un côté de l'autre",
-    "leurs périmètres soient égaux"
-   ]
+    "$OM \\leqslant R$",
+    "$OM = 2R$",
+    "$OM \\geqslant R$"
+   ],
+   "note": "La boule est formée des points tels que $OM \\leqslant R$ : c'est la sphère et son intérieur."
+  },
+  {
+   "id": "sph-grand-cercle",
+   "chap": "esp",
+   "type": "propriete",
+   "titre": "Plan passant par le centre",
+   "question": "Quand le plan passe par le centre de la sphère, la section est ...",
+   "reponse": "un cercle de même rayon que la sphère",
+   "pieges": [
+    "un cercle de rayon moitié de celui de la sphère",
+    "un point, le centre de la sphère",
+    "un cercle de rayon double de celui de la sphère"
+   ],
+   "note": "On l'appelle un grand cercle (l'équateur sur la Terre)."
+  },
+  {
+   "id": "sect-pyr",
+   "chap": "esp",
+   "type": "propriete",
+   "titre": "Section d'une pyramide ou d'un cône",
+   "question": "La section d'une pyramide par un plan parallèle à sa base est ...",
+   "reponse": "une réduction de la base",
+   "pieges": [
+    "un agrandissement de la base",
+    "un triangle, quelle que soit la base",
+    "un rectangle, quelle que soit la base"
+   ],
+   "note": "La petite pyramide obtenue est une réduction de la grande ; pour un cône, la section est un disque."
+  },
+  {
+   "id": "sect-pave",
+   "chap": "esp",
+   "type": "propriete",
+   "titre": "Section d'un pavé droit",
+   "question": "La section d'un pavé droit par un plan parallèle à une face est ...",
+   "reponse": "un rectangle de mêmes dimensions que cette face",
+   "pieges": [
+    "un rectangle plus petit que cette face",
+    "un triangle rectangle de même aire que cette face",
+    "un carré dont le côté est la plus petite arête"
+   ],
+   "note": "Pour un cylindre coupé parallèlement à la base, c'est un disque de même rayon."
+  },
+  {
+   "id": "esp-red-k",
+   "chap": "esp",
+   "type": "propriete",
+   "titre": "Longueurs, aires et volumes",
+   "question": "Dans une réduction de rapport $k$, les aires sont multipliées par ... et les volumes par ...",
+   "reponse": "$k^{2}$ et $k^{3}$",
+   "pieges": [
+    "$k$ et $k^{2}$",
+    "$2k$ et $3k$",
+    "$k^{3}$ et $k^{2}$"
+   ],
+   "note": "Les longueurs sont multipliées par $k$."
+  },
+  {
+   "id": "sph-reperage",
+   "chap": "esp",
+   "type": "definition",
+   "titre": "Se repérer sur la sphère terrestre",
+   "question": "Sur la Terre, assimilée à une sphère, un point est repéré par ...",
+   "reponse": "sa latitude et sa longitude",
+   "pieges": [
+    "son abscisse et son ordonnée",
+    "sa latitude seulement",
+    "son altitude et son rayon"
+   ],
+   "note": "Exemple : Paris a pour coordonnées environ $49^{\\circ}$ N et $2^{\\circ}$ E."
+  },
+  {
+   "id": "sph-latitude",
+   "chap": "esp",
+   "type": "definition",
+   "titre": "Latitude et longitude",
+   "question": "La latitude d'un point se mesure ...",
+   "reponse": "à partir de l'équateur, vers le Nord ou vers le Sud (de $0^{\\circ}$ à $90^{\\circ}$)",
+   "pieges": [
+    "à partir du méridien de Greenwich, vers l'Est ou vers l'Ouest (de $0^{\\circ}$ à $180^{\\circ}$)",
+    "à partir du pôle Nord, vers le Sud (de $0^{\\circ}$ à $180^{\\circ}$)",
+    "à partir de l'équateur, vers l'Est ou vers l'Ouest (de $0^{\\circ}$ à $360^{\\circ}$)"
+   ],
+   "note": "La longitude se mesure à partir du méridien de Greenwich, vers l'Est ou vers l'Ouest (de $0^{\\circ}$ à $180^{\\circ}$)."
   },
   {
    "id": "prem-def",
@@ -2139,7 +2389,7 @@ Savoirs.enregistrer({
     "$a^{2} + ab + b^{2}$",
     "$a^{2} - 2ab + b^{2}$"
    ],
-   "note": "Il manque le double produit dans $a^{2} + b^{2}$.",
+   "note": "Hors programme : développement seulement. Il manque le double produit dans $a^{2} + b^{2}$.",
    "morceaux": [
     "(a+b)^{2}",
     "=",
@@ -2175,7 +2425,7 @@ Savoirs.enregistrer({
     "$a^{2} - 2ab - b^{2}$",
     "$a^{2} + 2ab + b^{2}$"
    ],
-   "note": "Le dernier terme est $+b^{2}$, jamais $-b^{2}$.",
+   "note": "Hors programme : développement seulement. Le dernier terme est $+b^{2}$, jamais $-b^{2}$.",
    "morceaux": [
     "(a-b)^{2}",
     "=",
@@ -2333,20 +2583,6 @@ Savoirs.enregistrer({
     "$a(a - b)$, en mettant $a$ en facteur"
    ],
    "note": "Exemple : $x^{2} - 25 = (x + 5)(x - 5)$."
-  },
-  {
-   "id": "lit-fact-carre",
-   "chap": "lit",
-   "type": "formule",
-   "titre": "Factoriser un carré",
-   "question": "$a^{2} + 2ab + b^{2}$ se factorise en ...",
-   "reponse": "$(a + b)^{2}$",
-   "pieges": [
-    "$(a - b)^{2}$, car il y a un double produit",
-    "$(a + b)(a - b)$, car il y a deux termes carrés",
-    "$a(a + 2b) + b^{2}$, en mettant $a$ en facteur"
-   ],
-   "note": "Exemple : $x^{2} + 6x + 9 = (x + 3)^{2}$."
   },
   {
    "id": "lit-terme",
@@ -2663,6 +2899,20 @@ Savoirs.enregistrer({
    "note": "La droite $(OM)$ passe par $M'$ : une homothétie « agrandit » le long des droites issues du centre."
   },
   {
+   "id": "homo-rotation",
+   "chap": "homo",
+   "type": "definition",
+   "titre": "Rotation",
+   "question": "L'image d'un point $M$ par la rotation de centre $O$ et d'angle $\\alpha$ est le point $M'$ tel que ...",
+   "reponse": "$OM' = OM$ et $\\widehat{MOM'} = \\alpha$ (dans le sens indiqué)",
+   "pieges": [
+    "$O$ est le milieu de $[MM']$",
+    "$OM' = \\alpha \\times OM$ et $O$, $M$, $M'$ sont alignés",
+    "$MM' = OM$ et $(MM')$ est parallèle à $(OM)$"
+   ],
+   "note": "Comme les symétries et la translation, une rotation conserve les longueurs, les angles et les aires. La symétrie centrale est la rotation d'angle $180^{\\circ}$."
+  },
+  {
    "id": "fg-image",
    "chap": "fgen",
    "type": "definition",
@@ -2830,13 +3080,137 @@ Savoirs.enregistrer({
    "type": "propriete",
    "titre": "Image de 0",
    "question": "Pour $f(x) = ax + b$, l'image de 0 est ...",
-   "reponse": "$b$, l'ordonnée du point d'intersection avec l'axe des ordonnées",
+   "reponse": "$b$",
    "pieges": [
-    "$a$, l'ordonnée du point d'intersection avec l'axe des ordonnées",
-    "0, car le produit $a \\times 0$ est nul même s'il y a $b$ ensuite",
-    "$a + b$, qui est l'ordonnée du point d'abscisse 1"
+    "$a$",
+    "$0$",
+    "$a + b$"
    ],
-   "note": "Pour $f(x) = 3x + 2$, $f(0) = 2$."
+   "note": "C'est l'ordonnée du point où la droite coupe l'axe des ordonnées : pour $f(x) = 3x + 2$, $f(0) = 2$."
+  },
+  {
+   "id": "fa-def",
+   "chap": "faff",
+   "type": "definition",
+   "titre": "Fonction affine",
+   "question": "Une fonction affine est de la forme ...",
+   "reponse": "$f(x) = ax + b$",
+   "pieges": [
+    "$f(x) = ax$ uniquement",
+    "$f(x) = ax^{2} + b$",
+    "$f(x) = a + bx^{2}$"
+   ],
+   "note": "Cas particulier : $b = 0$, fonction linéaire.",
+   "morceaux": [
+    "f(x)",
+    "=",
+    "ax",
+    "+",
+    "b"
+   ],
+   "intrus": [
+    "ax^{2}",
+    "\\times"
+   ]
+  },
+  {
+   "id": "fa-ab",
+   "chap": "faff",
+   "type": "propriete",
+   "titre": "Rôle de a et b",
+   "question": "Dans $f(x) = ax + b$ : $a$ est ... et $b$ est ...",
+   "reponse": "le coefficient directeur et l'ordonnée à l'origine",
+   "pieges": [
+    "l'ordonnée à l'origine et le coefficient directeur",
+    "l'image de 1 et l'image de 0",
+    "l'abscisse et l'ordonnée"
+   ],
+   "note": "On a $f(0) = b$."
+  },
+  {
+   "id": "fa-graph",
+   "chap": "faff",
+   "type": "propriete",
+   "titre": "Courbe d'une fonction affine",
+   "question": "La représentation graphique d'une fonction affine est ...",
+   "reponse": "une droite qui passe par $(0 ; b)$",
+   "pieges": [
+    "une droite qui passe toujours par l'origine",
+    "une courbe qui passe par le point $(0 ; b)$",
+    "une droite parallèle à l'axe des ordonnées"
+   ]
+  },
+  {
+   "id": "fa-calc",
+   "chap": "faff",
+   "type": "formule",
+   "titre": "Calculer le coefficient directeur",
+   "question": "Coefficient directeur $a$ d'une droite passant par $(x_{1} ; f(x_{1}))$ et $(x_{2} ; f(x_{2}))$ ?",
+   "reponse": "$a = \\dfrac{f(x_{2}) - f(x_{1})}{x_{2} - x_{1}}$",
+   "pieges": [
+    "$a = \\dfrac{x_{2} - x_{1}}{f(x_{2}) - f(x_{1})}$",
+    "$a = f(x_{2}) - f(x_{1})$",
+    "$a = \\dfrac{f(x_{1}) + f(x_{2})}{2}$"
+   ],
+   "morceaux": [
+    "a",
+    "=",
+    "\\dfrac{f(x_{2}) - f(x_{1})}{x_{2} - x_{1}}"
+   ],
+   "intrus": [
+    "\\dfrac{x_{2} - x_{1}}{f(x_{2}) - f(x_{1})}",
+    "+"
+   ],
+   "exemples": [
+    {
+     "donnees": "$f(1) = 5$ et $f(3) = 11$",
+     "question": "Coefficient directeur $a$ ?",
+     "reponse": 3,
+     "unite": "",
+     "correction": "$a = \\dfrac{11 - 5}{3 - 1} = 3$"
+    }
+   ]
+  },
+  {
+   "id": "fa-prop",
+   "chap": "faff",
+   "type": "regle",
+   "titre": "Affine et proportionnelle",
+   "question": "Une fonction affine représente une situation de proportionnalité ...",
+   "reponse": "seulement si $b = 0$",
+   "pieges": [
+    "toujours, quels que soient $a$ et $b$",
+    "jamais, quels que soient $a$ et $b$",
+    "seulement si $a = 1$"
+   ]
+  },
+  {
+   "id": "fa-croiss",
+   "chap": "faff",
+   "type": "propriete",
+   "titre": "Sens de variation",
+   "question": "Si $a > 0$, la fonction affine $f(x) = ax + b$ est ...",
+   "reponse": "croissante",
+   "pieges": [
+    "décroissante",
+    "constante",
+    "toujours positive"
+   ],
+   "note": "Si $a < 0$, elle est décroissante ; si $a = 0$, elle est constante."
+  },
+  {
+   "id": "fa-a-graph",
+   "chap": "faff",
+   "type": "propriete",
+   "titre": "Lire le coefficient directeur",
+   "question": "Sur la droite d'une fonction affine, quand $x$ augmente de $1$, $f(x)$ augmente de ...",
+   "reponse": "$a$",
+   "pieges": [
+    "$b$",
+    "$1$",
+    "$a + b$"
+   ],
+   "note": "Si $a$ est négatif, $f(x)$ diminue en réalité : $f(x + 1) = f(x) + a$."
   },
   {
    "id": "fg-plusieurs",
@@ -2928,13 +3302,110 @@ Savoirs.enregistrer({
    "type": "propriete",
    "titre": "Fonction linéaire : image de 1",
    "question": "Pour $f(x) = 5x$, l'image de 1 est ...",
-   "reponse": "5, qui est le coefficient de $x$",
+   "reponse": "$5$",
    "pieges": [
-    "1, car 1 est le nombre de départ",
-    "6, car on ajoute 5 au nombre 1",
-    "0, car 1 est un petit nombre à multiplier"
+    "$1$",
+    "$6$",
+    "$0$"
    ],
-   "note": "$f(1) = 5 \\times 1 = 5$ ; $f(2) = 10$."
+   "note": "C'est le coefficient de $x$ : $f(1) = 5 \\times 1 = 5$ ; $f(2) = 10$."
+  },
+  {
+   "id": "fl-def",
+   "chap": "flin",
+   "type": "definition",
+   "titre": "Fonction linéaire",
+   "question": "Une fonction linéaire est une fonction de la forme ...",
+   "reponse": "$f(x) = ax$",
+   "pieges": [
+    "$f(x) = ax + b$ (avec $b \\neq 0$)",
+    "$f(x) = ax^{2}$",
+    "$f(x) = a + x$"
+   ],
+   "note": "Elle traduit une situation de proportionnalité ; $a$ est le coefficient de proportionnalité.",
+   "morceaux": [
+    "f(x)",
+    "=",
+    "ax"
+   ],
+   "intrus": [
+    "+",
+    "b",
+    "x^{2}"
+   ]
+  },
+  {
+   "id": "fl-graph",
+   "chap": "flin",
+   "type": "propriete",
+   "titre": "Courbe d'une fonction linéaire",
+   "question": "La représentation graphique d'une fonction linéaire est ...",
+   "reponse": "une droite qui passe par l'origine du repère",
+   "pieges": [
+    "une droite qui ne passe jamais par l'origine",
+    "une courbe qui passe par l'origine du repère",
+    "une droite parallèle à l'axe des abscisses"
+   ]
+  },
+  {
+   "id": "fl-a",
+   "chap": "flin",
+   "type": "propriete",
+   "titre": "Coefficient a",
+   "question": "Pour la fonction linéaire $f(x) = ax$, le nombre $a$ est égal à ...",
+   "reponse": "$f(1)$",
+   "pieges": [
+    "$f(0)$",
+    "$f(x) + x$",
+    "$f(x) - x$"
+   ],
+   "note": "On a aussi $a = \\dfrac{f(x)}{x}$ pour tout $x \\neq 0$.",
+   "morceaux": [
+    "a",
+    "=",
+    "\\dfrac{f(x)}{x}"
+   ],
+   "intrus": [
+    "\\dfrac{x}{f(x)}",
+    "f(x) + x"
+   ],
+   "exemples": [
+    {
+     "donnees": "$f$ linéaire avec $f(4) = 10$",
+     "question": "Coefficient $a$ ?",
+     "reponse": 2.5,
+     "unite": "",
+     "correction": "$a = \\dfrac{10}{4} = 2{,}5$"
+    }
+   ]
+  },
+  {
+   "id": "fl-origine",
+   "chap": "flin",
+   "type": "propriete",
+   "titre": "Image de zéro",
+   "question": "Pour une fonction linéaire, l'image de 0 est ...",
+   "reponse": "$0$",
+   "pieges": [
+    "$a$",
+    "$1$",
+    "$-a$"
+   ],
+   "note": "$f(0) = a \\times 0 = 0$ : la droite passe par l'origine."
+  },
+  {
+   "id": "fl-propor",
+   "chap": "flin",
+   "type": "propriete",
+   "titre": "Linéaire et proportionnalité",
+   "question": "Une fonction linéaire $f(x) = ax$ traduit une situation de ...",
+   "reponse": "proportionnalité, de coefficient $a$",
+   "pieges": [
+    "proportionnalité, de coefficient $x$",
+    "proportionnalité, de coefficient $f(x)$",
+    "proportionnalité, de coefficient $a + x$"
+   ],
+   "note": "Le prix de $x$ kg de pommes à $2{,}50$ € le kilo est $f(x) = 2{,}5x$."
   },
   {
    "id": "fg-tarif",
@@ -2949,6 +3420,142 @@ Savoirs.enregistrer({
     "$f(x) = 13x$, où $x$ est le nombre de séances"
    ],
    "note": "Pour 4 séances : $3 \\times 4 + 10 = 22$ €."
+  },
+  {
+   "id": "sembl-def",
+   "chap": "thal",
+   "type": "definition",
+   "titre": "Triangles semblables",
+   "question": "Deux triangles sont semblables si ...",
+   "reponse": "leurs angles sont égaux deux à deux",
+   "pieges": [
+    "leurs aires sont égales deux à deux, quelle que soit leur forme",
+    "leurs périmètres sont égaux, quelles que soient leurs formes",
+    "leurs côtés sont égaux deux à deux, comme pour des triangles égaux"
+   ],
+   "note": "Leurs côtés homologues sont alors proportionnels."
+  },
+  {
+   "id": "sembl-2ang",
+   "chap": "thal",
+   "type": "propriete",
+   "titre": "Deux angles égaux suffisent",
+   "question": "Pour affirmer que deux triangles sont semblables, il suffit que ...",
+   "reponse": "deux angles de l'un soient égaux à deux angles de l'autre",
+   "pieges": [
+    "un angle de l'un soit égal à un angle de l'autre, c'est suffisant",
+    "un côté de l'un soit égal à un côté de l'autre, c'est suffisant",
+    "leurs périmètres soient égaux, quels que soient les angles"
+   ]
+  },
+  {
+   "id": "sembl-prop",
+   "chap": "thal",
+   "type": "propriete",
+   "titre": "Triangles semblables et proportionnalité",
+   "question": "Si deux triangles sont semblables, alors ...",
+   "reponse": "leurs côtés homologues sont proportionnels",
+   "pieges": [
+    "égales deux à deux, comme les angles de ces deux triangles",
+    "toujours dans un rapport égal à 2, quels que soient les triangles",
+    "proportionnelles aux angles homologues, mesurés en degrés par exemple"
+   ],
+   "note": "Les côtés homologues sont ceux qui sont opposés aux angles égaux : on range les côtés par ordre de grandeur."
+  },
+  {
+   "id": "sembl-k",
+   "chap": "thal",
+   "type": "propriete",
+   "titre": "Rapport de similitude",
+   "question": "Si deux triangles semblables ont un rapport $k$, alors les aires sont multipliées par ...",
+   "reponse": "$k^{2}$",
+   "pieges": [
+    "$k$",
+    "$k^{3}$",
+    "$2k$"
+   ]
+  },
+  {
+   "id": "sembl-thales",
+   "chap": "thal",
+   "type": "propriete",
+   "titre": "Thalès et triangles semblables",
+   "question": "Si $(MN) \\parallel (BC)$ avec $M \\in [AB]$ et $N \\in [AC]$ alors les triangles $AMN$ et $ABC$ sont ...",
+   "reponse": "semblables",
+   "pieges": [
+    "égaux",
+    "isocèles",
+    "rectangles"
+   ]
+  },
+  {
+   "id": "sembl-perim",
+   "chap": "thal",
+   "type": "regle",
+   "titre": "Triangles de même périmètre",
+   "question": "Deux triangles de même périmètre sont-ils semblables ?",
+   "reponse": "non, pas forcément",
+   "pieges": [
+    "oui toujours",
+    "oui s'ils sont isocèles",
+    "oui s'ils ont la même aire"
+   ]
+  },
+  {
+   "id": "sembl-rapport",
+   "chap": "thal",
+   "type": "definition",
+   "titre": "Rapport de similitude",
+   "question": "Si deux triangles sont semblables, le rapport $k$ est ...",
+   "reponse": "le quotient d'une longueur du second triangle par la longueur homologue du premier",
+   "pieges": [
+    "la différence entre une longueur du second triangle et la longueur homologue du premier",
+    "le quotient du périmètre du premier par l'aire du second triangle",
+    "le produit de deux longueurs homologues des deux triangles étudiés"
+   ],
+   "note": "Exemple : $AB = 4$ et $DE = 6$, donc $k = \\dfrac{6}{4} = 1{,}5$."
+  },
+  {
+   "id": "sembl-homolog",
+   "chap": "thal",
+   "type": "propriete",
+   "titre": "Sommets et côtés homologues",
+   "question": "Dans deux triangles semblables, le plus grand côté de l'un correspond ...",
+   "reponse": "au plus grand côté de l'autre, opposé au plus grand angle",
+   "pieges": [
+    "au plus petit côté de l'autre, opposé au plus grand angle",
+    "au côté de même nom, comme $AB$ et $DE$ sans condition",
+    "au côté qui a la même longueur dans l'autre triangle"
+   ],
+   "note": "Les côtés homologues sont opposés aux angles égaux."
+  },
+  {
+   "id": "sembl-grandeurs",
+   "chap": "thal",
+   "type": "propriete",
+   "titre": "Ce qui change et ce qui ne change pas",
+   "question": "Dans une réduction ou un agrandissement, ce qui ne change pas, ce sont ...",
+   "reponse": "les angles",
+   "pieges": [
+    "les longueurs",
+    "les aires",
+    "les périmètres"
+   ],
+   "note": "Longueurs et périmètres sont multipliés par $k$, les aires par $k^{2}$."
+  },
+  {
+   "id": "sembl-k-perim",
+   "chap": "thal",
+   "type": "propriete",
+   "titre": "Périmètres et rapport",
+   "question": "Si deux triangles semblables ont un rapport $k$, leurs périmètres sont dans le rapport ...",
+   "reponse": "$k$ (le périmètre est multiplié par $k$)",
+   "pieges": [
+    "$k^{2}$ (comme les aires de ces triangles)",
+    "$k^{3}$ (comme les volumes de ces solides)",
+    "$2k$ (le double du rapport des longueurs)"
+   ],
+   "note": "Un triangle de périmètre $12$ cm agrandi avec $k = 3$ a un périmètre de $36$ cm."
   },
   {
    "id": "thales",
@@ -3563,318 +4170,6 @@ Savoirs.enregistrer({
    "note": "Le membre de gauche est $3x + 2$."
   },
   {
-   "id": "st-etendue",
-   "chap": "stat",
-   "type": "definition",
-   "titre": "Étendue",
-   "question": "L'étendue d'une série est ...",
-   "reponse": "la différence entre la plus grande et la plus petite valeur",
-   "pieges": [
-    "la moyenne entre la plus grande et la plus petite valeur",
-    "la valeur du milieu de la série rangée",
-    "le nombre de valeurs de la série"
-   ],
-   "exemples": [
-    {
-     "donnees": "Série : 3 ; 8 ; 12 ; 15",
-     "question": "Étendue ?",
-     "reponse": 12,
-     "unite": "",
-     "correction": "$15 - 3 = 12$"
-    }
-   ]
-  },
-  {
-   "id": "st-quartiles",
-   "chap": "stat",
-   "type": "definition",
-   "titre": "Quartiles",
-   "question": "Le premier quartile $Q_{1}$ est ...",
-   "reponse": "la plus petite valeur telle qu'au moins $25\\,\\%$ des valeurs lui soient inférieures ou égales",
-   "pieges": [
-    "la valeur du milieu de la série rangée, qui la partage en deux groupes",
-    "la moyenne de toutes les valeurs inférieures à la médiane",
-    "la plus petite valeur telle qu'au moins $50\\,\\%$ des valeurs lui soient inférieures ou égales"
-   ],
-   "note": "Rang $\\dfrac{N}{4}$ arrondi au supérieur. $Q_{3}$ : rang $\\dfrac{3N}{4}$ arrondi au supérieur."
-  },
-  {
-   "id": "st-pondere",
-   "chap": "stat",
-   "type": "formule",
-   "titre": "Moyenne pondérée",
-   "question": "Moyenne d'une série avec effectifs ?",
-   "reponse": "$\\dfrac{\\text{somme des (valeur} \\times \\text{effectif)}}{\\text{effectif total}}$",
-   "pieges": [
-    "$\\dfrac{\\text{somme des valeurs}}{\\text{nombre de valeurs différentes}}$",
-    "$\\dfrac{\\text{valeur max} + \\text{valeur min}}{2}$",
-    "$\\text{valeur ayant le plus grand effectif}$"
-   ],
-   "exemples": [
-    {
-     "donnees": "Notes : 10 (effectif 2) ; 14 (effectif 3)",
-     "question": "Moyenne ?",
-     "reponse": 12.4,
-     "unite": "",
-     "correction": "$\\dfrac{10 \\times 2 + 14 \\times 3}{5} = \\dfrac{62}{5} = 12{,}4$"
-    }
-   ]
-  },
-  {
-   "id": "st-classes",
-   "chap": "stat",
-   "type": "regle",
-   "titre": "Moyenne avec des classes",
-   "question": "Pour estimer une moyenne avec des classes, on utilise ...",
-   "reponse": "le centre de chaque classe",
-   "pieges": [
-    "l'extrémité gauche de chaque classe",
-    "l'extrémité droite de chaque classe",
-    "la classe de plus grand effectif"
-   ]
-  },
-  {
-   "id": "st-ranger",
-   "chap": "stat",
-   "type": "regle",
-   "titre": "Ranger avant tout",
-   "question": "Pour trouver la médiane ou les quartiles, il faut d'abord ...",
-   "reponse": "ranger les valeurs dans l'ordre croissant",
-   "pieges": [
-    "calculer la moyenne",
-    "calculer l'étendue",
-    "regrouper les valeurs en classes"
-   ]
-  },
-  {
-   "id": "puiss-prod2",
-   "chap": "puis",
-   "type": "formule",
-   "titre": "Puissance d'un produit",
-   "question": "$(a \\times b)^{n}$ vaut ...",
-   "reponse": "$a^{n} \\times b^{n}$",
-   "pieges": [
-    "$a^{n} + b^{n}$",
-    "$a \\times b^{n}$",
-    "$(a \\times b)^{2n}$"
-   ],
-   "exemples": [
-    {
-     "donnees": "Calculer $(2 \\times 3)^{2}$",
-     "question": "Résultat ?",
-     "reponse": 36,
-     "unite": "",
-     "correction": "$2^{2} \\times 3^{2} = 4 \\times 9 = 36$"
-    }
-   ],
-   "morceaux": [
-    "(",
-    "a",
-    "\\times",
-    "b",
-    ")^{n}",
-    "=",
-    "a^{n}",
-    "\\times",
-    "b^{n}"
-   ],
-   "intrus": [
-    "+",
-    "2n"
-   ]
-  },
-  {
-   "id": "sci-ex",
-   "chap": "puis",
-   "type": "definition",
-   "titre": "Reconnaître une notation scientifique",
-   "question": "Laquelle de ces écritures est en notation scientifique ?",
-   "reponse": "$4{,}5 \\times 10^{-4}$",
-   "pieges": [
-    "$45 \\times 10^{-5}$",
-    "$0{,}45 \\times 10^{-3}$",
-    "$4{,}5 \\times 10^{4,5}$"
-   ]
-  },
-  {
-   "id": "fl-def",
-   "chap": "flin",
-   "type": "definition",
-   "titre": "Fonction linéaire",
-   "question": "Une fonction linéaire est une fonction de la forme ...",
-   "reponse": "$f(x) = ax$",
-   "pieges": [
-    "$f(x) = ax + b$ (avec $b \\neq 0$)",
-    "$f(x) = x^{2}$",
-    "$f(x) = a + x$"
-   ],
-   "note": "Elle traduit une situation de proportionnalité ; $a$ est le coefficient de proportionnalité.",
-   "morceaux": [
-    "f(x)",
-    "=",
-    "ax"
-   ],
-   "intrus": [
-    "+",
-    "b",
-    "x^{2}"
-   ]
-  },
-  {
-   "id": "fl-graph",
-   "chap": "flin",
-   "type": "propriete",
-   "titre": "Courbe d'une fonction linéaire",
-   "question": "La représentation graphique d'une fonction linéaire est ...",
-   "reponse": "une droite qui passe par l'origine du repère",
-   "pieges": [
-    "une droite qui ne passe jamais par l'origine",
-    "une parabole",
-    "une demi-droite horizontale"
-   ]
-  },
-  {
-   "id": "fl-a",
-   "chap": "flin",
-   "type": "propriete",
-   "titre": "Coefficient a",
-   "question": "Pour la fonction linéaire $f(x) = ax$, le nombre $a$ est égal à ...",
-   "reponse": "$f(1)$",
-   "pieges": [
-    "$f(0)$",
-    "$f(x) + x$",
-    "$f(x) - x$"
-   ],
-   "exemples": [
-    {
-     "donnees": "$f$ linéaire avec $f(4) = 10$",
-     "question": "Coefficient $a$ ?",
-     "reponse": 2.5,
-     "unite": "",
-     "correction": "$a = \\dfrac{10}{4} = 2{,}5$"
-    }
-   ],
-   "morceaux": [
-    "a",
-    "=",
-    "\\dfrac{f(x)}{x}"
-   ],
-   "intrus": [
-    "\\dfrac{x}{f(x)}",
-    "f(x) + x"
-   ],
-   "note": "On a aussi $a = \\dfrac{f(x)}{x}$ pour tout $x \\neq 0$."
-  },
-  {
-   "id": "fl-origine",
-   "chap": "flin",
-   "type": "propriete",
-   "titre": "Image de zéro",
-   "question": "Pour une fonction linéaire, l'image de 0 est ...",
-   "reponse": "0 (c'est $f(0) = 0$)",
-   "pieges": [
-    "$a$",
-    "1",
-    "on ne peut pas le savoir"
-   ]
-  },
-  {
-   "id": "fa-def",
-   "chap": "faff",
-   "type": "definition",
-   "titre": "Fonction affine",
-   "question": "Une fonction affine est de la forme ...",
-   "reponse": "$f(x) = ax + b$",
-   "pieges": [
-    "$f(x) = ax$ uniquement",
-    "$f(x) = a x^{2} + b$",
-    "$f(x) = a + bx^{2}$"
-   ],
-   "note": "Cas particulier : $b = 0$, fonction linéaire.",
-   "morceaux": [
-    "f(x)",
-    "=",
-    "ax",
-    "+",
-    "b"
-   ],
-   "intrus": [
-    "ax^{2}",
-    "\\times"
-   ]
-  },
-  {
-   "id": "fa-ab",
-   "chap": "faff",
-   "type": "propriete",
-   "titre": "Rôle de a et b",
-   "question": "Dans $f(x) = ax + b$ : $a$ est ... et $b$ est ...",
-   "reponse": "le coefficient directeur (pente) et l'ordonnée à l'origine",
-   "pieges": [
-    "l'ordonnée à l'origine et le coefficient directeur",
-    "l'image de 1 et l'image de 0",
-    "l'abscisse et l'ordonnée"
-   ],
-   "note": "On a $f(0) = b$."
-  },
-  {
-   "id": "fa-graph",
-   "chap": "faff",
-   "type": "propriete",
-   "titre": "Courbe d'une fonction affine",
-   "question": "La représentation graphique d'une fonction affine est ...",
-   "reponse": "une droite qui passe par $(0 ; b)$",
-   "pieges": [
-    "toujours une droite par l'origine",
-    "une courbe quelconque",
-    "une droite verticale"
-   ]
-  },
-  {
-   "id": "fa-calc",
-   "chap": "faff",
-   "type": "formule",
-   "titre": "Calculer le coefficient directeur",
-   "question": "Coefficient directeur $a$ d'une droite passant par $(x_{1} ; f(x_{1}))$ et $(x_{2} ; f(x_{2}))$ ?",
-   "reponse": "$a = \\dfrac{f(x_{2}) - f(x_{1})}{x_{2} - x_{1}}$",
-   "pieges": [
-    "$a = \\dfrac{x_{2} - x_{1}}{f(x_{2}) - f(x_{1})}$",
-    "$a = f(x_{2}) - f(x_{1})$",
-    "$a = \\dfrac{f(x_{1}) + f(x_{2})}{2}$"
-   ],
-   "morceaux": [
-    "a",
-    "=",
-    "\\dfrac{f(x_{2}) - f(x_{1})}{x_{2} - x_{1}}"
-   ],
-   "intrus": [
-    "\\dfrac{x_{2} - x_{1}}{f(x_{2}) - f(x_{1})}",
-    "+"
-   ],
-   "exemples": [
-    {
-     "donnees": "$f(1) = 5$ et $f(3) = 11$",
-     "question": "Coefficient directeur $a$ ?",
-     "reponse": 3,
-     "unite": "",
-     "correction": "$a = \\dfrac{11 - 5}{3 - 1} = 3$"
-    }
-   ]
-  },
-  {
-   "id": "fa-prop",
-   "chap": "faff",
-   "type": "regle",
-   "titre": "Affine et proportionnelle",
-   "question": "Une fonction affine représente une situation de proportionnalité ...",
-   "reponse": "seulement si $b = 0$",
-   "pieges": [
-    "toujours",
-    "jamais",
-    "seulement si $a = 1$"
-   ]
-  },
-  {
    "id": "trig-cos",
    "chap": "trig",
    "type": "formule",
@@ -3886,6 +4181,7 @@ Savoirs.enregistrer({
     "$\\dfrac{\\text{côté opposé}}{\\text{côté adjacent}}$",
     "$\\dfrac{\\text{hypoténuse}}{\\text{côté adjacent}}$"
    ],
+   "note": "CAH : Cosinus = Adjacent / Hypoténuse.",
    "morceaux": [
     "\\cos(\\widehat{A})",
     "=",
@@ -3903,8 +4199,7 @@ Savoirs.enregistrer({
      "unite": "",
      "correction": "$\\cos(\\widehat{B}) = \\dfrac{AB}{BC} = \\dfrac{4}{5} = 0{,}8$"
     }
-   ],
-   "note": "CAH : Cosinus = Adjacent / Hypoténuse."
+   ]
   },
   {
    "id": "trig-sin",
@@ -3918,6 +4213,7 @@ Savoirs.enregistrer({
     "$\\dfrac{\\text{côté opposé}}{\\text{côté adjacent}}$",
     "$\\dfrac{\\text{hypoténuse}}{\\text{côté opposé}}$"
    ],
+   "note": "SOH : Sinus = Opposé / Hypoténuse.",
    "morceaux": [
     "\\sin(\\widehat{A})",
     "=",
@@ -3926,8 +4222,7 @@ Savoirs.enregistrer({
    "intrus": [
     "\\dfrac{\\text{adjacent}}{\\text{hypoténuse}}",
     "\\dfrac{\\text{opposé}}{\\text{adjacent}}"
-   ],
-   "note": "SOH : Sinus = Opposé / Hypoténuse."
+   ]
   },
   {
    "id": "trig-tan",
@@ -3941,6 +4236,7 @@ Savoirs.enregistrer({
     "$\\dfrac{\\text{côté opposé}}{\\text{hypoténuse}}$",
     "$\\dfrac{\\text{côté adjacent}}{\\text{hypoténuse}}$"
    ],
+   "note": "TOA : Tangente = Opposé / Adjacent.",
    "morceaux": [
     "\\tan(\\widehat{A})",
     "=",
@@ -3958,8 +4254,7 @@ Savoirs.enregistrer({
      "unite": "",
      "correction": "$\\dfrac{3}{4} = 0{,}75$"
     }
-   ],
-   "note": "TOA : Tangente = Opposé / Adjacent."
+   ]
   },
   {
    "id": "trig-rect",
@@ -3971,7 +4266,7 @@ Savoirs.enregistrer({
    "pieges": [
     "dans n'importe quel triangle",
     "dans un triangle isocèle seulement",
-    "uniquement avec des angles de 30°, 45° et 60°"
+    "avec des angles de $30^{\\circ}$, $45^{\\circ}$ et $60^{\\circ}$ seulement"
    ]
   },
   {
@@ -3986,6 +4281,7 @@ Savoirs.enregistrer({
     "la touche $\\sqrt{\\ }$ de la calculatrice",
     "la division par 180"
    ],
+   "note": "On l'appelle aussi arccos.",
    "exemples": [
     {
      "donnees": "$\\cos(\\widehat{B}) = 0{,}8$ (arrondir au dixième de degré)",
@@ -3994,8 +4290,7 @@ Savoirs.enregistrer({
      "unite": "°",
      "correction": "$\\cos^{-1}(0{,}8) \\approx 36{,}9^{\\circ}$"
     }
-   ],
-   "note": "On l'appelle aussi arccos."
+   ]
   },
   {
    "id": "trig-mode",
@@ -4016,13 +4311,41 @@ Savoirs.enregistrer({
    "type": "regle",
    "titre": "Choisir la bonne formule",
    "question": "Pour choisir cosinus, sinus ou tangente, on repère ...",
-   "reponse": "l'angle connu (ou cherché) et les deux côtés concernés",
+   "reponse": "l'angle utilisé et les deux côtés concernés",
    "pieges": [
-    "les trois angles du triangle",
-    "le plus grand côté seulement, sans regarder l'angle",
+    "les trois angles du triangle rectangle",
+    "le plus grand côté seulement, sans l'angle",
     "l'aire du triangle et son périmètre"
    ],
    "note": "Les côtés sont nommés adjacent, opposé et hypoténuse."
+  },
+  {
+   "id": "trig-hyp",
+   "chap": "trig",
+   "type": "definition",
+   "titre": "Hypoténuse, côté adjacent, côté opposé",
+   "question": "Dans le triangle $ABC$ rectangle en $A$, le côté adjacent à l'angle $\\widehat{ABC}$ est ...",
+   "reponse": "$[AB]$",
+   "pieges": [
+    "$[AC]$",
+    "$[BC]$",
+    "$[BA]$ et $[BC]$"
+   ],
+   "note": "$[BC]$ est l'hypoténuse (en face de l'angle droit) et $[AC]$ est le côté opposé à $\\widehat{ABC}$."
+  },
+  {
+   "id": "trig-borne",
+   "chap": "trig",
+   "type": "propriete",
+   "titre": "Valeurs du cosinus et du sinus",
+   "question": "Pour un angle aigu d'un triangle rectangle, le cosinus est un nombre ...",
+   "reponse": "compris entre $0$ et $1$",
+   "pieges": [
+    "compris entre $0$ et $90$",
+    "supérieur à $1$",
+    "compris entre $1$ et $2$"
+   ],
+   "note": "Le côté adjacent est plus court que l'hypoténuse ; la tangente, elle, peut dépasser $1$."
   },
   {
    "id": "sph-aire",
@@ -4095,19 +4418,6 @@ Savoirs.enregistrer({
    ]
   },
   {
-   "id": "sph-section",
-   "chap": "esp",
-   "type": "propriete",
-   "titre": "Section d'une sphère par un plan",
-   "question": "La section d'une sphère de rayon $R$ par un plan situé à la distance $d$ du centre est ...",
-   "reponse": "un cercle de rayon $r$ tel que $R^{2} = d^{2} + r^{2}$",
-   "pieges": [
-    "un disque de rayon $R$, quelle que soit la distance $d$",
-    "un point, sauf si $d = 0$",
-    "un cercle de rayon $R + d$"
-   ]
-  },
-  {
    "id": "esp-unites",
    "chap": "pv",
    "type": "regle",
@@ -4121,57 +4431,74 @@ Savoirs.enregistrer({
    ]
   },
   {
-   "id": "sembl-prop",
-   "chap": "sembl",
-   "type": "propriete",
-   "titre": "Triangles semblables et proportionnalité",
-   "question": "Si deux triangles sont semblables, alors ...",
-   "reponse": "leurs côtés homologues sont proportionnels",
+   "id": "pc-cm",
+   "chap": "pourc",
+   "type": "definition",
+   "titre": "Coefficient multiplicateur",
+   "question": "Augmenter une valeur de $t\\,\\%$ revient à la multiplier par ...",
+   "reponse": "$1 + \\dfrac{t}{100}$",
    "pieges": [
-    "leurs côtés sont égaux",
-    "leurs aires sont égales",
-    "leurs périmètres sont égaux"
+    "$\\dfrac{t}{100}$",
+    "$1 - \\dfrac{t}{100}$",
+    "$t + 100$"
    ],
-   "note": "Les côtés homologues sont ceux qui sont opposés aux angles égaux : on range les côtés par ordre de grandeur."
+   "note": "Ce nombre s'appelle le coefficient multiplicateur : $+ 15\\,\\%$ donne $1{,}15$ ; $- 15\\,\\%$ donne $0{,}85$."
   },
   {
-   "id": "sembl-k",
-   "chap": "sembl",
+   "id": "pc-cm-lire",
+   "chap": "pourc",
+   "type": "methode",
+   "titre": "Lire un coefficient multiplicateur",
+   "question": "Multiplier un prix par $0{,}92$ revient à ...",
+   "reponse": "le baisser de $8\\,\\%$",
+   "pieges": [
+    "le baisser de $92\\,\\%$",
+    "l'augmenter de $8\\,\\%$",
+    "le baisser de $0{,}08\\,\\%$"
+   ],
+   "note": "$0{,}92 = 1 - 0{,}08$ : une baisse de $8\\,\\%$. $1{,}3 = 1 + 0{,}3$ : une hausse de $30\\,\\%$."
+  },
+  {
+   "id": "pc-initial",
+   "chap": "pourc",
+   "type": "methode",
+   "titre": "Retrouver la valeur de départ",
+   "question": "Après une hausse de $20\\,\\%$, un prix vaut $60$ €. Pour retrouver le prix de départ, on calcule ...",
+   "reponse": "$60 \\div 1{,}2$",
+   "pieges": [
+    "$60 \\times 0{,}8$",
+    "$60 - 20$",
+    "$60 \\times 1{,}2$"
+   ],
+   "note": "$60 \\div 1{,}2 = 50$ €. Enlever $20\\,\\%$ de $60$ ne donne pas le prix de départ."
+  },
+  {
+   "id": "pc-global",
+   "chap": "pourc",
    "type": "propriete",
-   "titre": "Rapport de similitude",
-   "question": "Si deux triangles semblables ont un rapport $k$, alors les aires sont multipliées par ...",
-   "reponse": "$k^{2}$",
+   "titre": "Évolutions successives",
+   "question": "Une hausse de $10\\,\\%$ suivie d'une hausse de $20\\,\\%$ correspond à une multiplication par ...",
+   "reponse": "$1{,}1 \\times 1{,}2 = 1{,}32$",
    "pieges": [
-    "$k$",
-    "$k^{3}$",
-    "$2k$"
-   ]
+    "$1{,}1 + 1{,}2 = 2{,}3$",
+    "$1 + 0{,}30 = 1{,}3$",
+    "$0{,}1 \\times 0{,}2 = 0{,}02$"
+   ],
+   "note": "On multiplie les coefficients : la hausse globale est de $32\\,\\%$, pas de $30\\,\\%$."
   },
   {
-   "id": "sembl-thales",
-   "chap": "sembl",
-   "type": "propriete",
-   "titre": "Thalès et triangles semblables",
-   "question": "Si $(MN) \\parallel (BC)$ avec $M \\in [AB]$ et $N \\in [AC]$ alors les triangles $AMN$ et $ABC$ sont ...",
-   "reponse": "semblables",
+   "id": "pc-taux",
+   "chap": "pourc",
+   "type": "formule",
+   "titre": "Taux d'évolution",
+   "question": "Le taux d'évolution d'une valeur qui passe de $V_{\\text{départ}}$ à $V_{\\text{arrivée}}$ se calcule avec ...",
+   "reponse": "$\\dfrac{\\text{arrivée} - \\text{départ}}{\\text{départ}}$",
    "pieges": [
-    "égaux",
-    "isocèles",
-    "rectangles"
-   ]
-  },
-  {
-   "id": "sembl-perim",
-   "chap": "sembl",
-   "type": "regle",
-   "titre": "Triangles de même périmètre",
-   "question": "Deux triangles de même périmètre sont-ils semblables ?",
-   "reponse": "non, pas forcément",
-   "pieges": [
-    "oui toujours",
-    "oui s'ils sont isocèles",
-    "oui s'ils ont la même aire"
-   ]
+    "$\\dfrac{\\text{arrivée} - \\text{départ}}{\\text{arrivée}}$",
+    "$\\text{arrivée} - \\text{départ}$",
+    "$\\dfrac{\\text{arrivée}}{\\text{départ}}$"
+   ],
+   "note": "Un prix passe de $40$ € à $46$ € : $\\dfrac{46 - 40}{40} = 0{,}15$, soit une hausse de $15\\,\\%$."
   }
  ],
  "outils": [
@@ -4434,9 +4761,9 @@ Savoirs.enregistrer({
    "bon": "mediane",
    "explication": "Effectif impair : la médiane est la valeur centrale (la 6e).",
    "autres": [
-    "st-quartiles",
     "st-etendue",
-    "moyenne"
+    "moyenne",
+    "st-pondere"
    ]
   },
   {
@@ -4830,19 +5157,7 @@ Savoirs.enregistrer({
    "autres": [
     "mediane",
     "moyenne",
-    "st-quartiles"
-   ]
-  },
-  {
-   "id": "o56",
-   "chap": "stat",
-   "enonce": "Dans une série de 8 valeurs rangées, quelle valeur est le premier quartile $Q_{1}$ ?",
-   "bon": "st-quartiles",
-   "explication": "Rang $\\dfrac{8}{4} = 2$ : c'est la 2e valeur.",
-   "autres": [
-    "mediane",
-    "st-etendue",
-    "moyenne"
+    "st-pondere"
    ]
   },
   {
@@ -4852,9 +5167,9 @@ Savoirs.enregistrer({
    "bon": "mediane",
    "explication": "Effectif pair : moyenne de la 4e et de la 5e valeur.",
    "autres": [
-    "st-quartiles",
     "moyenne",
-    "st-etendue"
+    "st-etendue",
+    "st-pondere"
    ]
   },
   {
@@ -5025,7 +5340,7 @@ Savoirs.enregistrer({
   },
   {
    "id": "o73",
-   "chap": "sembl",
+   "chap": "thal",
    "enonce": "Le triangle $ABC$ a deux angles de $50^{\\circ}$ et $60^{\\circ}$, le triangle $DEF$ en a deux de $60^{\\circ}$ et $70^{\\circ}$. Sont-ils semblables ?",
    "bon": "sembl-2ang",
    "explication": "Troisième angle de $ABC$ : $70^{\\circ}$ ; de $DEF$ : $50^{\\circ}$. Mêmes angles : semblables.",
@@ -5037,7 +5352,7 @@ Savoirs.enregistrer({
   },
   {
    "id": "o74",
-   "chap": "sembl",
+   "chap": "thal",
    "enonce": "Deux triangles sont semblables. Le premier a des côtés de 3, 4 et 5 cm ; le plus petit côté du second mesure 9 cm. Quel est son plus grand côté ?",
    "bon": "sembl-prop",
    "explication": "Côtés homologues proportionnels : $k = \\dfrac{9}{3} = 3$ et $5 \\times 3 = 15$ cm.",
@@ -5117,6 +5432,42 @@ Savoirs.enregistrer({
     "aire-disque",
     "aire-rect",
     "vitesse"
+   ]
+  },
+  {
+   "id": "o-stat-histo",
+   "chap": "stat",
+   "enonce": "Les tailles des élèves d'un collège sont regroupées en classes de 10 cm. Quel graphique construire pour les représenter ?",
+   "bon": "st-histo",
+   "explication": "Pour des classes, on construit un histogramme : un rectangle par classe, de hauteur proportionnelle à l'effectif.",
+   "autres": [
+    "st-classes",
+    "frequence",
+    "mediane"
+   ]
+  },
+  {
+   "id": "o-homo-rot",
+   "chap": "homo",
+   "enonce": "On fait tourner un triangle d'un quart de tour autour du point $O$ : chaque point reste à la même distance de $O$. Quelle transformation reconnaît-on ?",
+   "bon": "homo-rotation",
+   "explication": "C'est la rotation de centre $O$ et d'angle $90^{\\circ}$.",
+   "autres": [
+    "homo-def",
+    "homo-moins1",
+    "homo-par"
+   ]
+  },
+  {
+   "id": "o-esp-sphere",
+   "chap": "esp",
+   "enonce": "Comment indiquer la position d'une ville sur le globe terrestre ?",
+   "bon": "sph-reperage",
+   "explication": "Par sa latitude (Nord ou Sud) et sa longitude (Est ou Ouest).",
+   "autres": [
+    "vol-reperage",
+    "sph-grand-cercle",
+    "sph-section"
    ]
   }
  ]

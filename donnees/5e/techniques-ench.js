@@ -199,7 +199,8 @@
       })()
     },
     {
-      id: "ench-div-decimal", chap: "ench", titre: "Division par un décimal", format: "nombre",
+      // Rattachée au chapitre 9 (rat1) par la mise à jour de novembre 2026, comme le savoir ench-div-dec
+      id: "ench-div-decimal", chap: "rat1", titre: "Division par un décimal", format: "nombre",
       niveaux: (function () {
         function ex(d, q) {
           const a = net(q * d), k = Math.pow(10, decimales(d)), A = net(a * k), D = net(d * k);

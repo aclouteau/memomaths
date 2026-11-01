@@ -4,7 +4,7 @@
 // Les appareils voient alors que ce fichier a changé, téléchargent la nouvelle version
 // et l'utilisent à la prochaine ouverture.
 // Tout nouveau fichier nécessaire doit être ajouté à la liste FICHIERS.
-const VERSION = "memomaths-v49";
+const VERSION = "memomaths-v53";
 
 const POLICES_KATEX = [
   "AMS-Regular", "Caligraphic-Bold", "Caligraphic-Regular", "Fraktur-Bold", "Fraktur-Regular",
@@ -49,6 +49,14 @@ const FICHIERS = [
   "donnees/4e/techniques-prop.js",
   "donnees/4e/techniques-rot.js",
   "donnees/4e/techniques-frac2.js",
+  "donnees/4e/techniques-sembl.js",
+  "donnees/4e/techniques-puis.js",
+  "donnees/4e/techniques-vol.js",
+  "donnees/4e/techniques-lit.js",
+  "donnees/4e/techniques-equ.js",
+  "donnees/4e/techniques-gc.js",
+  "donnees/4e/techniques-sci.js",
+  "donnees/4e/techniques-proba.js",
   "donnees/3e/savoirs.js",
   "donnees/3e/techniques-proba.js",
   "donnees/3e/techniques-rf.js",
@@ -61,6 +69,14 @@ const FICHIERS = [
   "donnees/3e/techniques-thal.js",
   "donnees/3e/techniques-equ.js",
   "donnees/3e/techniques-pv.js",
+  "donnees/3e/techniques-stat.js",
+  "donnees/3e/techniques-puis.js",
+  "donnees/3e/techniques-flin.js",
+  "donnees/3e/techniques-faff.js",
+  "donnees/3e/techniques-trig.js",
+  "donnees/3e/techniques-esp.js",
+  "donnees/3e/techniques-sembl.js",
+  "donnees/3e/techniques-pourc.js",
   "donnees/5e/techniques-rel1.js",
   "donnees/5e/techniques-ench.js",
   "donnees/5e/techniques-tri.js",
@@ -71,6 +87,15 @@ const FICHIERS = [
   "donnees/5e/techniques-div.js",
   "donnees/5e/techniques-rat1.js",
   "donnees/5e/techniques-ang.js",
+  "donnees/5e/techniques-rel2.js",
+  "donnees/5e/techniques-sol.js",
+  "donnees/5e/techniques-rat2.js",
+  "donnees/5e/techniques-prop.js",
+  "donnees/5e/techniques-equ.js",
+  "donnees/5e/techniques-para.js",
+  "donnees/5e/techniques-don.js",
+  "donnees/5e/techniques-fonc.js",
+  "donnees/5e/techniques-proba.js",
   "js/app.js",
   "icones/icone-180.png",
   "icones/icone-192.png",

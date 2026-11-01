@@ -394,6 +394,29 @@ h1, h2 { line-height: 1.2; }
 .fig-cote.petit { font-size: 12.5px; }
 .fig-inconnue { fill: var(--primaire); font-size: 17px; font-weight: 800; }
 .fig-nom { fill: var(--texte); font-size: 15px; font-weight: 700; font-style: italic; }
+/* Tableau de données sous l'énoncé (statistiques, proportionnalité) */
+.tableau-donnees { overflow-x: auto; text-align: center; font-size: 1.05rem; padding: .2rem 0; }
+/* Repère, diagrammes, roue, balance, flèche d'évolution */
+.fig-grille { stroke: var(--bord); stroke-width: 1; }
+.fig-axe { stroke: var(--texte); stroke-width: 1.8; }
+.fig-graduation { fill: var(--texte-doux); font-size: 12px; font-weight: 700; }
+.schema text.fig-gauche { text-anchor: end; }
+.fig-courbe { stroke-width: 3; stroke-linecap: round; }
+.fig-courbe-0 { stroke: var(--juste); }
+.fig-courbe-1 { stroke: var(--fig-b); }
+.fig-courbe-2 { stroke: #cc79a7; stroke-dasharray: 9 5; }
+.fig-nom-droite { font-style: normal; }
+.fig-barre { fill: var(--juste); fill-opacity: .35; stroke-width: 1.5; }
+.fig-part { stroke-width: 1.5; }
+.fig-part-0 { fill: var(--juste); fill-opacity: .3; }
+.fig-part-1 { fill: var(--fig-b); fill-opacity: .35; }
+.fig-part-2 { fill: #cc79a7; fill-opacity: .3; }
+.fig-part-3 { fill: var(--surface); }
+.fig-fleche-roue { fill: var(--texte); }
+.fig-boite-x { fill: var(--primaire); fill-opacity: .15; }
+.fig-epais { stroke: var(--texte); stroke-width: 4; stroke-linecap: round; }
+.fig-fleche { fill: none; stroke-width: 2.5; }
+.fig-valeur { fill: var(--texte); }
 
 /* Figures à toucher : chaque angle possible est une zone (pointillés), la bonne en bleu, l'erreur hachurée */
 .figure-toucher { overflow: hidden; touch-action: manipulation; }
@@ -409,6 +432,14 @@ h1, h2 { line-height: 1.2; }
 .zone-angle.faux .zone-arc { stroke: var(--faux); stroke-width: 3; stroke-dasharray: none; }
 .hachure { stroke: var(--faux); stroke-width: 2.5; }
 .figure-toucher.fini .zone-angle { cursor: default; }
+/* Côté ou droite à toucher : une large bande invisible, et le trait se colore (bleu juste, vermillon en tirets faux) */
+.zone-seg .zone-cible { fill: none; stroke: transparent; stroke-width: 28; stroke-linecap: round; }
+.zone-seg .zone-arc { stroke: transparent; stroke-width: 6; stroke-dasharray: none; stroke-linecap: round; }
+.zone-seg:hover .zone-arc, .zone-seg:focus-visible .zone-arc { stroke: var(--juste); stroke-opacity: .45; stroke-width: 6; }
+.zone-seg.juste .zone-arc { stroke: var(--juste); stroke-opacity: 1; stroke-width: 6; }
+.zone-seg.faux .zone-arc { stroke: var(--faux); stroke-opacity: 1; stroke-width: 6; stroke-dasharray: 7 5; }
+.figure-toucher.fini .zone-seg:hover .zone-arc { stroke-opacity: 1; }
+.figure-toucher.fini .zone-seg:not(.juste):not(.faux) .zone-arc { stroke: transparent; }
 .aide-toucher { margin: .4rem 0 0; text-align: center; font-weight: 700; color: var(--texte-doux); }
 
 /* Calculatrice (seulement sur certains exercices) */
