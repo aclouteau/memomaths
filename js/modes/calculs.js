@@ -263,7 +263,21 @@
   const decimales = (x) => { const t = String(net(x)); return t.includes(".") ? t.split(".")[1].length : 0; };
   // Cas faciles (sans nombre négatif, déjà simplifié…) : 1 fois sur 8 au niveau 1, 1 sur 20 au niveau 2, jamais au niveau 3
   const PART_FACILE = { 1: 1 / 8, 2: 1 / 20, 3: 0 };
-  const facile = (niveau) => Math.random() < PART_FACILE[niveau];
+  // Pendant le tirage d'un exercice (voir unTirage), le cas facile n'est tiré qu'une fois par niveau : un générateur
+  // qui appelle facile() dans une boucle de rejet garde alors la bonne proportion. Au-delà de 200 appels dans le même
+  // tirage, on retire au hasard, pour qu'une boucle ne puisse jamais tourner sans fin.
+  let tirage = null;
+  const facile = (niveau) => {
+    if (!tirage || ++tirage.appels > 200) return Math.random() < PART_FACILE[niveau];
+    if (!(niveau in tirage.cas)) tirage.cas[niveau] = Math.random() < PART_FACILE[niveau];
+    return tirage.cas[niveau];
+  };
+  // Exécute un générateur d'exercice comme un seul tirage (appelé par Savoirs.enregistrerTechniques)
+  const unTirage = (f) => {
+    const avant = tirage;
+    tirage = { cas: {}, appels: 0 };
+    try { return f(); } finally { tirage = avant; }
+  };
   const pgcd = (a, b) => { a = Math.abs(a); b = Math.abs(b); while (b) { const r = a % b; a = b; b = r; } return a; };
   const ppcm = (a, b) => (a / pgcd(a, b)) * b;
   // Fraction en LaTeX, le signe devant : F(-3, 4) = -\dfrac{3}{4}
@@ -344,7 +358,7 @@
   Savoirs.calculsOutils = {
     tableau: tableau,
     L: L, T: T, P: P, ent: ent, choix: choix, net: net, arr: arr,
-    nonNul: nonNul, signeAuHasard: signeAuHasard, decimal: decimal, decimales: decimales, facile: facile,
+    nonNul: nonNul, signeAuHasard: signeAuHasard, decimal: decimal, decimales: decimales, facile: facile, unTirage: unTirage,
     pgcd: pgcd, ppcm: ppcm, F: F, S: S, fixe: fixe, fixeTexte: fixeTexte, pluriel: pluriel,
     polyTexte: polyTexte, polyLatex: polyLatex, substituer: substituer, calculEtapes: calculEtapes
   };

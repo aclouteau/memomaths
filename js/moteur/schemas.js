@@ -174,6 +174,24 @@
     return svg(s, Y + 28, o.cube ? "Cube" : "Pavé droit");
   };
   S.cube = (o) => S.pave({ cube: true, elo: o.ec });
+  // Pavé droit ABCDEFGH muni d'un repère d'origine A : x selon (AB), y selon (AD), z selon (AE).
+  // lo, la, h : dimensions (entiers, écrites sur les arêtes) ; point : { x, y, z, nom } point supplémentaire à placer
+  S.paveRepere = (o) => {
+    const k = Math.min(140 / o.lo, 80 / o.h, 100 / o.la);
+    const w = borne(o.lo * k, 60, 150), h = borne(o.h * k, 45, 95), p = borne(o.la * k, 40, 100);
+    const dx = p * 0.55, dy = p * 0.4, x = 130 - (w + dx) / 2, Y = 30 + dy + h;
+    const A = [x, Y], B = [x + w, Y], F = [x + w, Y - h], E = [x, Y - h], v = [dx, -dy];
+    const [D, C, G, H] = [A, B, F, E].map((q) => plus(q, v, 1));
+    const en = (X, Yy, Z) => [x + X / o.lo * w + Yy / o.la * dx, Y - Z / o.h * h - Yy / o.la * dy];
+    const centre = en(o.lo / 2, o.la / 2, o.h / 2);
+    // Les axes sont dits dans l'énoncé (l'axe des ordonnées, vers l'arrière, se lirait mal en perspective)
+    let s = poly([A, B, F, E], "fig-trait fig-surface") + poly([E, F, G, H], "fig-trait fig-surface fig-dessus") + poly([B, C, G, F], "fig-trait fig-surface fig-cote-solide") +
+      cache(A, D) + cache(D, C) + cache(D, H);
+    [[A, "A"], [B, "B"], [C, "C"], [D, "D"], [E, "E"], [F, "F"], [G, "G"], [H, "H"]].forEach(([q, t]) => { s += nom(q, t, centre); });
+    s += cote(A, B, String(o.lo), E, 16) + cote(B, C, String(o.la), A, 6) + cote(A, E, String(o.h), B);
+    if (o.point) { const q = en(o.point.x, o.point.y, o.point.z); s += point(q) + ecrire([q[0] + 10, q[1] + 15], o.point.nom, "fig-nom"); }
+    return svg(s, Y + 30, "Pavé droit dans un repère");
+  };
   // Cylindre de rayon r et de hauteur h
   S.cylindre = (o) => {
     const k = Math.min(60 / o.r, 110 / o.h), rx = borne(o.r * k, 32, 75), h = borne(o.h * k, 40, 115), ry = rx * 0.28, haut = [150, 30 + ry], bas = [150, 30 + ry + h];
@@ -272,6 +290,248 @@
       nom(M, t.M, centre) + nom(N, t.N, centre);
     return svg(s, h, "Configuration de Thalès");
   };
+
+  // ---------- Deux triangles semblables ----------
+  // angA, angB : angles en A et en B du premier triangle (donnent sa forme) ; k : rapport (le second est plus grand
+  // ou plus petit à l'œil, sans être en vraie grandeur) ; miroir : le second est retourné ; tourne : il est tourné (degrés).
+  // noms1, noms2 : ["A", "B", "C"] ; cotes1, cotes2 : étiquettes des côtés [AB, BC, CA] ; angles1, angles2 : étiquettes
+  // des angles [A, B, C] ; marques2 : arcs de couleur sur les angles du second ([1, 0, 2] : un arc en A, deux en C).
+  // zones : « cotes2 » pour toucher un côté du second triangle (ids « 0 », « 1 », « 2 » : DE, EF, FD).
+  function sommets(angA, angB) {
+    const a = angA * Math.PI / 180, b = angB * Math.PI / 180, d = Math.sin(b) / Math.sin(a + b);
+    return [[0, 0], [1, 0], [d * Math.cos(a), -d * Math.sin(a)]];
+  }
+  function placer(pts, s, cx, bas) {
+    const xs = pts.map((p) => p[0]), ys = pts.map((p) => p[1]);
+    const mx = (Math.min(...xs) + Math.max(...xs)) / 2, my = Math.max(...ys);
+    return pts.map((p) => [cx + (p[0] - mx) * s, bas + (p[1] - my) * s]);
+  }
+  const etendue = (pts) => { const xs = pts.map((p) => p[0]), ys = pts.map((p) => p[1]); return [Math.max(...xs) - Math.min(...xs), Math.max(...ys) - Math.min(...ys)]; };
+  function marqueAngle(p, q, r, n, rayon) {
+    let s = "";
+    const u = unitaire(p, q), v = unitaire(p, r), a1 = Math.atan2(u[1], u[0]), a2 = Math.atan2(v[1], v[0]);
+    let d = a2 - a1; while (d > Math.PI) d -= 2 * Math.PI; while (d < -Math.PI) d += 2 * Math.PI;
+    for (let i = 0; i < n; i++) {
+      const R = rayon + 5 * i, x = plus(p, u, R), y = plus(p, v, R);
+      s += chemin("M" + P(x) + " A" + R + " " + R + " 0 0 " + (d > 0 ? 1 : 0) + " " + P(y), "fig-trait fig-fin fig-a fig-arc");
+    }
+    return s;
+  }
+  // Étiquette d'angle, à l'intérieur du triangle, sur la bissectrice
+  function etiquetteAngle(p, q, r, t) {
+    if (!t) return "";
+    const u = unitaire(p, q), v = unitaire(p, r), b = unitaire([0, 0], [u[0] + v[0], u[1] + v[1]]);
+    // Plus près du sommet dans un petit triangle, plus loin dans un angle aigu (pour ne pas toucher les côtés)
+    const cote = Math.min(Math.hypot(q[0] - p[0], q[1] - p[1]), Math.hypot(r[0] - p[0], r[1] - p[1]));
+    const demi = Math.acos(Math.max(-1, Math.min(1, u[0] * v[0] + u[1] * v[1]))) / 2;
+    const d = Math.min(cote * 0.45, Math.max(26, 17 / Math.max(0.2, Math.sin(demi))));
+    return ecrire(plus(plus(p, b, d), [0, 2], 1), t, "fig-cote petit");
+  }
+  S.triangles = (o) => {
+    const base = sommets(o.angA, o.angB), k = o.k || 1, vis = borne(k, 0.6, 1.7);
+    let deux = base.map((p) => [p[0] * (o.miroir ? -1 : 1), p[1]]);
+    if (o.tourne) { const t = o.tourne * Math.PI / 180; deux = deux.map((p) => [p[0] * Math.cos(t) - p[1] * Math.sin(t), p[0] * Math.sin(t) + p[1] * Math.cos(t)]); }
+    const [w1, h1] = etendue(base), [w2, h2] = etendue(deux);
+    const s = Math.min(118 / w1, 118 / (w2 * vis), 100 / h1, 100 / (h2 * vis));
+    const H = Math.max(h1, h2 * vis) * s, bas = 18 + H;
+    const t1 = placer(base, s, 76, bas), t2 = placer(deux, s * vis, 222, bas);
+    const dessin = (t, noms, cotes, angles, marques) => {
+      const c = [(t[0][0] + t[1][0] + t[2][0]) / 3, (t[0][1] + t[1][1] + t[2][1]) / 3];
+      let r = poly(t);
+      [0, 1, 2].forEach((i) => {
+        const p = t[i], q = t[(i + 1) % 3], w = t[(i + 2) % 3];
+        r += nom(p, noms[i], c) + cote(p, q, cotes && cotes[i], c, 8);
+        if (marques && marques[i]) r += marqueAngle(p, q, w, marques[i], 16);
+        if (angles && angles[i]) r += etiquetteAngle(p, q, w, angles[i]);
+      });
+      return r;
+    };
+    let contenu = dessin(t1, o.noms1, o.cotes1, o.angles1, o.marques1) + dessin(t2, o.noms2, o.cotes2, o.angles2, o.marques2);
+    if (o.zones === "cotes2") contenu += [0, 1, 2].map((i) => zoneSeg(String(i), t2[i], t2[(i + 1) % 3], "Côté " + o.noms2[i] + o.noms2[(i + 1) % 3])).join("");
+    return (o.zones ? svgToucher : svg)(contenu, bas + 30, "Deux triangles semblables");
+  };
+
+  // ---------- Triangle rectangle avec un angle marqué (trigonométrie) ----------
+  // Comme triangleRectangle, plus : angle (« base » ou « haut ») : sommet de l'angle marqué ; eangle : son étiquette ;
+  // zones : true pour toucher un côté (ids « adj », « opp », « hyp » par rapport à l'angle marqué)
+  S.triangleTrigo = (o) => {
+    const [w, h] = tailles(o.lb, o.lh, 180, 105), m = o.miroir ? -1 : 1, x0 = 150 - m * w / 2, y = 20;
+    const D = [x0, y + h], B = [x0 + m * w, y + h], H = [x0, y], c = [(D[0] + B[0] + H[0]) / 3, (D[1] + B[1] + H[1]) / 3];
+    const enB = o.angle !== "haut", S0 = enB ? B : H, autre = enB ? H : B;
+    let s = poly([D, B, H]) + droit(D, B, H, 10) + nom(D, o.droit, c) + nom(B, o.base, c) + nom(H, o.haut, c) +
+      cote(D, B, o.eb, H) + cote(D, H, o.eh, B) + cote(B, H, o.ehyp, D) + marqueAngle(S0, D, autre, 1, 22) + etiquetteAngle(S0, D, autre, o.eangle);
+    if (o.zones) {
+      const adj = [D, S0], opp = [D, autre];
+      s += zoneSeg("adj", adj[0], adj[1], "Côté " + o.droit + (enB ? o.base : o.haut)) + zoneSeg("opp", opp[0], opp[1], "Côté " + o.droit + (enB ? o.haut : o.base)) +
+        zoneSeg("hyp", B, H, "Côté " + o.base + o.haut);
+    }
+    return (o.zones ? svgToucher : svg)(s, y + h + 32, "Triangle rectangle en " + o.droit);
+  };
+
+  // ---------- Cône avec sa génératrice ----------
+  // er, eh, eg : étiquettes du rayon, de la hauteur et de la génératrice (« ? » pour la longueur cherchée)
+  S.coneGeneratrice = (o) => {
+    const k = Math.min(70 / o.r, 115 / o.h), rx = borne(o.r * k, 38, 80), h = borne(o.h * k, 55, 120), ry = rx * 0.28, S0 = [150, 12], O = [150, 12 + h], R = [150 + rx, O[1]];
+    const s = surface("M" + P(S0) + " L" + P([150 - rx, O[1]]) + " A" + f(rx) + " " + f(ry) + " 0 0 0 " + P(R) + " Z") +
+      demiEllipse(O, rx, ry, true) + demiEllipse(O, rx, ry, false) + seg(S0, [150 - rx, O[1]]) + seg(S0, R, "fig-b") +
+      seg(S0, O, "fig-fin") + droit(O, R, S0, 7) + point(O) + seg(O, R, "fig-b") +
+      ecrire([150 + rx / 2, O[1] + 15], o.er || "", "fig-cote petit") +
+      // Hauteur : « ? » le long des pointillés, sinon « h = … » à gauche du cône (pas de place à l'intérieur)
+      (o.eh === "?" ? ecrire([150 - 12, 12 + h * 0.6], "?", "fig-cote") : o.eh ? ecrire([150 - rx * 0.45 - 9 - largeur("h = " + o.eh), 12 + h * 0.45], "h = " + o.eh, "fig-cote") : "") +
+      ecrire([150 + rx / 2 + 12 + largeur(o.eg || ""), 12 + h * 0.45], o.eg || "", "fig-cote");
+    return svg(s, O[1] + ry + 16, "Cône : rayon, hauteur et génératrice");
+  };
+
+  // ---------- Boule coupée par un plan (section : un cercle) ----------
+  // eR : rayon de la boule ; ed : distance du centre au plan ; er : rayon de la section
+  S.sectionBoule = (o) => {
+    const R = 66, c = [150, 80], d = borne(R * o.d / o.R, 14, R - 16), r = Math.sqrt(R * R - d * d), y = c[1] - d, ry = r * 0.27, H = [c[0], y], M = [c[0] + r, y];
+    const s = rond(c, R) + '<ellipse cx="' + f(c[0]) + '" cy="' + f(y) + '" rx="' + f(r) + '" ry="' + f(ry) + '" class="fig-trait fig-surface fig-dessus"/>' +
+      point(c) + point(H) + seg(c, H, "fig-fin fig-pointille") + seg(H, M, "fig-b") + seg(c, M, "fig-a") + droit(H, c, M, 6) +
+      ecrire([c[0] - 9 - largeur(o.ed || ""), (c[1] + y) / 2 + 4], o.ed || "", "fig-cote petit") +
+      ecrire([c[0] + r / 2, y - 8], o.er || "", "fig-cote petit") + ecrire([c[0] + r / 2 + 14 + largeur(o.eR || ""), (c[1] + y) / 2 + 10], o.eR || "", "fig-cote petit") +
+      ecrire([c[0] - 9, c[1] + 15], "O", "fig-nom") + ecrire([c[0] - 9, y - 6], "H", "fig-nom") + ecrire([M[0] + 10, y - 2], "M", "fig-nom");
+    return svg(s, c[1] + R + 10, "Boule coupée par un plan");
+  };
+
+  // ---------- Repère et droites (fonctions) ----------
+  // xmin…xmax, ymin…ymax : fenêtre (entiers) ; droites : [{ a, b, nom }] (y = ax + b) ; points : [{ x, y, nom }] ;
+  // zones : true pour toucher une droite (id = son nom)
+  S.repere = (o) => {
+    const x0 = o.xmin, x1 = o.xmax, y0 = o.ymin, y1 = o.ymax, W = 260, H = Math.min(270, W * (y1 - y0) / (x1 - x0)), g = 20, ux = W / (x1 - x0), uy = H / (y1 - y0);
+    const X = (x) => g + (x - x0) * ux, Y = (y) => 12 + (y1 - y) * uy;
+    let s = "";
+    for (let x = x0; x <= x1; x++) s += seg([X(x), Y(y0)], [X(x), Y(y1)], "fig-grille");
+    for (let y = y0; y <= y1; y++) s += seg([X(x0), Y(y)], [X(x1), Y(y)], "fig-grille");
+    s += seg([X(x0), Y(0)], [X(x1), Y(0)], "fig-axe") + seg([X(0), Y(y0)], [X(0), Y(y1)], "fig-axe") +
+      ecrire([X(0) - 8, Y(0) + 14], "0", "fig-graduation") + ecrire([X(1), Y(0) + 14], "1", "fig-graduation") + ecrire([X(0) - 8, Y(1) + 4], "1", "fig-graduation");
+    const pas = o.graduations || 0;
+    if (pas) for (let x = x0; x <= x1; x++) if (x && x !== 1 && x % pas === 0) s += ecrire([X(x), Y(0) + 14], String(x).replace("-", "−"), "fig-graduation");
+    if (pas) for (let y = y0; y <= y1; y++) if (y && y !== 1 && y % pas === 0) s += ecrire([X(0) - 10, Y(y) + 4], String(y).replace("-", "−"), "fig-graduation");
+    // Une droite est coupée au bord de la fenêtre
+    const bout = (d) => {
+      const pts = [];
+      const ajoute = (x, y) => { if (x >= x0 - 1e-9 && x <= x1 + 1e-9 && y >= y0 - 1e-9 && y <= y1 + 1e-9) pts.push([x, y]); };
+      ajoute(x0, d.a * x0 + d.b); ajoute(x1, d.a * x1 + d.b);
+      if (d.a) { ajoute((y0 - d.b) / d.a, y0); ajoute((y1 - d.b) / d.a, y1); }
+      pts.sort((p, q) => p[0] - q[0]);
+      return pts.length >= 2 ? [[X(pts[0][0]), Y(pts[0][1])], [X(pts[pts.length - 1][0]), Y(pts[pts.length - 1][1])]] : null;
+    };
+    (o.droites || []).forEach((d, i) => {
+      const b = bout(d);
+      if (!b) return;
+      s += seg(b[0], b[1], "fig-courbe fig-courbe-" + (i % 3));
+      if (d.nom) { const q = plus(b[1], unitaire(b[1], b[0]), 26); s += ecrire([borne(q[0] + 4, 30, 290), borne(q[1] - 8, 14, Y(y0) - 4)], d.nom, "fig-nom fig-nom-droite"); }
+      if (o.zones) s += zoneSeg(d.nom, b[0], b[1], "Droite " + d.nom);
+    });
+    (o.points || []).forEach((p) => { s += point([X(p.x), Y(p.y)]) + (p.nom ? ecrire([X(p.x) + 10, Y(p.y) - 6], p.nom, "fig-nom") : ""); });
+    return (o.zones ? svgToucher : svg)(s, Y(y0) + 14, "Repère");
+  };
+
+  // ---------- Diagramme en barres ----------
+  // barres : [{ nom, valeur }] ; pas : graduation de l'axe vertical ; titre : texte sous l'axe
+  S.barres = (o) => {
+    const n = o.barres.length, max = Math.max(...o.barres.map((b) => b.valeur)), haut = Math.ceil(max / o.pas) * o.pas, H = 130, x0 = 42, W = 245, y0 = 12 + H;
+    const Y = (v) => y0 - v * H / haut, l = W / n;
+    let s = "";
+    for (let v = 0; v <= haut; v += o.pas) s += seg([x0, Y(v)], [x0 + W, Y(v)], "fig-grille") + ecrire([x0 - 8, Y(v) + 4], String(v), "fig-graduation fig-gauche");
+    o.barres.forEach((b, i) => {
+      const x = x0 + i * l + l * 0.2;
+      s += '<rect x="' + f(x) + '" y="' + f(Y(b.valeur)) + '" width="' + f(l * 0.6) + '" height="' + f(y0 - Y(b.valeur)) + '" class="fig-trait fig-barre"/>' +
+        ecrire([x + l * 0.3, y0 + 15], b.nom, "fig-graduation");
+    });
+    s += seg([x0, y0], [x0 + W, y0], "fig-axe") + seg([x0, y0], [x0, 8], "fig-axe");
+    return svg(s, y0 + 24, o.titre || "Diagramme en barres");
+  };
+
+  // ---------- Histogramme (classes de même amplitude, rectangles collés) ----------
+  // depart, amplitude : bornes des classes ; effectifs : un par classe ; pas : graduation de l'axe vertical ; unite : texte sous l'axe
+  S.histogramme = (o) => {
+    const n = o.effectifs.length, max = Math.max(...o.effectifs), haut = Math.ceil(max / o.pas) * o.pas, H = 130, x0 = 42, W = 240, y0 = 12 + H;
+    const Y = (v) => y0 - v * H / haut, l = W / n;
+    let s = "";
+    for (let v = 0; v <= haut; v += o.pas) s += seg([x0, Y(v)], [x0 + W, Y(v)], "fig-grille") + ecrire([x0 - 8, Y(v) + 4], String(v), "fig-graduation fig-gauche");
+    o.effectifs.forEach((e, i) => {
+      s += '<rect x="' + f(x0 + i * l) + '" y="' + f(Y(e)) + '" width="' + f(l) + '" height="' + f(y0 - Y(e)) + '" class="fig-trait fig-barre"/>';
+    });
+    for (let i = 0; i <= n; i++) s += ecrire([x0 + i * l, y0 + 15], String(o.depart + i * o.amplitude), "fig-graduation" + (n > 6 ? " petit" : ""));
+    s += seg([x0, y0], [x0 + W + 6, y0], "fig-axe") + seg([x0, y0], [x0, 8], "fig-axe") + (o.unite ? ecrire([x0 + W / 2, y0 + 32], o.unite, "fig-graduation") : "");
+    return svg(s, y0 + (o.unite ? 40 : 24), o.titre || "Histogramme");
+  };
+
+  // ---------- Roue (ou disque) partagée en secteurs égaux ----------
+  // secteurs : liste de textes (un par secteur, dans l'ordre) ; les secteurs de même texte ont le même motif
+  S.roue = (o) => {
+    const n = o.secteurs.length, c = [150, 82], R = 70, sortes = [...new Set(o.secteurs)];
+    let s = "";
+    o.secteurs.forEach((t, i) => {
+      const a1 = -Math.PI / 2 + 2 * Math.PI * i / n, a2 = a1 + 2 * Math.PI / n, p1 = [c[0] + R * Math.cos(a1), c[1] + R * Math.sin(a1)], p2 = [c[0] + R * Math.cos(a2), c[1] + R * Math.sin(a2)];
+      const am = (a1 + a2) / 2, e = [c[0] + R * 0.64 * Math.cos(am), c[1] + R * 0.64 * Math.sin(am) + 5];
+      s += chemin("M" + P(c) + " L" + P(p1) + " A" + R + " " + R + " 0 0 1 " + P(p2) + " Z", "fig-trait fig-part fig-part-" + (sortes.indexOf(t) % 4)) +
+        ecrire(e, t, "fig-cote " + (n > 8 ? "petit" : ""));
+    });
+    s += chemin("M" + P([c[0] - 7, c[1] - R - 12]) + " L" + P([c[0] + 7, c[1] - R - 12]) + " L" + P([c[0], c[1] - R + 2]) + " Z", "fig-fleche-roue");
+    return svg(s, c[1] + R + 10, "Roue partagée en " + n + " secteurs égaux");
+  };
+
+  // ---------- Balance en équilibre (équations) ----------
+  // gauche, droite : listes de « x » et de nombres (masses) ; une boîte par élément
+  S.balance = (o) => {
+    const plateau = (cx, liste) => {
+      const l = liste.length, w = Math.min(40, 110 / l);
+      return liste.map((t, i) => {
+        const x = cx - (l * w) / 2 + i * w, inconnue = t === "x", h = inconnue ? 30 : 24;
+        return '<rect x="' + f(x + 1) + '" y="' + f(96 - h) + '" width="' + f(w - 2) + '" height="' + h + '" rx="4" class="fig-trait ' + (inconnue ? "fig-boite-x" : "fig-surface") + '"/>' +
+          ecrire([x + w / 2, 96 - h / 2 + 5], t, "fig-cote" + (inconnue ? " fig-inconnue" : ""));
+      }).join("");
+    };
+    const s = seg([150, 104], [150, 150]) + chemin("M120 158 L180 158 L150 136 Z", "fig-trait fig-surface") + seg([25, 104], [275, 104]) +
+      seg([40, 96], [140, 96], "fig-epais") + seg([160, 96], [260, 96], "fig-epais") + seg([90, 96], [90, 104]) + seg([210, 96], [210, 104]) +
+      plateau(90, o.gauche) + plateau(210, o.droite);
+    return svg(s, 166, "Balance en équilibre");
+  };
+
+  // ---------- Flèches d'une évolution : départ ×k arrivée (ou plusieurs évolutions de suite) ----------
+  // valeurs : textes des cases (« ? » pour la valeur cherchée) ; etiquettes : textes des flèches (« × 1,2 ») ;
+  // legendes : textes sous les cases (« avant », « après »)
+  S.fleche = (o) => {
+    const v = o.valeurs, n = v.length, l = n === 2 ? 112 : 84, pas = n === 2 ? 176 : 108, x0 = 150 - pas * (n - 1) / 2;
+    let s = "";
+    v.forEach((t, i) => {
+      const cx = x0 + i * pas;
+      s += '<rect x="' + f(cx - l / 2) + '" y="34" width="' + l + '" height="40" rx="10" class="fig-trait fig-surface"/>' + ecrire([cx, 55], t, "fig-cote" + (n > 2 ? " petit" : "")) +
+        (o.legendes && o.legendes[i] ? ecrire([cx, 92], o.legendes[i], "fig-graduation") : "");
+      if (i < n - 1) {
+        const a = cx + l / 2 - 14, b = cx + pas - l / 2 + 14, m = (a + b) / 2;
+        s += chemin("M" + f(a) + " 30 Q" + f(m) + " 2 " + f(b) + " 30", "fig-trait fig-b fig-fleche") + chemin("M" + f(b - 7) + " 21 L" + f(b + 1) + " 31 L" + f(b - 12) + " 32", "fig-trait fig-b") +
+          ecrire([m, 12], o.etiquettes[i], "fig-cote" + (n > 2 ? " petit" : ""));
+      }
+    });
+    return svg(s, o.legendes ? 102 : 84, "Évolution : " + v.join(", ") + " ; " + o.etiquettes.join(", "));
+  };
+
+  // ---------- Parallélogramme (côtés et angles) ----------
+  // noms : « ABCD » ; ecotes : étiquettes [AB, BC, CD, DA] ; eangles : étiquettes des angles [A, B, C, D] ; incl : décalage du haut
+  S.para = (o) => {
+    const d = o.incl == null ? 45 : o.incl, w = 170, h = 90, x = 150 - (w + d) / 2, y = 18;
+    const A = [x, y + h], B = [x + w, y + h], C = [x + w + d, y], D = [x + d, y], t = [A, B, C, D], c = milieu(A, C);
+    let s = poly(t);
+    t.forEach((p, i) => {
+      const q = t[(i + 1) % 4], r = t[(i + 3) % 4];
+      s += nom(p, o.noms[i], c) + cote(p, q, o.ecotes && o.ecotes[i], c, 8) + (o.eangles && o.eangles[i] ? marqueAngle(p, q, r, 1, 16) + etiquetteAngle(p, q, r, o.eangles[i]) : "");
+    });
+    if (o.diagonales) s += seg(A, C, "fig-fin") + seg(B, D, "fig-fin") + point(c) + ecrire([c[0], c[1] + 18], o.centre || "", "fig-nom");
+    return svg(s, y + h + 30, "Parallélogramme " + o.noms.join(""));
+  };
+
+  // ---------- Zones à toucher (format « toucher » des exercices, js/modes/appliquer.js) ----------
+  // Un côté ou une droite : une large bande invisible (pour le doigt) et un trait qui se colore après la réponse
+  function zoneSeg(id, a, b, etiquette) {
+    const d = "M" + P(a) + " L" + P(b);
+    return '<g class="zone-angle zone-seg" data-zone="' + id + '" role="button" tabindex="0" aria-label="' + etiquette + '">' +
+      '<path d="' + d + '" class="zone-cible"/><path d="' + d + '" class="zone-arc"/></g>';
+  }
+  const svgToucher = (contenu, hauteur, titre) => '<svg class="figure-svg schema figure-toucher" viewBox="0 0 300 ' + f(hauteur) + '" role="group" aria-label="' + (titre || "Figure") + ' : touche la bonne réponse">' + contenu + "</svg>";
 
   Savoirs.schemas = S;
 })();

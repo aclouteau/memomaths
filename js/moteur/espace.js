@@ -12,6 +12,15 @@ window.Savoirs = {
   // Techniques d'entraînement d'un niveau (« Je m'entraîne ») : donnees/<niveau>/techniques.js
   techniques: {},
   enregistrerTechniques: function (idNiveau, liste) {
+    // Chaque exercice tiré est un seul « tirage » : son cas facile n'est tiré qu'une fois (js/modes/calculs.js)
+    for (const t of liste) {
+      if (t.niveauxEnveloppes) continue;
+      t.niveauxEnveloppes = true;
+      for (const n of Object.keys(t.niveaux)) {
+        const f = t.niveaux[n];
+        t.niveaux[n] = () => Savoirs.calculsOutils.unTirage(f);
+      }
+    }
     // Un fichier par chapitre : les listes s'ajoutent
     Savoirs.techniques[idNiveau] = (Savoirs.techniques[idNiveau] || []).concat(liste);
   },
