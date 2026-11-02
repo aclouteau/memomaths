@@ -53,7 +53,7 @@ Savoirs.catalogue = [
         "t-4e-vol-conversion", "t-4e-vol-droit"]
     }, {
       chap: "pourc",
-      savoirs: { "4e": ["taux-evol", "pourc-succ", "prop-def", "prop-coef", "prop-unite"], "5e": ["pourcent10"] }
+      savoirs: { "4e": ["prop-def", "prop-coef", "prop-unite"], "5e": ["pourcent10"] }
     }, {
       chap: "esp",
       savoirs: { "4e": ["vol-reperage", "vol-reperage-ordre"] },

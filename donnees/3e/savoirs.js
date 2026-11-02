@@ -677,19 +677,6 @@ Savoirs.enregistrer({
    "note": "Une série de « pile » ne rend pas « face » plus probable au tirage suivant."
   },
   {
-   "id": "proba-arbre",
-   "chap": "proba",
-   "type": "regle",
-   "titre": "Arbre de probabilités",
-   "question": "Dans un arbre de probabilités, pour une issue à deux épreuves, on ...",
-   "reponse": "multiplie les probabilités le long de la branche, puis on additionne les branches qui mènent au même événement",
-   "pieges": [
-    "additionne les probabilités le long de la branche, puis multiplie les branches qui mènent au même événement",
-    "multiplie toutes les probabilités de toutes les branches de l'arbre, sans distinguer les événements, puis ne garde que le résultat",
-    "ne garde que la première branche de l'arbre pour chaque événement, puis additionne les probabilités de tous les événements"
-   ]
-  },
-  {
    "id": "proba-equi",
    "chap": "proba",
    "type": "regle",
@@ -757,7 +744,7 @@ Savoirs.enregistrer({
     "toujours réduit d'une bille, qu'on remette la première bille ou non",
     "le même si on ne remet pas la première bille, réduit d'une bille sinon"
    ],
-   "note": "Sans remise, avec 5 billes dont 2 rouges : $P(\\text{rouge puis rouge}) = \\dfrac{2}{5} \\times \\dfrac{1}{4} = \\dfrac{1}{10}$ ; avec remise, $\\dfrac{2}{5} \\times \\dfrac{2}{5} = \\dfrac{4}{25}$."
+   "note": "Sans remise, avec 5 billes dont 2 rouges : si la première bille est rouge, il reste 4 billes, dont 1 rouge."
   },
   {
    "id": "proba-tableau",
@@ -765,7 +752,7 @@ Savoirs.enregistrer({
    "type": "regle",
    "titre": "Dénombrer deux épreuves",
    "question": "Pour dénombrer les issues de deux épreuves successives (deux dés, par exemple), on utilise ...",
-   "reponse": "un tableau à double entrée ou un arbre",
+   "reponse": "un tableau à double entrée",
    "pieges": [
     "une seule liste sans tenir compte de l'ordre des épreuves",
     "une addition du nombre d'issues de chaque épreuve",
@@ -1503,19 +1490,6 @@ Savoirs.enregistrer({
    ]
   },
   {
-   "id": "st-classes",
-   "chap": "stat",
-   "type": "regle",
-   "titre": "Moyenne avec des classes",
-   "question": "Pour estimer une moyenne avec des classes, on utilise ...",
-   "reponse": "le centre de chaque classe",
-   "pieges": [
-    "l'extrémité gauche de chaque classe",
-    "l'extrémité droite de chaque classe",
-    "la classe de plus grand effectif"
-   ]
-  },
-  {
    "id": "st-ranger",
    "chap": "stat",
    "type": "regle",
@@ -1541,20 +1515,6 @@ Savoirs.enregistrer({
     "$8{,}8$"
    ],
    "note": "Effectif pair ($6$ valeurs) : on prend le milieu des deux valeurs centrales, $\\dfrac{8 + 10}{2} = 9$."
-  },
-  {
-   "id": "st-histo",
-   "chap": "stat",
-   "type": "definition",
-   "titre": "Histogramme",
-   "question": "Dans un histogramme (classes de même amplitude), chaque classe est représentée par ...",
-   "reponse": "un rectangle dont la hauteur est proportionnelle à l'effectif de la classe",
-   "pieges": [
-    "un secteur dont l'angle est proportionnel à l'effectif de la classe",
-    "un point, relié au point de la classe suivante",
-    "une barre étroite, séparée des autres par un espace"
-   ],
-   "note": "Les rectangles sont collés : la base de chacun est la classe (par exemple $150 \\leqslant t < 160$)."
   },
   {
    "id": "puiss-prod",
@@ -1708,20 +1668,6 @@ Savoirs.enregistrer({
     "0",
     "a"
    ]
-  },
-  {
-   "id": "puiss-signe",
-   "chap": "puis",
-   "type": "regle",
-   "titre": "Signe d'une puissance",
-   "question": "Pour un nombre $a$ positif, $(-a)^{n}$ est positif quand ...",
-   "reponse": "$n$ est pair",
-   "pieges": [
-    "$n$ est impair",
-    "$n$ est positif",
-    "$n$ est supérieur à $a$"
-   ],
-   "note": "$(-3)^{2} = 9$ mais $-3^{2} = -9$ (sans parenthèses, le signe moins reste devant)."
   },
   {
    "id": "dix-puiss",
@@ -1992,12 +1938,12 @@ Savoirs.enregistrer({
    "chap": "prem",
    "type": "propriete",
    "titre": "Décomposition en facteurs premiers",
-   "question": "Tout entier supérieur ou égal à 2 s'écrit ...",
-   "reponse": "comme un produit de nombres premiers, de façon unique (à l'ordre près)",
+   "question": "Tout nombre entier supérieur ou égal à 2 peut s'écrire ...",
+   "reponse": "comme un produit de nombres premiers",
    "pieges": [
-    "comme une somme de nombres premiers, de façon unique",
-    "comme un produit de nombres premiers, de plusieurs manières différentes",
-    "comme un produit de nombres impairs, de façon unique"
+    "comme une somme de nombres premiers",
+    "comme un produit de nombres pairs",
+    "comme un produit de nombres impairs"
    ],
    "exemples": [
     {
@@ -2007,7 +1953,8 @@ Savoirs.enregistrer({
      "unite": "",
      "correction": "$60 = 2 \\times 2 \\times 3 \\times 5$"
     }
-   ]
+   ],
+   "note": "Exemple : $60 = 2 \\times 2 \\times 3 \\times 5$. Quel que soit l'ordre des divisions, on trouve toujours les mêmes facteurs premiers."
   },
   {
    "id": "prem-pgcd",
@@ -2542,21 +2489,21 @@ Savoirs.enregistrer({
    "chap": "homo",
    "type": "propriete",
    "titre": "Effet d'une homothétie de rapport k",
-   "question": "Une homothétie de rapport $k$ multiplie les longueurs par ...",
-   "reponse": "la distance à zéro de $k$, et les aires par $k^{2}$",
+   "question": "Une homothétie de rapport $k$ positif multiplie les longueurs par ...",
+   "reponse": "$k$, et les aires par $k^{2}$",
    "pieges": [
     "$k^{2}$, et les aires par $k^{4}$",
-    "la distance à zéro de $k$, et les aires aussi",
+    "$k$, et les aires aussi par $k$",
     "$2k$, et les aires par $4k$"
    ],
    "note": "Les angles sont conservés.",
    "exemples": [
     {
-     "donnees": "Homothétie de rapport $-3$ ; aire de départ 5 cm²",
+     "donnees": "Homothétie de rapport $3$ ; aire de départ 5 cm²",
      "question": "Aire de l'image ?",
      "reponse": 45,
      "unite": "cm²",
-     "correction": "$5 \\times (-3)^{2} = 45$ cm²"
+     "correction": "$5 \\times 3^{2} = 45$ cm²"
     }
    ]
   },
@@ -2587,20 +2534,6 @@ Savoirs.enregistrer({
    ]
   },
   {
-   "id": "homo-sens",
-   "chap": "homo",
-   "type": "propriete",
-   "titre": "Signe du rapport",
-   "question": "Si $k < 0$, l'image $M'$ de $M$ est ...",
-   "reponse": "de l'autre côté du centre $O$ par rapport à $M$",
-   "pieges": [
-    "du même côté de $O$ que $M$, quelle que soit la valeur de $k$",
-    "toujours sur le centre $O$, quelle que soit la valeur de $k$",
-    "sur la médiatrice du segment $[OM]$, quelle que soit la valeur de $k$"
-   ],
-   "note": "$k > 0$ : même côté. Distance à zéro de $k$ supérieure à 1 : agrandissement ; inférieure à 1 : réduction."
-  },
-  {
    "id": "homo-par",
    "chap": "homo",
    "type": "propriete",
@@ -2625,21 +2558,21 @@ Savoirs.enregistrer({
     "les longueurs et les angles",
     "ni les longueurs ni les angles"
    ],
-   "note": "Un triangle rectangle reste rectangle, mais ses côtés sont multipliés par la distance à zéro de $k$."
+   "note": "Un triangle rectangle reste rectangle, mais ses côtés sont multipliés par $k$."
   },
   {
    "id": "homo-ag-red",
    "chap": "homo",
    "type": "regle",
    "titre": "Agrandissement ou réduction",
-   "question": "Une homothétie de rapport $k$ est un agrandissement quand ...",
-   "reponse": "la distance à zéro de $k$ est supérieure à 1 (réduction si elle est inférieure à 1)",
+   "question": "Une homothétie de rapport $k$ positif est un agrandissement quand ...",
+   "reponse": "$k > 1$ (réduction quand $k < 1$)",
    "pieges": [
-    "$k > 1$ seulement : un rapport négatif donne toujours une réduction",
-    "$k$ est positif (réduction si $k$ est négatif, quelle que soit sa valeur)",
-    "la distance à zéro de $k$ vaut 1 (réduction dans tous les autres cas)"
+    "$k < 1$ (réduction quand $k > 1$)",
+    "$k = 1$ (réduction dans tous les autres cas)",
+    "$k$ est un nombre entier (réduction sinon)"
    ],
-   "note": "Exemple : $k = -3$ est un agrandissement (de rapport 3, avec retournement) ; $k = -0{,}5$ est une réduction."
+   "note": "Exemple : $k = 3$ est un agrandissement ; $k = 0{,}5$ est une réduction. Pour $k = 1$, la figure ne change pas."
   },
   {
    "id": "homo-moins1",
@@ -2875,20 +2808,6 @@ Savoirs.enregistrer({
    ]
   },
   {
-   "id": "fa-croiss",
-   "chap": "faff",
-   "type": "propriete",
-   "titre": "Sens de variation",
-   "question": "Si $a > 0$, la fonction affine $f(x) = ax + b$ est ...",
-   "reponse": "croissante",
-   "pieges": [
-    "décroissante",
-    "constante",
-    "toujours positive"
-   ],
-   "note": "Si $a < 0$, elle est décroissante ; si $a = 0$, elle est constante."
-  },
-  {
    "id": "fa-a-graph",
    "chap": "faff",
    "type": "propriete",
@@ -2899,8 +2818,7 @@ Savoirs.enregistrer({
     "$b$",
     "$1$",
     "$a + b$"
-   ],
-   "note": "Si $a$ est négatif, $f(x)$ diminue en réalité : $f(x + 1) = f(x) + a$."
+   ]
   },
   {
    "id": "fg-plusieurs",
@@ -3049,7 +2967,6 @@ Savoirs.enregistrer({
     "$f(x) + x$",
     "$f(x) - x$"
    ],
-   "note": "On a aussi $a = \\dfrac{f(x)}{x}$ pour tout $x \\neq 0$.",
    "morceaux": [
     "a",
     "=",
@@ -3176,19 +3093,6 @@ Savoirs.enregistrer({
     "égaux",
     "isocèles",
     "rectangles"
-   ]
-  },
-  {
-   "id": "sembl-perim",
-   "chap": "thal",
-   "type": "regle",
-   "titre": "Triangles de même périmètre",
-   "question": "Deux triangles de même périmètre sont-ils semblables ?",
-   "reponse": "non, pas forcément",
-   "pieges": [
-    "oui toujours",
-    "oui s'ils sont isocèles",
-    "oui s'ils ont la même aire"
    ]
   },
   {
@@ -3403,7 +3307,22 @@ Savoirs.enregistrer({
     "sur la droite $(BC)$ entre les points $B$ et $C$ de la figure",
     "sur la droite $(MN)$ entre les points $M$ et $N$ de la figure"
    ],
-   "note": "Les droites $(BC)$ et $(MN)$ sont parallèles et $A$ est entre elles."
+   "note": "Les droites $(BC)$ et $(MN)$ sont parallèles et $A$ est entre elles.",
+   "figure": {
+    "schema": "thales",
+    "options": {
+     "noms": {
+      "A": "A",
+      "B": "B",
+      "C": "C",
+      "M": "M",
+      "N": "N"
+     },
+     "papillon": true,
+     "k": 0.6
+    },
+    "moment": "question"
+   }
   },
   {
    "id": "thales-unite",
@@ -3552,20 +3471,6 @@ Savoirs.enregistrer({
    "note": "$3x = 12$ donne $x = 12 \\div 3 = 4$."
   },
   {
-   "id": "eq-signe",
-   "chap": "equ",
-   "type": "regle",
-   "titre": "Changer de membre",
-   "question": "Quand un terme passe de l'autre côté du signe égal, ...",
-   "reponse": "on lui applique l'opération contraire : son signe change",
-   "pieges": [
-    "il garde le même signe et on le multiplie aussi par 2 dans l'autre membre",
-    "il garde toujours son signe dans l'autre membre, même quand il change de côté",
-    "on lui applique la même opération et son signe ne change pas du tout"
-   ],
-   "note": "$x + 5 = 12$ donne $x = 12 - 5$."
-  },
-  {
    "id": "eq-simple",
    "chap": "equ",
    "type": "regle",
@@ -3648,20 +3553,6 @@ Savoirs.enregistrer({
     "regroupe les nombres avec les $x$ du même côté : $x = 11$"
    ],
    "note": "On trouve $x = 3$."
-  },
-  {
-   "id": "eq-impossible",
-   "chap": "equ",
-   "type": "propriete",
-   "titre": "Pas de solution",
-   "question": "Si on obtient $0 = 5$ en résolvant une équation, alors ...",
-   "reponse": "l'équation n'a aucune solution",
-   "pieges": [
-    "l'équation a une seule solution : 5",
-    "l'équation a pour solution zéro",
-    "l'équation a une infinité de solutions"
-   ],
-   "note": "Si on obtient $0 = 0$, tous les nombres sont solutions."
   },
   {
    "id": "eq-produit-sol",
@@ -4041,42 +3932,28 @@ Savoirs.enregistrer({
    "chap": "pourc",
    "type": "methode",
    "titre": "Retrouver la valeur de départ",
-   "question": "Après une hausse de $20\\,\\%$, un prix vaut $60$ €. Pour retrouver le prix de départ, on calcule ...",
-   "reponse": "$60 \\div 1{,}2$",
+   "question": "Un prix augmente de $10\\,\\%$ et vaut maintenant $22$ €. Le prix de départ était ...",
+   "reponse": "$20$ €",
    "pieges": [
-    "$60 \\times 0{,}8$",
-    "$60 - 20$",
-    "$60 \\times 1{,}2$"
+    "$19{,}80$ €",
+    "$12$ €",
+    "$24{,}20$ €"
    ],
-   "note": "$60 \\div 1{,}2 = 50$ €. Enlever $20\\,\\%$ de $60$ ne donne pas le prix de départ."
+   "note": "On vérifie : $20 \\times 1{,}1 = 22$. Enlever $10\\,\\%$ de $22$ € donne $19{,}80$ €, ce n'est pas le prix de départ."
   },
   {
    "id": "pc-global",
    "chap": "pourc",
    "type": "propriete",
    "titre": "Évolutions successives",
-   "question": "Une hausse de $10\\,\\%$ suivie d'une hausse de $20\\,\\%$ correspond à une multiplication par ...",
-   "reponse": "$1{,}1 \\times 1{,}2 = 1{,}32$",
+   "question": "Un prix de $100$ € augmente de $10\\,\\%$, puis encore de $10\\,\\%$. Il vaut alors ...",
+   "reponse": "$121$ €",
    "pieges": [
-    "$1{,}1 + 1{,}2 = 2{,}3$",
-    "$1 + 0{,}30 = 1{,}3$",
-    "$0{,}1 \\times 0{,}2 = 0{,}02$"
+    "$120$ €",
+    "$110$ €",
+    "$111$ €"
    ],
-   "note": "On multiplie les coefficients : la hausse globale est de $32\\,\\%$, pas de $30\\,\\%$."
-  },
-  {
-   "id": "pc-taux",
-   "chap": "pourc",
-   "type": "formule",
-   "titre": "Taux d'évolution",
-   "question": "Le taux d'évolution d'une valeur qui passe de $V_{\\text{départ}}$ à $V_{\\text{arrivée}}$ se calcule avec ...",
-   "reponse": "$\\dfrac{\\text{arrivée} - \\text{départ}}{\\text{départ}}$",
-   "pieges": [
-    "$\\dfrac{\\text{arrivée} - \\text{départ}}{\\text{arrivée}}$",
-    "$\\text{arrivée} - \\text{départ}$",
-    "$\\dfrac{\\text{arrivée}}{\\text{départ}}$"
-   ],
-   "note": "Un prix passe de $40$ € à $46$ € : $\\dfrac{46 - 40}{40} = 0{,}15$, soit une hausse de $15\\,\\%$."
+   "note": "$100 \\to 110 \\to 121$ : la deuxième hausse porte sur $110$ €. Deux hausses de $10\\,\\%$ ne font pas une hausse de $20\\,\\%$."
   }
  ],
  "outils": [
@@ -4319,17 +4196,6 @@ Savoirs.enregistrer({
    ]
   },
   {
-   "id": "o23",
-   "chap": "proba",
-   "enonce": "On lance deux fois une pièce. Quelle est la probabilité d'obtenir deux « pile » ?",
-   "bon": "proba-arbre",
-   "explication": "On multiplie les probabilités le long de la branche : $\\dfrac{1}{2} \\times \\dfrac{1}{2}$.",
-   "autres": [
-    "proba-f",
-    "proba-contraire"
-   ]
-  },
-  {
    "id": "o24",
    "chap": "proba",
    "enonce": "La probabilité de gagner est 0,35. Quelle est la probabilité de perdre ?",
@@ -4396,8 +4262,7 @@ Savoirs.enregistrer({
    "explication": "Deux solutions : 5 et $-5$.",
    "autres": [
     "eq-ax",
-    "eq-produit",
-    "puiss-signe"
+    "eq-produit"
    ]
   },
   {
@@ -4419,7 +4284,6 @@ Savoirs.enregistrer({
    "bon": "homo-k",
    "explication": "Les aires sont multipliées par $k^{2} = 4$.",
    "autres": [
-    "homo-sens",
     "agr-vol",
     "sembl-k"
    ]
@@ -4729,8 +4593,7 @@ Savoirs.enregistrer({
    "explication": "$4^{-2} = \\dfrac{1}{4^{2}} = \\dfrac{1}{16}$.",
    "autres": [
     "puiss-zero",
-    "puiss-prod",
-    "puiss-signe"
+    "puiss-prod"
    ]
   },
   {
@@ -4798,19 +4661,7 @@ Savoirs.enregistrer({
    "bon": "proba-f",
    "explication": "$\\dfrac{3}{10}$ (équiprobabilité).",
    "autres": [
-    "proba-arbre",
     "proba-contraire"
-   ]
-  },
-  {
-   "id": "o67",
-   "chap": "proba",
-   "enonce": "Une urne contient 3 boules rouges et 2 bleues. On tire deux fois avec remise. Quelle est la probabilité d'obtenir deux rouges ?",
-   "bon": "proba-arbre",
-   "explication": "On multiplie le long de la branche : $\\dfrac{3}{5} \\times \\dfrac{3}{5} = \\dfrac{9}{25}$.",
-   "autres": [
-    "proba-contraire",
-    "proba-freq"
    ]
   },
   {
@@ -4845,20 +4696,7 @@ Savoirs.enregistrer({
    "explication": "Un centre $O$ et un rapport $k$.",
    "autres": [
     "homo-k",
-    "homo-par",
-    "homo-sens"
-   ]
-  },
-  {
-   "id": "o72",
-   "chap": "homo",
-   "enonce": "Dans l'homothétie de centre $O$ et de rapport $-2$, où se trouve l'image de $M$ ?",
-   "bon": "homo-sens",
-   "explication": "De l'autre côté de $O$, à une distance $2 \\times OM$.",
-   "autres": [
-    "homo-k",
-    "homo-par",
-    "homo-cons"
+    "homo-par"
    ]
   },
   {
@@ -4869,7 +4707,6 @@ Savoirs.enregistrer({
    "explication": "Troisième angle de $ABC$ : $70^{\\circ}$ ; de $DEF$ : $50^{\\circ}$. Mêmes angles : semblables.",
    "autres": [
     "thales",
-    "sembl-perim",
     "agrand-k"
    ]
   },
@@ -4955,18 +4792,6 @@ Savoirs.enregistrer({
     "aire-disque",
     "aire-rect",
     "vitesse"
-   ]
-  },
-  {
-   "id": "o-stat-histo",
-   "chap": "stat",
-   "enonce": "Les tailles des élèves d'un collège sont regroupées en classes de 10 cm. Quel graphique construire pour les représenter ?",
-   "bon": "st-histo",
-   "explication": "Pour des classes, on construit un histogramme : un rectangle par classe, de hauteur proportionnelle à l'effectif.",
-   "autres": [
-    "st-classes",
-    "frequence",
-    "mediane"
    ]
   },
   {

@@ -582,20 +582,6 @@ Savoirs.enregistrer({
    "note": "On garde à chaque terme son signe : $5 - 9 + 2 - 4 = 5 + 2 - 9 - 4 = 7 - 13 = -6$."
   },
   {
-   "id": "rel-commut",
-   "chap": "rel1",
-   "type": "propriete",
-   "titre": "Commutativité",
-   "question": "L'addition de relatifs est commutative. La soustraction ...",
-   "reponse": "ne l'est pas : $a - b \\neq b - a$",
-   "pieges": [
-    "l'est aussi : $a - b = b - a$",
-    "l'est seulement avec des nombres positifs",
-    "l'est seulement avec des nombres entiers"
-   ],
-   "note": "$5 - 2 = 3$ mais $2 - 5 = -3$. Par contre $a + b = b + a$ et $(a + b) + c = a + (b + c)$."
-  },
-  {
    "id": "carre-def",
    "chap": "pyth",
    "type": "definition",
@@ -620,8 +606,7 @@ Savoirs.enregistrer({
     "le nombre dont le double est $a$, noté $\\sqrt{a}$",
     "le nombre négatif dont le carré est $a$, noté $\\sqrt{a}$",
     "la moitié de $a$, notée $\\sqrt{a}$"
-   ],
-   "note": "$\\sqrt{25} = 5$ car $5^{2} = 25$ ; $(\\sqrt{13})^{2} = 13$ ; $\\sqrt{7^{2}} = 7$."
+   ]
   },
   {
    "id": "carres-parfaits",
@@ -894,20 +879,6 @@ Savoirs.enregistrer({
    "note": "Exemple : 7 (3 fois), 10 (1 fois) : $\\dfrac{7 \\times 3 + 10 \\times 1}{4} = \\dfrac{31}{4} = 7{,}75$."
   },
   {
-   "id": "moyenne-classes",
-   "chap": "stat",
-   "type": "regle",
-   "titre": "Moyenne d'une série en classes",
-   "question": "Pour une série regroupée en classes, on remplace chaque classe par ...",
-   "reponse": "son centre (le milieu de l'intervalle)",
-   "pieges": [
-    "sa borne inférieure (le début de l'intervalle)",
-    "sa borne supérieure (la fin de l'intervalle)",
-    "son amplitude (la largeur de l'intervalle)"
-   ],
-   "note": "Pour la classe $160 \\leqslant t < 170$, le centre est $\\dfrac{160 + 170}{2} = 165$. On obtient une valeur approchée de la moyenne."
-  },
-  {
    "id": "mediane",
    "chap": "stat",
    "type": "definition",
@@ -948,20 +919,6 @@ Savoirs.enregistrer({
     "ni la moyenne, ni la médiane, ni les effectifs"
    ],
    "note": "Cinq salaires : 1 500 € (4 fois) et 6 000 €. Moyenne : 2 400 € ; médiane : 1 500 € ; la médiane décrit mieux le salaire courant."
-  },
-  {
-   "id": "classe-def",
-   "chap": "stat",
-   "type": "definition",
-   "titre": "Classe",
-   "question": "Une classe, en statistiques, est ...",
-   "reponse": "un intervalle de valeurs, par exemple $160 \\leqslant t < 170$",
-   "pieges": [
-    "une valeur isolée de la série rangée, par exemple $t = 165$",
-    "un groupe d'individus de la population, par exemple 26 élèves",
-    "un nombre de valeurs de la série, par exemple $t < 170$"
-   ],
-   "note": "On regroupe en classes quand les données sont très nombreuses ou toutes différentes. L'effectif d'une classe est le nombre de valeurs qu'elle contient ; sur un histogramme, la hauteur des rectangles est proportionnelle à l'effectif."
   },
   {
    "id": "stat-circulaire",
@@ -1682,99 +1639,6 @@ Savoirs.enregistrer({
    ]
   },
   {
-   "id": "hausse",
-   "chap": "prop",
-   "type": "formule",
-   "titre": "Augmentation en pourcentage",
-   "question": "Pour augmenter une valeur de $t\\,\\%$, on la multiplie par ...",
-   "reponse": "$1 + \\dfrac{t}{100}$",
-   "pieges": [
-    "$\\dfrac{t}{100}$",
-    "$1 - \\dfrac{t}{100}$",
-    "$t$"
-   ],
-   "morceaux": [
-    "1",
-    "+",
-    "\\dfrac{t}{100}"
-   ],
-   "intrus": [
-    "-",
-    "\\times",
-    "t"
-   ],
-   "exemples": [
-    {
-     "donnees": "Un article à 40 € augmente de $15\\,\\%$",
-     "question": "Nouveau prix ?",
-     "reponse": 46,
-     "unite": "€",
-     "correction": "$40 \\times \\left(1 + \\dfrac{15}{100}\\right) = 40 \\times 1{,}15 = 46$ €"
-    }
-   ]
-  },
-  {
-   "id": "baisse",
-   "chap": "prop",
-   "type": "formule",
-   "titre": "Baisse en pourcentage",
-   "question": "Pour diminuer une valeur de $t\\,\\%$, on la multiplie par ...",
-   "reponse": "$1 - \\dfrac{t}{100}$",
-   "pieges": [
-    "$\\dfrac{t}{100}$",
-    "$1 + \\dfrac{t}{100}$",
-    "100 - t"
-   ],
-   "note": "+20 % puis −20 % ne ramène pas à la valeur de départ.",
-   "morceaux": [
-    "1",
-    "-",
-    "\\dfrac{t}{100}"
-   ],
-   "intrus": [
-    "+",
-    "\\times",
-    "t"
-   ],
-   "exemples": [
-    {
-     "donnees": "Un article à 80 € baisse de $25\\,\\%$",
-     "question": "Nouveau prix ?",
-     "reponse": 60,
-     "unite": "€",
-     "correction": "$80 \\times \\left(1 - \\dfrac{25}{100}\\right) = 80 \\times 0{,}75 = 60$ €"
-    }
-   ]
-  },
-  {
-   "id": "taux-evol",
-   "chap": "prop",
-   "type": "formule",
-   "titre": "Taux d'évolution",
-   "question": "Un prix passe de 40 € à 46 €. Pour trouver son taux d'évolution, on calcule ...",
-   "reponse": "$\\dfrac{46 - 40}{40}$",
-   "pieges": [
-    "$\\dfrac{46 - 40}{46}$",
-    "$\\dfrac{40 - 46}{40}$",
-    "$\\dfrac{46}{40 - 46}$"
-   ],
-   "note": "Taux d'évolution $= \\dfrac{\\text{valeur d'arrivée} - \\text{valeur de départ}}{\\text{valeur de départ}}$. Ici $\\dfrac{6}{40} = 0{,}15$ : hausse de 15 %. Un taux négatif correspond à une baisse."
-  },
-  {
-   "id": "pourc-succ",
-   "chap": "prop",
-   "type": "propriete",
-   "titre": "Pourcentages successifs",
-   "question": "Une hausse de 20 % suivie d'une baisse de 20 % ...",
-   "reponse": "ne ramène pas au départ ($1{,}2 \\times 0{,}8 = 0{,}96$)",
-   "pieges": [
-    "ramène à la valeur de départ, car $20 - 20 = 0$",
-    "revient exactement au prix de départ, car $1{,}2 \\times 0{,}8 = 1$",
-    "donne une valeur plus grande que la valeur de départ, toujours"
-   ],
-   "note": "Les pourcentages ne s'additionnent pas : on multiplie les coefficients multiplicateurs."
-  },
-  {
    "id": "echelle",
    "chap": "prop",
    "type": "regle",
@@ -1850,37 +1714,6 @@ Savoirs.enregistrer({
    ]
   },
   {
-   "id": "rot-poly",
-   "chap": "rot",
-   "type": "formule",
-   "titre": "Angle d'une rotation d'un polygone régulier",
-   "question": "Un polygone régulier à $n$ côtés est invariant par la rotation de centre O (son centre) et d'angle ...",
-   "reponse": "$\\dfrac{360^{\\circ}}{n}$",
-   "pieges": [
-    "$360^{\\circ} \\times n$",
-    "$\\dfrac{180^{\\circ}}{n}$",
-    "$360^{\\circ} - n$"
-   ],
-   "morceaux": [
-    "\\text{angle}",
-    "=",
-    "\\dfrac{360^{\\circ}}{n}"
-   ],
-   "intrus": [
-    "\\dfrac{180^{\\circ}}{n}",
-    "\\times"
-   ],
-   "exemples": [
-    {
-     "donnees": "Pentagone régulier ($n = 5$)",
-     "question": "Angle de la rotation ?",
-     "reponse": 72,
-     "unite": "°",
-     "correction": "$\\dfrac{360}{5} = 72^{\\circ}$"
-    }
-   ]
-  },
-  {
    "id": "rot-dist",
    "chap": "rot",
    "type": "propriete",
@@ -1918,20 +1751,6 @@ Savoirs.enregistrer({
    "note": "Le triangle $OMM'$ est isocèle en $O$."
   },
   {
-   "id": "rot-sens",
-   "chap": "rot",
-   "type": "definition",
-   "titre": "Sens direct",
-   "question": "Le sens direct (ou trigonométrique) est le sens ...",
-   "reponse": "contraire des aiguilles d'une montre",
-   "pieges": [
-    "des aiguilles d'une montre, quand on regarde l'horloge de face",
-    "de lecture, de gauche à droite puis de haut en bas",
-    "qui va du bas vers le haut de la feuille"
-   ],
-   "note": "Le sens des aiguilles d'une montre s'appelle le sens indirect (ou horaire)."
-  },
-  {
    "id": "rot-centre",
    "chap": "rot",
    "type": "propriete",
@@ -1942,8 +1761,7 @@ Savoirs.enregistrer({
     "le symétrique de $O$ par rapport à la droite $(MM')$",
     "un point du cercle de centre $O$ et de rayon 1",
     "un point qui dépend de l'angle de la rotation"
-   ],
-   "note": "On dit que le centre est le seul point invariant (sauf si la rotation est l'identité)."
+   ]
   },
   {
    "id": "rot-cercle",
@@ -2239,97 +2057,100 @@ Savoirs.enregistrer({
    "id": "puiss-prod",
    "chap": "puis",
    "type": "formule",
-   "titre": "Produit de puissances",
-   "question": "$a^{m} \\times a^{n}$ vaut ...",
-   "reponse": "$a^{m+n}$",
+   "titre": "Produit de puissances de 10",
+   "question": "$10^{m} \\times 10^{n}$ vaut ...",
+   "reponse": "$10^{m+n}$",
    "pieges": [
-    "$a^{m \\times n}$",
-    "$a^{m-n}$",
-    "$(2a)^{m+n}$"
+    "$10^{m \\times n}$",
+    "$10^{m-n}$",
+    "$100^{m+n}$"
    ],
    "morceaux": [
-    "a^{m}",
+    "10^{m}",
     "\\times",
-    "a^{n}",
+    "10^{n}",
     "=",
-    "a^{m+n}"
+    "10^{m+n}"
    ],
    "intrus": [
-    "a^{m \\times n}",
+    "10^{m \\times n}",
     "+"
    ],
    "exemples": [
     {
-     "donnees": "Calculer $2^{3} \\times 2^{4}$ (donner le nombre)",
-     "question": "Résultat ?",
-     "reponse": 128,
+     "donnees": "Écrire $10^{3} \\times 10^{4}$ sous la forme $10^{n}$",
+     "question": "$n$ ?",
+     "reponse": 7,
      "unite": "",
-     "correction": "$2^{3} \\times 2^{4} = 2^{7} = 128$"
+     "correction": "$10^{3} \\times 10^{4} = 10^{3+4} = 10^{7}$"
     }
-   ]
+   ],
+   "note": "Exemple : $10^{3} \\times 10^{2} = 10^{5}$ : on ajoute les exposants."
   },
   {
    "id": "puiss-quot",
    "chap": "puis",
    "type": "formule",
-   "titre": "Quotient de puissances",
-   "question": "$\\dfrac{a^{m}}{a^{n}}$ vaut ...",
-   "reponse": "$a^{m-n}$",
+   "titre": "Quotient de puissances de 10",
+   "question": "$\\dfrac{10^{m}}{10^{n}}$ vaut ...",
+   "reponse": "$10^{m-n}$",
    "pieges": [
-    "$a^{m+n}$",
-    "$a^{m \\div n}$",
-    "$a^{n-m}$"
+    "$10^{m+n}$",
+    "$10^{m \\div n}$",
+    "$10^{n-m}$"
    ],
    "morceaux": [
-    "\\dfrac{a^{m}}{a^{n}}",
+    "\\dfrac{10^{m}}{10^{n}}",
     "=",
-    "a^{m-n}"
+    "10^{m-n}"
    ],
    "intrus": [
-    "a^{m+n}",
-    "a^{n-m}"
+    "10^{m+n}",
+    "10^{n-m}"
    ],
    "exemples": [
     {
-     "donnees": "Calculer $\\dfrac{5^{6}}{5^{4}}$ (donner le nombre)",
-     "question": "Résultat ?",
-     "reponse": 25,
+     "donnees": "Écrire $\\dfrac{10^{6}}{10^{4}}$ sous la forme $10^{n}$",
+     "question": "$n$ ?",
+     "reponse": 2,
      "unite": "",
-     "correction": "$5^{6-4} = 5^{2} = 25$"
+     "correction": "$\\dfrac{10^{6}}{10^{4}} = 10^{6-4} = 10^{2}$"
     }
-   ]
+   ],
+   "note": "Exemple : $\\dfrac{10^{5}}{10^{2}} = 10^{3}$ : on soustrait les exposants."
   },
   {
    "id": "puiss-puiss",
    "chap": "puis",
    "type": "formule",
-   "titre": "Puissance d'une puissance",
-   "question": "$(a^{m})^{n}$ vaut ...",
-   "reponse": "$a^{m \\times n}$",
+   "titre": "Puissance d'une puissance de 10",
+   "question": "$(10^{m})^{n}$ vaut ...",
+   "reponse": "$10^{m \\times n}$",
    "pieges": [
-    "$a^{m+n}$",
-    "$a^{m^{n}}$",
-    "$a^{m}\\times n$"
+    "$10^{m+n}$",
+    "$10^{m^{n}}$",
+    "$10^{m} \\times n$"
    ],
    "morceaux": [
     "(",
-    "a^{m}",
+    "10^{m}",
     ")^{n}",
     "=",
-    "a^{m \\times n}"
+    "10^{m \\times n}"
    ],
    "intrus": [
-    "a^{m+n}"
+    "10^{m+n}"
    ],
    "exemples": [
     {
-     "donnees": "Calculer $(2^{3})^{2}$ (donner le nombre)",
-     "question": "Résultat ?",
-     "reponse": 64,
+     "donnees": "Écrire $(10^{2})^{3}$ sous la forme $10^{n}$",
+     "question": "$n$ ?",
+     "reponse": 6,
      "unite": "",
-     "correction": "$(2^{3})^{2} = 2^{6} = 64$"
+     "correction": "$(10^{2})^{3} = 10^{2 \\times 3} = 10^{6}$"
     }
-   ]
+   ],
+   "note": "Exemple : $(10^{2})^{3} = 10^{6}$ : on multiplie les exposants."
   },
   {
    "id": "puiss-neg",
@@ -2386,20 +2207,6 @@ Savoirs.enregistrer({
    ]
   },
   {
-   "id": "puiss-signe",
-   "chap": "puis",
-   "type": "regle",
-   "titre": "Signe d'une puissance",
-   "question": "Pour un nombre $a$ positif, $(-a)^{n}$ est positif quand ...",
-   "reponse": "$n$ est pair",
-   "pieges": [
-    "$n$ est impair",
-    "$n$ est positif",
-    "$n$ est supérieur à $a$"
-   ],
-   "note": "$(-3)^{2} = 9$ mais $-3^{2} = -9$ (sans parenthèses, le signe moins reste devant)."
-  },
-  {
    "id": "dix-puiss",
    "chap": "puis",
    "type": "regle",
@@ -2434,20 +2241,6 @@ Savoirs.enregistrer({
     "$a \\times a$"
    ],
    "note": "Exemple : $7^{1} = 7$."
-  },
-  {
-   "id": "puiss-moins-base",
-   "chap": "puis",
-   "type": "regle",
-   "titre": "Le signe moins et l'exposant",
-   "question": "$-3^{2}$ et $(-3)^{2}$ valent respectivement ...",
-   "reponse": "$-9$ et $9$",
-   "pieges": [
-    "$9$ et $9$",
-    "$-9$ et $-9$",
-    "$-6$ et $6$"
-   ],
-   "note": "Le signe moins est pris en compte après la puissance, sauf s'il est dans les parenthèses."
   },
   {
    "id": "puiss-dix-grand",
@@ -2558,20 +2351,6 @@ Savoirs.enregistrer({
     "joint deux sommets de la base en passant par son centre"
    ],
    "note": "Elle est différente de la hauteur d'une face triangulaire."
-  },
-  {
-   "id": "cone-hauteur",
-   "chap": "vol",
-   "type": "definition",
-   "titre": "Hauteur et génératrice",
-   "question": "Dans un cône de révolution, la hauteur est ... et la génératrice est ...",
-   "reponse": "le segment du sommet au centre de la base ; le segment du sommet à un point du cercle de base",
-   "pieges": [
-    "le segment du sommet à un point du cercle de base ; le segment du sommet au centre de la base",
-    "le diamètre du disque de base ; le rayon du disque de base, deux fois plus court",
-    "le segment du sommet au centre de la base ; le diamètre du disque de base"
-   ],
-   "note": "La hauteur est perpendiculaire à la base ; la génératrice est plus longue que la hauteur."
   },
   {
    "id": "pyr-vol",
@@ -2732,69 +2511,6 @@ Savoirs.enregistrer({
     "$10\\ \\text{cm}^{3}$"
    ],
    "note": "$1\\ \\text{L} = 1\\ \\text{dm}^{3} = 1\\,000\\ \\text{cm}^{3}$ : une pyramide de $3\\,000\\ \\text{cm}^{3}$ contient $3$ L."
-  },
-  {
-   "id": "agrand-k",
-   "chap": "vol",
-   "type": "propriete",
-   "titre": "Agrandissement et réduction de rapport k",
-   "question": "Dans un agrandissement ou une réduction de rapport $k$, les aires sont multipliées par ...",
-   "reponse": "$k^{2}$",
-   "pieges": [
-    "$k$",
-    "$k^{3}$",
-    "$2k$"
-   ],
-   "note": "Longueurs × k ; angles inchangés ; aires × k² ; volumes × k³.",
-   "morceaux": [
-    "\\mathcal{A}'",
-    "=",
-    "k^{2}",
-    "\\times",
-    "\\mathcal{A}"
-   ],
-   "intrus": [
-    "k",
-    "2k"
-   ]
-  },
-  {
-   "id": "pyr-red",
-   "chap": "vol",
-   "type": "propriete",
-   "titre": "Réduction d'une pyramide",
-   "question": "Quand on réduit une pyramide avec un rapport $k$, son volume est multiplié par ...",
-   "reponse": "$k^{3}$",
-   "pieges": [
-    "$k$",
-    "$k^{2}$",
-    "$3k$"
-   ],
-   "morceaux": [
-    "V'",
-    "=",
-    "k^{3}",
-    "\\times",
-    "V"
-   ],
-   "intrus": [
-    "k",
-    "3k"
-   ]
-  },
-  {
-   "id": "cone-red",
-   "chap": "vol",
-   "type": "propriete",
-   "titre": "Réduction d'un cône",
-   "question": "Quand on réduit un cône avec un rapport $k$, son volume est multiplié par ...",
-   "reponse": "$k^{3}$",
-   "pieges": [
-    "$k$",
-    "$k^{2}$",
-    "$3k$"
-   ],
-   "note": "Comme pour les pyramides : longueurs $\\times k$, aires $\\times k^{2}$, volumes $\\times k^{3}$."
   },
   {
    "id": "vol-reperage",
@@ -3527,11 +3243,11 @@ Savoirs.enregistrer({
    "type": "formule",
    "titre": "Événement contraire",
    "question": "$P(\\text{non } A)$ vaut ...",
-   "reponse": "1 - P(A)",
+   "reponse": "$1 - P(A)$",
    "pieges": [
-    "P(A) - 1",
+    "$P(A) - 1$",
     "$\\dfrac{1}{P(A)}$",
-    "-P(A)"
+    "$-P(A)$"
    ],
    "morceaux": [
     "P",
@@ -3616,20 +3332,6 @@ Savoirs.enregistrer({
     "elles sont observées exactement le même nombre de fois"
    ],
    "note": "Les 6 faces d'un dé équilibré sont équiprobables."
-  },
-  {
-   "id": "proba-ou",
-   "chap": "proba",
-   "type": "regle",
-   "titre": "Événements incompatibles",
-   "question": "Si $A$ et $B$ ne peuvent pas se réaliser en même temps, alors $P(A \\text{ ou } B)$ vaut ...",
-   "reponse": "$P(A) + P(B)$",
-   "pieges": [
-    "$P(A) \\times P(B)$",
-    "$P(A) - P(B)$",
-    "$P(A) + P(B) + 1$"
-   ],
-   "note": "Pour un dé : $P(1 \\text{ ou } 2) = \\dfrac{1}{6} + \\dfrac{1}{6} = \\dfrac{2}{6}$."
   },
   {
    "id": "proba-pourcent",
@@ -3780,30 +3482,6 @@ Savoirs.enregistrer({
    ]
   },
   {
-   "id": "o12",
-   "chap": "prop",
-   "enonce": "Un manteau à 120 € est soldé à $-30\\,\\%$. Quel est son nouveau prix ?",
-   "bon": "baisse",
-   "explication": "Baisse de 30 % : on multiplie par $1 - \\dfrac{30}{100} = 0{,}7$.",
-   "autres": [
-    "hausse",
-    "pourcent",
-    "echelle"
-   ]
-  },
-  {
-   "id": "o13",
-   "chap": "prop",
-   "enonce": "Le prix d'un forfait de 50 € augmente de $4\\,\\%$. Quel est le nouveau prix ?",
-   "bon": "hausse",
-   "explication": "Hausse de 4 % : on multiplie par 1,04.",
-   "autres": [
-    "baisse",
-    "pourcent",
-    "vitesse"
-   ]
-  },
-  {
    "id": "o14",
    "chap": "prop",
    "enonce": "Sur un plan à l'échelle $\\dfrac{1}{10\\,000}$, une rue mesure 5 cm. Quelle est sa longueur réelle ?",
@@ -3822,7 +3500,6 @@ Savoirs.enregistrer({
    "bon": "pourcent",
    "explication": "$\\dfrac{35}{100} \\times 800$.",
    "autres": [
-    "hausse",
     "frequence",
     "proba-f"
    ]
@@ -3900,30 +3577,6 @@ Savoirs.enregistrer({
    ]
   },
   {
-   "id": "o23",
-   "chap": "vol",
-   "enonce": "Une pyramide est réduite avec un rapport $k = \\dfrac{1}{2}$. Par combien son volume est-il multiplié ?",
-   "bon": "pyr-red",
-   "explication": "Les volumes sont multipliés par $k^{3} = \\dfrac{1}{8}$.",
-   "autres": [
-    "agrand-k",
-    "pyr-vol",
-    "pourcent"
-   ]
-  },
-  {
-   "id": "o24",
-   "chap": "vol",
-   "enonce": "Un agrandissement de rapport 3 est appliqué à une figure. Par combien l'aire est-elle multipliée ?",
-   "bon": "agrand-k",
-   "explication": "Les aires sont multipliées par $k^{2} = 9$.",
-   "autres": [
-    "pyr-red",
-    "pourcent",
-    "prop-def"
-   ]
-  },
-  {
    "id": "o25",
    "chap": "proba",
    "enonce": "On tire au hasard une carte dans un jeu de 32 cartes. Quelle est la probabilité d'obtenir un as ?",
@@ -3943,8 +3596,7 @@ Savoirs.enregistrer({
    "explication": "$1 - 0{,}35 = 0{,}65$.",
    "autres": [
     "proba-f",
-    "frequence",
-    "hausse"
+    "frequence"
    ]
   },
   {
@@ -4041,18 +3693,6 @@ Savoirs.enregistrer({
     "sci-prod",
     "dix-puiss",
     "puiss-neg"
-   ]
-  },
-  {
-   "id": "o36",
-   "chap": "rot",
-   "enonce": "On fait tourner un carré autour de son centre pour le faire coïncider avec lui-même. Quels angles sont possibles ?",
-   "bon": "rot-poly",
-   "explication": "Pour un polygone régulier à $n$ côtés : multiples de $\\dfrac{360^{\\circ}}{n}$, soit $90^{\\circ}$ pour un carré.",
-   "autres": [
-    "transl-def",
-    "rot-180",
-    "rot-cons"
    ]
   },
   {
@@ -4218,8 +3858,7 @@ Savoirs.enregistrer({
    "bon": "transl-cons",
    "explication": "Une translation conserve les longueurs : 5 cm.",
    "autres": [
-    "transl-def",
-    "agrand-k"
+    "transl-def"
    ]
   },
   {
@@ -4230,7 +3869,6 @@ Savoirs.enregistrer({
    "explication": "D'un centre, d'un angle et d'un sens.",
    "autres": [
     "transl-def",
-    "rot-poly",
     "rot-180"
    ]
   },
@@ -4241,8 +3879,7 @@ Savoirs.enregistrer({
    "bon": "rot-180",
    "explication": "C'est la symétrie centrale de centre $O$.",
    "autres": [
-    "transl-cons",
-    "rot-poly"
+    "transl-cons"
    ]
   },
   {
@@ -4301,7 +3938,6 @@ Savoirs.enregistrer({
    "explication": "On passe toujours d'une ligne à l'autre en multipliant par 2,5 : c'est une situation de proportionnalité.",
    "autres": [
     "pourcent",
-    "hausse",
     "echelle"
    ]
   },
@@ -4312,21 +3948,7 @@ Savoirs.enregistrer({
    "bon": "pourcent",
    "explication": "$\\dfrac{15}{100} \\times 240 = 36$ €.",
    "autres": [
-    "hausse",
-    "baisse",
     "echelle"
-   ]
-  },
-  {
-   "id": "o60",
-   "chap": "prop",
-   "enonce": "Un loyer de 600 € augmente de $5\\,\\%$. Quel est le nouveau loyer ?",
-   "bon": "hausse",
-   "explication": "On multiplie par 1,05 : 630 €.",
-   "autres": [
-    "baisse",
-    "echelle",
-    "prop-def"
    ]
   },
   {
@@ -4337,8 +3959,7 @@ Savoirs.enregistrer({
    "explication": "$4 \\times 200\\,000 = 800\\,000$ cm, soit 8 km.",
    "autres": [
     "pourcent",
-    "vitesse",
-    "hausse"
+    "vitesse"
    ]
   },
   {
@@ -4373,8 +3994,7 @@ Savoirs.enregistrer({
    "explication": "$10^{-4} = 0{,}0001$ (le 1 est au 4e rang après la virgule).",
    "autres": [
     "sci-def",
-    "puiss-zero",
-    "puiss-signe"
+    "puiss-zero"
    ]
   },
   {
@@ -4399,18 +4019,6 @@ Savoirs.enregistrer({
     "dix-puiss",
     "puiss-prod",
     "puiss-neg"
-   ]
-  },
-  {
-   "id": "o67",
-   "chap": "puis",
-   "enonce": "Le nombre $(-5)^{7}$ est-il positif ou négatif ?",
-   "bon": "puiss-signe",
-   "explication": "L'exposant 7 est impair : le résultat est négatif.",
-   "autres": [
-    "puiss-zero",
-    "puiss-neg",
-    "puiss-def"
    ]
   },
   {

@@ -159,26 +159,6 @@
     };
   }
 
-  // ---------- Moyenne d'une série en classes ----------
-  const CLASSES = {
-    tailles: { debut: (N) => "Tailles de " + N + " élèves, en cm", lettre: "t", unite: "cm", qui: ["élève", "élèves"] },
-    masses: { debut: (N) => "Masses de " + N + " élèves, en kg", lettre: "m", unite: "kg", qui: ["élève", "élèves"] },
-    trajets: { debut: (N) => "Durées de trajet de " + N + " élèves, en minutes", lettre: "d", unite: "min", qui: ["élève", "élèves"] },
-    ages: { debut: (N) => "Âges de " + N + " adhérents d'un club, en années", lettre: "a", unite: "ans", qui: ["adhérent", "adhérents"] }
-  };
-  function exClasses(c, depart, largeur, e) {
-    const N = e.reduce((a, b) => a + b, 0);
-    const bornes = e.map((_, i) => depart + i * largeur), centres = bornes.map((b) => net(b + largeur / 2));
-    const produits = centres.map((x, i) => net(x * e[i])), t = somme(produits), m = net(t / N);
-    return {
-      enonce: c.debut(N) + " : " + bornes.map((b, i) => "$" + b + " \\leqslant " + c.lettre + " < " + (b + largeur) + "$ (" + pluriel(e[i], c.qui[0], c.qui[1]) + ")").join(" ; ") +
-        ". Calculer une valeur approchée de la moyenne en utilisant les centres des classes.",
-      reponse: m, unite: c.unite,
-      correction: "On remplace chaque classe par son centre : " + centres.map((x) => "$" + L(x) + "$").join(", ") + ". Moyenne approchée $= (" +
-        centres.map((x, i) => L(x) + " \\times " + e[i]).join(" + ") + ") \\div " + N + " = " + L(t) + " \\div " + N + " = " + L(m) + "$."
-    };
-  }
-
   const stat = [
     {
       id: "moyenne-simple", chap: "stat", titre: "Moyenne d'une série de valeurs", format: "nombre",
@@ -363,40 +343,6 @@
             const m = ent(21, 33) / 2, x = net((n + 1) * m - somme(notes));
             if (new Set(notes).size < 3 || !notes.some((v) => !Number.isInteger(v)) || x < 0 || x > 20 || x === m || Number.isInteger(x) !== entiere) continue;
             return exNoteManquante(notes, m);
-          }
-        }
-      }
-    },
-    {
-      id: "moyenne-classes", chap: "stat", titre: "Moyenne d'une série en classes", format: "nombre",
-      niveaux: {
-        1: () => {
-          const largeur = choix([10, 20]), a = largeur === 10 ? 10 * ent(1, 19) : 20 * ent(1, 9), b = a + largeur, c = a + largeur / 2;
-          return {
-            enonce: "Calculer le centre de la classe $" + a + " \\leqslant t < " + b + "$.", reponse: c,
-            correction: "Le centre est le milieu de l'intervalle : $\\dfrac{" + a + " + " + b + "}{2} = \\dfrac{" + (a + b) + "}{2} = " + c + "$."
-          };
-        },
-        2: () => {
-          const tailles = Math.random() < 0.5, depart = tailles ? choix([140, 150, 160]) : choix([40, 50]);
-          for (;;) {
-            const N = choix([8, 10, 12, 15, 16, 20]), e = effectifs(3, N, 1, 8);
-            if (!e) continue;
-            const m = somme(e.map((x, i) => (depart + 10 * i + 5) * x)) / N;
-            if (Math.abs(m * 10 - Math.round(m * 10)) > 1e-6 || Number.isInteger(net(m))) continue;
-            return exClasses(CLASSES[tailles ? "tailles" : "masses"], depart, 10, e);
-          }
-        },
-        3: () => {
-          const cle = choix(Object.keys(CLASSES));
-          const depart = { tailles: choix([130, 140, 150]), masses: choix([30, 40, 50]), trajets: choix([0, 10]), ages: choix([20, 30]) }[cle];
-          const largeur = cle === "ages" ? choix([10, 20]) : choix([5, 10]);
-          for (;;) {
-            const k = ent(4, 5), N = choix([20, 25, 40, 50]), e = effectifs(k, N, 1, 12);
-            if (!e || new Set(e).size < 3) continue;
-            const m = somme(e.map((x, i) => (depart + largeur * i + largeur / 2) * x)) / N;
-            if (!exacte(m) || Number.isInteger(net(m))) continue;
-            return exClasses(CLASSES[cle], depart, largeur, e);
           }
         }
       }

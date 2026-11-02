@@ -73,23 +73,6 @@
     };
   }
 
-  // ---------- Pourcentage d'évolution ----------
-  function taux(niveau) {
-    let p, t, hausse;
-    do {
-      if (niveau === 1) { t = facile(1) ? 10 : choix([10, 20, 25, 50]); hausse = true; p = 10 * ent(2, 20); }
-      else if (niveau === 2) { t = 5 * ent(1, 8); hausse = facile(2) || Math.random() < 0.5; p = 10 * ent(2, 25); }
-      else { t = choix([1.5, 2.5, 3.5, 6, 8, 12]); hausse = Math.random() < 0.5; p = ent(20, 500); }
-    } while (!exactCentimes(p * coef(t, hausse)) || (niveau < 3 && !Number.isInteger(net(p * coef(t, hausse)))));
-    const a = net(p * coef(t, hausse)), e = net(a - p), q = net(e / p);
-    return {
-      enonce: "Un prix passe de " + euros(p) + " € à " + euros(a) + " €. Calculer le pourcentage de " + (hausse ? "hausse." : "baisse."),
-      schema: fleche(euros(p) + " €", euros(a) + " €", "?"),
-      reponse: t, unite: "%",
-      correction: "$\\dfrac{" + eurosTex(a) + " - " + L(p) + "}{" + L(p) + "} = \\dfrac{" + eurosTex(e) + "}{" + L(p) + "} = " + L(q) + "$, soit une " + (hausse ? "hausse" : "baisse") + " de $" + L(t) + "\\,\\%$."
-    };
-  }
-
   // ---------- Évolutions successives ----------
   function successives(niveau) {
     if (niveau < 3) {
@@ -118,7 +101,6 @@
     { id: "pc-coefficient", chap: "pourc", titre: "Coefficient multiplicateur", format: "nombre", niveaux: { 1: () => coefficient(1), 2: () => coefficient(2), 3: () => coefficient(3) } },
     { id: "pc-nouvelle-valeur", chap: "pourc", titre: "Appliquer une hausse ou une baisse", format: "nombre", calculatrice: [3], niveaux: { 1: () => nouvelleValeur(1), 2: () => nouvelleValeur(2), 3: () => nouvelleValeur(3) } },
     { id: "pc-valeur-depart", chap: "pourc", titre: "Retrouver la valeur de départ", format: "nombre", calculatrice: [3], niveaux: { 1: () => valeurDepart(1), 2: () => valeurDepart(2), 3: () => valeurDepart(3) } },
-    { id: "pc-taux", chap: "pourc", titre: "Calculer un pourcentage d'évolution", format: "nombre", calculatrice: [3], niveaux: { 1: () => taux(1), 2: () => taux(2), 3: () => taux(3) } },
     { id: "pc-successives", chap: "pourc", titre: "Évolutions successives", format: "nombre", niveaux: { 1: () => successives(1), 2: () => successives(2), 3: () => successives(3) } }
   ]);
 })();

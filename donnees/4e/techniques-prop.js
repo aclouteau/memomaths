@@ -136,63 +136,6 @@
       }]))
     },
     {
-      id: "hausse-baisse", chap: "prop", titre: "Hausse et baisse en pourcentage", format: "nombre",
-      niveaux: (function () {
-        const coefficient = (t, hausse) => net(1 + (hausse ? t : -t) / 100);
-        const phrase = (t, hausse) => (hausse ? "Hausse" : "Baisse") + " de $" + pourcent(t) + "$ : coefficient multiplicateur $1 " + (hausse ? "+" : "-") + " \\dfrac{" + L(t) + "}{100} = " + L(coefficient(t, hausse)) + "$.";
-        function uneEvolution(P, t) {
-          const hausse = Math.random() < 0.5, r = net(P * coefficient(t, hausse));
-          if (decimales(r) > 2) return null;
-          return {
-            enonce: "Un article coûte " + euros(P) + ". Son prix " + (hausse ? "augmente" : "baisse") + " de $" + pourcent(t) + "$. Quel est son nouveau prix (en €) ?",
-            reponse: r, unite: "€", correction: phrase(t, hausse) + " Nouveau prix : $" + E(P) + " \\times " + L(coefficient(t, hausse)) + " = " + E(r) + "$ €."
-          };
-        }
-        return {
-          1: () => { for (;;) { const ex = uneEvolution(20 * ent(2, 40), choix([10, 20, 25, 50])); if (ex) return ex; } },
-          // Niveau 2 : pourcentages « ronds » et prix multiples de 20 (calcul faisable à la main)
-          2: () => { for (;;) { const ex = uneEvolution(20 * ent(2, 30), choix([5, 15, 30, 40, 75])); if (ex) return ex; } },
-          3: () => {
-            const une = Math.random() < 0.5; // tiré avant les rejets : une fois sur deux, deux évolutions
-            for (;;) {
-              // Une évolution d'un taux demi-entier (2,5 % ; 3,5 % … 47,5 %)
-              if (une) { const ex = uneEvolution(10 * ent(4, 60), ent(2, 47) + 0.5); if (ex) return ex; continue; }
-              // Deux évolutions successives : hausse puis baisse, ou l'inverse
-              const P = 10 * ent(4, 60), t1 = ent(5, 45), t2 = ent(5, 45), hausseDabord = Math.random() < 0.5;
-              const c1 = coefficient(t1, hausseDabord), c2 = coefficient(t2, !hausseDabord), p1 = net(P * c1), r = net(p1 * c2);
-              if (decimales(p1) > 2 || decimales(r) > 2) continue;
-              return {
-                enonce: "Un article coûte " + euros(P) + ". Son prix " + (hausseDabord ? "augmente" : "baisse") + " de $" + pourcent(t1) + "$, puis " + (hausseDabord ? "baisse" : "augmente") +
-                  " de $" + pourcent(t2) + "$. Quel est son nouveau prix (en €) ?",
-                reponse: r, unite: "€",
-                correction: phrase(t1, hausseDabord) + " " + phrase(t2, !hausseDabord) + " Après la première évolution : $" + E(P) + " \\times " + L(c1) + " = " + E(p1) +
-                  "$ € ; après la seconde : $" + E(p1) + " \\times " + L(c2) + " = " + E(r) + "$ €."
-              };
-            }
-          }
-        };
-      })()
-    },
-    {
-      id: "taux-evol", chap: "prop", titre: "Taux d'évolution", format: "nombre",
-      niveaux: Object.fromEntries([1, 2, 3].map((n) => [n, () => {
-        for (;;) {
-          const V0 = n === 1 ? choix([10, 20, 40, 50, 80, 100, 200]) : n === 2 ? choix([20, 40, 50, 100, 200]) : choix([40, 80, 120, 160, 200, 240, 400, 800]);
-          let t = n === 1 ? choix([5, 10, 15, 20, 25, 30, 50]) : n === 2 ? 5 * ent(1, 12) : ent(5, 190) / 10;
-          if (n === 3 && Number.isInteger(t)) continue;
-          if (n > 1 && Math.random() < 0.5) t = -t;
-          const V1 = net(V0 * (1 + t / 100)), diff = net(V1 - V0), taux = net(diff / V0);
-          if (decimales(V1) > 2) continue;
-          return {
-            enonce: "Un prix passe de " + euros(V0) + " à " + euros(V1) + ". Quel est le taux d'évolution, en pourcentage (négatif s'il s'agit d'une baisse) ?",
-            reponse: t, unite: "%",
-            correction: "Taux d'évolution $= \\dfrac{\\text{arrivée} - \\text{départ}}{\\text{départ}} = \\dfrac{" + E(V1) + " - " + E(V0) + "}{" + E(V0) + "} = \\dfrac{" + L(diff) + "}{" + L(V0) + "} = " + L(taux) +
-              "$, soit une " + (t > 0 ? "hausse de " + T(t) + " %." : "baisse de " + T(-t) + " % : le taux d'évolution est $" + L(t) + "\\,\\%$.")
-          };
-        }
-      }]))
-    },
-    {
       id: "echelle", chap: "prop", titre: "Échelle", format: "nombre",
       niveaux: {
         1: () => {

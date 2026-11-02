@@ -304,34 +304,6 @@ Savoirs.enregistrer({
    "note": "Par exemple, $-8 < 3$. Sur une droite graduée, les nombres négatifs sont à gauche de 0 et les nombres positifs à droite."
   },
   {
-   "id": "rel-dist",
-   "chap": "rel1",
-   "type": "formule",
-   "titre": "Distance entre deux points",
-   "question": "Sur une droite graduée, la distance entre deux points d'abscisses $a$ et $b$ (avec $a < b$) est ...",
-   "reponse": "$b - a$ (la plus grande abscisse moins la plus petite)",
-   "pieges": [
-    "$a - b$ (la plus petite abscisse moins la plus grande)",
-    "$a + b$ (la somme des deux abscisses)",
-    "$a \\times b$ (le produit des deux abscisses)"
-   ],
-   "note": "Si $a$ et $b$ sont de signes contraires, on peut aussi ajouter leurs valeurs absolues : de $-3$ à $4$, la distance est $3 + 4 = 7$."
-  },
-  {
-   "id": "rel-entier-voisin",
-   "chap": "rel1",
-   "type": "regle",
-   "titre": "Encadrer par des entiers",
-   "question": "Le plus grand entier relatif inférieur à $-3{,}2$ est ...",
-   "reponse": "$-4$",
-   "pieges": [
-    "$-3$",
-    "$-3{,}3$",
-    "$4$"
-   ],
-   "note": "$-4 < -3{,}2 < -3$ : c'est $-4$, et non $-3$, car $-3 > -3{,}2$. Pour un nombre négatif, l'entier inférieur est plus éloigné de zéro que la partie entière."
-  },
-  {
    "id": "rel-coord-signe",
    "chap": "rel1",
    "type": "regle",
@@ -458,20 +430,6 @@ Savoirs.enregistrer({
     "ne peut pas changer l'ordre des nombres, car il y en a trois dans le produit"
    ],
    "note": "Une multiplication peut se faire dans n'importe quel ordre, comme une addition : $25 \\times 17 \\times 4 = 25 \\times 4 \\times 17 = 1\\,700$."
-  },
-  {
-   "id": "ench-noncomm",
-   "chap": "ench",
-   "type": "propriete",
-   "titre": "Soustraction et division",
-   "question": "La soustraction et la division sont-elles commutatives (peut-on changer l'ordre des nombres) ?",
-   "reponse": "non : $8 - 3 \\neq 3 - 8$ et $8 \\div 2 \\neq 2 \\div 8$",
-   "pieges": [
-    "oui, toutes les deux : $8 - 3 = 3 - 8$ et $8 \\div 2 = 2 \\div 8$",
-    "seulement la soustraction, puisque $8 - 3 = 3 - 8$ en valeur absolue",
-    "seulement la division, puisque $8 \\div 2 = 2 \\div 8$ en valeur absolue"
-   ],
-   "note": "Seules l'addition et la multiplication sont commutatives."
   },
   {
    "id": "tri-iso",
@@ -964,8 +922,7 @@ Savoirs.enregistrer({
     "le triangle équilatéral et le cercle (pas le carré)",
     "le carré et le triangle équilatéral (pas le cercle)",
     "les trois figures ont toutes un centre de symétrie"
-   ],
-   "note": "Un polygone régulier a un centre de symétrie si et seulement si son nombre de côtés est pair."
+   ]
   },
   {
    "id": "lit-double",
@@ -1642,20 +1599,6 @@ Savoirs.enregistrer({
    ]
   },
   {
-   "id": "frac-comp",
-   "chap": "rat1",
-   "type": "regle",
-   "titre": "Comparer des fractions",
-   "question": "Pour comparer $\\dfrac{3}{4}$ et $\\dfrac{2}{3}$ on ...",
-   "reponse": "les écrit avec le même dénominateur, puis on compare les numérateurs",
-   "pieges": [
-    "compare les dénominateurs : le plus grand donne la plus grande fraction",
-    "compare seulement les numérateurs",
-    "additionne numérateur et dénominateur"
-   ],
-   "note": "Plus le dénominateur est grand, plus les parts sont petites : $\\dfrac{1}{8} < \\dfrac{1}{5}$."
-  },
-  {
    "id": "pourcent-frac",
    "chap": "rat1",
    "type": "regle",
@@ -1694,20 +1637,6 @@ Savoirs.enregistrer({
     "3,4",
     "0,25"
    ]
-  },
-  {
-   "id": "rat-irred",
-   "chap": "rat1",
-   "type": "propriete",
-   "titre": "Fraction irréductible",
-   "question": "Une fraction est irréductible quand ...",
-   "reponse": "on ne peut plus la simplifier",
-   "pieges": [
-    "son numérateur est plus petit que son dénominateur",
-    "son dénominateur est un nombre premier",
-    "son numérateur est égal à 1"
-   ],
-   "note": "Son numérateur et son dénominateur n'ont plus de diviseur commun autre que 1. $\\dfrac{3}{4}$ est irréductible ; $\\dfrac{6}{8}$ ne l'est pas, car $6$ et $8$ sont divisibles par $2$."
   },
   {
    "id": "rat-simpl",
@@ -1938,14 +1867,14 @@ Savoirs.enregistrer({
    },
    "type": "propriete",
    "titre": "Angles adjacents",
-   "question": "Deux angles adjacents dont les côtés non communs sont alignés sont ...",
+   "question": "Deux angles adjacents qui forment ensemble un angle plat sont ...",
    "reponse": "supplémentaires",
    "pieges": [
     "complémentaires",
     "égaux",
     "alternes-internes"
    ],
-   "note": "Leur somme vaut $180^{\\circ}$. Sur une droite, deux angles adjacents forment ensemble un angle plat."
+   "note": "Leur somme vaut $180^{\\circ}$."
   },
   {
    "id": "ang-tour",
@@ -2304,14 +2233,14 @@ Savoirs.enregistrer({
    "chap": "sol",
    "type": "propriete",
    "titre": "Faces d'un prisme droit",
-   "question": "Un prisme droit dont la base a $n$ côtés a ... faces",
-   "reponse": "$n + 2$",
+   "question": "Un prisme droit à base triangulaire a ... faces",
+   "reponse": "$5$",
    "pieges": [
-    "$n$",
-    "$n + 1$",
-    "$2n$"
+    "$3$",
+    "$6$",
+    "$4$"
    ],
-   "note": "Deux bases et $n$ faces latérales rectangulaires : un prisme à base triangulaire a $5$ faces."
+   "note": "Deux bases triangulaires et trois faces rectangulaires : $2 + 3 = 5$."
   },
   {
    "id": "sol-dm3",
@@ -2373,20 +2302,6 @@ Savoirs.enregistrer({
     "$\\dfrac{1}{n}$"
    ],
    "note": "Avec $n \\neq 0$ : par exemple $1 = \\dfrac{5}{5}$. $1 - \\dfrac{2}{3} = \\dfrac{3}{3} - \\dfrac{2}{3} = \\dfrac{1}{3}$."
-  },
-  {
-   "id": "frac-diff",
-   "chap": "rat2",
-   "type": "regle",
-   "titre": "Additionner avec des dénominateurs différents",
-   "question": "Pour calculer $\\dfrac{2}{5} + \\dfrac{1}{4}$ on ...",
-   "reponse": "met les deux fractions au même dénominateur",
-   "pieges": [
-    "additionne les numérateurs et les dénominateurs",
-    "multiplie les deux fractions entre elles",
-    "garde le premier dénominateur seulement"
-   ],
-   "note": "$\\dfrac{2}{5} + \\dfrac{1}{4} = \\dfrac{8}{20} + \\dfrac{5}{20} = \\dfrac{13}{20}$."
   },
   {
    "id": "frac-sous",
@@ -2656,7 +2571,7 @@ Savoirs.enregistrer({
     "ne conclut que si le résultat est un nombre entier",
     "écrit seulement le résultat sans phrase ni vérification"
    ],
-   "note": "On pense à l'unité dans la phrase. $2x = 0$ et $x \\div 2 = 0$ ont pour solution 0."
+   "note": "Exemple : pour $x + 4 = 9$, on trouve $x = 5$. On vérifie : $5 + 4 = 9$. On conclut : « Le nombre cherché est 5. »"
   },
   {
    "id": "equ-sous",
@@ -3296,33 +3211,7 @@ Savoirs.enregistrer({
    "bon": "frac-add",
    "explication": "Même dénominateur : on additionne les numérateurs et on garde le dénominateur.",
    "autres": [
-    "frac-diff",
-    "frac-comp",
     "frac-egales"
-   ]
-  },
-  {
-   "id": "o15",
-   "chap": "rat2",
-   "enonce": "Calculer $\\dfrac{1}{2} + \\dfrac{1}{3}$.",
-   "bon": "frac-diff",
-   "explication": "Dénominateurs différents : on les met d'abord au même dénominateur (6).",
-   "autres": [
-    "frac-add",
-    "frac-comp",
-    "frac-egales"
-   ]
-  },
-  {
-   "id": "o16",
-   "chap": "rat1",
-   "enonce": "Quelle fraction est la plus grande : $\\dfrac{3}{4}$ ou $\\dfrac{2}{3}$ ?",
-   "bon": "frac-comp",
-   "explication": "On met les deux fractions au même dénominateur (12) : $\\dfrac{9}{12}$ et $\\dfrac{8}{12}$.",
-   "autres": [
-    "frac-add",
-    "frac-dec",
-    "pourcent-frac"
    ]
   },
   {
@@ -3727,8 +3616,7 @@ Savoirs.enregistrer({
    "explication": "$50\\,\\% = \\dfrac{50}{100} = \\dfrac{1}{2}$.",
    "autres": [
     "pourcent10",
-    "frac-dec",
-    "frac-comp"
+    "frac-dec"
    ]
   },
   {
