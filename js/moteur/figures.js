@@ -3,6 +3,8 @@
 //   { "type": "paralleles", "marques": "alternes", "mesures": false, "moment": "question" }
 // moment « question » : sous la question (le schéma montre la configuration sans donner la réponse) ;
 // moment « apres » : avec la correction (le schéma, souvent avec les mesures, montrerait la réponse).
+// Le savoir peut aussi reprendre un schéma des exercices (js/moteur/schemas.js) :
+//   { "schema": "triangleRectangle", "options": { "droit": "F", "base": "G", "haut": "E", "lb": 4, "lh": 3 }, "moment": "question" }
 // Couleurs : classes fig-a (bleu) et fig-b (orange), définies dans css/style.css.
 (function () {
   const L = 300, H = 170; // taille du dessin (viewBox)
@@ -153,12 +155,17 @@
 
   Savoirs.figures = {
     // Renvoie le SVG d'une figure, ou "" si le type est inconnu
-    dessiner: (spec) => (spec && DESSINS[spec.type] ? DESSINS[spec.type](spec) : ""),
+    dessiner: (spec) => {
+      if (spec && spec.schema && Savoirs.schemas && Savoirs.schemas[spec.schema]) return Savoirs.schemas[spec.schema](spec.options || {});
+      return spec && DESSINS[spec.type] ? DESSINS[spec.type](spec) : "";
+    },
     // Figure dont l'élève touche un angle (format de réponse « toucher »)
     toucher: figureToucher,
     // Angles d'une figure à toucher : [{ id, d1, d2, milieu, interieur }]
     angles: (spec) => anglesDe(spec).angles.map((a) => ({ id: a.id, d1: a.d1, d2: a.d2, milieu: a.milieu, interieur: a.interieur })),
     // Bloc HTML prêt à insérer
-    bloc: (spec) => { const s = Savoirs.figures.dessiner(spec); return s ? '<div class="figure">' + s + "</div>" : ""; }
+    bloc: (spec) => { const s = Savoirs.figures.dessiner(spec); return s ? '<div class="figure">' + s + "</div>" : ""; },
+    // Figure à montrer sous la question d'un savoir (QCM, morceaux, sans aide), ou ""
+    sousQuestion: (savoir) => (savoir.figure && savoir.figure.moment === "question" ? Savoirs.figures.bloc(savoir.figure) : "")
   };
 })();

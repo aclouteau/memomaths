@@ -25,7 +25,7 @@
       }));
       Savoirs.choix(zone, "Complète", savoir.question, propositions, fini);
       // Schéma de la configuration sous la question (js/moteur/figures.js)
-      if (savoir.figure && savoir.figure.moment === "question") zone.querySelector(".question").insertAdjacentHTML("afterend", Savoirs.figures.bloc(savoir.figure));
+      zone.querySelector(".question").insertAdjacentHTML("afterend", Savoirs.figures.sousQuestion(savoir));
     }
   });
 

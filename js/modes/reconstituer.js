@@ -53,7 +53,7 @@
 
       zone.innerHTML =
         '<p class="consigne">Je reconstitue</p>' +
-        '<div class="question' + (savoir.question.length > 70 ? " longue" : "") + '">' + m.texte(savoir.question) + "</div>" +
+        '<div class="question' + (savoir.question.length > 70 ? " longue" : "") + '">' + m.texte(savoir.question) + "</div>" + Savoirs.figures.sousQuestion(savoir) +
         '<div class="reconstitution" aria-live="polite"><span class="vide">Touche les morceaux dans l\'ordre</span></div>' +
         '<div class="tuiles" role="group" aria-label="Morceaux">' +
         // Une tuile en mots (« nombre total d'issues ») est écrite plus petit pour tenir sur un téléphone

@@ -32,7 +32,7 @@
   function afficherRappel(savoir, zone, fini) {
     zone.innerHTML =
       '<p class="consigne">Sans aide</p>' +
-      '<div class="question' + (savoir.question.length > 70 ? " longue" : "") + '">' + m.texte(savoir.question) + "</div>" +
+      '<div class="question' + (savoir.question.length > 70 ? " longue" : "") + '">' + m.texte(savoir.question) + "</div>" + Savoirs.figures.sousQuestion(savoir) +
       '<p class="aide rappel-aide">Cherche la réponse dans ta tête, puis vérifie.</p>' +
       '<button class="bouton-principal voir-reponse">Voir la réponse</button>' +
       '<div class="reponse-rappel" hidden>' + m.texte(savoir.reponse) + "</div>" +
