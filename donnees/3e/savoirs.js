@@ -1090,7 +1090,7 @@ Savoirs.enregistrer({
    "question": "Si, dans un triangle ABC, on a $BC^{2} = AB^{2} + AC^{2}$, alors ...",
    "reponse": "le triangle ABC est rectangle en A",
    "pieges": [
-    "le triangle ABC est équilatéral, puisque les trois côtés sont égaux",
+    "le triangle ABC est équilatéral",
     "$BC = AB + AC$",
     "le triangle ABC est isocèle en A"
    ],
@@ -1105,7 +1105,7 @@ Savoirs.enregistrer({
    "reponse": "le triangle ABC n'est pas rectangle en A",
    "pieges": [
     "le triangle ABC est rectangle en B",
-    "le triangle ABC est équilatéral, puisque les trois côtés sont égaux",
+    "le triangle ABC est équilatéral",
     "on ne peut rien conclure"
    ]
   },
@@ -1361,9 +1361,9 @@ Savoirs.enregistrer({
    "question": "Une échelle de $\\dfrac{1}{N}$ correspond à ...",
    "reponse": "une réduction de rapport $\\dfrac{1}{N}$",
    "pieges": [
-    "un agrandissement de rapport $N$, car l'échelle donne toujours le rapport",
-    "une réduction de rapport $N$, car le dénominateur indique le rapport",
-    "une symétrie de rapport $N$, car l'échelle conserve les distances"
+    "un agrandissement de rapport $N$",
+    "une réduction de rapport $N$",
+    "une symétrie de rapport $N$"
    ],
    "note": "Cela suppose $N > 1$."
   },
@@ -1700,9 +1700,9 @@ Savoirs.enregistrer({
    "question": "$(a^{m})^{n}$ vaut ...",
    "reponse": "$a^{m \\times n}$",
    "pieges": [
-    "$a^{m+n}$ (on additionne les exposants comme dans un produit)",
-    "$a^{m^{n}}$ (on met l'exposant en puissance de l'exposant)",
-    "$a^{m}\\times n$ (on multiplie la puissance par l'exposant)"
+    "$a^{m+n}$",
+    "$a^{m^{n}}$",
+    "$a^{m}\\times n$"
    ],
    "morceaux": [
     "(",
@@ -1733,9 +1733,9 @@ Savoirs.enregistrer({
    "question": "$a^{-n}$ (avec $a \\neq 0$) vaut ...",
    "reponse": "$\\dfrac{1}{a^{n}}$",
    "pieges": [
-    "$-a^{n}$ (l'exposant négatif change le signe)",
-    "$-\\dfrac{1}{a^{n}}$ (l'exposant négatif change le signe et inverse)",
-    "$a^{n}$ (l'exposant négatif ne change rien)"
+    "$-a^{n}$",
+    "$-\\dfrac{1}{a^{n}}$",
+    "$a^{n}$"
    ],
    "note": "Un exposant négatif ne rend pas le nombre négatif.",
    "morceaux": [
@@ -1765,9 +1765,9 @@ Savoirs.enregistrer({
    "question": "Pour tout nombre $a \\neq 0$, $a^{0}$ vaut ...",
    "reponse": "1",
    "pieges": [
-    "0 (le produit de zéro facteur est nul)",
-    "$a$ (il reste un seul facteur)",
-    "impossible à calculer (il n'y a aucun facteur)"
+    "0",
+    "$a$",
+    "impossible à calculer"
    ],
    "morceaux": [
     "a^{0}",
@@ -1858,9 +1858,9 @@ Savoirs.enregistrer({
    "question": "$(a \\times b)^{n}$ vaut ...",
    "reponse": "$a^{n} \\times b^{n}$",
    "pieges": [
-    "$a^{n} + b^{n}$ (on additionne les deux puissances)",
-    "$a \\times b^{n}$ (l'exposant ne porte que sur $b$)",
-    "$(a \\times b)^{2n}$ (on double l'exposant du produit)"
+    "$a^{n} + b^{n}$",
+    "$a \\times b^{n}$",
+    "$(a \\times b)^{2n}$"
    ],
    "morceaux": [
     "(",
@@ -1896,9 +1896,9 @@ Savoirs.enregistrer({
    "question": "Laquelle de ces écritures est en notation scientifique ?",
    "reponse": "$4{,}5 \\times 10^{-4}$",
    "pieges": [
-    "$12 \\times 10^{4}$ (le nombre 12 est supérieur à 10)",
-    "$0{,}5 \\times 10^{3}$ (le nombre 0,5 est inférieur à 1)",
-    "$32 \\times 10^{-6}$ (le nombre 32 est supérieur à 10)"
+    "$12 \\times 10^{4}$",
+    "$0{,}5 \\times 10^{3}$",
+    "$32 \\times 10^{-6}$"
    ]
   },
   {
@@ -2494,9 +2494,9 @@ Savoirs.enregistrer({
    "question": "$(a + b)(c + d)$ vaut ...",
    "reponse": "$ac + ad + bc + bd$",
    "pieges": [
-    "$ac + bd$ (on multiplie seulement les termes de même rang)",
-    "$ac + ad + bc$ (le dernier produit est oublié)",
-    "$a + b + c + d$ (les quatre termes sont additionnés)"
+    "$ac + bd$",
+    "$ac + ad + bc$",
+    "$a + b + c + d$"
    ],
    "morceaux": [
     "(a+b)(c+d)",
@@ -2550,9 +2550,9 @@ Savoirs.enregistrer({
    "question": "Un signe $-$ devant une parenthèse : $-(a - b)$ vaut ...",
    "reponse": "$-a + b$",
    "pieges": [
-    "$-a - b$, car on ne change que le premier signe",
-    "$a + b$, car deux signes moins donnent un plus",
-    "$-ab$, car le signe moins multiplie le contenu"
+    "$-a - b$",
+    "$a + b$",
+    "$-ab$"
    ],
    "note": "Le signe $-$ change le signe de chaque terme de la parenthèse : $-(3x - 2) = -3x + 2$."
   },
@@ -2578,9 +2578,9 @@ Savoirs.enregistrer({
    "question": "$a^{2} - b^{2}$ se factorise en ...",
    "reponse": "$(a + b)(a - b)$",
    "pieges": [
-    "$(a - b)^{2}$, car on retire $b$ deux fois",
-    "$(a + b)^{2}$, car on additionne les deux termes",
-    "$a(a - b)$, en mettant $a$ en facteur"
+    "$(a - b)^{2}$",
+    "$(a + b)^{2}$",
+    "$a(a - b)$"
    ],
    "note": "Exemple : $x^{2} - 25 = (x + 5)(x - 5)$."
   },
@@ -2620,9 +2620,9 @@ Savoirs.enregistrer({
    "question": "L'écriture $5x$ signifie ...",
    "reponse": "$5 \\times x$",
    "pieges": [
-    "$5 + x$ (5 ajouté à $x$)",
-    "$x^{5}$ ($x$ multiplié 5 fois par lui-même)",
-    "$50 + x$ (5 et $x$ accolés comme des chiffres)"
+    "$5 + x$",
+    "$x^{5}$",
+    "$50 + x$"
    ],
    "note": "On n'écrit pas le signe $\\times$ entre un nombre et une lettre : $5x$, $ab$, $3(x + 1)$."
   },
@@ -2634,9 +2634,9 @@ Savoirs.enregistrer({
    "question": "L'écriture $x^{2}$ signifie ...",
    "reponse": "$x \\times x$",
    "pieges": [
-    "$2 \\times x$, comme $2x$",
-    "$x + x$, comme $2x$",
-    "$x \\times 2$, car l'exposant multiplie"
+    "$2 \\times x$",
+    "$x + x$",
+    "$x \\times 2$"
    ],
    "note": "Exemple : si $x = 5$, alors $x^{2} = 25$ et non 10."
   },
@@ -2648,9 +2648,9 @@ Savoirs.enregistrer({
    "question": "La somme $x + x$ vaut ...",
    "reponse": "$2x$",
    "pieges": [
-    "$x^{2}$, car il y a deux fois $x$",
-    "$2 + x$, car on compte deux objets",
-    "$x$, car on ajoute une lettre à elle-même sans changer sa valeur"
+    "$x^{2}$",
+    "$2 + x$",
+    "$x$"
    ],
    "note": "Exemple : si $x = 5$, $x + x = 10 = 2x$, alors que $x^{2} = 25$."
   },
@@ -2662,9 +2662,9 @@ Savoirs.enregistrer({
    "question": "Le produit $3x \\times 2x$ vaut ...",
    "reponse": "$6x^{2}$",
    "pieges": [
-    "$6x$, car on multiplie les nombres seulement",
-    "$5x^{2}$, car on additionne les nombres",
-    "$5x$, car on additionne tout ce qui est écrit"
+    "$6x$",
+    "$5x^{2}$",
+    "$5x$"
    ],
    "note": "On multiplie les nombres entre eux ($3 \\times 2 = 6$) et les lettres entre elles ($x \\times x = x^{2}$)."
   },
@@ -2746,9 +2746,9 @@ Savoirs.enregistrer({
    "question": "Une homothétie de rapport $k$ multiplie les longueurs par ...",
    "reponse": "la distance à zéro de $k$, et les aires par $k^{2}$",
    "pieges": [
-    "$k^{2}$, et les aires par $k^{4}$ (le carré du carré)",
+    "$k^{2}$, et les aires par $k^{4}$",
     "la distance à zéro de $k$, et les aires aussi",
-    "$2k$, et les aires par $4k$ (le double du double)"
+    "$2k$, et les aires par $4k$"
    ],
    "note": "Les angles sont conservés.",
    "exemples": [
@@ -3549,11 +3549,11 @@ Savoirs.enregistrer({
    "type": "propriete",
    "titre": "Périmètres et rapport",
    "question": "Si deux triangles semblables ont un rapport $k$, leurs périmètres sont dans le rapport ...",
-   "reponse": "$k$ (le périmètre est multiplié par $k$)",
+   "reponse": "$k$",
    "pieges": [
-    "$k^{2}$ (comme les aires de ces triangles)",
-    "$k^{3}$ (comme les volumes de ces solides)",
-    "$2k$ (le double du rapport des longueurs)"
+    "$k^{2}$",
+    "$k^{3}$",
+    "$2k$"
    ],
    "note": "Un triangle de périmètre $12$ cm agrandi avec $k = 3$ a un périmètre de $36$ cm."
   },
@@ -3612,9 +3612,9 @@ Savoirs.enregistrer({
    "question": "Si $\\dfrac{AM}{AB} = \\dfrac{AN}{AC}$ (avec les points alignés dans le même ordre), alors ...",
    "reponse": "$(MN) \\parallel (BC)$",
    "pieges": [
-    "$(MN) \\perp (BC)$ : les droites sont perpendiculaires",
-    "$MN = BC$ : les deux segments ont la même longueur",
-    "le triangle $AMN$ est isocèle en $A$ et $M$ est le milieu"
+    "$(MN) \\perp (BC)$",
+    "$MN = BC$",
+    "le triangle $AMN$ est isocèle en $A$"
    ],
    "morceaux": [
     "\\dfrac{AM}{AB} = \\dfrac{AN}{AC}",
@@ -3751,9 +3751,9 @@ Savoirs.enregistrer({
    "question": "Le périmètre du triangle $AMN$ est égal à celui de $ABC$ multiplié par ...",
    "reponse": "$k = \\dfrac{AM}{AB}$",
    "pieges": [
-    "$k^{2}$, comme pour les aires des deux triangles",
-    "$\\dfrac{AB}{AM}$, l'inverse du rapport $k$",
-    "$k + 1$, car il faut ajouter un côté"
+    "$k^{2}$",
+    "$\\dfrac{AB}{AM}$",
+    "$k + 1$"
    ],
    "note": "Les trois côtés sont multipliés par $k$, donc leur somme aussi."
   },
@@ -3821,9 +3821,9 @@ Savoirs.enregistrer({
    "question": "Si $\\dfrac{AM}{AB}$ et $\\dfrac{AN}{AC}$ ne sont pas égaux, alors ...",
    "reponse": "les droites $(MN)$ et $(BC)$ ne sont pas parallèles",
    "pieges": [
-    "les droites $(MN)$ et $(BC)$ sont parallèles quand même, sans égalité",
-    "les droites $(MN)$ et $(BC)$ sont perpendiculaires, par construction",
-    "on a $AM = AN$ car le triangle est isocèle en $A$"
+    "les droites $(MN)$ et $(BC)$ sont parallèles quand même",
+    "les droites $(MN)$ et $(BC)$ sont perpendiculaires",
+    "on a $AM = AN$"
    ],
    "note": "C'est la contraposée du théorème de Thalès."
   },
@@ -3903,9 +3903,9 @@ Savoirs.enregistrer({
    "question": "Pour $a > 0$, l'équation $x^{2} = a$ a ...",
    "reponse": "deux solutions, $\\sqrt{a}$ et $-\\sqrt{a}$",
    "pieges": [
-    "une seule solution, $\\sqrt{a}$ (c'est la racine carrée de $a$)",
-    "deux solutions, $a$ et $-a$ (ce sont deux nombres opposés)",
-    "aucune solution si $a$ n'est pas un carré parfait (c'est le cas de $a = 10$)"
+    "une seule solution, $\\sqrt{a}$",
+    "deux solutions, $a$ et $-a$",
+    "aucune solution si $a$ n'est pas un carré parfait"
    ],
    "exemples": [
     {
@@ -4021,11 +4021,11 @@ Savoirs.enregistrer({
    "type": "regle",
    "titre": "Solution fractionnaire",
    "question": "L'équation $2x = 5$ a pour solution ...",
-   "reponse": "$\\dfrac{5}{2}$, soit $2{,}5$, en divisant 5 par 2",
+   "reponse": "$\\dfrac{5}{2}$, soit $2{,}5$",
    "pieges": [
-    "$\\dfrac{2}{5}$, soit $0{,}4$, en divisant 2 par 5",
-    "$3$, car 5 divisé par 2 vaut environ 3",
-    "$10$, en multipliant 5 par 2 par erreur"
+    "$\\dfrac{2}{5}$, soit $0{,}4$",
+    "$3$",
+    "$10$"
    ],
    "note": "Une solution n'est pas toujours un entier."
   },
@@ -4079,9 +4079,9 @@ Savoirs.enregistrer({
    "question": "Les solutions de $(x - 2)(x + 5) = 0$ sont ...",
    "reponse": "$2$ et $-5$",
    "pieges": [
-    "$-2$ et $5$ : les signes sont changés",
-    "$2$ et $5$ : le signe de 5 est oublié",
-    "$-2$ et $-5$ : les deux signes sont changés"
+    "$-2$ et $5$",
+    "$2$ et $5$",
+    "$-2$ et $-5$"
    ],
    "note": "$x - 2 = 0$ donne $x = 2$ et $x + 5 = 0$ donne $x = -5$."
   },
@@ -4107,9 +4107,9 @@ Savoirs.enregistrer({
    "question": "L'équation $x^{2} = 36$ a pour solutions ...",
    "reponse": "$6$ et $-6$",
    "pieges": [
-    "$6$ seulement (c'est la racine carrée de 36)",
-    "$18$ et $-18$ (c'est la moitié de 36)",
-    "$36$ et $-36$ (c'est le nombre lui-même)"
+    "$6$ seulement",
+    "$18$ et $-18$",
+    "$36$ et $-36$"
    ],
    "note": "Les deux nombres opposés ont le même carré."
   },
@@ -4163,9 +4163,9 @@ Savoirs.enregistrer({
    "question": "Dans $3x + 2 = 5x - 6$, le membre de droite est ...",
    "reponse": "$5x - 6$",
    "pieges": [
-    "$3x + 2$, qui est écrit avant le signe égal",
-    "$-6$, car c'est le dernier nombre écrit",
-    "$5x$, car on ne compte pas le nombre"
+    "$3x + 2$",
+    "$-6$",
+    "$5x$"
    ],
    "note": "Le membre de gauche est $3x + 2$."
   },

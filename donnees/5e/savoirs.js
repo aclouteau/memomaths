@@ -127,109 +127,6 @@ Savoirs.enregistrer({
  ],
  "savoirs": [
   {
-   "id": "aire-rect",
-   "chap": "pre",
-   "type": "formule",
-   "titre": "Aire d'un rectangle",
-   "question": "Aire d'un rectangle de longueur $L$ et de largeur $\\ell$ ?",
-   "reponse": "$\\mathcal{A} = L \\times \\ell$",
-   "pieges": [
-    "$\\mathcal{A} = 2 \\times (L + \\ell)$",
-    "$\\mathcal{A} = L + \\ell$",
-    "$\\mathcal{A} = \\dfrac{L \\times \\ell}{2}$"
-   ],
-   "morceaux": [
-    "\\mathcal{A}",
-    "=",
-    "L",
-    "\\times",
-    "\\ell"
-   ],
-   "intrus": [
-    "+",
-    "2"
-   ],
-   "exemples": [
-    {
-     "donnees": "$L = 7$ cm et $\\ell = 4$ cm",
-     "question": "Aire ?",
-     "reponse": 28,
-     "unite": "cm²",
-     "correction": "$7 \\times 4 = 28$ cm²"
-    }
-   ]
-  },
-  {
-   "id": "perim-rect",
-   "chap": "pre",
-   "type": "formule",
-   "titre": "Périmètre d'un rectangle",
-   "question": "Périmètre d'un rectangle de longueur $L$ et de largeur $\\ell$ ?",
-   "reponse": "$P = 2 \\times (L + \\ell)$",
-   "pieges": [
-    "$P = L \\times \\ell$",
-    "$P = L + \\ell$",
-    "$P = 2 \\times L \\times \\ell$"
-   ],
-   "exemples": [
-    {
-     "donnees": "$L = 7$ cm et $\\ell = 4$ cm",
-     "question": "Périmètre ?",
-     "reponse": 22,
-     "unite": "cm",
-     "correction": "$2 \\times (7 + 4) = 22$ cm"
-    }
-   ],
-   "morceaux": [
-    "P",
-    "=",
-    "2",
-    "\\times",
-    "(",
-    "L",
-    "+",
-    "\\ell",
-    ")"
-   ],
-   "intrus": [
-    "\\times",
-    "4"
-   ]
-  },
-  {
-   "id": "aire-carre",
-   "chap": "pre",
-   "type": "formule",
-   "titre": "Aire d'un carré",
-   "question": "Aire d'un carré de côté $c$ ?",
-   "reponse": "$\\mathcal{A} = c \\times c = c^{2}$",
-   "pieges": [
-    "$\\mathcal{A} = 4 \\times c$",
-    "$\\mathcal{A} = 2 \\times c$",
-    "$\\mathcal{A} = c + c$"
-   ],
-   "exemples": [
-    {
-     "donnees": "$c = 6$ cm",
-     "question": "Aire ?",
-     "reponse": 36,
-     "unite": "cm²",
-     "correction": "$6 \\times 6 = 36$ cm²"
-    }
-   ],
-   "morceaux": [
-    "\\mathcal{A}",
-    "=",
-    "c",
-    "\\times",
-    "c"
-   ],
-   "intrus": [
-    "+",
-    "4"
-   ]
-  },
-  {
    "id": "diametre",
    "chap": "pre",
    "type": "definition",
@@ -266,19 +163,6 @@ Savoirs.enregistrer({
     "$(d)$ passe par $M$",
     "$M$ est le milieu de $[M M']$",
     "$(d)$ est parallèle à $(MM')$"
-   ]
-  },
-  {
-   "id": "vol-pave6",
-   "chap": "pre",
-   "type": "formule",
-   "titre": "Volume d'un pavé droit",
-   "question": "Volume d'un pavé droit de longueur $L$, largeur $\\ell$, hauteur $h$ ?",
-   "reponse": "$V = L \\times \\ell \\times h$",
-   "pieges": [
-    "$V = L + \\ell + h$",
-    "$V = 2 \\times (L + \\ell + h)$",
-    "$V = L \\times \\ell$"
    ]
   },
   {
@@ -411,13 +295,13 @@ Savoirs.enregistrer({
    "type": "regle",
    "titre": "Comparer un positif et un négatif",
    "question": "De deux nombres de signes contraires, le plus grand est ...",
-   "reponse": "le nombre positif (par exemple $-8 < 3$)",
+   "reponse": "le nombre positif",
    "pieges": [
-    "celui qui a la plus grande valeur absolue (par exemple $-8 < 3$ est faux)",
-    "le nombre négatif, car on lit le signe en premier",
+    "celui qui a la plus grande valeur absolue",
+    "le nombre négatif",
     "celui qui s'écrit avec le moins de chiffres"
    ],
-   "note": "Sur une droite graduée, les nombres négatifs sont à gauche de 0 et les nombres positifs à droite."
+   "note": "Par exemple, $-8 < 3$. Sur une droite graduée, les nombres négatifs sont à gauche de 0 et les nombres positifs à droite."
   },
   {
    "id": "rel-dist",
@@ -439,13 +323,13 @@ Savoirs.enregistrer({
    "type": "regle",
    "titre": "Encadrer par des entiers",
    "question": "Le plus grand entier relatif inférieur à $-3{,}2$ est ...",
-   "reponse": "$-4$ (et non $-3$, car $-3 > -3{,}2$)",
+   "reponse": "$-4$",
    "pieges": [
-    "$-3$ (la partie entière sans le signe)",
-    "$-3{,}3$ (le décimal qui suit)",
-    "$4$ (la valeur absolue arrondie)"
+    "$-3$",
+    "$-3{,}3$",
+    "$4$"
    ],
-   "note": "Pour un nombre négatif, l'entier inférieur est plus éloigné de zéro que la partie entière."
+   "note": "$-4 < -3{,}2 < -3$ : c'est $-4$, et non $-3$, car $-3 > -3{,}2$. Pour un nombre négatif, l'entier inférieur est plus éloigné de zéro que la partie entière."
   },
   {
    "id": "rel-coord-signe",
@@ -514,7 +398,7 @@ Savoirs.enregistrer({
    "reponse": "de gauche à droite : $20 - 8 + 3 = 12 + 3 = 15$",
    "pieges": [
     "de droite à gauche : $20 - 8 + 3 = 20 - 11 = 9$",
-    "toujours les additions avant les soustractions : $20 - 8 + 3 = 23 - 8 = 15$ par chance",
+    "toujours les additions avant les soustractions : $20 - 8 + 3 = 23 - 8 = 15$",
     "dans n'importe quel ordre, le résultat est toujours le même"
    ],
    "note": "Pour $24 \\div 4 \\times 3$ : $24 \\div 4 = 6$ puis $6 \\times 3 = 18$ (et non $24 \\div 12 = 2$)."
@@ -664,8 +548,8 @@ Savoirs.enregistrer({
    "question": "Une hauteur d'un triangle est une droite qui ...",
    "reponse": "passe par un sommet et est perpendiculaire à la droite qui porte le côté opposé",
    "pieges": [
-    "passe par un sommet et par le milieu du côté opposé à ce sommet (c'est une médiane)",
-    "passe par le milieu d'un côté et lui est perpendiculaire (c'est une médiatrice)",
+    "passe par un sommet et par le milieu du côté opposé à ce sommet",
+    "passe par le milieu d'un côté et lui est perpendiculaire",
     "passe par un sommet et est parallèle à la droite qui porte le côté opposé"
    ],
    "note": "Une hauteur peut être à l'extérieur du triangle."
@@ -776,9 +660,9 @@ Savoirs.enregistrer({
    "question": "$a^{2}$ et $a^{3}$ signifient ...",
    "reponse": "$a^{2} = a \\times a$ et $a^{3} = a \\times a \\times a$",
    "pieges": [
-    "$a^{2} = a \\times 2$ et $a^{3} = a \\times 3$ : on multiplie par l'exposant",
-    "$a^{2} = a + a$ et $a^{3} = a + a + a$ : on additionne le nombre",
-    "$a^{2} = 2^{a}$ et $a^{3} = 3^{a}$ : on échange le nombre et l'exposant"
+    "$a^{2} = a \\times 2$ et $a^{3} = a \\times 3$",
+    "$a^{2} = a + a$ et $a^{3} = a + a + a$",
+    "$a^{2} = 2^{a}$ et $a^{3} = 3^{a}$"
    ],
    "morceaux": [
     "a^{2}",
@@ -894,13 +778,13 @@ Savoirs.enregistrer({
    "type": "regle",
    "titre": "Carré d'un décimal",
    "question": "$0{,}3^{2}$ vaut ...",
-   "reponse": "$0{,}09$ (on calcule $3 \\times 3 = 9$ puis on place deux décimales)",
+   "reponse": "$0{,}09$",
    "pieges": [
-    "$0{,}9$ (on garde un seul chiffre après la virgule du nombre)",
-    "$0{,}6$ (on double le nombre au lieu de le multiplier par lui-même)",
-    "$9$ (on oublie complètement la virgule dans le résultat du calcul)"
+    "$0{,}9$",
+    "$0{,}6$",
+    "$9$"
    ],
-   "note": "Le carré d'un décimal a deux fois plus de chiffres après la virgule : $1{,}2^{2} = 1{,}44$."
+   "note": "On calcule $3 \\times 3 = 9$, puis on place deux décimales. Le carré d'un décimal a deux fois plus de chiffres après la virgule : $1{,}2^{2} = 1{,}44$."
   },
   {
    "id": "puis-aire-carre",
@@ -1133,9 +1017,9 @@ Savoirs.enregistrer({
    "question": "$3 \\times (x + 5)$ s'écrit ...",
    "reponse": "$3x + 15$",
    "pieges": [
-    "$3x + 5$ : le facteur 3 ne multiplie que $x$",
-    "$3 + 5x$ : le facteur 3 est ajouté à la parenthèse",
-    "$x + 15$ : le facteur 3 ne multiplie que le nombre 5"
+    "$3x + 5$",
+    "$3 + 5x$",
+    "$x + 15$"
    ],
    "morceaux": [
     "3",
@@ -1198,9 +1082,9 @@ Savoirs.enregistrer({
    "question": "Le périmètre d'un rectangle de longueur $L$ et de largeur $\\ell$ vaut ...",
    "reponse": "$2 \\times (L + \\ell)$",
    "pieges": [
-    "$L \\times \\ell$ : c'est la formule de l'aire du rectangle",
-    "$2 \\times L + \\ell$ : on oublie de doubler la largeur",
-    "$L + \\ell$ : on oublie de doubler la somme des côtés"
+    "$L \\times \\ell$",
+    "$2 \\times L + \\ell$",
+    "$L + \\ell$"
    ]
   },
   {
@@ -1279,13 +1163,13 @@ Savoirs.enregistrer({
    "type": "formule",
    "titre": "Factoriser",
    "question": "$k \\times a + k \\times b$ s'écrit aussi ...",
-   "reponse": "$k \\times (a + b)$ (on met le facteur commun $k$ en facteur)",
+   "reponse": "$k \\times (a + b)$",
    "pieges": [
-    "$k \\times a + b$ (le facteur $k$ disparaît pour le second terme)",
-    "$k + (a \\times b)$ (le facteur $k$ s'ajoute au produit)",
-    "$(k + a) \\times b$ (le facteur $k$ s'ajoute au premier terme)"
+    "$k \\times a + b$",
+    "$k + (a \\times b)$",
+    "$(k + a) \\times b$"
    ],
-   "note": "Exemple : $3x + 3 \\times 5 = 3 \\times (x + 5) = 3(x + 5)$."
+   "note": "On met le facteur commun $k$ en facteur. Exemple : $3x + 3 \\times 5 = 3 \\times (x + 5) = 3(x + 5)$."
   },
   {
    "id": "lit-traduire",
@@ -1309,9 +1193,9 @@ Savoirs.enregistrer({
    "question": "Aire d'un triangle de base $b$ et de hauteur $h$ ?",
    "reponse": "$\\mathcal{A} = \\dfrac{b \\times h}{2}$",
    "pieges": [
-    "$\\mathcal{A} = b \\times h$ (on oublie de diviser par 2)",
-    "$\\mathcal{A} = \\dfrac{b + h}{2}$ (on additionne au lieu de multiplier)",
-    "$\\mathcal{A} = 2 \\times b \\times h$ (on double au lieu de diviser)"
+    "$\\mathcal{A} = b \\times h$",
+    "$\\mathcal{A} = \\dfrac{b + h}{2}$",
+    "$\\mathcal{A} = 2 \\times b \\times h$"
    ],
    "note": "La hauteur est perpendiculaire à la base.",
    "morceaux": [
@@ -1381,9 +1265,9 @@ Savoirs.enregistrer({
    "question": "Périmètre d'un cercle de rayon $r$ ?",
    "reponse": "$P = 2 \\times \\pi \\times r$",
    "pieges": [
-    "$P = \\pi \\times r^{2}$ (c'est la formule de l'aire du disque)",
-    "$P = \\pi \\times r$ (on oublie le facteur $2$ du diamètre)",
-    "$P = 2 \\times r$ (on oublie $\\pi$ complètement)"
+    "$P = \\pi \\times r^{2}$",
+    "$P = \\pi \\times r$",
+    "$P = 2 \\times r$"
    ],
    "morceaux": [
     "P",
@@ -1430,9 +1314,9 @@ Savoirs.enregistrer({
    "question": "Aire d'un rectangle de longueur $L$ et de largeur $\\ell$ ?",
    "reponse": "$\\mathcal{A} = L \\times \\ell$",
    "pieges": [
-    "$\\mathcal{A} = 2 \\times (L + \\ell)$ (c'est le périmètre)",
-    "$\\mathcal{A} = L + \\ell$ (on additionne au lieu de multiplier)",
-    "$\\mathcal{A} = \\dfrac{L \\times \\ell}{2}$ (c'est pour un triangle)"
+    "$\\mathcal{A} = 2 \\times (L + \\ell)$",
+    "$\\mathcal{A} = L + \\ell$",
+    "$\\mathcal{A} = \\dfrac{L \\times \\ell}{2}$"
    ],
    "note": "Pour $L = 6$ cm et $\\ell = 4$ cm : $6 \\times 4 = 24$ cm². Ne pas confondre avec le périmètre, qui additionne les côtés."
   },
@@ -1444,9 +1328,9 @@ Savoirs.enregistrer({
    "question": "Aire d'un carré de côté $c$ ?",
    "reponse": "$\\mathcal{A} = c \\times c$",
    "pieges": [
-    "$\\mathcal{A} = 4 \\times c$ (c'est le périmètre)",
-    "$\\mathcal{A} = 2 \\times c$ (on double au lieu de multiplier)",
-    "$\\mathcal{A} = c + c$ (on additionne au lieu de multiplier)"
+    "$\\mathcal{A} = 4 \\times c$",
+    "$\\mathcal{A} = 2 \\times c$",
+    "$\\mathcal{A} = c + c$"
    ],
    "note": "Pour $c = 5$ cm : $5 \\times 5 = 25$ cm². On écrit aussi $c^{2}$.",
    "morceaux": [
@@ -1469,9 +1353,9 @@ Savoirs.enregistrer({
    "question": "Périmètre d'un carré de côté $c$ ?",
    "reponse": "$P = 4 \\times c$",
    "pieges": [
-    "$P = c \\times c$ (c'est l'aire)",
-    "$P = 2 \\times c$ (on oublie deux côtés)",
-    "$P = 3 \\times c$ (on oublie un côté)"
+    "$P = c \\times c$",
+    "$P = 2 \\times c$",
+    "$P = 3 \\times c$"
    ],
    "note": "Le carré a 4 côtés de même longueur. Pour $c = 5$ cm : $4 \\times 5 = 20$ cm.",
    "morceaux": [
@@ -1494,9 +1378,9 @@ Savoirs.enregistrer({
    "question": "Périmètre d'un rectangle de longueur $L$ et de largeur $\\ell$ ?",
    "reponse": "$P = 2 \\times (L + \\ell)$",
    "pieges": [
-    "$P = L \\times \\ell$ (c'est l'aire)",
-    "$P = L + \\ell$ (on oublie de doubler)",
-    "$P = 2 \\times L + \\ell$ (on oublie de doubler la largeur)"
+    "$P = L \\times \\ell$",
+    "$P = L + \\ell$",
+    "$P = 2 \\times L + \\ell$"
    ],
    "note": "On fait le tour : deux longueurs et deux largeurs. Pour $L = 6$ cm et $\\ell = 4$ cm : $2 \\times (6 + 4) = 20$ cm.",
    "morceaux": [
@@ -1593,9 +1477,9 @@ Savoirs.enregistrer({
    "question": "Aire d'un demi-disque de rayon $r$ ?",
    "reponse": "$\\mathcal{A} = \\dfrac{\\pi \\times r^{2}}{2}$",
    "pieges": [
-    "$\\mathcal{A} = \\pi \\times r^{2}$ (c'est celle du disque entier)",
-    "$\\mathcal{A} = \\dfrac{\\pi \\times r}{2}$ (on oublie le carré)",
-    "$\\mathcal{A} = \\pi \\times \\dfrac{r}{2}$ (on oublie le carré)"
+    "$\\mathcal{A} = \\pi \\times r^{2}$",
+    "$\\mathcal{A} = \\dfrac{\\pi \\times r}{2}$",
+    "$\\mathcal{A} = \\pi \\times \\dfrac{r}{2}$"
    ],
    "note": "Avec $r = 4$ cm : $\\dfrac{3{,}14 \\times 16}{2} = 25{,}12\\ \\text{cm}^{2}$."
   },
@@ -1621,9 +1505,9 @@ Savoirs.enregistrer({
    "question": "Une division euclidienne de $a$ par $b$ s'écrit ...",
    "reponse": "$a = b \\times q + r$ avec $r < b$",
    "pieges": [
-    "$a = b \\times q + r$ avec $r > b$ (le reste est trop grand)",
-    "$a = b + q + r$ (on additionne au lieu de multiplier)",
-    "$a = q \\div b + r$ (on divise au lieu de multiplier)"
+    "$a = b \\times q + r$ avec $r > b$",
+    "$a = b + q + r$",
+    "$a = q \\div b + r$"
    ],
    "note": "$17 = 3 \\times 5 + 2$.",
    "morceaux": [
@@ -1648,9 +1532,9 @@ Savoirs.enregistrer({
    "question": "$21 = 3 \\times 7$ : on dit que ...",
    "reponse": "21 est un multiple de 3 et 3 est un diviseur de 21",
    "pieges": [
-    "21 est un diviseur de 3 et 3 est un multiple de 21 (sens inversé)",
-    "21 est le quotient de 3 et 3 est le reste (mots confondus)",
-    "21 est un multiple de 7 et 3 est le quotient (mots confondus)"
+    "21 est un diviseur de 3 et 3 est un multiple de 21",
+    "21 est le quotient de 3 et 3 est le reste",
+    "21 est un multiple de 7 et 3 est le quotient"
    ]
   },
   {
@@ -1661,9 +1545,9 @@ Savoirs.enregistrer({
    "question": "Un nombre est divisible par 3 quand ...",
    "reponse": "la somme de ses chiffres est divisible par 3",
    "pieges": [
-    "son dernier chiffre est divisible par 3 (on ne regarde que le dernier)",
-    "son dernier chiffre est 3, 6 ou 9 (on confond avec les multiples de 3)",
-    "il est impair (on confond avec les nombres impairs)"
+    "son dernier chiffre est divisible par 3",
+    "son dernier chiffre est 3, 6 ou 9",
+    "il est impair"
    ],
    "note": "Par 9 : la somme des chiffres est divisible par 9. 12 est divisible par 3 mais pas par 9."
   },
@@ -1688,9 +1572,9 @@ Savoirs.enregistrer({
    "question": "Un nombre est divisible par 9 quand ...",
    "reponse": "la somme de ses chiffres est divisible par 9",
    "pieges": [
-    "son dernier chiffre est 9 (comme pour 10 avec le chiffre 0)",
-    "la somme de ses chiffres est divisible par 3 seulement",
-    "il se termine par 0 ou 9 (comme pour 5 avec 0 ou 5)"
+    "son dernier chiffre est 9",
+    "la somme de ses chiffres est divisible par 3",
+    "il se termine par 0 ou 9"
    ],
    "note": "Exemple : $4\\,563$ : $4 + 5 + 6 + 3 = 18$, donc divisible par 9 (et par 3)."
   },
@@ -1700,13 +1584,13 @@ Savoirs.enregistrer({
    "type": "propriete",
    "titre": "Le reste est plus petit que le diviseur",
    "question": "Dans une division euclidienne par 7, le reste peut valoir ...",
-   "reponse": "0, 1, 2, 3, 4, 5 ou 6 (strictement moins que 7)",
+   "reponse": "0, 1, 2, 3, 4, 5 ou 6",
    "pieges": [
-    "1, 2, 3, 4, 5, 6 ou 7 (jusqu'à 7 compris)",
-    "n'importe quel entier, même 20, tant que le quotient reste entier",
-    "0, 1, 2, 3 ou 4 (au plus la moitié de 7)"
+    "1, 2, 3, 4, 5, 6 ou 7",
+    "n'importe quel entier, même 20",
+    "0, 1, 2, 3 ou 4"
    ],
-   "note": "Si le reste vaut 7, on peut encore ajouter 1 au quotient."
+   "note": "Le reste est toujours strictement plus petit que le diviseur. Si le reste vaut 7, on peut encore ajouter 1 au quotient."
   },
   {
    "id": "div-reste-nul",
@@ -1772,9 +1656,9 @@ Savoirs.enregistrer({
    "question": "Le quotient $\\dfrac{a}{b}$ (avec $b \\neq 0$) est le nombre ...",
    "reponse": "qui, multiplié par $b$, donne $a$",
    "pieges": [
-    "qui, ajouté à $b$, donne $a$ (on confond avec une soustraction)",
-    "égal à $a - b$ (on confond avec une soustraction)",
-    "égal à $b \\div a$ (on inverse la division)"
+    "qui, ajouté à $b$, donne $a$",
+    "égal à $a - b$",
+    "égal à $b \\div a$"
    ]
   },
   {
@@ -1785,9 +1669,9 @@ Savoirs.enregistrer({
    "question": "$\\dfrac{a}{b} = \\dfrac{a \\times k}{b \\times k}$ : on obtient une fraction égale en ...",
    "reponse": "multipliant (ou en divisant) le numérateur et le dénominateur par le même nombre non nul",
    "pieges": [
-    "ajoutant (ou en soustrayant) le même nombre au numérateur et au dénominateur, ce qui change la valeur",
-    "ne multipliant que le dénominateur par le nombre choisi (cela change la valeur)",
-    "ne changeant que le numérateur, comme on veut (cela change la valeur)"
+    "ajoutant (ou en soustrayant) le même nombre au numérateur et au dénominateur",
+    "ne multipliant que le dénominateur par le nombre choisi",
+    "ne changeant que le numérateur, comme on veut"
    ],
    "note": "$\\dfrac{3}{4} = \\dfrac{9}{12}$.",
    "morceaux": [
@@ -1859,13 +1743,13 @@ Savoirs.enregistrer({
    "type": "propriete",
    "titre": "Fraction irréductible",
    "question": "Une fraction est irréductible quand ...",
-   "reponse": "on ne peut plus la simplifier (plus de diviseur commun autre que 1)",
+   "reponse": "on ne peut plus la simplifier",
    "pieges": [
-    "son numérateur est plus petit que son dénominateur (elle est alors « propre »)",
-    "son dénominateur est un nombre premier (comme 7 ou 13)",
-    "son numérateur est égal à 1 (ce sont les seules irréductibles)"
+    "son numérateur est plus petit que son dénominateur",
+    "son dénominateur est un nombre premier",
+    "son numérateur est égal à 1"
    ],
-   "note": "$\\dfrac{3}{4}$ est irréductible ; $\\dfrac{6}{8}$ ne l'est pas, car $6$ et $8$ sont divisibles par $2$."
+   "note": "Son numérateur et son dénominateur n'ont plus de diviseur commun autre que 1. $\\dfrac{3}{4}$ est irréductible ; $\\dfrac{6}{8}$ ne l'est pas, car $6$ et $8$ sont divisibles par $2$."
   },
   {
    "id": "rat-simpl",
@@ -1917,9 +1801,9 @@ Savoirs.enregistrer({
    "question": "Prendre les $\\dfrac{3}{4}$ de 80, c'est calculer ...",
    "reponse": "$\\dfrac{3}{4} \\times 80 = 3 \\times 80 \\div 4 = 60$",
    "pieges": [
-    "$80 \\div 3 \\times 4 = 106{,}67$ (on inverse la fraction)",
-    "$80 - \\dfrac{3}{4} = 79{,}25$ (on soustrait la fraction)",
-    "$80 + 3 \\div 4 = 80{,}75$ (on ajoute le quotient)"
+    "$80 \\div 3 \\times 4 = 106{,}67$",
+    "$80 - \\dfrac{3}{4} = 79{,}25$",
+    "$80 + 3 \\div 4 = 80{,}75$"
    ],
    "note": "Prendre $\\dfrac{1}{4}$ d'une quantité, c'est la diviser par $4$."
   },
@@ -1931,9 +1815,9 @@ Savoirs.enregistrer({
    "question": "Calculer $25\\,\\%$ de 80, c'est calculer ...",
    "reponse": "$\\dfrac{25}{100} \\times 80 = 20$",
    "pieges": [
-    "$25 \\times 80 = 2\\,000$ (on oublie de diviser par 100)",
-    "$80 - 25 = 55$ (on soustrait le pourcentage)",
-    "$\\dfrac{80}{100} \\times 25 = 20$ en divisant $25$ par $100$ (on confond les rôles)"
+    "$25 \\times 80 = 2\\,000$",
+    "$80 - 25 = 55$",
+    "$\\dfrac{100}{25} \\times 80 = 320$"
    ],
    "note": "$10\\,\\%$ d'une quantité : on la divise par $10$ ; $50\\,\\%$ : on la divise par $2$."
   },
@@ -1984,8 +1868,8 @@ Savoirs.enregistrer({
    "question": "Deux angles opposés par le sommet sont ...",
    "reponse": "égaux",
    "pieges": [
-    "supplémentaires (somme 180°)",
-    "complémentaires (somme 90°)",
+    "supplémentaires",
+    "complémentaires",
     "toujours droits"
    ]
   },
@@ -2002,9 +1886,9 @@ Savoirs.enregistrer({
    "question": "Deux angles sont supplémentaires quand ...",
    "reponse": "leur somme est égale à $180^{\\circ}$",
    "pieges": [
-    "leur somme est égale à $90^{\\circ}$ (ce sont des angles complémentaires)",
-    "leur somme est égale à $360^{\\circ}$ (le tour complet)",
-    "ils sont égaux (c'est le cas pour des angles opposés)"
+    "leur somme est égale à $90^{\\circ}$",
+    "leur somme est égale à $360^{\\circ}$",
+    "ils sont égaux"
    ]
   },
   {
@@ -2040,9 +1924,9 @@ Savoirs.enregistrer({
    "question": "Deux angles sont complémentaires quand ...",
    "reponse": "leur somme est égale à $90^{\\circ}$",
    "pieges": [
-    "leur somme est égale à $180^{\\circ}$ (ce sont des supplémentaires)",
-    "leur somme est égale à $360^{\\circ}$ (le tour complet)",
-    "ils sont égaux et mesurent chacun $45^{\\circ}$ (cas particulier seulement)"
+    "leur somme est égale à $180^{\\circ}$",
+    "leur somme est égale à $360^{\\circ}$",
+    "ils sont égaux et mesurent chacun $45^{\\circ}$"
    ],
    "note": "Le complémentaire de $35^{\\circ}$ est $90 - 35 = 55^{\\circ}$."
   },
@@ -2097,13 +1981,13 @@ Savoirs.enregistrer({
    "type": "propriete",
    "titre": "Angles adjacents",
    "question": "Deux angles adjacents dont les côtés non communs sont alignés sont ...",
-   "reponse": "supplémentaires (leur somme vaut $180^{\\circ}$)",
+   "reponse": "supplémentaires",
    "pieges": [
-    "complémentaires (leur somme vaut $90^{\\circ}$, ils forment un angle droit)",
-    "égaux (ce sont alors des angles opposés par le sommet)",
-    "alternes-internes (ils sont alors égaux, avec deux parallèles)"
+    "complémentaires",
+    "égaux",
+    "alternes-internes"
    ],
-   "note": "Sur une droite, deux angles adjacents forment ensemble un angle plat."
+   "note": "Leur somme vaut $180^{\\circ}$. Sur une droite, deux angles adjacents forment ensemble un angle plat."
   },
   {
    "id": "ang-tour",
@@ -2156,9 +2040,9 @@ Savoirs.enregistrer({
    "question": "Un angle obtus mesure ...",
    "reponse": "plus de $90^{\\circ}$ et moins de $180^{\\circ}$",
    "pieges": [
-    "moins de $90^{\\circ}$ (c'est un angle aigu)",
-    "exactement $180^{\\circ}$ (c'est un angle plat)",
-    "plus de $180^{\\circ}$ (c'est un angle rentrant)"
+    "moins de $90^{\\circ}$",
+    "exactement $180^{\\circ}$",
+    "plus de $180^{\\circ}$"
    ],
    "note": "Un angle aigu mesure moins de $90^{\\circ}$ ; un angle droit mesure $90^{\\circ}$."
   },
@@ -2960,9 +2844,9 @@ Savoirs.enregistrer({
    "question": "Dans un parallélogramme, deux angles consécutifs sont ...",
    "reponse": "supplémentaires",
    "pieges": [
-    "égaux (ils ont la même mesure)",
-    "complémentaires (leur somme vaut $90^{\\circ}$)",
-    "opposés (leur somme vaut $360^{\\circ}$)"
+    "égaux",
+    "complémentaires",
+    "opposés"
    ],
    "note": "Leur somme vaut $180^{\\circ}$. Les angles opposés sont égaux."
   },
@@ -3312,7 +3196,7 @@ Savoirs.enregistrer({
    "explication": "Triangle : base × hauteur ÷ 2.",
    "autres": [
     "aire-para",
-    "aire-rect",
+    "aire-rect-carre",
     "aire-disque"
    ]
   },
@@ -3324,8 +3208,8 @@ Savoirs.enregistrer({
    "explication": "Parallélogramme : base × hauteur (pas de division par 2).",
    "autres": [
     "aire-tri",
-    "aire-rect",
-    "perim-rect"
+    "aire-rect-carre",
+    "perim-rect-c"
    ]
   },
   {
@@ -3336,8 +3220,8 @@ Savoirs.enregistrer({
    "explication": "C'est une longueur : le périmètre du cercle, $2 \\times \\pi \\times r$.",
    "autres": [
     "aire-disque",
-    "perim-rect",
-    "aire-carre"
+    "perim-rect-c",
+    "aire-carre-c"
    ]
   },
   {
@@ -3348,7 +3232,7 @@ Savoirs.enregistrer({
    "explication": "C'est une surface : l'aire du disque, $\\pi \\times r^{2}$.",
    "autres": [
     "perim-cercle",
-    "aire-rect",
+    "aire-rect-carre",
     "aire-tri"
    ]
   },
@@ -3361,7 +3245,7 @@ Savoirs.enregistrer({
    "autres": [
     "vol-cube",
     "vol-prisme",
-    "aire-rect"
+    "aire-rect-carre"
    ]
   },
   {
@@ -3384,7 +3268,7 @@ Savoirs.enregistrer({
    "explication": "Cube : $a^{3}$.",
    "autres": [
     "vol-pave",
-    "aire-carre",
+    "aire-carre-c",
     "vol-prisme"
    ]
   },
@@ -3642,24 +3526,24 @@ Savoirs.enregistrer({
    "id": "o29",
    "chap": "pre",
    "enonce": "Quelle est l'aire d'une terrasse rectangulaire de 6 m sur 4,5 m ?",
-   "bon": "aire-rect",
+   "bon": "aire-rect-carre",
    "explication": "Rectangle : longueur × largeur, soit $6 \\times 4{,}5 = 27$ m².",
    "autres": [
-    "perim-rect",
-    "aire-carre",
-    "vol-pave6"
+    "perim-rect-c",
+    "aire-carre-c",
+    "vol-pave"
    ]
   },
   {
    "id": "o30",
    "chap": "pre",
    "enonce": "Combien de mètres de clôture faut-il pour entourer un jardin rectangulaire de 12 m sur 8 m ?",
-   "bon": "perim-rect",
+   "bon": "perim-rect-c",
    "explication": "Entourer, c'est le périmètre : $2 \\times (12 + 8) = 40$ m.",
    "autres": [
-    "aire-rect",
-    "aire-carre",
-    "vol-pave6"
+    "aire-rect-carre",
+    "aire-carre-c",
+    "vol-pave"
    ]
   },
   {
@@ -3670,7 +3554,7 @@ Savoirs.enregistrer({
    "explication": "Triangle : base × hauteur ÷ 2, soit $4 \\times 6 \\div 2 = 12$ m².",
    "autres": [
     "aire-para",
-    "aire-rect",
+    "aire-rect-carre",
     "aire-disque"
    ]
   },
@@ -3682,7 +3566,7 @@ Savoirs.enregistrer({
    "explication": "Parallélogramme : base × hauteur (pas de division par 2), soit 21 cm².",
    "autres": [
     "aire-tri",
-    "aire-rect",
+    "aire-rect-carre",
     "perim-cercle"
    ]
   },
@@ -3717,7 +3601,7 @@ Savoirs.enregistrer({
    "bon": "vol-pave",
    "explication": "Pavé droit : $L \\times \\ell \\times h$.",
    "autres": [
-    "aire-rect",
+    "aire-rect-carre",
     "vol-cube",
     "vol-cyl"
    ]

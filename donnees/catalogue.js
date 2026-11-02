@@ -48,7 +48,7 @@ Savoirs.catalogue = [
       chap: "pv",
       savoirs: { "5e": ["aire-para", "aire-carre-c", "perim-carre", "perim-rect-c", "aire-hauteur", "aire-perim-diam", "aire-compose", "aire-demi", "aire-pi", "aire-diametre", "conv-aire", "vol-cube", "vol-cyl", "litre", "sol-dm3"],
         "4e": ["vol-m3", "vol-dm3-litre", "vol-cm3-ml"] },
-      doublons: { "5e": ["aire-rect", "perim-rect", "aire-carre", "vol-pave6", "aire-rect-carre", "puis-aire-carre", "puis-vol-cube", "vol-pave", "vol-prisme", "aire-tri", "aire-disque", "perim-cercle"], "4e": ["aire-para", "aire-rect", "aire-tri", "aire-disque", "perim-cercle", "vol-pave", "vol-prisme", "pyr-vol", "cone-vol"] },
+      doublons: { "5e": ["aire-rect-carre", "puis-aire-carre", "puis-vol-cube", "vol-pave", "vol-prisme", "aire-tri", "aire-disque", "perim-cercle"], "4e": ["aire-para", "aire-rect", "aire-tri", "aire-disque", "perim-cercle", "vol-pave", "vol-prisme", "pyr-vol", "cone-vol"] },
       techniques: ["t-5e-aire-base-hauteur", "t-5e-aire-cercle", "t-5e-aire-conversion", "t-5e-aire-figure-composee", "t-5e-aire-cout", "t-5e-puis-aire-volume", "t-5e-tri-perimetre",
         "t-4e-vol-conversion", "t-4e-vol-droit"]
     }, {

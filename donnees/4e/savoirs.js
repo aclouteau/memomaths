@@ -363,8 +363,8 @@ Savoirs.enregistrer({
    "question": "Deux droites parallèles coupées par une sécante forment des angles alternes-internes ...",
    "reponse": "égaux",
    "pieges": [
-    "supplémentaires (de somme 180°)",
-    "complémentaires (de somme 90°)",
+    "supplémentaires",
+    "complémentaires",
     "toujours droits"
    ]
   },
@@ -2425,9 +2425,9 @@ Savoirs.enregistrer({
    "question": "$(a^{m})^{n}$ vaut ...",
    "reponse": "$a^{m \\times n}$",
    "pieges": [
-    "$a^{m+n}$ (on additionne les exposants comme dans un produit)",
-    "$a^{m^{n}}$ (on met l'exposant en puissance de l'exposant)",
-    "$a^{m}\\times n$ (on multiplie la puissance par l'exposant)"
+    "$a^{m+n}$",
+    "$a^{m^{n}}$",
+    "$a^{m}\\times n$"
    ],
    "morceaux": [
     "(",
@@ -2457,9 +2457,9 @@ Savoirs.enregistrer({
    "question": "$a^{-n}$ (avec $a \\neq 0$) vaut ...",
    "reponse": "$\\dfrac{1}{a^{n}}$",
    "pieges": [
-    "$-a^{n}$ (l'exposant négatif change le signe)",
-    "$-\\dfrac{1}{a^{n}}$ (l'exposant négatif change le signe et inverse)",
-    "$a^{n}$ (l'exposant négatif ne change rien)"
+    "$-a^{n}$",
+    "$-\\dfrac{1}{a^{n}}$",
+    "$a^{n}$"
    ],
    "note": "Un exposant négatif ne rend pas le nombre négatif.",
    "morceaux": [
@@ -2489,9 +2489,9 @@ Savoirs.enregistrer({
    "question": "Pour tout nombre $a \\neq 0$, $a^{0}$ vaut ...",
    "reponse": "1",
    "pieges": [
-    "0 (le produit de zéro facteur est nul)",
-    "$a$ (il reste un seul facteur)",
-    "impossible à calculer (il n'y a aucun facteur)"
+    "0",
+    "$a$",
+    "impossible à calculer"
    ],
    "morceaux": [
     "a^{0}",
@@ -2547,9 +2547,9 @@ Savoirs.enregistrer({
    "question": "Pour tout nombre $a$, $a^{1}$ vaut ...",
    "reponse": "$a$",
    "pieges": [
-    "1 (comme pour l'exposant 0)",
-    "0 (l'exposant 1 annule la puissance)",
-    "$a \\times a$ (comme pour l'exposant 2)"
+    "1",
+    "0",
+    "$a \\times a$"
    ],
    "note": "Exemple : $7^{1} = 7$."
   },
@@ -2561,9 +2561,9 @@ Savoirs.enregistrer({
    "question": "$-3^{2}$ et $(-3)^{2}$ valent respectivement ...",
    "reponse": "$-9$ et $9$",
    "pieges": [
-    "$9$ et $9$ (on ignore le signe moins qui est devant le premier nombre)",
-    "$-9$ et $-9$ (on ignore les parenthèses du second nombre)",
-    "$-6$ et $6$ (on multiplie le nombre par l'exposant)"
+    "$9$ et $9$",
+    "$-9$ et $-9$",
+    "$-6$ et $6$"
    ],
    "note": "Le signe moins est pris en compte après la puissance, sauf s'il est dans les parenthèses."
   },
@@ -2727,9 +2727,9 @@ Savoirs.enregistrer({
    "question": "Volume d'une pyramide d'aire de base $B$ et de hauteur $h$ ?",
    "reponse": "$V = \\dfrac{1}{3} \\times B \\times h$",
    "pieges": [
-    "$V = \\mathcal{B} \\times h$ (c'est le volume d'un prisme)",
-    "$V = \\dfrac{\\mathcal{B} \\times h}{2}$ (on divise par 2)",
-    "$V = \\dfrac{P \\times h}{3}$ (avec le périmètre $P$ de la base)"
+    "$V = B \\times h$",
+    "$V = \\dfrac{B \\times h}{2}$",
+    "$V = 3 \\times B \\times h$"
    ],
    "morceaux": [
     "V",
@@ -2762,9 +2762,9 @@ Savoirs.enregistrer({
    "question": "Volume d'un cône de rayon $r$ et de hauteur $h$ ?",
    "reponse": "$V = \\dfrac{1}{3} \\times \\pi \\times r^{2} \\times h$",
    "pieges": [
-    "$V = \\pi \\times r^{2} \\times h$ (c'est le volume d'un cylindre)",
-    "$V = \\dfrac{1}{3} \\times \\pi \\times r^{2} \\times g$ (avec la génératrice au lieu de la hauteur)",
-    "$V = \\dfrac{1}{3} \\times \\pi \\times r \\times h$ (on oublie le carré du rayon)"
+    "$V = \\pi \\times r^{2} \\times h$",
+    "$V = \\dfrac{1}{3} \\times \\pi \\times r \\times h^{2}$",
+    "$V = \\dfrac{1}{3} \\times \\pi \\times r \\times h$"
    ],
    "morceaux": [
     "V",
@@ -3133,8 +3133,8 @@ Savoirs.enregistrer({
    "question": "Une solution d'une équation est une valeur de l'inconnue qui ...",
    "reponse": "rend l'égalité vraie",
    "pieges": [
-    "rend l'égalité fausse (c'est une valeur qui ne convient pas)",
-    "annule le membre de gauche, c'est-à-dire qui le rend égal à zéro",
+    "rend l'égalité fausse",
+    "annule le membre de gauche",
     "est toujours un entier positif, jamais un décimal"
    ]
   },
@@ -3146,9 +3146,9 @@ Savoirs.enregistrer({
    "question": "On ne change pas une égalité si on ...",
    "reponse": "ajoute, retranche, multiplie ou divise (par un nombre non nul) les deux membres par un même nombre",
    "pieges": [
-    "ajoute un nombre au membre de gauche seulement, sans toucher à celui de droite, car c'est plus rapide",
-    "divise par $x$ les deux membres, même si $x$ peut valoir 0, pour faire disparaître l'inconnue",
-    "multiplie par 0 les deux membres de l'égalité pour la simplifier au maximum, ce qui ne change rien"
+    "ajoute un nombre au membre de gauche seulement, sans toucher à celui de droite",
+    "divise par $x$ les deux membres, même si $x$ peut valoir 0",
+    "multiplie par 0 les deux membres pour simplifier"
    ],
    "exemples": [
     {
@@ -3175,9 +3175,9 @@ Savoirs.enregistrer({
    "question": "Dans la résolution d'un problème, quel est l'ordre des étapes ?",
    "reponse": "choisir l'inconnue, écrire l'équation, la résoudre, vérifier, conclure par une phrase",
    "pieges": [
-    "écrire l'équation, la résoudre, conclure, puis choisir l'inconnue (on commence par la fin)",
-    "résoudre, choisir l'inconnue, vérifier la solution (sans jamais mettre en équation)",
-    "choisir l'inconnue, résoudre l'équation, puis ne pas conclure (aucune phrase de réponse)"
+    "écrire l'équation, la résoudre, conclure, puis choisir l'inconnue",
+    "résoudre, choisir l'inconnue, vérifier la solution",
+    "choisir l'inconnue, résoudre l'équation, sans conclure"
    ]
   },
   {
@@ -3272,9 +3272,9 @@ Savoirs.enregistrer({
    "question": "La solution de $2x = 5$ est ...",
    "reponse": "$x = \\dfrac{5}{2}$",
    "pieges": [
-    "$x = \\dfrac{2}{5}$ (on divise $2$ par $5$)",
-    "$x = 3$ (on arrondit)",
-    "$x = 10$ (on multiplie au lieu de diviser)"
+    "$x = \\dfrac{2}{5}$",
+    "$x = 3$",
+    "$x = 10$"
    ],
    "note": "Soit $2{,}5$ : la solution n'est pas toujours un entier ; on la donne exacte, en fraction irréductible."
   },
@@ -3286,9 +3286,9 @@ Savoirs.enregistrer({
    "question": "Je pense à un nombre, je le double et j'ajoute $5$ : j'obtiens $17$. L'équation est ...",
    "reponse": "$2x + 5 = 17$",
    "pieges": [
-    "$2(x + 5) = 17$ (on double aussi le 5)",
-    "$x + 2 + 5 = 17$ (on additionne le 2)",
-    "$2x - 5 = 17$ (on soustrait au lieu d'ajouter)"
+    "$2(x + 5) = 17$",
+    "$x + 2 + 5 = 17$",
+    "$2x - 5 = 17$"
    ],
    "note": "On résout ensuite : $x = 6$."
   },
@@ -3429,9 +3429,9 @@ Savoirs.enregistrer({
    "question": "Pour convertir une vitesse de km/h en m/s, on ...",
    "reponse": "divise par 3,6",
    "pieges": [
-    "multiplie par 3,6 (on se trompe de sens)",
-    "divise par 60 (on convertit en minutes)",
-    "multiplie par 1 000 (on convertit les kilomètres en mètres seulement)"
+    "multiplie par 3,6",
+    "divise par 60",
+    "multiplie par 1 000"
    ],
    "exemples": [
     {
@@ -3451,9 +3451,9 @@ Savoirs.enregistrer({
    "question": "2,5 h s'écrit en heures et minutes :",
    "reponse": "2 h 30 min",
    "pieges": [
-    "2 h 50 min (on lit 0,5 comme 50 minutes)",
-    "2 h 5 min (on lit 0,5 comme 5 minutes)",
-    "2 h 25 min (on prend un quart d'heure à tort)"
+    "2 h 50 min",
+    "2 h 5 min",
+    "2 h 25 min"
    ],
    "note": "1 h = 60 min donc 0,5 h = 30 min."
   },
@@ -3465,7 +3465,7 @@ Savoirs.enregistrer({
    "question": "$0{,}25$ h correspond à ...",
    "reponse": "$15$ min",
    "pieges": [
-    "$25$ min (la partie décimale lue comme des minutes)",
+    "$25$ min",
     "$0{,}25$ min",
     "$2$ min $5$ s"
    ],
@@ -3570,9 +3570,9 @@ Savoirs.enregistrer({
    "question": "Laquelle de ces écritures est en notation scientifique ?",
    "reponse": "$3{,}2 \\times 10^{-5}$",
    "pieges": [
-    "$12 \\times 10^{4}$ (le nombre 12 est supérieur à 10)",
-    "$0{,}5 \\times 10^{3}$ (le nombre 0,5 est inférieur à 1)",
-    "$32 \\times 10^{-6}$ (le nombre 32 est supérieur à 10)"
+    "$12 \\times 10^{4}$",
+    "$0{,}5 \\times 10^{3}$",
+    "$32 \\times 10^{-6}$"
    ]
   },
   {
@@ -3653,9 +3653,9 @@ Savoirs.enregistrer({
    "question": "Une probabilité est toujours un nombre ...",
    "reponse": "compris entre 0 et 1",
    "pieges": [
-    "supérieur à 1 (une probabilité peut dépasser 1)",
-    "entier (0 ou 1 seulement, sans valeur intermédiaire)",
-    "compris entre −1 et 1 (une probabilité peut être négative)"
+    "supérieur à 1",
+    "entier (0 ou 1 seulement)",
+    "compris entre −1 et 1"
    ],
    "note": "0 : événement impossible ; 1 : événement certain."
   },
@@ -3689,9 +3689,9 @@ Savoirs.enregistrer({
    "question": "$P(\\text{non } A)$ vaut ...",
    "reponse": "1 - P(A)",
    "pieges": [
-    "P(A) - 1 (on soustrait dans le mauvais sens)",
-    "$\\dfrac{1}{P(A)}$ (on prend l'inverse de la probabilité)",
-    "-P(A) (on prend l'opposé de la probabilité)"
+    "P(A) - 1",
+    "$\\dfrac{1}{P(A)}$",
+    "-P(A)"
    ],
    "morceaux": [
     "P",
@@ -3729,9 +3729,9 @@ Savoirs.enregistrer({
    "question": "Quand le nombre d'expériences devient très grand, la fréquence d'un événement ...",
    "reponse": "se rapproche de sa probabilité",
    "pieges": [
-    "devient exactement égale à sa probabilité (même pour un petit nombre de tirages)",
-    "s'éloigne de sa probabilité quand on répète beaucoup",
-    "devient égale à 1 quand on répète beaucoup l'expérience"
+    "devient exactement égale à sa probabilité",
+    "s'éloigne de sa probabilité",
+    "devient égale à 1"
    ],
    "note": "Une série de « pile » ne rend pas « face » plus probable au tirage suivant."
   },
@@ -3743,9 +3743,9 @@ Savoirs.enregistrer({
    "question": "La probabilité d'un événement impossible est ... et celle d'un événement certain est ...",
    "reponse": "$0$ ; $1$",
    "pieges": [
-    "$1$ ; $0$ (impossible : 1, certain : 0, à l'envers)",
-    "$0$ ; $0{,}5$ (certain : une chance sur deux)",
-    "$-1$ ; $1$ (impossible : −1, certain : 1)"
+    "$1$ ; $0$",
+    "$0$ ; $0{,}5$",
+    "$-1$ ; $1$"
    ],
    "note": "Obtenir 7 avec un dé à 6 faces est impossible : $P = 0$."
   },
@@ -3757,9 +3757,9 @@ Savoirs.enregistrer({
    "question": "La somme des probabilités de toutes les issues d'une expérience vaut ...",
    "reponse": "$1$",
    "pieges": [
-    "$0$ (les probabilités se compensent entre elles)",
-    "$100$ (comme avec les pourcentages)",
-    "le nombre d'issues de l'expérience (par exemple 6)"
+    "$0$",
+    "$100$",
+    "le nombre d'issues de l'expérience"
    ],
    "note": "Pour un dé équilibré, six issues de probabilité $\\dfrac{1}{6}$ : $6 \\times \\dfrac{1}{6} = 1$."
   },
@@ -3785,9 +3785,9 @@ Savoirs.enregistrer({
    "question": "Si $A$ et $B$ ne peuvent pas se réaliser en même temps, alors $P(A \\text{ ou } B)$ vaut ...",
    "reponse": "$P(A) + P(B)$",
    "pieges": [
-    "$P(A) \\times P(B)$ (on multiplie les deux probabilités)",
-    "$P(A) - P(B)$ (on soustrait les deux probabilités)",
-    "$P(A) + P(B) + 1$ (on ajoute 1 à la somme)"
+    "$P(A) \\times P(B)$",
+    "$P(A) - P(B)$",
+    "$P(A) + P(B) + 1$"
    ],
    "note": "Pour un dé : $P(1 \\text{ ou } 2) = \\dfrac{1}{6} + \\dfrac{1}{6} = \\dfrac{2}{6}$."
   },
@@ -3799,9 +3799,9 @@ Savoirs.enregistrer({
    "question": "Une probabilité de $\\dfrac{1}{4}$ peut aussi s'écrire ...",
    "reponse": "$0{,}25$ ou $25\\,\\%$",
    "pieges": [
-    "$0{,}14$ ou $14\\,\\%$ (on lit 1/4 comme 1,4)",
-    "$4$ ou $400\\,\\%$ (on garde le dénominateur seul)",
-    "$0{,}4$ ou $40\\,\\%$ (on lit 1/4 comme 0,4)"
+    "$0{,}14$ ou $14\\,\\%$",
+    "$4$ ou $400\\,\\%$",
+    "$0{,}4$ ou $40\\,\\%$"
    ],
    "note": "Une probabilité est toujours comprise entre $0$ et $1$, c'est-à-dire entre $0\\,\\%$ et $100\\,\\%$."
   }
