@@ -49,9 +49,9 @@
     "t-5e-puis-cube": [3],"t-5e-puis-aire-volume": [3],
     "t-5e-aire-cercle": [1, 2, 3], "t-5e-aire-figure-composee": [3], "t-5e-aire-cout": [3],
     "t-4e-pyth-carre": [2, 3], "t-4e-hyp-calcul": [2, 3], "t-4e-cote-droit": [2, 3], "t-4e-situation-pyth": [2, 3],
-    "t-4e-moyenne-classes": [3], "t-4e-quatrieme": [3], "t-4e-coef-prop": [3],
+    "t-4e-quatrieme": [3], "t-4e-coef-prop": [3],
     "t-4e-carre-grand": [2, 3], "t-4e-somme-petits": [2, 3], "t-4e-ecart-pyth": [2, 3], "t-4e-rectangle-oui-non": [2, 3],
-    "t-4e-hausse-baisse": [3], "t-4e-fraction-de": [3],
+    "t-4e-fraction-de": [3],
     "t-3e-hypotenuse-calcul": [2, 3], "t-3e-cote-calcul": [2, 3], "t-3e-pyth-situation": [2, 3], "t-3e-diagonale-pave": [2, 3],
     "t-3e-rectangle-oui-non": [2, 3], "t-3e-aire-image": [3], "t-3e-volume-image": [3], "t-3e-homo-aire": [3], "t-3e-rapport-depuis-aire": [3],
     "t-3e-thales-longueur": [3], "t-3e-thales-situation": [2, 3], "t-3e-thales-perimetre": [3], "t-3e-thales-parallele-oui-non": [3],
@@ -342,7 +342,7 @@
         // Savoir : des valeurs tirées au hasard quand il a un générateur (js/modes/calculs.js),
         // pour que l'élève ne mémorise pas un exemple fixe ; sinon un des exemples des données
         const generer = Savoirs.calculs && Savoirs.calculs[savoir.id];
-        ex = generer ? generer() : Savoirs.melanger(savoir.exemples)[0];
+        ex = generer ? generer(savoir) : Savoirs.melanger(savoir.exemples)[0];
         entete = '<p class="consigne">Je m\'entraîne</p>' +
           (masque ? '<p class="titre-savoir masque">À toi de trouver le bon savoir</p>' : '<p class="titre-savoir">' + m.texte(savoir.titre) + "</p>");
       }

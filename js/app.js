@@ -341,7 +341,14 @@
         if (meme) meme.focus();
       });
     }));
-    ecran.querySelector("#choix-chap").addEventListener("change", (e) => { changerReglages(seul ? { seul: e.target.value } : { jusqua: e.target.value }); accueil(); ecran.querySelector("#choix-chap").focus(); });
+    // Sur téléphone et tablette, la liste des chapitres resterait ouverte (roue de l'iPhone) : on la referme, et on ne
+    // redonne le focus au menu qu'avec une souris ou un clavier (sinon la liste se rouvrirait)
+    ecran.querySelector("#choix-chap").addEventListener("change", (e) => {
+      e.target.blur();
+      changerReglages(seul ? { seul: e.target.value } : { jusqua: e.target.value });
+      accueil();
+      if (window.matchMedia("(pointer: fine)").matches) ecran.querySelector("#choix-chap").focus();
+    });
     ecran.querySelectorAll("[data-portee]").forEach((b) => b.addEventListener("click", () => {
       if ((b.dataset.portee === "seul") === seul) return;
       changerReglages({ portee: b.dataset.portee });

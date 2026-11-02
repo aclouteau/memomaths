@@ -27,6 +27,7 @@
   }
   const P = (x) => (x < 0 ? "(" + L(x) + ")" : L(x)); // nombre négatif entre parenthèses
   const ex = (donnees, question, reponse, unite, correction) => ({ donnees, question, reponse: net(reponse), unite, correction });
+  const dix = (savoir) => !!savoir && /10\^\{m\}/.test(savoir.question); // savoir écrit avec des puissances de 10
 
   // Triplets pythagoriciens (côtés de l'angle droit, hypoténuse)
   const TRIPLETS = [[3, 4, 5], [6, 8, 10], [5, 12, 13], [8, 15, 17], [9, 12, 15], [12, 16, 20], [7, 24, 25], [15, 20, 25], [20, 21, 29]];
@@ -161,13 +162,20 @@
     "carre-def": () => { if (Math.random() < 0.5) { const n = ent(2, 15); return ex("Calculer $" + n + "^{2}$", "Résultat ?", n * n, "", "$" + n + "^{2} = " + n + " \\times " + n + " = " + n * n + "$"); }
       const n = ent(2, 6); return ex("Calculer $" + n + "^{3}$", "Résultat ?", n * n * n, "", "$" + n + " \\times " + n + " \\times " + n + " = " + n * n * n + "$"); },
     "carres-parfaits": () => { const n = ent(2, 15); return ex("Calculer $" + n + "^{2}$", "Résultat ?", n * n, "", "$" + n + " \\times " + n + " = " + n * n + "$"); },
-    "puiss-prod": () => { const a = choix([2, 3, 10]), max = { 2: 10, 3: 6, 10: 6 }[a], m = ent(1, max - 1), n = ent(1, max - m), r = Math.pow(a, m + n);
+    // En 4e, ces trois savoirs ne portent que sur les puissances de 10 : on demande alors l'exposant
+    "puiss-prod": (s) => { if (dix(s)) { const m = ent(1, 9), n = ent(1, 9);
+        return ex("Écrire $10^{" + m + "} \\times 10^{" + n + "}$ sous la forme $10^{n}$", "$n$ ?", m + n, "", "$10^{" + m + "} \\times 10^{" + n + "} = 10^{" + m + "+" + n + "} = 10^{" + (m + n) + "}$"); }
+      const a = choix([2, 3, 10]), max = { 2: 10, 3: 6, 10: 6 }[a], m = ent(1, max - 1), n = ent(1, max - m), r = Math.pow(a, m + n);
       return ex("Calculer $" + a + "^{" + m + "} \\times " + a + "^{" + n + "}$ (donner le nombre)", "Résultat ?", r, "",
         "$" + a + "^{" + m + "} \\times " + a + "^{" + n + "} = " + a + "^{" + (m + n) + "} = " + L(r) + "$"); },
-    "puiss-quot": () => { const a = choix([2, 3, 5, 10]), d = ent(1, a === 2 ? 6 : 3), n = ent(1, 5), m = n + d, r = Math.pow(a, d);
+    "puiss-quot": (s) => { if (dix(s)) { const n = ent(1, 6), m = n + ent(1, 6);
+        return ex("Écrire $\\dfrac{10^{" + m + "}}{10^{" + n + "}}$ sous la forme $10^{n}$", "$n$ ?", m - n, "", "$\\dfrac{10^{" + m + "}}{10^{" + n + "}} = 10^{" + m + "-" + n + "} = 10^{" + (m - n) + "}$"); }
+      const a = choix([2, 3, 5, 10]), d = ent(1, a === 2 ? 6 : 3), n = ent(1, 5), m = n + d, r = Math.pow(a, d);
       return ex("Calculer $\\dfrac{" + a + "^{" + m + "}}{" + a + "^{" + n + "}}$ (donner le nombre)", "Résultat ?", r, "",
         "$" + a + "^{" + m + "-" + n + "} = " + a + "^{" + d + "} = " + L(r) + "$"); },
-    "puiss-puiss": () => { const a = choix([2, 3]), [m, n] = a === 2 ? choix([[2, 2], [2, 3], [3, 2], [2, 4], [4, 2], [3, 3]]) : choix([[2, 2], [1, 3], [3, 1], [2, 3]]), r = Math.pow(a, m * n);
+    "puiss-puiss": (s) => { if (dix(s)) { const m = ent(2, 5), n = ent(2, 4);
+        return ex("Écrire $(10^{" + m + "})^{" + n + "}$ sous la forme $10^{n}$", "$n$ ?", m * n, "", "$(10^{" + m + "})^{" + n + "} = 10^{" + m + " \\times " + n + "} = 10^{" + m * n + "}$"); }
+      const a = choix([2, 3]), [m, n] = a === 2 ? choix([[2, 2], [2, 3], [3, 2], [2, 4], [4, 2], [3, 3]]) : choix([[2, 2], [1, 3], [3, 1], [2, 3]]), r = Math.pow(a, m * n);
       return ex("Calculer $(" + a + "^{" + m + "})^{" + n + "}$ (donner le nombre)", "Résultat ?", r, "",
         "$(" + a + "^{" + m + "})^{" + n + "} = " + a + "^{" + m * n + "} = " + L(r) + "$"); },
     "puiss-neg": () => { const a = choix([2, 5, 10]), n = ent(1, a === 2 ? 4 : 3), d = Math.pow(a, n);
@@ -237,8 +245,8 @@
       return ex("Les aires sont multipliées par " + k * k, "Rapport $k$ ?", k, "", "$k = \\sqrt{" + k * k + "} = " + k + "$"); },
     "agr-vol": () => { const k = ent(2, 4), v = ent(1, 10);
       return ex("Rapport $k = " + k + "$ ; volume initial " + v + " cm³", "Nouveau volume ?", v * k * k * k, "cm³", "$" + v + " \\times " + k + "^{3} = " + v * k * k * k + "$ cm³"); },
-    "homo-k": () => { const k = choix([-4, -3, -2, 2, 3, 4]), a = ent(2, 10);
-      return ex("Homothétie de rapport $" + k + "$ ; aire de départ " + a + " cm²", "Aire de l'image ?", a * k * k, "cm²", "$" + a + " \\times " + P(k) + "^{2} = " + a * k * k + "$ cm²"); },
+    "homo-k": () => { const k = choix([2, 3, 4]), a = ent(2, 10);
+      return ex("Homothétie de rapport $" + k + "$ ; aire de départ " + a + " cm²", "Aire de l'image ?", a * k * k, "cm²", "$" + a + " \\times " + k + "^{2} = " + a * k * k + "$ cm²"); },
 
     // ---------- Arithmétique ----------
     "prem-pgcd": () => { const [p, q] = choix([[4, 3], [3, 2], [5, 3], [5, 4], [7, 4], [7, 5], [9, 5], [8, 5]]), g = ent(2, 12), a = g * p, b = g * q;
