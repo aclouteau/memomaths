@@ -776,31 +776,6 @@ Savoirs.enregistrer({
    "note": "Il faut d'abord écrire « On sait que ABC est rectangle en A » : le théorème ne s'applique pas sinon."
   },
   {
-   "id": "pyth-cote-form",
-   "chap": "pyth",
-   "type": "formule",
-   "titre": "Carré d'un côté de l'angle droit",
-   "question": "Si un triangle ABC est rectangle en A, alors ...",
-   "reponse": "$AB^{2} = BC^{2} - AC^{2}$",
-   "pieges": [
-    "$AB^{2} = BC^{2} + AC^{2}$",
-    "$AB^{2} = AC^{2} - BC^{2}$",
-    "$AB^{2} = BC - AC^{2}$"
-   ],
-   "note": "On isole $AB^{2}$ dans $BC^{2} = AB^{2} + AC^{2}$. Comme $BC$ est l'hypoténuse, on retranche toujours à son carré.",
-   "morceaux": [
-    "AB^{2}",
-    "=",
-    "BC^{2}",
-    "-",
-    "AC^{2}"
-   ],
-   "intrus": [
-    "+",
-    "AC"
-   ]
-  },
-  {
    "id": "pyth-redac",
    "chap": "pyth",
    "type": "regle",
@@ -812,20 +787,6 @@ Savoirs.enregistrer({
     "D'après le théorème de Pythagore … / Donc … / On sait que …",
     "On calcule … / On mesure … / Donc, d'après le théorème de Pythagore …"
    ]
-  },
-  {
-   "id": "pyth-triplet",
-   "chap": "pyth",
-   "type": "regle",
-   "titre": "Triplets pythagoriciens",
-   "question": "Trois nombres entiers $a$, $b$, $c$ tels que $a^{2} + b^{2} = c^{2}$ s'appellent ...",
-   "reponse": "un triplet pythagoricien, par exemple $(3 ; 4 ; 5)$",
-   "pieges": [
-    "un triplet de Thalès, par exemple $(3 ; 4 ; 5)$",
-    "un triplet pythagoricien, par exemple $(2 ; 3 ; 4)$",
-    "un triplet isocèle, par exemple $(3 ; 4 ; 5)$"
-   ],
-   "note": "Autres triplets : $(5 ; 12 ; 13)$, $(8 ; 15 ; 17)$, $(7 ; 24 ; 25)$ ; leurs multiples aussi : $(6 ; 8 ; 10)$."
   },
   {
    "id": "effectif",
@@ -1242,29 +1203,6 @@ Savoirs.enregistrer({
    "note": "Une translation est un glissement : la figure se déplace sans tourner ni se retourner."
   },
   {
-   "id": "transl-para",
-   "chap": "transl",
-   "type": "propriete",
-   "titre": "Translation et parallélogramme",
-   "question": "M' est l'image de M par la translation qui transforme A en B si ...",
-   "reponse": "$ABM'M$ est un parallélogramme",
-   "pieges": [
-    "$ABMM'$ est un parallélogramme",
-    "$M$ est le milieu de $[AM']$",
-    "$(AB)$ est perpendiculaire à $(MM')$"
-   ],
-   "note": "Attention à l'ordre des lettres : $ABM'M$, pas $ABMM'$. Si $M$ est sur $(AB)$, le parallélogramme est aplati.",
-   "morceaux": [
-    "ABM'M",
-    "est un",
-    "parallélogramme"
-   ],
-   "intrus": [
-    "ABMM'",
-    "losange"
-   ]
-  },
-  {
    "id": "transl-sens",
    "chap": "transl",
    "type": "regle",
@@ -1333,20 +1271,6 @@ Savoirs.enregistrer({
     "l'image du centre de la figure uniquement et on recopie"
    ],
    "note": "Erreur fréquente : oublier de translater un des sommets."
-  },
-  {
-   "id": "transl-depl",
-   "chap": "transl",
-   "type": "regle",
-   "titre": "Déplacement d'une translation",
-   "question": "Si la translation transforme $A(x_A ; y_A)$ en $B(x_B ; y_B)$, son déplacement est ...",
-   "reponse": "$(x_B - x_A ; y_B - y_A)$",
-   "pieges": [
-    "$(x_A - x_B ; y_A - y_B)$",
-    "$(x_B + x_A ; y_B + y_A)$",
-    "$(x_B - y_B ; x_A - y_A)$"
-   ],
-   "note": "On lit le déplacement de $A$ vers $B$ : arrivée moins départ."
   },
   {
    "id": "frac-egales",
@@ -1493,20 +1417,6 @@ Savoirs.enregistrer({
    ]
   },
   {
-   "id": "frac-denom",
-   "chap": "frac1",
-   "type": "regle",
-   "titre": "Dénominateur commun",
-   "question": "Pour additionner $\\dfrac{a}{b}$ et $\\dfrac{c}{d}$ avec $b \\neq d$, on cherche ...",
-   "reponse": "un multiple commun de $b$ et de $d$, qu'on prend comme nouveau dénominateur",
-   "pieges": [
-    "un diviseur commun de $b$ et de $d$, qu'on prend comme nouveau dénominateur",
-    "la somme de $b$ et de $d$, qu'on prend comme nouveau dénominateur",
-    "le plus grand de $b$ et de $d$, qu'on garde comme nouveau dénominateur"
-   ],
-   "note": "Le produit $b \\times d$ convient toujours ; le plus petit multiple commun donne des calculs plus petits : pour $\\dfrac{1}{4} + \\dfrac{1}{6}$, le dénominateur commun 12."
-  },
-  {
    "id": "frac-add-diff",
    "chap": "frac1",
    "type": "regle",
@@ -1518,20 +1428,6 @@ Savoirs.enregistrer({
     "additionne seulement les dénominateurs : $\\dfrac{1}{2 + 3} = \\dfrac{1}{5}$",
     "multiplie les deux fractions : $\\dfrac{1}{2} \\times \\dfrac{1}{3} = \\dfrac{1}{6}$"
    ]
-  },
-  {
-   "id": "frac-sous-neg",
-   "chap": "frac1",
-   "type": "regle",
-   "titre": "Soustraire une fraction",
-   "question": "Soustraire une fraction, c'est ...",
-   "reponse": "ajouter son opposée : $\\dfrac{a}{c} + \\dfrac{-b}{c}$",
-   "pieges": [
-    "ajouter son inverse : $\\dfrac{a}{c} - \\dfrac{b}{c} = \\dfrac{a}{c} + \\dfrac{c}{b}$",
-    "soustraire les dénominateurs : $\\dfrac{a}{c} - \\dfrac{b}{c} = \\dfrac{a}{c - c}$",
-    "ajouter sa moitié : $\\dfrac{a}{c} - \\dfrac{b}{c} = \\dfrac{a}{c} + \\dfrac{b}{2c}$"
-   ],
-   "note": "Les règles de signes sont celles des nombres relatifs : $\\dfrac{2}{5} - \\left(-\\dfrac{3}{5}\\right) = \\dfrac{2}{5} + \\dfrac{3}{5} = \\dfrac{5}{5} = 1$."
   },
   {
    "id": "recip",
@@ -2064,20 +1960,6 @@ Savoirs.enregistrer({
    "note": "La rotation conserve les longueurs, donc le rayon."
   },
   {
-   "id": "rot-poly-k",
-   "chap": "rot",
-   "type": "propriete",
-   "titre": "Rotations d'un polygone régulier",
-   "question": "Un polygone régulier à $n$ côtés, de centre $O$, est aussi invariant par la rotation de centre $O$ et d'angle ...",
-   "reponse": "$k \\times \\dfrac{360^{\\circ}}{n}$, avec $k$ entier",
-   "pieges": [
-    "$k \\times 360^{\\circ}$, avec $k$ entier",
-    "$\\dfrac{360^{\\circ}}{n \\times k}$, avec $k$ entier",
-    "$\\dfrac{180^{\\circ}}{n}$ uniquement"
-   ],
-   "note": "Cela revient à répéter la rotation de base plusieurs fois de suite."
-  },
-  {
    "id": "frac-mult",
    "chap": "frac2",
    "type": "formule",
@@ -2582,20 +2464,6 @@ Savoirs.enregistrer({
    "note": "Exemple : $10^{5} = 100\\,000$."
   },
   {
-   "id": "puiss-inverse",
-   "chap": "puis",
-   "type": "regle",
-   "titre": "Inverse et exposant négatif",
-   "question": "L'inverse de $a^{n}$ est ...",
-   "reponse": "$a^{-n}$",
-   "pieges": [
-    "$-a^{n}$",
-    "$a^{n-1}$",
-    "$\\dfrac{1}{a}^{n}$ avec une signification différente"
-   ],
-   "note": "Exemple : l'inverse de $2^{3}$ est $2^{-3} = \\dfrac{1}{8}$."
-  },
-  {
    "id": "pyr-def",
    "chap": "vol",
    "type": "definition",
@@ -2607,20 +2475,6 @@ Savoirs.enregistrer({
     "d'une base circulaire et d'une surface courbe qui a un sommet unique",
     "d'une base polygonale et de faces rectangulaires qui ont un côté commun"
    ]
-  },
-  {
-   "id": "cone-def",
-   "chap": "vol",
-   "type": "definition",
-   "titre": "Cône de révolution",
-   "question": "Un cône de révolution est un solide ...",
-   "reponse": "engendré par un triangle rectangle tournant autour d'un côté de l'angle droit",
-   "pieges": [
-    "engendré par un triangle rectangle tournant autour de son plus grand côté",
-    "engendré par un rectangle tournant autour d'un de ses deux plus petits côtés",
-    "engendré par un demi-disque tournant autour du diamètre qui le limite"
-   ],
-   "note": "Sa base est un disque et il a un seul sommet."
   },
   {
    "id": "vol-pave",
@@ -3632,20 +3486,6 @@ Savoirs.enregistrer({
    "note": "$2 \\times 10^{5} > 9 \\times 10^{4}$ car $5 > 4$."
   },
   {
-   "id": "sci-quot",
-   "chap": "sci",
-   "type": "regle",
-   "titre": "Quotient en notation scientifique",
-   "question": "Pour calculer $\\dfrac{a \\times 10^{m}}{b \\times 10^{n}}$, on ...",
-   "reponse": "divise $a$ par $b$, soustrait les exposants, puis remet en notation scientifique",
-   "pieges": [
-    "divise $a$ par $b$, additionne les exposants, puis remet en notation scientifique",
-    "soustrait $a$ et $b$, divise les exposants, puis remet en notation scientifique",
-    "multiplie $a$ par $b$, soustrait les exposants, puis remet en notation scientifique"
-   ],
-   "note": "$\\dfrac{6 \\times 10^{5}}{3 \\times 10^{2}} = 2 \\times 10^{3}$."
-  },
-  {
    "id": "proba-def",
    "chap": "proba",
    "type": "definition",
@@ -4372,17 +4212,6 @@ Savoirs.enregistrer({
    ]
   },
   {
-   "id": "o50",
-   "chap": "transl",
-   "enonce": "Une translation transforme $A$ en $B$. Comment construire l'image $M'$ d'un point $M$ ?",
-   "bon": "transl-para",
-   "explication": "$ABM'M$ doit être un parallélogramme.",
-   "autres": [
-    "rot-def",
-    "transl-cons"
-   ]
-  },
-  {
    "id": "o51",
    "chap": "transl",
    "enonce": "Un segment de 5 cm est translaté. Quelle est la longueur de son image ?",
@@ -4413,8 +4242,7 @@ Savoirs.enregistrer({
    "explication": "C'est la symétrie centrale de centre $O$.",
    "autres": [
     "transl-cons",
-    "rot-poly",
-    "transl-para"
+    "rot-poly"
    ]
   },
   {

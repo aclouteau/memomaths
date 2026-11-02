@@ -625,20 +625,6 @@ Savoirs.enregistrer({
    "note": "Dans un triangle obtusangle, l'orthocentre est à l'extérieur du triangle."
   },
   {
-   "id": "tri-med-conc",
-   "chap": "tri",
-   "type": "propriete",
-   "titre": "Concours des médiatrices",
-   "question": "Les trois médiatrices d'un triangle ...",
-   "reponse": "se coupent en un même point, centre du cercle circonscrit",
-   "pieges": [
-    "se coupent en un même point, centre du cercle inscrit dans le triangle",
-    "sont toujours parallèles deux à deux, comme les rails du train",
-    "se coupent en trois points différents à l'intérieur du triangle"
-   ],
-   "note": "Ce point est à égale distance des trois sommets : $OA = OB = OC$."
-  },
-  {
    "id": "tri-aplati",
    "chap": "tri",
    "type": "propriete",
@@ -980,20 +966,6 @@ Savoirs.enregistrer({
     "les trois figures ont toutes un centre de symétrie"
    ],
    "note": "Un polygone régulier a un centre de symétrie si et seulement si son nombre de côtés est pair."
-  },
-  {
-   "id": "sc-unique",
-   "chap": "sym",
-   "type": "propriete",
-   "titre": "Un seul centre",
-   "question": "Une figure peut avoir ...",
-   "reponse": "au plus un centre de symétrie",
-   "pieges": [
-    "deux centres de symétrie au maximum, comme les axes de symétrie",
-    "autant de centres de symétrie qu'elle a de côtés",
-    "un nombre infini de centres de symétrie si elle est assez grande"
-   ],
-   "note": "Le cercle a un seul centre de symétrie (son centre), mais une infinité d'axes de symétrie."
   },
   {
    "id": "lit-double",
@@ -1619,20 +1591,6 @@ Savoirs.enregistrer({
     "lui-même seulement"
    ],
    "note": "Exemple : les diviseurs de 7 sont 1 et 7 ; ceux de 12 sont 1, 2, 3, 4, 6 et 12."
-  },
-  {
-   "id": "div-multiples-inf",
-   "chap": "div",
-   "type": "propriete",
-   "titre": "Combien de multiples, combien de diviseurs ?",
-   "question": "Un nombre entier non nul a ...",
-   "reponse": "une infinité de multiples, mais un nombre fini de diviseurs",
-   "pieges": [
-    "un nombre fini de multiples, mais une infinité de diviseurs possibles",
-    "une infinité de multiples et aussi une infinité de diviseurs",
-    "autant de multiples que de diviseurs, toujours en même nombre"
-   ],
-   "note": "Les multiples de 5 : 0, 5, 10, 15, 20, ... ; les diviseurs de 20 : 1, 2, 4, 5, 10, 20."
   },
   {
    "id": "div-quotient",
@@ -3001,19 +2959,6 @@ Savoirs.enregistrer({
     "$350\\,\\%$"
    ],
    "note": "On multiplie par $100$ : $0{,}35 = \\dfrac{35}{100}$."
-  },
-  {
-   "id": "fonc-def",
-   "chap": "fonc",
-   "type": "definition",
-   "titre": "Fonction",
-   "question": "« $y$ est fonction de $x$ » signifie que ...",
-   "reponse": "à chaque valeur de $x$ correspond une seule valeur de $y$",
-   "pieges": [
-    "à chaque valeur de $y$ correspond une seule valeur de $x$",
-    "$y$ est toujours plus grand que $x$",
-    "$y$ et $x$ sont proportionnels"
-   ]
   },
   {
    "id": "fonc-prop",

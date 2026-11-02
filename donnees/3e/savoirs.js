@@ -1150,20 +1150,6 @@ Savoirs.enregistrer({
    "note": "Exemple : $BC = \\sqrt{170} \\approx 13{,}0$ cm au dixième."
   },
   {
-   "id": "pyth-triplet",
-   "chap": "pyth",
-   "type": "propriete",
-   "titre": "Triplets pythagoriciens",
-   "question": "Si $(a\\,;\\,b\\,;\\,c)$ est un triplet pythagoricien, alors pour tout entier $k$ non nul ...",
-   "reponse": "$(ka\\,;\\,kb\\,;\\,kc)$ est aussi un triplet pythagoricien",
-   "pieges": [
-    "$(a + k\\,;\\,b + k\\,;\\,c + k)$ est aussi un triplet pythagoricien",
-    "$(ka\\,;\\,b\\,;\\,c)$ est aussi un triplet pythagoricien",
-    "seul le triplet $(a\\,;\\,b\\,;\\,c)$ de départ convient"
-   ],
-   "note": "Exemples : (3 ; 4 ; 5), (5 ; 12 ; 13), (8 ; 15 ; 17), (6 ; 8 ; 10) ; avec $k = 2$, (3 ; 4 ; 5) donne (6 ; 8 ; 10)."
-  },
-  {
    "id": "pyth-redac",
    "chap": "pyth",
    "type": "regle",
@@ -1199,34 +1185,6 @@ Savoirs.enregistrer({
     "le théorème de Thalès"
    ],
    "note": "Réciproque : on démontre qu'un triangle est rectangle ; contraposée : on démontre qu'il ne l'est pas."
-  },
-  {
-   "id": "pyth-diag-rect",
-   "chap": "pyth",
-   "type": "formule",
-   "titre": "Diagonale d'un rectangle",
-   "question": "La diagonale d'un rectangle de longueur $L$ et de largeur $\\ell$ vaut ...",
-   "reponse": "$\\sqrt{L^{2} + \\ell^{2}}$",
-   "pieges": [
-    "$L + \\ell$",
-    "$\\sqrt{L^{2} - \\ell^{2}}$",
-    "$\\sqrt{L + \\ell}$"
-   ],
-   "note": "La diagonale partage le rectangle en deux triangles rectangles dont elle est l'hypoténuse."
-  },
-  {
-   "id": "pyth-espace",
-   "chap": "pyth",
-   "type": "formule",
-   "titre": "Diagonale d'un pavé droit",
-   "question": "La grande diagonale d'un pavé droit de dimensions $a$, $b$ et $c$ vaut ...",
-   "reponse": "$\\sqrt{a^{2} + b^{2} + c^{2}}$",
-   "pieges": [
-    "$a + b + c$",
-    "$\\sqrt{a^{2} + b^{2}} + c$",
-    "$\\sqrt{a^{2} + b^{2} - c^{2}}$"
-   ],
-   "note": "On applique deux fois le théorème de Pythagore : d'abord dans la base, puis dans un triangle vertical."
   },
   {
    "id": "agrand-k",
@@ -1354,20 +1312,6 @@ Savoirs.enregistrer({
    ]
   },
   {
-   "id": "agr-ech",
-   "chap": "agr",
-   "type": "definition",
-   "titre": "Échelle",
-   "question": "Une échelle de $\\dfrac{1}{N}$ correspond à ...",
-   "reponse": "une réduction de rapport $\\dfrac{1}{N}$",
-   "pieges": [
-    "un agrandissement de rapport $N$",
-    "une réduction de rapport $N$",
-    "une symétrie de rapport $N$"
-   ],
-   "note": "Cela suppose $N > 1$."
-  },
-  {
    "id": "agr-angles",
    "chap": "agr",
    "type": "propriete",
@@ -1436,20 +1380,6 @@ Savoirs.enregistrer({
     "une forme et une taille toutes deux différentes de celles de départ"
    ],
    "note": "Un agrandissement ou une réduction d'un carré donne toujours un carré."
-  },
-  {
-   "id": "agr-inverse",
-   "chap": "agr",
-   "type": "regle",
-   "titre": "Passer de la figure obtenue à la figure de départ",
-   "question": "Si une figure $F'$ est un agrandissement de rapport $k$ de la figure $F$, alors $F$ est ...",
-   "reponse": "une réduction de rapport $\\dfrac{1}{k}$ de $F'$",
-   "pieges": [
-    "un agrandissement de rapport $k$ de $F'$, la transformation étant la même",
-    "une réduction de rapport $-k$ de $F'$",
-    "une réduction de rapport $k$ de $F'$"
-   ],
-   "note": "Exemple : agrandissement de rapport 4, donc retour par une réduction de rapport $\\dfrac{1}{4} = 0{,}25$."
   },
   {
    "id": "frequence",
@@ -1902,20 +1832,6 @@ Savoirs.enregistrer({
    ]
   },
   {
-   "id": "sci-quot",
-   "chap": "puis",
-   "type": "regle",
-   "titre": "Quotient en notation scientifique",
-   "question": "Pour calculer $\\dfrac{a \\times 10^{m}}{b \\times 10^{n}}$, on ...",
-   "reponse": "divise $a$ par $b$, soustrait les exposants, puis remet en notation scientifique",
-   "pieges": [
-    "divise $a$ par $b$, additionne les exposants, puis remet en notation scientifique",
-    "soustrait $a$ et $b$, divise les exposants, puis remet en notation scientifique",
-    "multiplie $a$ par $b$, soustrait les exposants, puis remet en notation scientifique"
-   ],
-   "note": "$\\dfrac{6 \\times 10^{5}}{3 \\times 10^{2}} = 2 \\times 10^{3}$."
-  },
-  {
    "id": "pyr-vol",
    "chap": "pv",
    "type": "formule",
@@ -1988,82 +1904,6 @@ Savoirs.enregistrer({
    ]
   },
   {
-   "id": "cone-gen",
-   "chap": "esp",
-   "type": "propriete",
-   "titre": "Génératrice d'un cône",
-   "question": "Dans un cône de révolution de hauteur $h$, de rayon $r$ et de génératrice $g$ ...",
-   "reponse": "$g^{2} = h^{2} + r^{2}$",
-   "pieges": [
-    "$g = h + r$",
-    "$h^{2} = g^{2} + r^{2}$",
-    "$g^{2} = h^{2} - r^{2}$"
-   ],
-   "note": "C'est le théorème de Pythagore dans le triangle rectangle formé par la hauteur, le rayon et la génératrice.",
-   "morceaux": [
-    "g^{2}",
-    "=",
-    "h^{2}",
-    "+",
-    "r^{2}"
-   ],
-   "intrus": [
-    "-",
-    "g"
-   ]
-  },
-  {
-   "id": "pyr-red",
-   "chap": "esp",
-   "type": "propriete",
-   "titre": "Réduction d'une pyramide",
-   "question": "Quand on réduit une pyramide avec un rapport $k$, son volume est multiplié par ...",
-   "reponse": "$k^{3}$",
-   "pieges": [
-    "$k$",
-    "$k^{2}$",
-    "$3k$"
-   ],
-   "morceaux": [
-    "V'",
-    "=",
-    "k^{3}",
-    "\\times",
-    "V"
-   ],
-   "intrus": [
-    "k",
-    "3k"
-   ]
-  },
-  {
-   "id": "sph-section",
-   "chap": "esp",
-   "type": "propriete",
-   "titre": "Section d'une sphère par un plan",
-   "question": "La section d'une sphère de rayon $R$ par un plan situé à la distance $d$ du centre est ...",
-   "reponse": "un cercle de rayon $r$ tel que $R^{2} = d^{2} + r^{2}$",
-   "pieges": [
-    "un cercle de rayon $R$, quelle que soit la distance $d$",
-    "un cercle de rayon $r$ tel que $r = R - d$",
-    "un cercle de rayon $r$ tel que $r^{2} = R^{2} + d^{2}$"
-   ]
-  },
-  {
-   "id": "sph-boule",
-   "chap": "esp",
-   "type": "definition",
-   "titre": "Sphère et boule",
-   "question": "La sphère de centre $O$ et de rayon $R$ est formée des points $M$ tels que ...",
-   "reponse": "$OM = R$",
-   "pieges": [
-    "$OM \\leqslant R$",
-    "$OM = 2R$",
-    "$OM \\geqslant R$"
-   ],
-   "note": "La boule est formée des points tels que $OM \\leqslant R$ : c'est la sphère et son intérieur."
-  },
-  {
    "id": "sph-grand-cercle",
    "chap": "esp",
    "type": "propriete",
@@ -2104,20 +1944,6 @@ Savoirs.enregistrer({
     "un carré dont le côté est la plus petite arête"
    ],
    "note": "Pour un cylindre coupé parallèlement à la base, c'est un disque de même rayon."
-  },
-  {
-   "id": "esp-red-k",
-   "chap": "esp",
-   "type": "propriete",
-   "titre": "Longueurs, aires et volumes",
-   "question": "Dans une réduction de rapport $k$, les aires sont multipliées par ... et les volumes par ...",
-   "reponse": "$k^{2}$ et $k^{3}$",
-   "pieges": [
-    "$k$ et $k^{2}$",
-    "$2k$ et $3k$",
-    "$k^{3}$ et $k^{2}$"
-   ],
-   "note": "Les longueurs sont multipliées par $k$."
   },
   {
    "id": "sph-reperage",
@@ -2206,19 +2032,6 @@ Savoirs.enregistrer({
    ]
   },
   {
-   "id": "prem-pgcd-fp",
-   "chap": "prem",
-   "type": "regle",
-   "titre": "PGCD avec les facteurs premiers",
-   "question": "Avec les décompositions, le PGCD est le produit des facteurs premiers communs, chacun pris avec ...",
-   "reponse": "le plus petit exposant",
-   "pieges": [
-    "le plus grand exposant",
-    "la somme des exposants",
-    "l'exposant 1 toujours"
-   ]
-  },
-  {
    "id": "prem-irred",
    "chap": "prem",
    "type": "regle",
@@ -2281,20 +2094,6 @@ Savoirs.enregistrer({
     "deux : 2 et 4"
    ],
    "note": "Tout nombre pair supérieur à 2 est divisible par 2 : il a au moins trois diviseurs (1, 2 et lui-même)."
-  },
-  {
-   "id": "prem-test",
-   "chap": "prem",
-   "type": "regle",
-   "titre": "Tester si un nombre est premier",
-   "question": "Pour savoir si $N$ est premier, il suffit de tester la divisibilité par les nombres premiers ...",
-   "reponse": "dont le carré est inférieur ou égal à $N$",
-   "pieges": [
-    "inférieurs ou égaux à la moitié de $N$",
-    "impairs et strictement inférieurs à $N$",
-    "dont le carré est strictement supérieur à $N$"
-   ],
-   "note": "Exemple : pour $N = 97$, on teste 2, 3, 5 et 7 (car $11^{2} = 121 > 97$) : aucun ne divise 97, donc 97 est premier."
   },
   {
    "id": "prem-entre",
@@ -2843,34 +2642,6 @@ Savoirs.enregistrer({
    "note": "Exemple : $k = -3$ est un agrandissement (de rapport 3, avec retournement) ; $k = -0{,}5$ est une réduction."
   },
   {
-   "id": "homo-k-calc",
-   "chap": "homo",
-   "type": "formule",
-   "titre": "Calculer le rapport",
-   "question": "Si $M'$ est l'image de $M$ par l'homothétie de centre $O$, alors la distance à zéro de $k$ vaut ...",
-   "reponse": "$\\dfrac{OM'}{OM}$",
-   "pieges": [
-    "$\\dfrac{OM}{OM'}$",
-    "$OM' - OM$",
-    "$OM \\times OM'$"
-   ],
-   "note": "Le signe de $k$ est positif si $M$ et $M'$ sont du même côté de $O$, négatif sinon."
-  },
-  {
-   "id": "homo-centre",
-   "chap": "homo",
-   "type": "propriete",
-   "titre": "Le centre est invariant",
-   "question": "Le centre $O$ d'une homothétie est ...",
-   "reponse": "un point qui ne change pas : son image est lui-même",
-   "pieges": [
-    "un point qui se déplace de $k$ fois sa distance au centre",
-    "un point dont l'image est son symétrique par rapport à une droite",
-    "le milieu du segment qui joint un point à son image"
-   ],
-   "note": "Les points $O$, $M$ et $M'$ sont alignés pour tout point $M$."
-  },
-  {
    "id": "homo-moins1",
    "chap": "homo",
    "type": "propriete",
@@ -2897,20 +2668,6 @@ Savoirs.enregistrer({
     "alignés seulement si $OM = OM'$"
    ],
    "note": "La droite $(OM)$ passe par $M'$ : une homothétie « agrandit » le long des droites issues du centre."
-  },
-  {
-   "id": "homo-rotation",
-   "chap": "homo",
-   "type": "definition",
-   "titre": "Rotation",
-   "question": "L'image d'un point $M$ par la rotation de centre $O$ et d'angle $\\alpha$ est le point $M'$ tel que ...",
-   "reponse": "$OM' = OM$ et $\\widehat{MOM'} = \\alpha$ (dans le sens indiqué)",
-   "pieges": [
-    "$O$ est le milieu de $[MM']$",
-    "$OM' = \\alpha \\times OM$ et $O$, $M$, $M'$ sont alignés",
-    "$MM' = OM$ et $(MM')$ est parallèle à $(OM)$"
-   ],
-   "note": "Comme les symétries et la translation, une rotation conserve les longueurs, les angles et les aires. La symétrie centrale est la rotation d'angle $180^{\\circ}$."
   },
   {
    "id": "fg-image",
@@ -2946,28 +2703,6 @@ Savoirs.enregistrer({
      "unite": "",
      "correction": "$2x - 3 = 7$ donc $2x = 10$ et $x = 5$"
     }
-   ]
-  },
-  {
-   "id": "fg-point",
-   "chap": "fgen",
-   "type": "propriete",
-   "titre": "Appartenance à la courbe",
-   "question": "Un point $A(a ; b)$ est sur la courbe de $f$ si et seulement si ...",
-   "reponse": "$f(a) = b$",
-   "pieges": [
-    "$f(b) = a$",
-    "$a = b$",
-    "$f(a) = 0$"
-   ],
-   "morceaux": [
-    "A ( a ; b ) \\text{ est sur la courbe}",
-    "\\Longleftrightarrow",
-    "f(a) = b"
-   ],
-   "intrus": [
-    "f(b) = a",
-    "f(a) = 0"
    ]
   },
   {
@@ -3061,20 +2796,6 @@ Savoirs.enregistrer({
    "note": "$f(-3) = 9 - 6 = 3$."
   },
   {
-   "id": "fg-courbe",
-   "chap": "fgen",
-   "type": "definition",
-   "titre": "Courbe représentative",
-   "question": "La courbe représentative de $f$ est ...",
-   "reponse": "l'ensemble des points de coordonnées $(x ; f(x))$",
-   "pieges": [
-    "l'ensemble des points de coordonnées $(f(x) ; x)$, abscisse et ordonnée échangées",
-    "la droite qui passe par l'origine et par le point d'abscisse 1, quelle que soit $f$",
-    "l'ensemble des points de coordonnées $(x ; x)$ situés sur la première bissectrice"
-   ],
-   "note": "Le point $A(2 ; 7)$ est sur la courbe de $f$ si $f(2) = 7$."
-  },
-  {
    "id": "fg-zero",
    "chap": "faff",
    "type": "propriete",
@@ -3138,37 +2859,6 @@ Savoirs.enregistrer({
     "une droite qui passe toujours par l'origine",
     "une courbe qui passe par le point $(0 ; b)$",
     "une droite parallèle à l'axe des ordonnées"
-   ]
-  },
-  {
-   "id": "fa-calc",
-   "chap": "faff",
-   "type": "formule",
-   "titre": "Calculer le coefficient directeur",
-   "question": "Coefficient directeur $a$ d'une droite passant par $(x_{1} ; f(x_{1}))$ et $(x_{2} ; f(x_{2}))$ ?",
-   "reponse": "$a = \\dfrac{f(x_{2}) - f(x_{1})}{x_{2} - x_{1}}$",
-   "pieges": [
-    "$a = \\dfrac{x_{2} - x_{1}}{f(x_{2}) - f(x_{1})}$",
-    "$a = f(x_{2}) - f(x_{1})$",
-    "$a = \\dfrac{f(x_{1}) + f(x_{2})}{2}$"
-   ],
-   "morceaux": [
-    "a",
-    "=",
-    "\\dfrac{f(x_{2}) - f(x_{1})}{x_{2} - x_{1}}"
-   ],
-   "intrus": [
-    "\\dfrac{x_{2} - x_{1}}{f(x_{2}) - f(x_{1})}",
-    "+"
-   ],
-   "exemples": [
-    {
-     "donnees": "$f(1) = 5$ et $f(3) = 11$",
-     "question": "Coefficient directeur $a$ ?",
-     "reponse": 3,
-     "unite": "",
-     "correction": "$a = \\dfrac{11 - 5}{3 - 1} = 3$"
-    }
    ]
   },
   {
@@ -3502,20 +3192,6 @@ Savoirs.enregistrer({
    ]
   },
   {
-   "id": "sembl-rapport",
-   "chap": "thal",
-   "type": "definition",
-   "titre": "Rapport de similitude",
-   "question": "Si deux triangles sont semblables, le rapport $k$ est ...",
-   "reponse": "le quotient d'une longueur du second triangle par la longueur homologue du premier",
-   "pieges": [
-    "la différence entre une longueur du second triangle et la longueur homologue du premier",
-    "le quotient du périmètre du premier par l'aire du second triangle",
-    "le produit de deux longueurs homologues des deux triangles étudiés"
-   ],
-   "note": "Exemple : $AB = 4$ et $DE = 6$, donc $k = \\dfrac{6}{4} = 1{,}5$."
-  },
-  {
    "id": "sembl-homolog",
    "chap": "thal",
    "type": "propriete",
@@ -3542,20 +3218,6 @@ Savoirs.enregistrer({
     "les périmètres"
    ],
    "note": "Longueurs et périmètres sont multipliés par $k$, les aires par $k^{2}$."
-  },
-  {
-   "id": "sembl-k-perim",
-   "chap": "thal",
-   "type": "propriete",
-   "titre": "Périmètres et rapport",
-   "question": "Si deux triangles semblables ont un rapport $k$, leurs périmètres sont dans le rapport ...",
-   "reponse": "$k$",
-   "pieges": [
-    "$k^{2}$",
-    "$k^{3}$",
-    "$2k$"
-   ],
-   "note": "Un triangle de périmètre $12$ cm agrandi avec $k = 3$ a un périmètre de $36$ cm."
   },
   {
    "id": "thales",
@@ -3688,20 +3350,6 @@ Savoirs.enregistrer({
    "note": "Exemple : $AM = 3$ cm et $MB = 4$ cm donnent $AB = 7$ cm."
   },
   {
-   "id": "thales-ordre",
-   "chap": "thal",
-   "type": "regle",
-   "titre": "Que comparent les rapports ?",
-   "question": "Dans les rapports de l'égalité de Thalès, chaque rapport compare ...",
-   "reponse": "une longueur du petit triangle à la longueur correspondante du grand triangle",
-   "pieges": [
-    "deux longueurs du même grand triangle choisies au hasard dans la figure donnée",
-    "une longueur du petit triangle à son périmètre tout entier, tous les côtés ajoutés",
-    "une longueur du petit triangle à la longueur d'un autre côté du même petit triangle"
-   ],
-   "note": "$AM$ correspond à $AB$, $AN$ à $AC$ et $MN$ à $BC$."
-  },
-  {
    "id": "thales-cond",
    "chap": "thal",
    "type": "regle",
@@ -3728,48 +3376,6 @@ Savoirs.enregistrer({
     "$a + d = b + c$, en additionnant en croix"
    ],
    "note": "Exemple : $\\dfrac{3}{x} = \\dfrac{6}{10}$ donne $6x = 30$, donc $x = 5$."
-  },
-  {
-   "id": "thales-k",
-   "chap": "thal",
-   "type": "definition",
-   "titre": "Le coefficient de réduction",
-   "question": "Dans $\\dfrac{AM}{AB} = \\dfrac{AN}{AC} = \\dfrac{MN}{BC} = k$, le nombre $k$ est ...",
-   "reponse": "le coefficient de réduction du triangle $ABC$ au triangle $AMN$",
-   "pieges": [
-    "l'aire du triangle $AMN$ divisée par l'aire du triangle $ABC$ entier",
-    "la différence entre les longueurs $AB$ et $AM$ sur la droite $(AB)$",
-    "la longueur $AM$ exprimée en centimètres, quelle que soit la figure"
-   ],
-   "note": "Chaque côté de $AMN$ est égal à $k$ fois le côté correspondant de $ABC$."
-  },
-  {
-   "id": "thales-perim",
-   "chap": "thal",
-   "type": "propriete",
-   "titre": "Périmètre et Thalès",
-   "question": "Le périmètre du triangle $AMN$ est égal à celui de $ABC$ multiplié par ...",
-   "reponse": "$k = \\dfrac{AM}{AB}$",
-   "pieges": [
-    "$k^{2}$",
-    "$\\dfrac{AB}{AM}$",
-    "$k + 1$"
-   ],
-   "note": "Les trois côtés sont multipliés par $k$, donc leur somme aussi."
-  },
-  {
-   "id": "thales-recip-egal",
-   "chap": "thal",
-   "type": "regle",
-   "titre": "Utiliser la réciproque",
-   "question": "Pour montrer que $(MN)$ et $(BC)$ sont parallèles avec la réciproque, on compare ...",
-   "reponse": "les rapports $\\dfrac{AM}{AB}$ et $\\dfrac{AN}{AC}$ et on vérifie l'alignement",
-   "pieges": [
-    "les rapports $\\dfrac{AM}{MB}$ et $\\dfrac{AN}{AC}$ puis on conclut sur le résultat",
-    "les longueurs $MN$ et $BC$ en vérifiant seulement qu'elles sont égales entre elles",
-    "les angles $\\widehat{AMN}$ et $\\widehat{ABC}$ qui doivent mesurer chacun 90°, droits"
-   ],
-   "note": "Les points doivent être alignés dans le même ordre."
   },
   {
    "id": "thales-ordre-pts",
@@ -3812,20 +3418,6 @@ Savoirs.enregistrer({
     "en mètres, toujours, même si elles sont données en centimètres"
    ],
    "note": "Exemple : 3 m et 40 cm deviennent 300 cm et 40 cm."
-  },
-  {
-   "id": "thales-pas-egal",
-   "chap": "thal",
-   "type": "regle",
-   "titre": "Rapports différents",
-   "question": "Si $\\dfrac{AM}{AB}$ et $\\dfrac{AN}{AC}$ ne sont pas égaux, alors ...",
-   "reponse": "les droites $(MN)$ et $(BC)$ ne sont pas parallèles",
-   "pieges": [
-    "les droites $(MN)$ et $(BC)$ sont parallèles quand même",
-    "les droites $(MN)$ et $(BC)$ sont perpendiculaires",
-    "on a $AM = AN$"
-   ],
-   "note": "C'est la contraposée du théorème de Thalès."
   },
   {
    "id": "eq-produit",
@@ -4334,20 +3926,6 @@ Savoirs.enregistrer({
    "note": "$[BC]$ est l'hypoténuse (en face de l'angle droit) et $[AC]$ est le côté opposé à $\\widehat{ABC}$."
   },
   {
-   "id": "trig-borne",
-   "chap": "trig",
-   "type": "propriete",
-   "titre": "Valeurs du cosinus et du sinus",
-   "question": "Pour un angle aigu d'un triangle rectangle, le cosinus est un nombre ...",
-   "reponse": "compris entre $0$ et $1$",
-   "pieges": [
-    "compris entre $0$ et $90$",
-    "supérieur à $1$",
-    "compris entre $1$ et $2$"
-   ],
-   "note": "Le côté adjacent est plus court que l'hypoténuse ; la tangente, elle, peut dépasser $1$."
-  },
-  {
    "id": "sph-aire",
    "chap": "pv",
    "type": "formule",
@@ -4654,8 +4232,7 @@ Savoirs.enregistrer({
    "explication": "On remplace $x$ par 5.",
    "autres": [
     "fg-antec",
-    "fg-lire",
-    "fa-calc"
+    "fg-lire"
    ]
   },
   {
@@ -4666,20 +4243,7 @@ Savoirs.enregistrer({
    "explication": "On cherche un antécédent : on résout $3x - 1 = 8$.",
    "autres": [
     "fg-calc",
-    "fg-lire",
-    "fa-calc"
-   ]
-  },
-  {
-   "id": "o15",
-   "chap": "fgen",
-   "enonce": "On donne $f(x) = 3x + 1$. Le point $A(2 ; 7)$ est-il sur la courbe de $f$ ?",
-   "bon": "fg-point",
-   "explication": "On vérifie si $f(2) = 7$.",
-   "autres": [
-    "fg-calc",
-    "fg-antec",
-    "fg-unique"
+    "fg-lire"
    ]
   },
   {
@@ -4704,18 +4268,6 @@ Savoirs.enregistrer({
     "fl-def",
     "fg-image",
     "fa-prop"
-   ]
-  },
-  {
-   "id": "o18",
-   "chap": "faff",
-   "enonce": "Une droite passe par $(1 ; 5)$ et $(3 ; 11)$. Comment trouver son coefficient directeur ?",
-   "bon": "fa-calc",
-   "explication": "Variation des ordonnées sur variation des abscisses.",
-   "autres": [
-    "fl-a",
-    "fa-ab",
-    "fg-calc"
    ]
   },
   {
@@ -4880,7 +4432,6 @@ Savoirs.enregistrer({
    "explication": "Longueurs × $\\dfrac{1}{50}$ donc aires × $\\left(\\dfrac{1}{50}\\right)^{2}$.",
    "autres": [
     "agr-vol",
-    "agr-ech",
     "homo-k"
    ]
   },
@@ -5017,30 +4568,6 @@ Savoirs.enregistrer({
    ]
   },
   {
-   "id": "o44",
-   "chap": "esp",
-   "enonce": "Un cône a pour rayon 5 cm et pour hauteur 12 cm. Quelle est la longueur d'une génératrice ?",
-   "bon": "cone-gen",
-   "explication": "Pythagore dans le triangle de la coupe : $g^{2} = 5^{2} + 12^{2} = 169$, $g = 13$ cm.",
-   "autres": [
-    "cone-vol",
-    "sph-section",
-    "pyr-red"
-   ]
-  },
-  {
-   "id": "o45",
-   "chap": "esp",
-   "enonce": "Une sphère de rayon 13 cm est coupée par un plan situé à 5 cm de son centre. Quel est le rayon de la section ?",
-   "bon": "sph-section",
-   "explication": "$R^{2} = d^{2} + r^{2}$ : $r^{2} = 169 - 25 = 144$, $r = 12$ cm.",
-   "autres": [
-    "cone-gen",
-    "boule-vol",
-    "sph-aire"
-   ]
-  },
-  {
    "id": "o46",
    "chap": "agr",
    "enonce": "Un cube est agrandi avec un rapport 2. Par combien son volume est-il multiplié ?",
@@ -5048,8 +4575,7 @@ Savoirs.enregistrer({
    "explication": "Les volumes sont multipliés par $k^{3} = 8$.",
    "autres": [
     "agrand-k",
-    "agr-sens",
-    "agr-ech"
+    "agr-sens"
    ]
   },
   {
@@ -5072,8 +4598,7 @@ Savoirs.enregistrer({
    "explication": "$k^{2} = 25$ donc $k = \\sqrt{25} = 5$.",
    "autres": [
     "agr-vol",
-    "agr-sens",
-    "agr-ech"
+    "agr-sens"
    ]
   },
   {
@@ -5228,8 +4753,7 @@ Savoirs.enregistrer({
    "explication": "On part de 2 sur l'axe des abscisses, on monte jusqu'à la courbe et on lit l'ordonnée.",
    "autres": [
     "fg-calc",
-    "fg-antec",
-    "fg-point"
+    "fg-antec"
    ]
   },
   {
@@ -5252,7 +4776,6 @@ Savoirs.enregistrer({
    "explication": "L'ordonnée à l'origine : $f(0) = 7$.",
    "autres": [
     "fl-a",
-    "fa-calc",
     "fg-image"
    ]
   },
@@ -5447,18 +4970,6 @@ Savoirs.enregistrer({
    ]
   },
   {
-   "id": "o-homo-rot",
-   "chap": "homo",
-   "enonce": "On fait tourner un triangle d'un quart de tour autour du point $O$ : chaque point reste à la même distance de $O$. Quelle transformation reconnaît-on ?",
-   "bon": "homo-rotation",
-   "explication": "C'est la rotation de centre $O$ et d'angle $90^{\\circ}$.",
-   "autres": [
-    "homo-def",
-    "homo-moins1",
-    "homo-par"
-   ]
-  },
-  {
    "id": "o-esp-sphere",
    "chap": "esp",
    "enonce": "Comment indiquer la position d'une ville sur le globe terrestre ?",
@@ -5466,8 +4977,7 @@ Savoirs.enregistrer({
    "explication": "Par sa latitude (Nord ou Sud) et sa longitude (Est ou Ouest).",
    "autres": [
     "vol-reperage",
-    "sph-grand-cercle",
-    "sph-section"
+    "sph-grand-cercle"
    ]
   }
  ]
