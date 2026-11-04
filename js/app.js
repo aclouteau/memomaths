@@ -111,7 +111,12 @@
   }
 
   // Les chapitres pas encore préparés (de l'année ou des révisions) ne sont jamais tirés
-  function debloque(chap) { return prepare(chap) && (anterieur(chap) || chap.ordre <= chapitreChoisi().ordre); }
+  // Un rappel retardé (« apres », voir catalogue.js) attend que l'élève ait atteint le chapitre de l'année correspondant
+  function debloque(chap) {
+    if (!prepare(chap)) return false;
+    if (chap.apres) { const c = chapitre(chap.apres); return !!c && c.ordre <= chapitreChoisi().ordre; }
+    return anterieur(chap) || chap.ordre <= chapitreChoisi().ordre;
+  }
   function savoirsJouables() { return niveau.savoirs.filter((s) => debloque(chapitre(s.chap))); }
 
   // Mélange des années : en 3e, on joue aussi les savoirs de 4e et de 5e (en 4e, ceux de 5e), comme des
@@ -143,7 +148,8 @@
     };
     for (const e of avant) {
       const d = Savoirs.niveaux[e.id], pre = e.id + ":";
-      for (const c of d.chapitres) n.chapitres.push({ id: pre + c.id, titre: c.titre, ordre: c.ordre, annee: e.id, origine: e.id, idTheme: c.id, revision: true });
+      const rappels = (Savoirs.catalogue.find((x) => x.id === id) || {}).rappelsApres || {};
+      for (const c of d.chapitres) n.chapitres.push({ id: pre + c.id, titre: c.titre, ordre: c.ordre, annee: e.id, origine: e.id, idTheme: c.id, revision: true, apres: rappels[c.id] });
       for (const s of d.savoirs) if (!ids.has(s.id) && !doublon(e.id, s.id)) {
         ids.add(s.id); n.savoirs.push(Object.assign({}, s, { chap: accueil("savoirs", e.id, s.id) || pre + s.chap }));
       }

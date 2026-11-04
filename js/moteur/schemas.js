@@ -18,7 +18,12 @@
   const chemin = (d, classe) => '<path d="' + d + '" class="' + classe + '"/>';
   const rond = (c, r, classe) => '<circle cx="' + f(c[0]) + '" cy="' + f(c[1]) + '" r="' + f(r) + '" class="' + (classe || "fig-trait fig-surface") + '"/>';
   const point = (p) => '<circle cx="' + f(p[0]) + '" cy="' + f(p[1]) + '" r="2.5" class="fig-point"/>';
-  const ecrire = (p, t, classe) => '<text x="' + f(p[0]) + '" y="' + f(p[1]) + '" class="' + classe + (t === "?" ? " fig-inconnue" : "") + '">' + t + "</text>";
+  // Le contour clair (« fig-halo ») est un texte à part, dessiné dessous : il ne peut jamais recouvrir l'étiquette,
+  // même dans un navigateur qui ignore la propriété CSS paint-order
+  const ecrire = (p, t, classe) => {
+    const debut = '<text x="' + f(p[0]) + '" y="' + f(p[1]) + '" class="' + classe + (t === "?" ? " fig-inconnue" : "");
+    return debut + ' fig-halo" aria-hidden="true">' + t + "</text>" + debut + '">' + t + "</text>";
+  };
   const largeur = (t) => String(t).length * 3.9; // demi-largeur approximative d'une étiquette (police 14 px)
   // Étiquette d'un côté [ab], posée au milieu, du côté opposé au point « centre »
   function cote(a, b, t, centre, ecart) {
@@ -249,7 +254,8 @@
   // droit : nom du sommet de l'angle droit ; base, haut : les deux autres sommets ; lb, lh : longueurs des côtés
   // de l'angle droit (proportions) ; eb, eh, ehyp : étiquettes. miroir : angle droit en bas à droite.
   S.triangleRectangle = (o) => {
-    const [w, h] = tailles(o.lb, o.lh, 190, 110), m = o.miroir ? -1 : 1, x0 = 150 - m * w / 2, y = 20;
+    // Base assez large pour que sa longueur (« 2,5 cm ») ne se mêle pas au nom des sommets : le dessin n'est pas en vraie grandeur
+    const [l, h] = tailles(o.lb, o.lh, 190, 110), w = Math.max(l, 125), m = o.miroir ? -1 : 1, x0 = 150 - m * w / 2, y = 20;
     const D = [x0, y + h], B = [x0 + m * w, y + h], H = [x0, y], c = [(D[0] + B[0] + H[0]) / 3, (D[1] + B[1] + H[1]) / 3];
     const s = poly([D, B, H]) + droit(D, B, H, 10) + nom(D, o.droit, c) + nom(B, o.base, c) + nom(H, o.haut, c) +
       cote(D, B, o.eb, H) + cote(D, H, o.eh, B) + cote(B, H, o.ehyp, D);
