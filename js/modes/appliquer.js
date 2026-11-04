@@ -52,9 +52,9 @@
     "t-4e-quatrieme": [3], "t-4e-coef-prop": [3],
     "t-4e-carre-grand": [2, 3], "t-4e-somme-petits": [2, 3], "t-4e-ecart-pyth": [2, 3], "t-4e-rectangle-oui-non": [2, 3],
     "t-4e-fraction-de": [3],
-    "t-3e-hypotenuse-calcul": [2, 3], "t-3e-cote-calcul": [2, 3], "t-3e-pyth-situation": [2, 3], "t-3e-diagonale-pave": [2, 3],
+    "t-3e-hypotenuse-calcul": [2, 3], "t-3e-cote-calcul": [2, 3], "t-3e-pyth-situation": [2, 3],
     "t-3e-rectangle-oui-non": [2, 3], "t-3e-aire-image": [3], "t-3e-volume-image": [3], "t-3e-homo-aire": [3], "t-3e-rapport-depuis-aire": [3],
-    "t-3e-thales-longueur": [3], "t-3e-thales-situation": [2, 3], "t-3e-thales-perimetre": [3], "t-3e-thales-parallele-oui-non": [3],
+    "t-3e-thales-longueur": [3], "t-3e-thales-situation": [2, 3], "t-3e-thales-parallele-oui-non": [3],
     "t-3e-pv-vol-cylindre": [1, 2, 3], "t-3e-pv-vol-pyramide-cone": [2, 3], "t-3e-pv-sphere-boule": [1, 2, 3], "t-3e-pv-contenance": [3]
   };
   // Une technique peut aussi le dire elle-même : calculatrice: [2, 3]
@@ -106,7 +106,7 @@
     couperSiTropLong(zone);
     const boutons = Array.from(zone.querySelectorAll("[data-signe]"));
     const vaut = (b) => b.dataset.signe === String(ex.reponse);
-    boutons.forEach((b) => b.addEventListener("click", () => {
+    Savoirs.aValider(zone.querySelector(".choix-signe"), boutons, (b) => {
       const juste = vaut(b);
       boutons.forEach((autre) => {
         autre.disabled = true;
@@ -118,7 +118,7 @@
       correction.innerHTML = m.texte(ex.correction);
       correction.hidden = false;
       fini(juste);
-    }));
+    });
   }
 
   // Format « toucher » : l'élève touche un angle sur la figure (js/moteur/figures.js). Chaque angle est aussi

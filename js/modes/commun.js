@@ -11,8 +11,35 @@
     return l;
   }
 
+  // QCM : toucher une proposition la sélectionne seulement (on peut changer d'avis) ;
+  // la réponse n'est donnée qu'avec le bouton « Valider », ajouté juste après le groupe : repondre(bouton choisi).
+  function aValider(groupe, boutons, repondre) {
+    const valider = document.createElement("button");
+    valider.className = "bouton-principal valider";
+    valider.textContent = "Valider";
+    valider.disabled = true;
+    groupe.after(valider);
+    let choisi = null;
+    boutons.forEach((b) => {
+      b.setAttribute("aria-pressed", "false");
+      b.addEventListener("click", () => {
+        if (choisi) { choisi.classList.remove("choisie"); choisi.setAttribute("aria-pressed", "false"); }
+        choisi = b;
+        b.classList.add("choisie");
+        b.setAttribute("aria-pressed", "true");
+        valider.disabled = false;
+      });
+    });
+    valider.addEventListener("click", () => {
+      valider.remove();
+      boutons.forEach((b) => { b.classList.remove("choisie"); b.removeAttribute("aria-pressed"); });
+      repondre(choisi);
+    });
+    return valider;
+  }
+
   // Dessine dans zone : la consigne, la question, puis les propositions [{ texte, bonne }] (texte avec $LaTeX$).
-  // Après la réponse : la bonne réponse s'illumine, la mauvaise est montrée hachurée avec une croix,
+  // Après « Valider » : la bonne réponse s'illumine, la mauvaise est montrée hachurée avec une croix,
   // puis fini(juste) est appelé.
   function choix(zone, consigne, question, propositions, fini) {
     zone.innerHTML =
@@ -27,17 +54,18 @@
 
     const boutons = Array.from(zone.querySelectorAll(".proposition"));
 
-    // Sur ordinateur : touches 1 à 6 pour répondre
+    // Sur ordinateur : touches 1 à 6 pour choisir, puis Entrée pour valider
     function touche(e) {
       if (!zone.isConnected) { document.removeEventListener("keydown", touche); return; }
       const i = "123456".indexOf(e.key);
       if (i < 0 || e.ctrlKey || e.altKey || e.metaKey || !boutons[i] || boutons[i].disabled) return;
       e.preventDefault();
       boutons[i].click();
+      valider.focus();
     }
     document.addEventListener("keydown", touche);
 
-    boutons.forEach((b) => b.addEventListener("click", () => {
+    const valider = aValider(zone.querySelector(".propositions"), boutons, (b) => {
       document.removeEventListener("keydown", touche);
       const choisie = propositions[+b.dataset.i];
       boutons.forEach((autre, i) => {
@@ -58,9 +86,10 @@
         }
       });
       fini(choisie.bonne);
-    }));
+    });
   }
 
   Savoirs.melanger = melanger;
+  Savoirs.aValider = aValider;
   Savoirs.choix = choix;
 })();

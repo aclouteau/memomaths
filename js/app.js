@@ -333,8 +333,8 @@
       (sus ? pluriel(sus, "savoir su", "savoirs sus") + " sur " + jouables.length : "Tes rosaces attendent leurs premières couleurs") +
       "</span></span><span class=\"fleche\" aria-hidden=\"true\">›</span></button>" +
       '<p class="serie">' + texteSerie() + "</p>" +
-      // Visible seulement quand le navigateur propose l'installation (Chrome ou Edge, sur Android ou ordinateur)
-      '<button id="installer" class="bouton-secondaire bouton-installer"' + (invitation ? "" : " hidden") + ">Installer MémoMaths sur cet appareil</button>" +
+      // Visible seulement quand le navigateur propose l'installation (Chrome ou Edge, sur Android ou ordinateur), et sur Samsung Internet pour y conseiller Chrome
+      '<button id="installer" class="bouton-secondaire bouton-installer"' + (invitation || (surSamsungInternet() && !dejaInstallee()) ? "" : " hidden") + ">Installer MémoMaths sur cet appareil</button>" +
       "</section>", "ecran-accueil");
 
     majAvertissement();
@@ -887,12 +887,16 @@
   function dejaInstallee() { return matchMedia("(display-mode: standalone)").matches || navigator.standalone === true; }
   function surIPhone() { return /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1); }
 
+  // Samsung Internet : Google Play Protect y signale à tort ces applications comme dangereuses, on conseille donc Chrome
+  function surSamsungInternet() { return /SamsungBrowser/.test(navigator.userAgent); }
+
   function installer() {
-    if (invitation) {
+    if (invitation && !surSamsungInternet()) {
       invitation.prompt();
       invitation.userChoice.then(() => { invitation = null; accueil(); });
       return;
     }
+    if (surSamsungInternet() && !dejaInstallee()) { installerAvecChrome(); return; }
     barreSeance.hidden = true;
     afficher(
       '<section class="a-propos"><h1>Installer MémoMaths</h1><div class="bloc">' +
@@ -906,6 +910,24 @@
             "<li>Choisis <strong>Installer l'application</strong> ou <strong>Ajouter à l'écran d'accueil</strong>.</li></ol>") +
       "<p>MémoMaths s'ouvre alors comme une application, et marche même sans internet.</p></div>" +
       '<div class="actions"><button class="bouton-lien" data-action="retour">Accueil</button></div></section>', "ecran-installer");
+    surClic('[data-action="retour"]', accueil);
+  }
+
+  function installerAvecChrome() {
+    const adresse = location.host + location.pathname;
+    barreSeance.hidden = true;
+    afficher(
+      '<section class="a-propos"><h1>Installer MémoMaths</h1><div class="bloc">' +
+      "<p>Avec ce navigateur (Samsung Internet), ton téléphone peut afficher une alerte « application dangereuse ». MémoMaths ne présente pas de danger : installe-le plutôt avec <strong>Chrome</strong>, sans désactiver aucune protection.</p>" +
+      '<ol class="etapes"><li>Si tu as déjà des savoirs sus, sauvegarde ta progression : elle ne passe pas toute seule d\'un navigateur à l\'autre.</li>' +
+      "<li>Ouvre MémoMaths dans Chrome.</li>" +
+      "<li>Dans Chrome, touche le bouton <strong>Installer MémoMaths sur cet appareil</strong>, ou choisis <strong>Installer l'application</strong> dans le menu <strong>⋮</strong>.</li></ol>" +
+      '<p class="adresse-site">Si le bouton ne marche pas, ouvre Chrome et écris cette adresse : <strong>' + adresse + "</strong></p>" +
+      "<p>Tu peux aussi ne rien installer : MémoMaths marche très bien ici, dans le navigateur.</p></div>" +
+      '<div class="actions"><a class="bouton-principal bouton-chrome" href="intent://' + adresse + "#Intent;scheme=" + location.protocol.replace(":", "") + ';package=com.android.chrome;end">Ouvrir dans Chrome</a>' +
+      '<button class="bouton-secondaire" data-action="sauvegarde">Sauvegarder ma progression</button>' +
+      '<button class="bouton-lien" data-action="retour">Accueil</button></div></section>', "ecran-installer");
+    surClic('[data-action="sauvegarde"]', sauvegarde);
     surClic('[data-action="retour"]', accueil);
   }
 
