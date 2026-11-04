@@ -389,7 +389,8 @@ h1, h2 { line-height: 1.2; }
 .fig-cote-solide { fill-opacity: .05; }
 .fig-pair { fill-rule: evenodd; }
 .fig-base { fill: var(--fig-b); fill-opacity: .3; stroke: none; }
-.schema text { paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round; text-anchor: middle; dominant-baseline: middle; }
+.schema text { text-anchor: middle; dominant-baseline: middle; }
+.schema text.fig-halo { fill: var(--surface); stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round; }
 .fig-cote { fill: var(--texte); font-size: 14px; font-weight: 700; }
 .fig-cote.petit { font-size: 12.5px; }
 .fig-inconnue { fill: var(--primaire); font-size: 17px; font-weight: 800; }

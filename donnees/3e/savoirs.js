@@ -537,7 +537,7 @@ Savoirs.enregistrer({
   },
   {
    "id": "equ-regle",
-   "chap": "pre",
+   "chap": "equ",
    "type": "regle",
    "titre": "Règles de résolution",
    "question": "On ne change pas une égalité si on ...",

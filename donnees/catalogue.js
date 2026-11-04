@@ -39,6 +39,9 @@ Savoirs.catalogue = [
     // Chapitre fusionné (novembre 2026) : « Triangles semblables » (dernier chapitre, 17) est dans « Thalès » ;
     // un ancien choix « jusqu'à Triangles semblables » vaut donc le dernier chapitre restant, « Géométrie dans l'espace »
     renommes: { sembl: "esp" },
+    // Rappels retardés : les chapitres de révision « Équations » (5e et 4e) ne sont proposés qu'une fois atteint le chapitre
+    // « Équations » de 3e (certains élèves ne les ont pas travaillées l'an dernier)
+    rappelsApres: { equ: "equ" },
     // Chapitre « Périmètre, aire et volume » (pv, toujours jouable) : il regroupe aussi les savoirs et exercices de 5e et 4e
     // sur ces calculs et les conversions d'unités (rattachés ici au lieu de leur chapitre de révision : pas de copie,
     // la progression des élèves est conservée). Les formules en double d'un niveau à l'autre ne sont posées qu'une fois.
