@@ -1,7 +1,7 @@
 // Techniques d'entraînement de 5e : « Nombres rationnels : fractions, pourcentages » (rat1).
 // D'après propositions/referentiels/5e/rat1.json (lot 5) : les descriptions de niveau sont la spécification.
 (function () {
-  const { L, T, ent, choix, net, decimal, facile, pgcd, ppcm } = Savoirs.calculsOutils;
+  const { L, T, ent, choix, net, facile, pgcd } = Savoirs.calculsOutils;
   const PC = "\\,\\%";
   // Fraction irréductible p/q tirée au hasard (q ≥ 2)
   function irreductible(pMin, pMax, qMin, qMax) {
@@ -11,32 +11,11 @@
     const a = p * k, b = q * k;
     return { enonce: "Donner la forme irréductible de $\\dfrac{" + a + "}{" + b + "}$.", reponse: q === 1 ? String(p) : p + "/" + q, correction: "$" + a + "$ et $" + b + "$ sont divisibles par $" + k + "$ : $\\dfrac{" + a + "}{" + b + "} = \\dfrac{" + a + " \\div " + k + "}{" + b + " \\div " + k + "} = " + (q === 1 ? p : "\\dfrac{" + p + "}{" + q + "}") + "$." };
   }
-  // Décimal → fraction irréductible
-  function decimalFraction(x, chiffres) {
-    const p = Math.pow(10, chiffres), n = Math.round(x * p), g = pgcd(n, p);
-    return { enonce: "Écrire $" + L(x) + "$ sous la forme d'une fraction irréductible.", reponse: n / g + "/" + p / g, correction: "$" + L(x) + " = \\dfrac{" + n + "}{" + L(p) + "}$" + (g > 1 ? ". On simplifie par $" + g + "$ : $\\dfrac{" + n + "}{" + L(p) + "} = \\dfrac{" + n / g + "}{" + p / g + "}$." : ", et cette fraction est irréductible.") };
-  }
   function versDecimal(dens, maxNum) {
     const b = choix(dens);
     let a; do { a = ent(1, maxNum(b)); } while (a % b === 0);
     const r = net(a / b);
     return { enonce: "Écrire $\\dfrac{" + a + "}{" + b + "}$ sous forme décimale.", reponse: r, correction: "$\\dfrac{" + a + "}{" + b + "} = " + a + " \\div " + b + " = " + L(r) + "$." };
-  }
-  function comparer(a, b, c, d) {
-    const g = a * d < c * b ? "<" : ">", f1 = "\\dfrac{" + a + "}{" + b + "}", f2 = "\\dfrac{" + c + "}{" + d + "}", fin = "on écrit $" + f1 + " " + g + " " + f2 + "$.";
-    if (b === d) return { g: g, texte: "Les deux fractions ont le même dénominateur $" + b + "$ : la plus grande est celle qui a le plus grand numérateur. Comme $" + a + " " + g + " " + c + "$, " + fin };
-    if (a === c) return { g: g, texte: "Les deux fractions ont le même numérateur $" + a + "$ : la plus grande est celle qui a le plus petit dénominateur. Comme $" + b + (g === "<" ? " > " : " < ") + d + "$, " + fin };
-    const m = ppcm(b, d), n1 = a * m / b, n2 = c * m / d;
-    return { g: g, texte: "Dénominateur commun $" + m + "$ : $" + f1 + " = " + (m === b ? f1 : "\\dfrac{" + n1 + "}{" + m + "}") + "$ et $" + f2 + " = " + (m === d ? f2 : "\\dfrac{" + n2 + "}{" + m + "}") + "$. Comme $" + n1 + " " + g + " " + n2 + "$, " + fin };
-  }
-  function exComparer(a, b, c, d) {
-    const r = comparer(a, b, c, d);
-    return { enonce: "Compléter par $<$ ou $>$ : $\\dfrac{" + a + "}{" + b + "} \\ldots \\dfrac{" + c + "}{" + d + "}$.", reponse: r.g, correction: r.texte };
-  }
-  function memeDenominateur(dMin, dMax) {
-    const d = ent(dMin, dMax);
-    let a, c; do { a = ent(1, 2 * d); c = ent(1, 2 * d); } while (a === c);
-    return exComparer(a, d, c, d);
   }
   const pourcentDe = (p, n) => { const r = net(p * n / 100); return { enonce: choix(["Calculer $" + p + PC + "$ de $" + L(n) + "$.", "Quel est le nombre égal à $" + p + PC + "$ de $" + L(n) + "$ ?"]), reponse: r, correction: "$" + p + PC + " = \\dfrac{" + p + "}{100}$ donc $" + p + PC + "$ de $" + L(n) + "$ vaut $\\dfrac{" + p + "}{100} \\times " + L(n) + " = " + L(r) + "$." }; };
   function fractionDe(a, b, n) {
@@ -78,54 +57,12 @@
       }
     },
     {
-      id: "rat-comparer", chap: "rat1", titre: "Comparer deux fractions", format: "choix", options: ["<", ">"],
-      niveaux: {
-        1: () => {
-          if (facile(1) || Math.random() < 0.5) return memeDenominateur(3, 15);
-          const a = ent(1, 9); let b, d; do { b = ent(2, 15); d = ent(2, 15); } while (b === d);
-          return exComparer(a, b, a, d);
-        },
-        2: () => {
-          if (facile(2)) return memeDenominateur(3, 20);
-          for (;;) {
-            const d = ent(2, 10), D = d * ent(2, 5), a = ent(1, 2 * d), c = ent(1, 2 * D);
-            if (a * D === c * d) continue;
-            return Math.random() < 0.5 ? exComparer(a, d, c, D) : exComparer(c, D, a, d);
-          }
-        },
-        3: () => {
-          if (Math.random() < 0.6) {
-            for (;;) {
-              const [b, d] = choix([[3, 4], [5, 8], [7, 12], [3, 5], [4, 7], [5, 6], [7, 8], [7, 9], [6, 9], [8, 12], [9, 12], [4, 5]]), a = ent(1, 2 * b), c = ent(1, 2 * d);
-              if (a * d === c * b) continue;
-              return Math.random() < 0.5 ? exComparer(a, b, c, d) : exComparer(c, d, a, b);
-            }
-          }
-          for (;;) {
-            const b = choix([2, 4, 5, 8, 20, 25]), a = ent(1, 2 * b - 1), v = net(a / b), x = decimal(1.99, 2);
-            if (v === x) continue;
-            const g = v < x ? "<" : ">", gauche = Math.random() < 0.5, f = "\\dfrac{" + a + "}{" + b + "}";
-            const s1 = gauche ? f : L(x), s2 = gauche ? L(x) : f, gg = gauche ? g : g === "<" ? ">" : "<";
-            return { enonce: "Compléter par $<$ ou $>$ : $" + s1 + " \\ldots " + s2 + "$.", reponse: gg, correction: "$" + f + " = " + a + " \\div " + b + " = " + L(v) + "$. Comme $" + (gauche ? L(v) + " " + gg + " " + L(x) : L(x) + " " + gg + " " + L(v)) + "$, on écrit $" + s1 + " " + gg + " " + s2 + "$." };
-          }
-        }
-      }
-    },
-    {
       id: "rat-decimal", chap: "rat1", titre: "Fraction et écriture décimale", format: "nombre",
       niveaux: {
         1: () => (facile(1) ? versDecimal([10], () => 99) : versDecimal([2, 4, 5], (b) => 2 * b + 5)),
         // Sans 16, 80 ni 125 (3/16 = 0,1875 était trop long à la main) ; les huitièmes seulement au niveau 3
         2: () => (facile(2) ? versDecimal([100], () => 199) : versDecimal([20, 25, 50], (b) => 2 * b)),
         3: () => versDecimal([8, 40, 200], (b) => 2 * b)
-      }
-    },
-    {
-      id: "rat-decimal-fraction", chap: "rat1", titre: "Décimal et fraction irréductible", format: "fraction",
-      niveaux: {
-        1: () => { if (facile(1)) return decimalFraction(0.5, 1); let x; do { x = decimal(4.9, 1); } while (x < 1.1); return decimalFraction(x, 1); },
-        2: () => (facile(2) ? (() => { const x = choix([0.25, 0.75, 0.05, 0.5]); return decimalFraction(x, x === 0.5 ? 1 : 2); })() : decimalFraction(decimal(2.99, 2), 2)),
-        3: () => { let n; do { n = ent(1, 2999); } while (n % 10 === 0); return decimalFraction(n / 1000, 3); }
       }
     },
     {

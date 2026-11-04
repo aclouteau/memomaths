@@ -120,27 +120,6 @@
       })()
     },
     {
-      id: "fg-point-courbe", chap: "fgen", titre: "Un point est-il sur la courbe ?", format: "choix", options: ["oui", "non"],
-      niveaux: Object.fromEntries([1, 2, 3].map((niveau) => [niveau, () => {
-        const f = nom(), oui = Math.random() < 0.5;
-        for (;;) {
-          let c, v;
-          if (niveau === 1) { c = [ent(2, 9), nonNul(-12, 12)]; v = facile(1) ? 0 : ent(1, 8); }
-          else if (niveau === 2) { const a = pm(2, 6), b = pm(1, 9), forme = ent(1, 3); c = forme === 1 ? [a, b] : forme === 2 ? [a, 0, b] : [a, b, 0]; v = facile(2) ? 0 : ent(-6, 6); }
-          else { c = [pm(1, 4), pm(1, 9), pm(1, 9)]; v = Math.random() < 0.6 ? nonNul(-7, 7) : choix([0.5, 1.5, 2.5]) * signe(); }
-          const i = image(f, c, v);
-          let y = i.r;
-          if (!oui) y = niveau === 3 && i.r !== 0 && Math.random() < 0.4 ? -i.r : net(i.r + ent(1, 3) * signe());
-          if (decimales(y) > 2) continue;
-          return {
-            enonce: "Soit $" + f + "$ la fonction définie par $" + f + "(x) = " + i.latex + "$. Le point $A(" + L(v) + " ; " + L(y) + ")$ appartient-il à la courbe représentative de $" + f + "$ ?",
-            reponse: oui ? "oui" : "non",
-            correction: "On calcule l'image de $" + L(v) + "$ : " + i.calcul + ". " + (oui ? "Comme $" + f + "(" + L(v) + ") = " + L(y) + "$, le point $A$ appartient à la courbe." : "Comme $" + f + "(" + L(v) + ") = " + L(i.r) + " \\neq " + L(y) + "$, le point $A$ n'appartient pas à la courbe.")
-          };
-        }
-      }]))
-    },
-    {
       id: "fg-situation", chap: "fgen", titre: "Une fonction pour un tarif", format: "nombre",
       niveaux: (function () {
         function inverse(a, b, x) {

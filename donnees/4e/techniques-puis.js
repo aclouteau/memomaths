@@ -135,29 +135,6 @@
       correction: "On multiplie d'abord les exposants : $" + ex(m) + " \\times " + q + " = " + mq + "$. Puis on soustrait : $" + mq + " - " + ex(n) + " = " + k + "$. Donc $k = " + k + "$." };
   }
 
-  // ---------- Signe d'une puissance ----------
-  const regle = (n) => "L'exposant $" + n + "$ est " + (n % 2 ? "impair, donc le résultat est négatif." : "pair, donc le résultat est positif.");
-  function signe1(niveau) {
-    const a = ent(2, 20), n = facile(niveau) ? 2 : ent(2, 9);
-    return { enonce: "Le nombre $(-" + a + ")^{" + n + "}$ est-il positif ou négatif ?", reponse: n % 2 ? -1 : 1, correction: regle(n) };
-  }
-  function signe2(niveau) {
-    const a = ent(2, 20), n = facile(niveau) ? 2 * ent(1, 5) : ent(2, 10);
-    if (!facile(niveau) && Math.random() < 0.45) return { enonce: "Le nombre $-" + a + "^{" + n + "}$ est-il positif ou négatif ?", reponse: -1, correction: "L'exposant ne porte que sur $" + a + "$ : $" + a + "^{" + n + "}$ est positif, et le signe moins devant le rend négatif." };
-    return { enonce: "Le nombre $(-" + a + ")^{" + n + "}$ est-il positif ou négatif ?", reponse: n % 2 ? -1 : 1, correction: regle(n) };
-  }
-  function signe3() {
-    const type = choix(["neg", "dec", "prod"]);
-    if (type === "neg") { const a = ent(2, 9), n = ent(1, 6); return { enonce: "Le nombre $(-" + a + ")^{-" + n + "}$ est-il positif ou négatif ?", reponse: n % 2 ? -1 : 1, correction: "$(-" + a + ")^{-" + n + "} = \\dfrac{1}{(-" + a + ")^{" + n + "}}$. " + regle(n) }; }
-    if (type === "dec") { const d = ent(1, 15) / 10, n = ent(2, 11); return { enonce: "Le nombre $(-" + L(d) + ")^{" + n + "}$ est-il positif ou négatif ?", reponse: n % 2 ? -1 : 1, correction: regle(n) }; }
-    const a = ent(2, 9), b = ent(2, 9), n = ent(2, 7), m = ent(2, 7), s = (n % 2 ? -1 : 1) * (m % 2 ? -1 : 1);
-    return {
-      enonce: "Le nombre $(-" + a + ")^{" + n + "} \\times (-" + b + ")^{" + m + "}$ est-il positif ou négatif ?", reponse: s,
-      correction: "$(-" + a + ")^{" + n + "}$ est " + (n % 2 ? "négatif" : "positif") + " (exposant " + (n % 2 ? "impair" : "pair") + ") et $(-" + b + ")^{" + m + "}$ est " + (m % 2 ? "négatif" : "positif") +
-        " (exposant " + (m % 2 ? "impair" : "pair") + "). Le produit est donc " + (s > 0 ? "positif." : "négatif.")
-    };
-  }
-
   // ---------- Puissances de 10 : l'exposant ----------
   function dix1(niveau) {
     const n = facile(niveau) ? 1 : ent(2, 9);
@@ -206,13 +183,12 @@
   }
 
   // Partagé avec la 3e (chapitre « Puissances »)
-  Savoirs.puissances = { calcul1, calcul2, calcul3, negatif1, negatif2, negatif3, exposant1, exposant2, exposant3, signe1, signe2, signe3, dix1, dix2, dix3, valeur1, valeur2, valeur3 };
+  Savoirs.puissances = { calcul1, calcul2, calcul3, negatif1, negatif2, negatif3, exposant1, exposant2, exposant3, dix1, dix2, dix3, valeur1, valeur2, valeur3 };
 
   const puis = [
     { id: "puis-calcul", chap: "puis", titre: "Calculer une puissance", format: "nombre", niveaux: { 1: () => calcul1(1), 2: () => calcul2(2), 3: () => calcul3() } },
     { id: "puis-negatif", chap: "puis", titre: "Exposant négatif", format: "fraction", niveaux: { 1: () => negatif1(1), 2: () => negatif2(2), 3: () => negatif3() } },
     { id: "puis-exposant", chap: "puis", titre: "Trouver l'exposant", format: "nombre", niveaux: { 1: () => exposant1(1), 2: () => exposant2(2), 3: () => exposant3() } },
-    { id: "puis-signe", chap: "puis", titre: "Signe d'une puissance", format: "signe", niveaux: { 1: () => signe1(1), 2: () => signe2(2), 3: () => signe3() } },
     { id: "puis-dix", chap: "puis", titre: "Puissances de 10 : l'exposant", format: "nombre", niveaux: { 1: () => dix1(1), 2: () => dix2(2), 3: () => dix3() } },
     { id: "puis-valeur", chap: "puis", titre: "Calculer une expression avec des puissances", format: "nombre", niveaux: { 1: () => valeur1(1), 2: () => valeur2(2), 3: () => valeur3() } }
   ];

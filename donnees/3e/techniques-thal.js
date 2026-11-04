@@ -193,32 +193,6 @@
         }
       }]))
     },
-    {
-      id: "thales-perimetre", chap: "thal", titre: "Périmètre d'un triangle réduit", format: "nombre",
-      niveaux: Object.fromEntries([1, 2, 3].map((niveau) => [niveau, () => {
-        for (;;) {
-          const [p, q] = niveau === 3 ? (() => { for (;;) { const qq = ent(3, 8), pp = ent(2, qq - 1); if (pgcd(pp, qq) === 1) return [pp, qq]; } })() : rapport(niveau, 5);
-          const l = longueurs(p, q, niveau === 2), t = lettres(), n = (a, b) => t[a] + t[b];
-          const Pg = net(l.AB + l.AC + l.BC), Pp = net(Pg * p / q);
-          if (decimales(Pp) > 2) continue;
-          if (niveau === 3) {
-            const parCote = Math.random() < 0.5, [a, b] = parCote ? [l.AM, l.AB] : [l.MN, l.BC], [na, nb] = parCote ? [n("A", "M"), n("A", "B")] : [n("M", "N"), n("B", "C")];
-            return {
-              schema: figure(t, p / q),
-              enonce: phrase(t) + " On donne $" + na + " = " + L(a) + "$ cm, $" + nb + " = " + L(b) + "$ cm et le périmètre du triangle $" + t.A + t.M + t.N + "$ est " + T(Pp) + " cm. Calculer le périmètre du triangle $" + t.A + t.B + t.C + "$.",
-              reponse: Pg, unite: "cm",
-              correction: "D'après le théorème de Thalès, " + thales(t).replace("d'après le théorème de Thalès, ", "") + ". Le rapport est $k = " + D(na, nb) + " = " + D(L(a), L(b)) + " = " + D(p, q) + "$. Le périmètre de $" + t.A + t.M + t.N + "$ est égal à $k$ fois celui de $" + t.A + t.B + t.C + "$. Donc le périmètre de $" + t.A + t.B + t.C + "$ est $" + L(Pp) + " \\div " + D(p, q) + " = " + L(Pp) + " \\times " + D(q, p) + " = " + L(Pg) + "$ cm."
-            };
-          }
-          return {
-            enonce: phrase(t) + " On donne $" + n("A", "B") + " = " + L(l.AB) + "$ cm, $" + n("A", "C") + " = " + L(l.AC) + "$ cm, $" + n("B", "C") + " = " + L(l.BC) + "$ cm et $" + n("A", "M") + " = " + L(l.AM) + "$ cm. Calculer le périmètre du triangle $" + t.A + t.M + t.N + "$.",
-            schema: figure(t, p / q),
-            reponse: Pp, unite: "cm",
-            correction: "Les points $" + t.M + "$ et $" + t.N + "$ sont sur $[" + n("A", "B") + "]$ et $[" + n("A", "C") + "]$ et $(" + n("M", "N") + ") \\parallel (" + n("B", "C") + ")$ : " + thales(t) + ". Le rapport est $k = " + D(n("A", "M"), n("A", "B")) + " = " + D(L(l.AM), L(l.AB)) + " = " + D(p, q) + "$. Le périmètre de $" + t.A + t.B + t.C + "$ est $" + L(l.AB) + " + " + L(l.AC) + " + " + L(l.BC) + " = " + L(Pg) + "$ cm. Le périmètre de $" + t.A + t.M + t.N + "$ est égal à $k$ fois celui du grand triangle : $" + D(p, q) + " \\times " + L(Pg) + " = " + L(Pp) + "$ cm."
-          };
-        }
-      }]))
-    }
   ];
 
   Savoirs.enregistrerTechniques("3e", thal);

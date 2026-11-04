@@ -1,7 +1,7 @@
 // Techniques d'entraînement de 4e : « Volumes (pyramide et cône) » (vol).
 // D'après propositions/referentiels/4e/pyr.json et cone.json (lot 6), puis la mise à jour de novembre 2026
-// (MISE-A-JOUR-2026-11-COURS.md) : pyr et cone fusionnés dans vol ; faces, arêtes et génératrice retirées
-// (les générateurs de génératrice restent pour la 3e) ; conversions, solides droits et repérage ajoutés.
+// (MISE-A-JOUR-2026-11-COURS.md) : pyr et cone fusionnés dans vol ; faces, arêtes, génératrice et réduction retirées ;
+// conversions, solides droits et repérage ajoutés.
 // Avec π : vraie valeur, réponse arrondie au dixième (calculatrice), cas d'arrondi ambigu exclus.
 (function () {
   const { L, T, ent, choix, net, facile, fixe } = Savoirs.calculsOutils;
@@ -13,7 +13,6 @@
     if (f < 0.05 || f > 0.95 || Math.abs(f - 0.5) < 0.05) return null;
     return Math.round(y) / Math.pow(10, d);
   }
-  const cube = (k) => net(k * k * k);
 
   // ---------- Volume d'une pyramide ----------
   function pyrVolume1(niveau) {
@@ -71,60 +70,6 @@
     return {
       enonce: "Une pyramide a un volume de " + V + " cm³ et une hauteur de " + h + " cm. Calculer l'aire de sa base.", reponse: B, unite: "cm²",
       correction: "$V = \\dfrac{\\mathcal{B} \\times h}{3}$ donc $\\mathcal{B} \\times h = 3V = " + 3 * V + "$ et $\\mathcal{B} = \\dfrac{" + 3 * V + "}{" + h + "} = " + B + "$ cm²."
-    };
-  }
-
-  // ---------- Agrandissement et réduction (pyramide ou cône) ----------
-  function volumeObtenu(solide, k, V) {
-    const k3 = cube(k), r = net(V * k3);
-    return {
-      enonce: "Un" + (solide === "pyramide" ? "e pyramide" : " cône") + " de volume " + T(V) + " cm³ est " + (k > 1 ? "agrandi" : "réduit") + (solide === "pyramide" ? "e" : "") +
-        " avec un rapport $k = " + L(k) + "$. Calculer le volume " + (solide === "pyramide" ? "de la pyramide obtenue." : "du cône obtenu."),
-      reponse: r, unite: "cm³",
-      correction: "Les volumes sont multipliés par $k^{3} = " + L(k) + "^{3} = " + L(k3) + "$ : $" + L(V) + " \\times " + L(k3) + " = " + L(r) + "$ cm³."
-    };
-  }
-  function reduction1(solide, niveau) {
-    const k = facile(niveau) ? 2 : choix([2, 3]);
-    return volumeObtenu(solide, k, k === 2 ? ent(2, 12) : ent(2, 5));
-  }
-  function reduction2(solide, niveau) {
-    if (facile(niveau)) return volumeObtenu(solide, 2, ent(2, 12));
-    if (Math.random() < 0.3) { // aire de la base
-      const k = choix([2, 3, 0.5, 0.1]), m = k === 0.5 ? 4 : k === 0.1 ? 100 : 1, B = m * ent(Math.ceil((k < 1 ? 4 * m : 2) / m), Math.floor((k < 1 ? 50 * m : 20) / m)), k2 = net(k * k), r = net(B * k2);
-      const de = solide === "pyramide" ? "La base d'une pyramide" : "La base d'un cône";
-      return {
-        enonce: de + " a une aire de " + T(B) + " cm². " + (solide === "pyramide" ? "La pyramide" : "Le cône") + " est " + (k > 1 ? "agrandi" : "réduit") + (solide === "pyramide" ? "e" : "") + " avec un rapport $k = " + L(k) + "$. Calculer l'aire de la nouvelle base.",
-        reponse: r, unite: "cm²",
-        correction: "Les aires sont multipliées par $k^{2} = " + L(k) + "^{2} = " + L(k2) + "$ : $" + L(B) + " \\times " + L(k2) + " = " + L(r) + "$ cm²."
-      };
-    }
-    const k = choix([0.5, 0.1, 4, 5]);
-    return volumeObtenu(solide, k, k === 0.5 ? 8 * ent(1, 25) : k === 0.1 ? 1000 * ent(1, 20) : ent(2, 9));
-  }
-  function reduction3(solide) {
-    const type = choix(["hauteurs", "volumes", "avant"]), un = solide === "pyramide" ? "Une pyramide" : "Un cône";
-    if (type === "hauteurs") {
-      const k = choix([2, 3, 0.5]), h1 = k === 0.5 ? 2 * ent(2, 9) : ent(2, 12), h2 = net(k * h1), V = k === 0.5 ? 8 * ent(1, 15) : ent(2, 15), k3 = cube(k), r = net(V * k3);
-      return {
-        enonce: un + " de hauteur " + h1 + " cm et de volume " + V + " cm³ est transformé" + (solide === "pyramide" ? "e" : "") + " en " + (solide === "pyramide" ? "une pyramide semblable" : "un cône semblable") + " de hauteur " + T(h2) + " cm. Calculer le volume " + (solide === "pyramide" ? "de la pyramide obtenue." : "du cône obtenu."),
-        reponse: r, unite: "cm³",
-        correction: "Le rapport est $k = \\dfrac{" + L(h2) + "}{" + h1 + "} = " + L(k) + "$. Les volumes sont multipliés par $k^{3} = " + L(k3) + "$ : $" + V + " \\times " + L(k3) + " = " + L(r) + "$ cm³."
-      };
-    }
-    if (type === "volumes") {
-      const k = ent(2, 5), V = ent(2, 12), r = V * k * k * k;
-      return {
-        enonce: un + " de volume " + V + " cm³ est agrandi" + (solide === "pyramide" ? "e" : "") + " : son volume devient " + T(r) + " cm³. Quel est le rapport $k$ de l'agrandissement ?",
-        reponse: k,
-        correction: "Les volumes sont multipliés par $k^{3} = \\dfrac{" + L(r) + "}{" + V + "} = " + k * k * k + "$. Or $" + k + "^{3} = " + k * k * k + "$, donc $k = " + k + "$."
-      };
-    }
-    const k = choix([2, 3]), V = ent(2, 15), r = V * k * k * k;
-    return {
-      enonce: un + " a été agrandi" + (solide === "pyramide" ? "e" : "") + " avec un rapport $k = " + k + "$ : son volume est maintenant " + T(r) + " cm³. Quel était son volume avant l'agrandissement ?",
-      reponse: V, unite: "cm³",
-      correction: "Les volumes ont été multipliés par $k^{3} = " + k * k * k + "$. Avant : $" + L(r) + " \\div " + k * k * k + " = " + V + "$ cm³."
     };
   }
 
@@ -294,50 +239,14 @@
     return e;
   }
 
-  // ---------- Génératrice, hauteur et rayon ----------
-  const TRIPLETS = [[3, 4, 5], [6, 8, 10], [5, 12, 13], [9, 12, 15], [8, 15, 17], [12, 16, 20]];
-  const DECIMAUX = [[0.6, 0.8, 1], [1.5, 2, 2.5], [2.1, 2.8, 3.5], [4.5, 6, 7.5], [0.5, 1.2, 1.3], [1.8, 2.4, 3], [2.4, 3.2, 4], [3.6, 4.8, 6], [1.5, 3.6, 3.9], [2.5, 6, 6.5], [3, 7.2, 7.8], [4.2, 5.6, 7]];
-  const triangleCone = "Le triangle formé par la hauteur, le rayon et la génératrice est rectangle ; la génératrice $g$ est l'hypoténuse : ";
-  function generatrice(r, h, g, cherche, arr) {
-    const fig = S.coneGeneratrice({ r: r, h: h, er: cherche === "r" ? "?" : cm(r), eh: cherche === "h" ? "?" : cm(h), eg: cherche === "g" ? "?" : cm(g) });
-    const nom = { g: "la longueur de la génératrice de ce cône de révolution", h: "la hauteur de ce cône de révolution", r: "le rayon de ce cône de révolution" }[cherche];
-    const c2 = (x) => L(net(x * x));
-    let corr, rep;
-    if (cherche === "g") { const s = net(r * r + h * h); rep = arr ? arrondi(Math.sqrt(s), 1) : g; corr = triangleCone + "$g^{2} = " + L(h) + "^{2} + " + L(r) + "^{2} = " + c2(h) + " + " + c2(r) + " = " + L(s) + "$, donc $g = \\sqrt{" + L(s) + "}" + (arr ? " \\approx " + fixe(rep, 1) : " = " + L(g)) + "$ cm."; }
-    else { const [conn, nomC] = cherche === "h" ? [r, "r"] : [h, "h"], s = net(g * g - conn * conn); rep = cherche === "h" ? h : r; corr = "La génératrice est l'hypoténuse : $" + cherche + "^{2} = g^{2} - " + nomC + "^{2} = " + L(g) + "^{2} - " + L(conn) + "^{2} = " + c2(g) + " - " + c2(conn) + " = " + L(s) + "$, donc $" + cherche + " = " + L(rep) + "$ cm."; }
-    return { enonce: "Calculer " + nom + (arr ? ". Donner la valeur arrondie au dixième." : "."), schema: fig, reponse: rep, unite: "cm", correction: corr };
-  }
-  function generatrice1(niveau) {
-    const [a, b, g] = facile(niveau) ? [3, 4, 5] : choix(TRIPLETS), [r, h] = Math.random() < 0.5 ? [a, b] : [b, a];
-    return generatrice(r, h, g, "g");
-  }
-  function generatrice2(niveau) {
-    if (facile(niveau)) { const [r, h] = choix([[6, 8], [8, 6]]); return generatrice(r, h, 10, "g"); }
-    const [a, b, g] = choix(TRIPLETS), [r, h] = Math.random() < 0.5 ? [a, b] : [b, a];
-    return generatrice(r, h, g, choix(["h", "r"]));
-  }
-  function generatrice3() {
-    if (Math.random() < 0.6) {
-      const [a, b, g] = choix(DECIMAUX), [r, h] = Math.random() < 0.5 ? [a, b] : [b, a];
-      return generatrice(r, h, g, choix(["g", "h", "r"]));
-    }
-    let r, h, e;
-    do { r = ent(2, 12); h = ent(2, 12); e = arrondi(Math.sqrt(r * r + h * h), 1); } while (e === null);
-    return generatrice(r, h, Math.sqrt(r * r + h * h), "g", true);
-  }
-
   // Les ids pyr-… et cone-… sont gardés : la progression des élèves est conservée
   const vol = [
     { id: "vol-conversion", chap: "vol", titre: "Convertir des volumes et des contenances", format: "nombre", niveaux: { 1: () => conversion1(1), 2: () => conversion2(2), 3: () => conversion3() } },
     { id: "vol-droit", chap: "vol", titre: "Volume d'un pavé, d'un prisme ou d'un cylindre", format: "nombre", calculatrice: [3], niveaux: { 1: () => droit1(1), 2: () => droit2(2), 3: () => droit3() } },
     { id: "pyr-volume", chap: "vol", titre: "Volume d'une pyramide", format: "nombre", niveaux: { 1: () => pyrVolume1(1), 2: () => pyrVolume2(2), 3: () => pyrVolume3() } },
     { id: "cone-volume", chap: "vol", titre: "Volume d'un cône", format: "nombre", calculatrice: [2, 3], niveaux: { 1: () => coneVolume1(1), 2: () => coneVolume2(2), 3: () => coneVolume3() } },
-    { id: "pyr-reduction", chap: "vol", titre: "Agrandissement et réduction d'une pyramide", format: "nombre", niveaux: { 1: () => reduction1("pyramide", 1), 2: () => reduction2("pyramide", 2), 3: () => reduction3("pyramide") } },
-    { id: "cone-reduction", chap: "vol", titre: "Agrandissement et réduction d'un cône", format: "nombre", niveaux: { 1: () => reduction1("cone", 1), 2: () => reduction2("cone", 2), 3: () => reduction3("cone") } },
     { id: "vol-reperage", chap: "vol", titre: "Se repérer dans un pavé droit", format: "nombre", niveaux: { 1: () => reperage1(1), 2: () => reperage2(2), 3: () => reperage3() } }
   ];
 
-  // La génératrice et la réduction servent aussi en 3e (donnees/3e/techniques-esp.js)
-  Savoirs.volumesPyrCone = { pyrVolume1, pyrVolume2, pyrVolume3, reduction1, reduction2, reduction3, generatrice1, generatrice2, generatrice3 };
   Savoirs.enregistrerTechniques("4e", vol);
 })();

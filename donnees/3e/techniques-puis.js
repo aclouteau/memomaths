@@ -10,7 +10,7 @@
     { id: "puis-exposant", chap: "puis", titre: "Trouver l'exposant", format: "nombre", niveaux: { 1: P("exposant1", 1), 2: P("exposant2", 2), 3: P("exposant3", 3) } },
     { id: "puis-valeur", chap: "puis", titre: "Calculer une expression avec des puissances", format: "nombre", niveaux: { 1: P("valeur1", 1), 2: P("valeur2", 2), 3: P("valeur3", 3) } },
     { id: "sci-decimal", chap: "puis", titre: "De la notation scientifique à l'écriture décimale", format: "nombre", niveaux: { 1: N("decimal", 1), 2: N("decimal", 2), 3: N("decimal", 3) } },
-    { id: "sci-calcul", chap: "puis", titre: "Produit et quotient en notation scientifique", format: "nombre", niveaux: { 1: N("calcul", 1), 2: N("calcul", 2), 3: N("calcul", 3) } },
+    { id: "sci-calcul", chap: "puis", titre: "Produit en notation scientifique", format: "nombre", niveaux: { 1: N("calcul", 1), 2: N("calcul", 2), 3: N("calcul", 3) } },
     { id: "sci-exposant", chap: "puis", titre: "Exposant d'une notation scientifique", format: "nombre", niveaux: { 1: N("exposant1", 1), 2: N("exposant2", 2), 3: N("exposant3", 3) } }
   ]);
 })();

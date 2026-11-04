@@ -4,16 +4,6 @@
 (function () {
   const { L, T, ent, choix, net, decimal, facile } = Savoirs.calculsOutils;
 
-  // ---------- Polygones réguliers ----------
-  // « Le carré », mais « L'hexagone », « L'octogone » (élision devant une voyelle ou un h muet)
-  const le = (nom) => (/^[aeiouyh]/.test(nom) ? "L'" : "Le ");
-  const NOMS = { 3: "triangle équilatéral", 4: "carré", 5: "pentagone régulier", 6: "hexagone régulier", 8: "octogone régulier", 10: "décagone régulier" };
-  const nomPolygone = (n) => (NOMS[n] && Math.random() < 0.7 ? NOMS[n] : "polygone régulier à " + n + " côtés");
-  // Lettres des sommets : consécutives, sans O (c'est le centre)
-  const ALPHABET = "ABCDEFGHIJKLMNPQRSTUVWXYZ";
-  const sommets = (n) => { const d = ent(0, ALPHABET.length - n); return ALPHABET.slice(d, d + n).split(""); };
-  const ORDINAUX = { 2: "deuxième", 3: "troisième" };
-
   // ---------- Figures transformées par une rotation ----------
   const TRIANGLES = ["ABC", "DEF", "MNP", "RST", "GHI"], QUADRILATERES = ["ABCD", "EFGH", "MNPQ", "RSTU"];
   const prime = (nom) => nom.split("").map((l) => l + "'").join("");
@@ -48,48 +38,6 @@
 
   // ---------- Coordonnées ----------
   const rot = [
-    {
-      id: "angle-poly", chap: "rot", titre: "Angle d'une rotation d'un polygone régulier", format: "nombre",
-      niveaux: {
-        1: () => {
-          const n = choix([3, 4, 5, 6, 8, 9, 10, 12]), nom = nomPolygone(n), r = 360 / n;
-          const s = sommets(n), lettres = Math.random() < 0.5;
-          return {
-            enonce: lettres ? le(nom) + nom + " $" + s.join("") + "$ a pour centre $O$. Quel est l'angle de la rotation de centre $O$ qui envoie $" + s[0] + "$ sur $" + s[1] + "$ ?"
-              : "Un " + nom + " a pour centre $O$. Quel est l'angle de la rotation de centre $O$ qui envoie chaque sommet sur le sommet suivant ?",
-            reponse: r, unite: "°", correction: "L'angle est $\\dfrac{360^{\\circ}}{n}$. Ici $n = " + n + "$ : $360 \\div " + n + " = " + r + "$."
-          };
-        },
-        2: () => {
-          for (;;) {
-            const n = choix([5, 6, 8, 9, 10, 12]), demiTour = facile(2), k = demiTour ? n / 2 : ent(2, Math.ceil(n / 2) - 1);
-            if (!Number.isInteger(k) || k >= n / 2 && !demiTour) continue;
-            const s = sommets(n), pas = 360 / n, r = k * pas, nom = nomPolygone(n);
-            return {
-              enonce: le(nom) + nom + " $" + s.join("") + "$ a pour centre $O$. Quel est l'angle de la rotation de centre $O$ qui envoie $" + s[0] + "$ sur $" + s[k] + "$ (dans le sens direct) ?",
-              reponse: r, unite: "°",
-              correction: "Chaque sommet est à $\\dfrac{360^{\\circ}}{" + n + "} = " + pas + "^{\\circ}$ du suivant. De $" + s[0] + "$ à $" + s[k] + "$, il y a " + k + " « pas » : $" + k + " \\times " + pas + " = " + r + "$."
-            };
-          }
-        },
-        3: () => {
-          if (Math.random() < 0.4) {
-            const a = choix([24, 20, 18, 15, 12, 10, 9]), n = 360 / a;
-            return {
-              enonce: "Une rotation d'angle $" + a + "^{\\circ}$ envoie chaque sommet d'un polygone régulier de centre $O$ sur le sommet suivant. Combien ce polygone a-t-il de côtés ?",
-              reponse: n, unite: "côtés", correction: "Le polygone a $n$ côtés avec $\\dfrac{360^{\\circ}}{n} = " + a + "^{\\circ}$ donc $n = 360 \\div " + a + " = " + n + "$."
-            };
-          }
-          const n = choix([8, 9, 10, 12, 15, 18, 20, 24]), k = ent(2, 3), pas = 360 / n, a = k * pas;
-          return {
-            enonce: "Dans un polygone régulier de centre $O$, la rotation de centre $O$ et d'angle $" + a + "^{\\circ}$ (sens direct) envoie le sommet $A$ sur le " + ORDINAUX[k] +
-              " sommet suivant, en comptant dans le sens direct. Combien ce polygone a-t-il de côtés ?",
-            reponse: n, unite: "côtés",
-            correction: "Un « pas » vaut $\\dfrac{" + a + "}{" + k + "} = " + pas + "^{\\circ}$ ; le tour complet fait $360 \\div " + pas + " = " + n + "$ pas, soit $" + n + "$ côtés."
-          };
-        }
-      }
-    },
     {
       id: "rot-conserve", chap: "rot", titre: "Ce que conserve une rotation", format: "nombre",
       niveaux: {

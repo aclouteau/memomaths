@@ -1,7 +1,7 @@
 // Techniques d'entraînement de 5e : « Nombres relatifs : repérage et comparaison » (rel1).
 // D'après propositions/referentiels/5e/rel1.json (lot 5) : les descriptions de niveau sont la spécification.
 (function () {
-  const { L, T, ent, choix, net, nonNul, facile } = Savoirs.calculsOutils;
+  const { L, ent, choix, net, nonNul, facile } = Savoirs.calculsOutils;
   const melanger = (l) => Savoirs.melanger(l);
   const signe = () => choix([1, -1]);
   // Décimal à un chiffre après la virgule (dixièmes non nuls), de 1,1 à 9,9 ou de 10,1 à 99,9
@@ -108,46 +108,6 @@
         };
       })()
     },
-    {
-      id: "rel-voisin", chap: "rel1", titre: "Entier juste au-dessous, au-dessus ou le plus proche", format: "nombre",
-      niveaux: (function () {
-        function ex(x, sorte) {
-          const bas = Math.floor(x), haut = Math.ceil(x);
-          if (sorte === "inf") return { enonce: "Donner le plus grand entier relatif inférieur à $" + L(x) + "$.", reponse: bas, correction: "Sur la droite graduée, l'entier juste à gauche de $" + L(x) + "$ est $" + bas + "$ (et $" + haut + "$ est à droite de $" + L(x) + "$)." };
-          if (sorte === "sup") return { enonce: "Donner le plus petit entier relatif supérieur à $" + L(x) + "$.", reponse: haut, correction: "Sur la droite graduée, l'entier juste à droite de $" + L(x) + "$ est $" + haut + "$ (et $" + bas + "$ est à gauche de $" + L(x) + "$)." };
-          const r = x - bas < haut - x ? bas : haut;
-          return { enonce: "Donner l'entier relatif le plus proche de $" + L(x) + "$.", reponse: r, correction: "$" + L(x) + "$ est compris entre $" + bas + "$ et $" + haut + "$ ; il est plus proche de $" + r + "$ (écart de $" + L(net(Math.abs(x - r))) + "$)." };
-        }
-        return {
-          1: () => ex(facile(1) ? -ent(1, 9) / 10 : -(ent(1, 9) + ent(1, 9) / 10), "inf"),
-          2: () => ex(facile(2) ? -ent(1, 9) / 10 : dec1() * signe(), choix(["inf", "sup"])),
-          3: () => ex(net((ent(1, 99) + choix([0.01, 0.02, 0.98, 0.99, 0.05, 0.95, ent(1, 99) / 100])) * signe()), choix(["inf", "sup", "proche"]))
-        };
-      })()
-    },
-    {
-      id: "rel-distance", chap: "rel1", titre: "Distance entre deux points d'une droite graduée", format: "nombre",
-      niveaux: (function () {
-        const POINTS = [["A", "B"], ["M", "N"], ["R", "S"], ["E", "F"]];
-        function ex(a, b, situation) {
-          const [P, Q] = choix(POINTS), d = net(Math.abs(a - b)), meme = a * b > 0;
-          const regle = a === 0 || b === 0 ? "L'un des points est l'origine : la distance est la valeur absolue de l'autre abscisse, $" + L(d) + "$."
-            : meme ? "Les deux nombres ont le même signe : on retranche la plus petite valeur absolue à la plus grande. $" + L(Math.max(Math.abs(a), Math.abs(b))) + " - " + L(Math.min(Math.abs(a), Math.abs(b))) + " = " + L(d) + "$."
-              : "Les deux nombres sont de signes contraires : on additionne leurs valeurs absolues. $" + L(Math.abs(a)) + " + " + L(Math.abs(b)) + " = " + L(d) + "$.";
-          if (situation === "temp") return { enonce: "À midi, il fait " + T(a) + " °C ; le soir, il fait " + T(b) + " °C. Quel est l'écart entre ces deux températures, en °C ?", reponse: d, unite: "°C", correction: regle };
-          if (situation === "alt") return { enonce: "Un oiseau vole à l'altitude " + T(a) + " m et un poisson nage à l'altitude " + T(b) + " m. Quelle distance verticale les sépare, en m ?", reponse: d, unite: "m", correction: regle };
-          return { enonce: "Sur une droite graduée, le point $" + P + "$ a pour abscisse $" + L(a) + "$ et le point $" + Q + "$ a pour abscisse $" + L(b) + "$. Quelle est la distance $" + P + Q + "$ ?", reponse: d, correction: regle };
-        }
-        return {
-          1: () => { if (facile(1)) return ex(0, nonNul(-30, 30)); const s = signe(); const [a, b] = melanger([s * ent(1, 15), s * ent(16, 30)]); return ex(a, b); },
-          2: () => { if (facile(2)) { const a = ent(1, 20); return ex(a, -a); } const [a, b] = melanger([ent(1, 20), -ent(1, 20)]); return ex(a, b); },
-          3: () => {
-            if (Math.random() < 0.5) { const s = Math.random() < 0.5; return s ? ex(dec1() * signe(), dec1() * signe(), choix(["temp", "alt"])) : ex(dec1() * signe(), dec1() * signe()); }
-            for (;;) { const a = dec1() * signe(), b = dec1() * signe(); if (a !== b) return ex(a, b); }
-          }
-        };
-      })()
-    }
   ];
 
   Savoirs.enregistrerTechniques("5e", rel1);

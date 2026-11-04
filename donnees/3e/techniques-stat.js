@@ -91,61 +91,18 @@
       } while (Math.abs(S / N * 100 - Math.round(S / N * 100)) > 1e-9);
       return moyennePonderee(notes, eff);
     }
-    // Classes de même amplitude : on prend le centre de chaque classe
-    const duree = Math.random() < 0.5;
-    let bornes, eff, S, N, centres;
+    // Niveau 3 : cinq notes et des effectifs plus grands (plus de classes, décision de l'enseignant)
+    let notes, eff, S, N;
     do {
-      const k = ent(3, 4), a = duree ? choix([10, 20]) : 10, debut = duree ? choix([0, 10, 20]) : choix([100, 110, 120, 130, 140, 150]);
-      bornes = Array.from({ length: k + 1 }, (_, i) => debut + i * a);
-      if (!duree && bornes[k] > 190) continue;
-      centres = bornes.slice(0, k).map((b) => b + a / 2); eff = centres.map(() => ent(1, 12));
-      S = centres.reduce((s, c, i) => s + c * eff[i], 0); N = eff.reduce((x, y) => x + y, 0);
-    } while (!S || Math.abs(S / N * 100 - Math.round(S / N * 100)) > 1e-9);
-    const m = net(S / N), u = duree ? "min" : "cm";
-    // Tableau en colonnes (une ligne par classe) : il tient dans la largeur d'un téléphone
-    const lignes = [[duree ? "Durée (min)" : "Taille (cm)", "\\text{Effectif}"]].concat(centres.map((c, i) => ["de " + bornes[i] + " à " + bornes[i + 1], eff[i]]));
-    return {
-      enonce: (duree ? "Voici les durées de trajet (en min) d'élèves." : "Voici les tailles (en cm) d'élèves.") + " Estimer la moyenne en utilisant le centre de chaque classe.", schema: tab(lignes), reponse: m, unite: u,
-      correction: "Centres des classes : " + centres.join(" ; ") + ". Somme : $" + centres.map((c, i) => c + " \\times " + eff[i]).join(" + ") + " = " + L(S) + "$. Effectif total : $" + N + "$. Moyenne : $\\dfrac{" + L(S) + "}{" + N + "} = " + L(m) + "$ " + u + "."
-    };
-  }
-
-  // ---------- Lire un histogramme (ajouté en novembre 2026, avec le savoir st-histo) ----------
-  // Niveau 1 : effectif d'une classe ; niveau 2 : effectif total ou nombre de valeurs au-delà d'une borne ;
-  // niveau 3 : pourcentage d'une partie de la série (effectif total 20, 25, 40 ou 50)
-  const HISTOS = [
-    { quoi: "les tailles (en cm) des élèves d'un collège", qui: "élèves", grandeur: "mesurent", unite: "Taille (cm)", u: "cm", departs: [130, 140], amplitude: 10 },
-    { quoi: "les durées de trajet (en min) des élèves d'une classe", qui: "élèves", grandeur: "mettent", unite: "Durée (min)", u: "min", departs: [0, 10], amplitude: 10 },
-    { quoi: "les masses (en kg) des bagages d'un car", qui: "bagages", grandeur: "pèsent", unite: "Masse (kg)", u: "kg", departs: [5, 10], amplitude: 5 }
-  ];
-  function histogramme(niveau) {
-    for (;;) {
-      const h = choix(HISTOS), k = niveau === 1 ? 4 : ent(4, 5), depart = choix(h.departs), eff = Array.from({ length: k }, () => ent(1, 12)), N = eff.reduce((a, b) => a + b, 0);
-      if (niveau === 3 && [20, 25, 40, 50].indexOf(N) < 0) continue;
-      const borne = (i) => depart + i * h.amplitude, schema = Savoirs.schemas.histogramme({ depart: depart, amplitude: h.amplitude, effectifs: eff, pas: 2, unite: h.unite });
-      const intro = "L'histogramme représente " + h.quoi + ". ", de = (mot) => (/^[aeiouyé]/.test(mot) ? "d'" : "de ");
-      if (niveau === 1) {
-        const i = ent(0, k - 1);
-        return { enonce: intro + "Combien " + de(h.qui) + h.qui + " " + h.grandeur + " entre " + borne(i) + " et " + borne(i + 1) + " " + h.u + " (" + borne(i) + " compris, " + borne(i + 1) + " non compris) ?", schema: schema, reponse: eff[i],
-          correction: "On lit la hauteur du rectangle de la classe $" + borne(i) + " \\leqslant x < " + borne(i + 1) + "$ : $" + eff[i] + "$ " + h.qui + "." };
-      }
-      if (niveau === 2) {
-        if (facile(2) || Math.random() < 0.4) return { enonce: intro + "Combien y a-t-il " + (/^[aeiouyéè]/.test(h.qui) ? "d'" : "de ") + h.qui + " en tout ?", schema: schema, reponse: N,
-          correction: "On additionne les effectifs de toutes les classes : $" + eff.join(" + ") + " = " + N + "$." };
-        const i = ent(1, k - 1), s = eff.slice(i).reduce((a, b) => a + b, 0);
-        return { enonce: intro + "Combien " + de(h.qui) + h.qui + " " + h.grandeur + " au moins " + borne(i) + " " + h.u + " ?", schema: schema, reponse: s,
-          correction: "On additionne les effectifs des classes à partir de " + borne(i) + " " + h.u + " : $" + eff.slice(i).join(" + ") + " = " + s + "$." };
-      }
-      const i = ent(1, k - 1), s = eff.slice(0, i).reduce((a, b) => a + b, 0), p = net(s / N * 100);
-      return { enonce: intro + "Quel pourcentage des " + h.qui + " " + h.grandeur + " moins de " + borne(i) + " " + h.u + " ?", schema: schema, reponse: p, unite: "%",
-        correction: "Effectif total : $" + eff.join(" + ") + " = " + N + "$. Moins de " + borne(i) + " " + h.u + " : $" + eff.slice(0, i).join(" + ") + " = " + s + "$. Fréquence : $\\dfrac{" + s + "}{" + N + "} = " + L(net(s / N)) + "$, soit $" + L(p) + "\\,\\%$." };
-    }
+      notes = range(melanger(Array.from({ length: 16 }, (_, i) => i + 5)).slice(0, 5)); eff = notes.map(() => ent(1, 9));
+      S = notes.reduce((s, x, i) => s + x * eff[i], 0); N = eff.reduce((a, b) => a + b, 0);
+    } while (Math.abs(S / N * 100 - Math.round(S / N * 100)) > 1e-9);
+    return moyennePonderee(notes, eff);
   }
 
   Savoirs.enregistrerTechniques("3e", [
-    { id: "st-histogramme", chap: "stat", titre: "Lire un histogramme", format: "nombre", niveaux: { 1: () => histogramme(1), 2: () => histogramme(2), 3: () => histogramme(3) } },
     { id: "st-etendue-calc", chap: "stat", titre: "Calculer une étendue", format: "nombre", niveaux: { 1: () => etendue(1), 2: () => etendue(2), 3: () => etendue(3) } },
     { id: "st-mediane-calc", chap: "stat", titre: "Déterminer une médiane", format: "nombre", niveaux: { 1: () => mediane(1), 2: () => mediane(2), 3: () => mediane(3) } },
-    { id: "st-moyenne-calc", chap: "stat", titre: "Moyenne avec des effectifs ou des classes", format: "nombre", niveaux: { 1: () => moyenne(1), 2: () => moyenne(2), 3: () => moyenne(3) } }
+    { id: "st-moyenne-calc", chap: "stat", titre: "Moyenne avec des effectifs", format: "nombre", niveaux: { 1: () => moyenne(1), 2: () => moyenne(2), 3: () => moyenne(3) } }
   ]);
 })();

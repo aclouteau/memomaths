@@ -51,28 +51,6 @@
     };
   }
 
-  // ---------- Coefficient directeur à partir de deux images ----------
-  function coefficient(niveau) {
-    let a, x1, x2, y1, y2;
-    if (niveau === 1) {
-      a = ent(1, 9); x1 = ent(0, 8); x2 = x1 + (facile(1) ? 1 : ent(2, 5)); if (x2 > 10) { x1 -= x2 - 10; x2 = 10; }
-      const b = ent(0, 10); y1 = a * x1 + b; y2 = a * x2 + b;
-    } else if (niveau === 2) {
-      const simple = facile(2);
-      do { a = simple ? ent(1, 9) : nonNul(-9, 9); x1 = ent(-5, 7); x2 = simple ? x1 + 1 : ent(-5, 8); } while (x2 <= x1);
-      const b = ent(-10, 10); y1 = a * x1 + b; y2 = a * x2 + b;
-    } else {
-      a = choix([0.5, 1.5, 2.5, 0.25, 0.75, 1.25]) * choix([1, -1]);
-      const e = Number.isInteger(a * 2) && Math.random() < 0.5 ? 2 : 4; x1 = ent(-4, 6); x2 = x1 + e; y1 = ent(-12, 12); y2 = net(y1 + a * e);
-    }
-    return {
-      enonce: choix(["Une fonction affine $f$ vérifie $f(" + L(x1) + ") = " + L(y1) + "$ et $f(" + L(x2) + ") = " + L(y2) + "$. Quel est son coefficient $a$ ?",
-        "$f$ est une fonction affine telle que $f(" + L(x1) + ") = " + L(y1) + "$ et $f(" + L(x2) + ") = " + L(y2) + "$. Calculer son coefficient directeur $a$."]),
-      reponse: a,
-      correction: "$a = \\dfrac{f(" + L(x2) + ") - f(" + L(x1) + ")}{" + moins(x2, x1) + "} = \\dfrac{" + moins(y2, y1) + "}{" + L(x2 - x1) + "} = \\dfrac{" + L(net(y2 - y1)) + "}{" + L(x2 - x1) + "} = " + L(a) + "$."
-    };
-  }
-
   // ---------- Expression de f(x) ----------
   function expression(niveau) {
     if (niveau === 1) {
@@ -140,7 +118,6 @@
   Savoirs.enregistrerTechniques("3e", [
     { id: "faff-image", chap: "faff", titre: "Image par une fonction affine", format: "nombre", niveaux: { 1: () => image(1), 2: () => image(2), 3: () => image(3) } },
     { id: "faff-antecedent", chap: "faff", titre: "Antécédent par une fonction affine", format: "nombre", niveaux: { 1: () => antecedent(1), 2: () => antecedent(2), 3: () => antecedent(3) } },
-    { id: "faff-coefficient", chap: "faff", titre: "Coefficient directeur à partir de deux images", format: "nombre", niveaux: { 1: () => coefficient(1), 2: () => coefficient(2), 3: () => coefficient(3) } },
     { id: "faff-expression", chap: "faff", titre: "Expression d'une fonction affine", format: "expression", forme: "developpee_reduite", niveaux: { 1: () => expression(1), 2: () => expression(2), 3: () => expression(3) } },
     { id: "faff-droite", chap: "faff", titre: "Quelle droite représente f ?", format: "toucher", niveaux: { 1: () => droite(1), 2: () => droite(2), 3: () => droite(3) } },
     { id: "faff-lecture", chap: "faff", titre: "Lire a et b sur un graphique", format: "nombre", niveaux: { 1: () => lecture(1), 2: () => lecture(2), 3: () => lecture(3) } }

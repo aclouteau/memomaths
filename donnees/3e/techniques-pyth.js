@@ -122,20 +122,6 @@
   }
   const situationTriplet = (t) => { const [a, b] = melanger([t[0], t[1]]); return Math.random() < 0.5 ? exSituation(a, b, null) : exSituation(a, null, t[2]); };
 
-  // ---------- Grande diagonale d'un pavé droit ----------
-  const QUADRUPLETS = [[1, 2, 2, 3], [2, 3, 6, 7], [1, 4, 8, 9], [2, 6, 9, 11], [4, 4, 7, 9], [2, 10, 11, 15], [6, 6, 7, 11], [3, 4, 12, 13], [4, 5, 20, 21], [2, 5, 14, 15],
-    [8, 9, 12, 17], [1, 12, 12, 17], [6, 10, 15, 19], [4, 8, 8, 12], [2, 4, 4, 6], [3, 6, 6, 9]];
-  function exPave(a, b, c, arrondir) {
-    const d2 = net(carre(a) + carre(b)), D2 = net(d2 + carre(c)), r = arrondir ? arrondi(Math.sqrt(D2)) : net(Math.sqrt(D2));
-    return {
-      enonce: "Calculer la longueur de la grande diagonale de ce pavé droit (en orange)" + (arrondir ? " (arrondir au dixième)." : "."),
-      schema: Savoirs.schemas.pave({ lo: a, la: b, h: c, elo: lg(a, "cm"), ela: lg(b, "cm"), eh: lg(c, "cm"), diag: true, ediag: "?" }),
-      reponse: r, unite: "cm",
-      correction: "Diagonale de la base : $d^{2} = " + L(a) + "^{2} + " + L(b) + "^{2} = " + L(d2) + "$. Grande diagonale $D$ : $D^{2} = d^{2} + " + L(c) + "^{2} = " + L(d2) + " + " + L(carre(c)) + " = " + L(D2) +
-        "$. Donc $D = \\sqrt{" + L(D2) + "} " + fin(r, arrondir, "cm")
-    };
-  }
-
   const pyth = [
     {
       id: "hypotenuse-calcul", chap: "pyth", titre: "Calculer l'hypoténuse", format: "nombre",
@@ -181,28 +167,6 @@
             const h = Math.max(a, b), l = Math.min(a, b);
             if (h - l < 0.5 || arrondi(Math.sqrt(carre(h) - carre(l))) === null) continue;
             return exSituation(l, null, h, true);
-          }
-        }
-      }
-    },
-    {
-      id: "diagonale-pave", chap: "pyth", titre: "Grande diagonale d'un pavé droit", format: "nombre",
-      niveaux: {
-        1: () => { const q = facile(1) ? [1, 2, 2] : choix(QUADRUPLETS.slice(1)).slice(0, 3); const [a, b, c] = melanger(q); return exPave(a, b, c); },
-        2: () => {
-          if (facile(2)) { const [a, b, c] = melanger([2, 4, 4]); return exPave(a, b, c); }
-          for (;;) {
-            const m = choix([0.5, 0.1, 1.5, 0.4, 0.2]), q = choix(QUADRUPLETS).slice(0, 3).map((x) => net(x * m));
-            if (q.every(Number.isInteger)) continue;
-            const [a, b, c] = melanger(q);
-            return exPave(a, b, c);
-          }
-        },
-        3: () => {
-          for (;;) {
-            const v = () => (Math.random() < 0.5 ? dec(1.5, 12) : ent(2, 20)), a = v(), b = v(), c = v();
-            if (arrondi(Math.sqrt(carre(a) + carre(b) + carre(c))) === null) continue;
-            return exPave(a, b, c, true);
           }
         }
       }

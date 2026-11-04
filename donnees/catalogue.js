@@ -34,7 +34,7 @@ Savoirs.catalogue = [
       "donnees/3e/techniques-prem.js", "donnees/3e/techniques-agr.js", "donnees/3e/techniques-lit.js",
       "donnees/3e/techniques-homo.js", "donnees/3e/techniques-fgen.js", "donnees/3e/techniques-thal.js", "donnees/3e/techniques-equ.js",
       "donnees/3e/techniques-pv.js", "donnees/3e/techniques-stat.js", "donnees/3e/techniques-puis.js", "donnees/3e/techniques-flin.js",
-      "donnees/3e/techniques-faff.js", "donnees/3e/techniques-trig.js", "donnees/3e/techniques-esp.js", "donnees/3e/techniques-sembl.js",
+      "donnees/3e/techniques-faff.js", "donnees/3e/techniques-trig.js", "donnees/3e/techniques-sembl.js",
       "donnees/3e/techniques-pourc.js"],
     // Chapitre fusionné (novembre 2026) : « Triangles semblables » (dernier chapitre, 17) est dans « Thalès » ;
     // un ancien choix « jusqu'à Triangles semblables » vaut donc le dernier chapitre restant, « Géométrie dans l'espace »

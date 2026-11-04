@@ -103,7 +103,7 @@
       correction: "On déplace la virgule de $" + Math.abs(n) + "$ " + rangs(Math.abs(n)).replace(/^\d+ /, "") + " vers la " + (n >= 0 ? "gauche" : "droite") + " : $" + x.tex + " = " + nsci(m, d, n) + "$. Donc $a = " + aTex(m, d) + "$." };
   }
 
-  // ---------- Produit et quotient ----------
+  // ---------- Produit ----------
   function calcul(niveau) {
     if (niveau === 1) {
       const x = facile(1) ? 1 : ent(2, 4), y = ent(2, 4), m = ent(1, 6), n = ent(1, 6), r = nombre(x * y, m + n);
@@ -116,13 +116,6 @@
       const r = nombre(x * y, m + n);
       return { enonce: "Calculer $(" + x + " \\times 10^{" + m + "}) \\times (" + y + " \\times 10^{" + n + "})$. Donner le résultat en écriture décimale.", reponse: r.val,
         correction: "$" + x + " \\times " + y + " = " + x * y + "$ et $10^{" + m + "} \\times 10^{" + n + "} = 10^{" + (m + n) + "}$ donc le produit vaut $" + x * y + " \\times 10^{" + (m + n) + "} = " + r.tex + "$." };
-    }
-    if (Math.random() < 0.5) { // quotient exact
-      const b = ent(2, 9), q = ent(2, 9), a = b * q, m = ent(-4, 6), n = ent(-4, 6), e = m - n, r = nombre(q, e);
-      if (a >= 10) {
-        return { enonce: "Calculer $\\dfrac{" + a + " \\times 10^{" + m + "}}{" + b + " \\times 10^{" + n + "}}$. Donner le résultat en écriture décimale.", reponse: r.val,
-          correction: "$" + a + " \\div " + b + " = " + q + "$ et $\\dfrac{10^{" + m + "}}{10^{" + n + "}} = 10^{" + e + "}$ donc le quotient vaut $" + q + " \\times 10^{" + e + "} = " + r.tex + "$." };
-      }
     }
     const x = mant1(), y = ent(2, 9), m = ent(-4, 4), n = ent(-4, 4), p = x * y, r = nombre(p, m + n - 1);
     return { enonce: "Calculer $(" + aTex(x, 1) + " \\times 10^{" + m + "}) \\times (" + y + " \\times 10^{" + n + "})$. Donner le résultat en écriture décimale.", reponse: r.val,
@@ -159,7 +152,7 @@
     { id: "sci-exposant", chap: "sci", titre: "Exposant d'une notation scientifique", format: "nombre", niveaux: { 1: () => exposant1(1), 2: () => exposant2(2), 3: () => exposant3() } },
     { id: "sci-decimal", chap: "sci", titre: "De la notation scientifique à l'écriture décimale", format: "nombre", niveaux: { 1: () => decimal(1), 2: () => decimal(2), 3: () => decimal(3) } },
     { id: "sci-mantisse", chap: "sci", titre: "Le nombre a de la notation scientifique", format: "nombre", niveaux: { 1: () => mantisse(1), 2: () => mantisse(2), 3: () => mantisse(3) } },
-    { id: "sci-calcul", chap: "sci", titre: "Produit et quotient en notation scientifique", format: "nombre", niveaux: { 1: () => calcul(1), 2: () => calcul(2), 3: () => calcul(3) } },
+    { id: "sci-calcul", chap: "sci", titre: "Produit en notation scientifique", format: "nombre", niveaux: { 1: () => calcul(1), 2: () => calcul(2), 3: () => calcul(3) } },
     { id: "sci-comparer", chap: "sci", titre: "Comparer deux nombres en notation scientifique", format: "choix", options: ["<", ">"], niveaux: { 1: () => comparer(1), 2: () => comparer(2), 3: () => comparer(3) } }
   ];
 

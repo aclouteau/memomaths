@@ -304,6 +304,11 @@ h1, h2 { line-height: 1.2; }
 .proposition.faux .marque { background: var(--faux); border-color: var(--faux); color: #fff; }
 .proposition.eteinte { opacity: .45; }
 .proposition:disabled { color: var(--texte); }
+/* QCM : proposition sélectionnée, en attente de « Valider » (bord épais et rond plein : pas seulement la couleur) */
+.proposition.choisie { border-color: var(--accent); box-shadow: inset 0 0 0 2px var(--accent); }
+.proposition.choisie .marque { background: var(--accent); border-color: var(--accent); color: #fff; }
+.bouton-principal.valider { display: block; width: 100%; margin-top: .9rem; }
+.bouton-principal.valider:disabled { opacity: .45; }
 
 /* « Je reconstitue » : la formule en construction, puis les tuiles */
 .reconstitution {
@@ -562,6 +567,8 @@ h1, h2 { line-height: 1.2; }
 .a-propos .bloc { margin-bottom: 1rem; }
 .a-propos .bloc p { margin: 0 0 .6rem; }
 .a-propos a { color: var(--primaire); font-weight: 700; }
+.a-propos a.bouton-chrome { display: flex; align-items: center; justify-content: center; color: var(--primaire-texte); font-weight: 800; text-decoration: none; }
+.adresse-site strong { overflow-wrap: anywhere; }
 .points { margin: 0 0 1rem; padding-left: 1.2rem; display: grid; gap: .4rem; }
 .bouton-effacer.danger { border-color: var(--faux); color: var(--faux); }
 .confirmation { margin-top: .6rem; }
